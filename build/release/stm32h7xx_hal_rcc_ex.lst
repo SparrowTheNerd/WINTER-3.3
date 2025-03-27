@@ -1,0 +1,4361 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32h7xx_hal_rcc_ex.c"
+  15              		.text
+  16              		.section	.rodata.RCCEx_PLL2_Config.str1.4,"aMS",%progbits,1
+  17              		.align	2
+  18              	.LC0:
+  19 0000 44726976 		.ascii	"Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_"
+  19      6572732F 
+  19      53544D33 
+  19      32483778 
+  19      785F4841 
+  20 0033 65782E63 		.ascii	"ex.c\000"
+  20      00
+  21              		.section	.text.RCCEx_PLL2_Config,"ax",%progbits
+  22              		.align	1
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	RCCEx_PLL2_Config:
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30 0000 70B5     		push	{r4, r5, r6, lr}
+  31 0002 0446     		mov	r4, r0
+  32 0004 0E46     		mov	r6, r1
+  33 0006 0368     		ldr	r3, [r0]
+  34 0008 013B     		subs	r3, r3, #1
+  35 000a 3E2B     		cmp	r3, #62
+  36 000c 3DD8     		bhi	.L22
+  37              	.L2:
+  38 000e 6368     		ldr	r3, [r4, #4]
+  39 0010 043B     		subs	r3, r3, #4
+  40 0012 B3F5FE7F 		cmp	r3, #508
+  41 0016 3ED8     		bhi	.L23
+  42              	.L3:
+  43 0018 A368     		ldr	r3, [r4, #8]
+  44 001a 013B     		subs	r3, r3, #1
+  45 001c 7F2B     		cmp	r3, #127
+  46 001e 40D8     		bhi	.L24
+  47              	.L4:
+  48 0020 2369     		ldr	r3, [r4, #16]
+  49 0022 013B     		subs	r3, r3, #1
+  50 0024 7F2B     		cmp	r3, #127
+  51 0026 42D8     		bhi	.L25
+  52              	.L5:
+  53 0028 E368     		ldr	r3, [r4, #12]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 2
+
+
+  54 002a 013B     		subs	r3, r3, #1
+  55 002c 7F2B     		cmp	r3, #127
+  56 002e 44D8     		bhi	.L26
+  57              	.L6:
+  58 0030 6369     		ldr	r3, [r4, #20]
+  59 0032 002B     		cmp	r3, #0
+  60 0034 18BF     		it	ne
+  61 0036 402B     		cmpne	r3, #64
+  62 0038 03D0     		beq	.L7
+  63 003a 802B     		cmp	r3, #128
+  64 003c 01D0     		beq	.L7
+  65 003e C02B     		cmp	r3, #192
+  66 0040 41D1     		bne	.L27
+  67              	.L7:
+  68 0042 A369     		ldr	r3, [r4, #24]
+  69 0044 002B     		cmp	r3, #0
+  70 0046 18BF     		it	ne
+  71 0048 202B     		cmpne	r3, #32
+  72 004a 42D1     		bne	.L28
+  73              	.L8:
+  74 004c E369     		ldr	r3, [r4, #28]
+  75 004e B3F5005F 		cmp	r3, #8192
+  76 0052 44D2     		bcs	.L29
+  77              	.L9:
+  78 0054 574B     		ldr	r3, .L33
+  79 0056 9B6A     		ldr	r3, [r3, #40]
+  80 0058 03F00303 		and	r3, r3, #3
+  81 005c 032B     		cmp	r3, #3
+  82 005e 00F0A780 		beq	.L18
+  83 0062 544A     		ldr	r2, .L33
+  84 0064 1368     		ldr	r3, [r2]
+  85 0066 23F08063 		bic	r3, r3, #67108864
+  86 006a 1360     		str	r3, [r2]
+  87 006c FFF7FEFF 		bl	HAL_GetTick
+  88 0070 0546     		mov	r5, r0
+  89              	.L11:
+  90 0072 504B     		ldr	r3, .L33
+  91 0074 1B68     		ldr	r3, [r3]
+  92 0076 13F0006F 		tst	r3, #134217728
+  93 007a 36D0     		beq	.L30
+  94 007c FFF7FEFF 		bl	HAL_GetTick
+  95 0080 431B     		subs	r3, r0, r5
+  96 0082 022B     		cmp	r3, #2
+  97 0084 F5D9     		bls	.L11
+  98 0086 0320     		movs	r0, #3
+  99 0088 93E0     		b	.L10
+ 100              	.L22:
+ 101 008a 40F67261 		movw	r1, #3698
+ 102 008e 4A48     		ldr	r0, .L33+4
+ 103 0090 FFF7FEFF 		bl	assert_failed
+ 104 0094 BBE7     		b	.L2
+ 105              	.L23:
+ 106 0096 40F67361 		movw	r1, #3699
+ 107 009a 4748     		ldr	r0, .L33+4
+ 108 009c FFF7FEFF 		bl	assert_failed
+ 109 00a0 BAE7     		b	.L3
+ 110              	.L24:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 3
+
+
+ 111 00a2 40F67461 		movw	r1, #3700
+ 112 00a6 4448     		ldr	r0, .L33+4
+ 113 00a8 FFF7FEFF 		bl	assert_failed
+ 114 00ac B8E7     		b	.L4
+ 115              	.L25:
+ 116 00ae 40F67561 		movw	r1, #3701
+ 117 00b2 4148     		ldr	r0, .L33+4
+ 118 00b4 FFF7FEFF 		bl	assert_failed
+ 119 00b8 B6E7     		b	.L5
+ 120              	.L26:
+ 121 00ba 40F67661 		movw	r1, #3702
+ 122 00be 3E48     		ldr	r0, .L33+4
+ 123 00c0 FFF7FEFF 		bl	assert_failed
+ 124 00c4 B4E7     		b	.L6
+ 125              	.L27:
+ 126 00c6 40F67761 		movw	r1, #3703
+ 127 00ca 3B48     		ldr	r0, .L33+4
+ 128 00cc FFF7FEFF 		bl	assert_failed
+ 129 00d0 B7E7     		b	.L7
+ 130              	.L28:
+ 131 00d2 40F67861 		movw	r1, #3704
+ 132 00d6 3848     		ldr	r0, .L33+4
+ 133 00d8 FFF7FEFF 		bl	assert_failed
+ 134 00dc B6E7     		b	.L8
+ 135              	.L29:
+ 136 00de 40F67961 		movw	r1, #3705
+ 137 00e2 3548     		ldr	r0, .L33+4
+ 138 00e4 FFF7FEFF 		bl	assert_failed
+ 139 00e8 B4E7     		b	.L9
+ 140              	.L30:
+ 141 00ea 324B     		ldr	r3, .L33
+ 142 00ec 9A6A     		ldr	r2, [r3, #40]
+ 143 00ee 22F47C32 		bic	r2, r2, #258048
+ 144 00f2 2168     		ldr	r1, [r4]
+ 145 00f4 42EA0132 		orr	r2, r2, r1, lsl #12
+ 146 00f8 9A62     		str	r2, [r3, #40]
+ 147 00fa 6268     		ldr	r2, [r4, #4]
+ 148 00fc 013A     		subs	r2, r2, #1
+ 149 00fe C2F30802 		ubfx	r2, r2, #0, #9
+ 150 0102 A168     		ldr	r1, [r4, #8]
+ 151 0104 0139     		subs	r1, r1, #1
+ 152 0106 4902     		lsls	r1, r1, #9
+ 153 0108 89B2     		uxth	r1, r1
+ 154 010a 0A43     		orrs	r2, r2, r1
+ 155 010c E168     		ldr	r1, [r4, #12]
+ 156 010e 0139     		subs	r1, r1, #1
+ 157 0110 0904     		lsls	r1, r1, #16
+ 158 0112 01F4FE01 		and	r1, r1, #8323072
+ 159 0116 0A43     		orrs	r2, r2, r1
+ 160 0118 2169     		ldr	r1, [r4, #16]
+ 161 011a 0139     		subs	r1, r1, #1
+ 162 011c 0906     		lsls	r1, r1, #24
+ 163 011e 01F0FE41 		and	r1, r1, #2130706432
+ 164 0122 0A43     		orrs	r2, r2, r1
+ 165 0124 9A63     		str	r2, [r3, #56]
+ 166 0126 DA6A     		ldr	r2, [r3, #44]
+ 167 0128 22F0C002 		bic	r2, r2, #192
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 4
+
+
+ 168 012c 6169     		ldr	r1, [r4, #20]
+ 169 012e 0A43     		orrs	r2, r2, r1
+ 170 0130 DA62     		str	r2, [r3, #44]
+ 171 0132 DA6A     		ldr	r2, [r3, #44]
+ 172 0134 22F02002 		bic	r2, r2, #32
+ 173 0138 A169     		ldr	r1, [r4, #24]
+ 174 013a 0A43     		orrs	r2, r2, r1
+ 175 013c DA62     		str	r2, [r3, #44]
+ 176 013e DA6A     		ldr	r2, [r3, #44]
+ 177 0140 22F01002 		bic	r2, r2, #16
+ 178 0144 DA62     		str	r2, [r3, #44]
+ 179 0146 DA6B     		ldr	r2, [r3, #60]
+ 180 0148 6FF3CF02 		bfc	r2, #3, #13
+ 181 014c E169     		ldr	r1, [r4, #28]
+ 182 014e 42EAC102 		orr	r2, r2, r1, lsl #3
+ 183 0152 DA63     		str	r2, [r3, #60]
+ 184 0154 DA6A     		ldr	r2, [r3, #44]
+ 185 0156 42F01002 		orr	r2, r2, #16
+ 186 015a DA62     		str	r2, [r3, #44]
+ 187 015c C6B9     		cbnz	r6, .L13
+ 188 015e 1A46     		mov	r2, r3
+ 189 0160 DB6A     		ldr	r3, [r3, #44]
+ 190 0162 43F40023 		orr	r3, r3, #524288
+ 191 0166 D362     		str	r3, [r2, #44]
+ 192              	.L14:
+ 193 0168 124A     		ldr	r2, .L33
+ 194 016a 1368     		ldr	r3, [r2]
+ 195 016c 43F08063 		orr	r3, r3, #67108864
+ 196 0170 1360     		str	r3, [r2]
+ 197 0172 FFF7FEFF 		bl	HAL_GetTick
+ 198 0176 0446     		mov	r4, r0
+ 199              	.L16:
+ 200 0178 0E4B     		ldr	r3, .L33
+ 201 017a 1B68     		ldr	r3, [r3]
+ 202 017c 13F0006F 		tst	r3, #134217728
+ 203 0180 14D1     		bne	.L31
+ 204 0182 FFF7FEFF 		bl	HAL_GetTick
+ 205 0186 001B     		subs	r0, r0, r4
+ 206 0188 0228     		cmp	r0, #2
+ 207 018a F5D9     		bls	.L16
+ 208 018c 0320     		movs	r0, #3
+ 209 018e 10E0     		b	.L10
+ 210              	.L13:
+ 211 0190 012E     		cmp	r6, #1
+ 212 0192 05D0     		beq	.L32
+ 213 0194 074A     		ldr	r2, .L33
+ 214 0196 D36A     		ldr	r3, [r2, #44]
+ 215 0198 43F40013 		orr	r3, r3, #2097152
+ 216 019c D362     		str	r3, [r2, #44]
+ 217 019e E3E7     		b	.L14
+ 218              	.L32:
+ 219 01a0 044A     		ldr	r2, .L33
+ 220 01a2 D36A     		ldr	r3, [r2, #44]
+ 221 01a4 43F48013 		orr	r3, r3, #1048576
+ 222 01a8 D362     		str	r3, [r2, #44]
+ 223 01aa DDE7     		b	.L14
+ 224              	.L31:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 5
+
+
+ 225 01ac 0020     		movs	r0, #0
+ 226 01ae 00E0     		b	.L10
+ 227              	.L18:
+ 228 01b0 0120     		movs	r0, #1
+ 229              	.L10:
+ 230 01b2 70BD     		pop	{r4, r5, r6, pc}
+ 231              	.L34:
+ 232              		.align	2
+ 233              	.L33:
+ 234 01b4 00440258 		.word	1476543488
+ 235 01b8 00000000 		.word	.LC0
+ 237              		.section	.text.RCCEx_PLL3_Config,"ax",%progbits
+ 238              		.align	1
+ 239              		.syntax unified
+ 240              		.thumb
+ 241              		.thumb_func
+ 243              	RCCEx_PLL3_Config:
+ 244              		@ args = 0, pretend = 0, frame = 0
+ 245              		@ frame_needed = 0, uses_anonymous_args = 0
+ 246 0000 70B5     		push	{r4, r5, r6, lr}
+ 247 0002 0446     		mov	r4, r0
+ 248 0004 0E46     		mov	r6, r1
+ 249 0006 0368     		ldr	r3, [r0]
+ 250 0008 013B     		subs	r3, r3, #1
+ 251 000a 3E2B     		cmp	r3, #62
+ 252 000c 41D8     		bhi	.L56
+ 253              	.L36:
+ 254 000e 6368     		ldr	r3, [r4, #4]
+ 255 0010 043B     		subs	r3, r3, #4
+ 256 0012 B3F5FE7F 		cmp	r3, #508
+ 257 0016 42D8     		bhi	.L57
+ 258              	.L37:
+ 259 0018 A368     		ldr	r3, [r4, #8]
+ 260 001a 013B     		subs	r3, r3, #1
+ 261 001c 7F2B     		cmp	r3, #127
+ 262 001e 44D8     		bhi	.L58
+ 263              	.L38:
+ 264 0020 2369     		ldr	r3, [r4, #16]
+ 265 0022 013B     		subs	r3, r3, #1
+ 266 0024 7F2B     		cmp	r3, #127
+ 267 0026 46D8     		bhi	.L59
+ 268              	.L39:
+ 269 0028 E368     		ldr	r3, [r4, #12]
+ 270 002a 013B     		subs	r3, r3, #1
+ 271 002c 7F2B     		cmp	r3, #127
+ 272 002e 48D8     		bhi	.L60
+ 273              	.L40:
+ 274 0030 6369     		ldr	r3, [r4, #20]
+ 275 0032 002B     		cmp	r3, #0
+ 276 0034 18BF     		it	ne
+ 277 0036 B3F5806F 		cmpne	r3, #1024
+ 278 003a 05D0     		beq	.L41
+ 279 003c B3F5006F 		cmp	r3, #2048
+ 280 0040 02D0     		beq	.L41
+ 281 0042 B3F5406F 		cmp	r3, #3072
+ 282 0046 42D1     		bne	.L61
+ 283              	.L41:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 6
+
+
+ 284 0048 A369     		ldr	r3, [r4, #24]
+ 285 004a 002B     		cmp	r3, #0
+ 286 004c 18BF     		it	ne
+ 287 004e B3F5007F 		cmpne	r3, #512
+ 288 0052 42D1     		bne	.L62
+ 289              	.L42:
+ 290 0054 E369     		ldr	r3, [r4, #28]
+ 291 0056 B3F5005F 		cmp	r3, #8192
+ 292 005a 44D2     		bcs	.L63
+ 293              	.L43:
+ 294 005c 574B     		ldr	r3, .L67
+ 295 005e 9B6A     		ldr	r3, [r3, #40]
+ 296 0060 03F00303 		and	r3, r3, #3
+ 297 0064 032B     		cmp	r3, #3
+ 298 0066 00F0A780 		beq	.L52
+ 299 006a 544A     		ldr	r2, .L67
+ 300 006c 1368     		ldr	r3, [r2]
+ 301 006e 23F08053 		bic	r3, r3, #268435456
+ 302 0072 1360     		str	r3, [r2]
+ 303 0074 FFF7FEFF 		bl	HAL_GetTick
+ 304 0078 0546     		mov	r5, r0
+ 305              	.L45:
+ 306 007a 504B     		ldr	r3, .L67
+ 307 007c 1B68     		ldr	r3, [r3]
+ 308 007e 13F0005F 		tst	r3, #536870912
+ 309 0082 36D0     		beq	.L64
+ 310 0084 FFF7FEFF 		bl	HAL_GetTick
+ 311 0088 431B     		subs	r3, r0, r5
+ 312 008a 022B     		cmp	r3, #2
+ 313 008c F5D9     		bls	.L45
+ 314 008e 0320     		movs	r0, #3
+ 315 0090 93E0     		b	.L44
+ 316              	.L56:
+ 317 0092 40F6DA61 		movw	r1, #3802
+ 318 0096 4A48     		ldr	r0, .L67+4
+ 319 0098 FFF7FEFF 		bl	assert_failed
+ 320 009c B7E7     		b	.L36
+ 321              	.L57:
+ 322 009e 40F6DB61 		movw	r1, #3803
+ 323 00a2 4748     		ldr	r0, .L67+4
+ 324 00a4 FFF7FEFF 		bl	assert_failed
+ 325 00a8 B6E7     		b	.L37
+ 326              	.L58:
+ 327 00aa 40F6DC61 		movw	r1, #3804
+ 328 00ae 4448     		ldr	r0, .L67+4
+ 329 00b0 FFF7FEFF 		bl	assert_failed
+ 330 00b4 B4E7     		b	.L38
+ 331              	.L59:
+ 332 00b6 40F6DD61 		movw	r1, #3805
+ 333 00ba 4148     		ldr	r0, .L67+4
+ 334 00bc FFF7FEFF 		bl	assert_failed
+ 335 00c0 B2E7     		b	.L39
+ 336              	.L60:
+ 337 00c2 40F6DE61 		movw	r1, #3806
+ 338 00c6 3E48     		ldr	r0, .L67+4
+ 339 00c8 FFF7FEFF 		bl	assert_failed
+ 340 00cc B0E7     		b	.L40
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 7
+
+
+ 341              	.L61:
+ 342 00ce 40F6DF61 		movw	r1, #3807
+ 343 00d2 3B48     		ldr	r0, .L67+4
+ 344 00d4 FFF7FEFF 		bl	assert_failed
+ 345 00d8 B6E7     		b	.L41
+ 346              	.L62:
+ 347 00da 4FF46E61 		mov	r1, #3808
+ 348 00de 3848     		ldr	r0, .L67+4
+ 349 00e0 FFF7FEFF 		bl	assert_failed
+ 350 00e4 B6E7     		b	.L42
+ 351              	.L63:
+ 352 00e6 40F6E161 		movw	r1, #3809
+ 353 00ea 3548     		ldr	r0, .L67+4
+ 354 00ec FFF7FEFF 		bl	assert_failed
+ 355 00f0 B4E7     		b	.L43
+ 356              	.L64:
+ 357 00f2 324B     		ldr	r3, .L67
+ 358 00f4 9A6A     		ldr	r2, [r3, #40]
+ 359 00f6 22F07C72 		bic	r2, r2, #66060288
+ 360 00fa 2168     		ldr	r1, [r4]
+ 361 00fc 42EA0152 		orr	r2, r2, r1, lsl #20
+ 362 0100 9A62     		str	r2, [r3, #40]
+ 363 0102 6268     		ldr	r2, [r4, #4]
+ 364 0104 013A     		subs	r2, r2, #1
+ 365 0106 C2F30802 		ubfx	r2, r2, #0, #9
+ 366 010a A168     		ldr	r1, [r4, #8]
+ 367 010c 0139     		subs	r1, r1, #1
+ 368 010e 4902     		lsls	r1, r1, #9
+ 369 0110 89B2     		uxth	r1, r1
+ 370 0112 0A43     		orrs	r2, r2, r1
+ 371 0114 E168     		ldr	r1, [r4, #12]
+ 372 0116 0139     		subs	r1, r1, #1
+ 373 0118 0904     		lsls	r1, r1, #16
+ 374 011a 01F4FE01 		and	r1, r1, #8323072
+ 375 011e 0A43     		orrs	r2, r2, r1
+ 376 0120 2169     		ldr	r1, [r4, #16]
+ 377 0122 0139     		subs	r1, r1, #1
+ 378 0124 0906     		lsls	r1, r1, #24
+ 379 0126 01F0FE41 		and	r1, r1, #2130706432
+ 380 012a 0A43     		orrs	r2, r2, r1
+ 381 012c 1A64     		str	r2, [r3, #64]
+ 382 012e DA6A     		ldr	r2, [r3, #44]
+ 383 0130 22F44062 		bic	r2, r2, #3072
+ 384 0134 6169     		ldr	r1, [r4, #20]
+ 385 0136 0A43     		orrs	r2, r2, r1
+ 386 0138 DA62     		str	r2, [r3, #44]
+ 387 013a DA6A     		ldr	r2, [r3, #44]
+ 388 013c 22F40072 		bic	r2, r2, #512
+ 389 0140 A169     		ldr	r1, [r4, #24]
+ 390 0142 0A43     		orrs	r2, r2, r1
+ 391 0144 DA62     		str	r2, [r3, #44]
+ 392 0146 DA6A     		ldr	r2, [r3, #44]
+ 393 0148 22F48072 		bic	r2, r2, #256
+ 394 014c DA62     		str	r2, [r3, #44]
+ 395 014e 5A6C     		ldr	r2, [r3, #68]
+ 396 0150 6FF3CF02 		bfc	r2, #3, #13
+ 397 0154 E169     		ldr	r1, [r4, #28]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 8
+
+
+ 398 0156 42EAC102 		orr	r2, r2, r1, lsl #3
+ 399 015a 5A64     		str	r2, [r3, #68]
+ 400 015c DA6A     		ldr	r2, [r3, #44]
+ 401 015e 42F48072 		orr	r2, r2, #256
+ 402 0162 DA62     		str	r2, [r3, #44]
+ 403 0164 C6B9     		cbnz	r6, .L47
+ 404 0166 1A46     		mov	r2, r3
+ 405 0168 DB6A     		ldr	r3, [r3, #44]
+ 406 016a 43F48003 		orr	r3, r3, #4194304
+ 407 016e D362     		str	r3, [r2, #44]
+ 408              	.L48:
+ 409 0170 124A     		ldr	r2, .L67
+ 410 0172 1368     		ldr	r3, [r2]
+ 411 0174 43F08053 		orr	r3, r3, #268435456
+ 412 0178 1360     		str	r3, [r2]
+ 413 017a FFF7FEFF 		bl	HAL_GetTick
+ 414 017e 0446     		mov	r4, r0
+ 415              	.L50:
+ 416 0180 0E4B     		ldr	r3, .L67
+ 417 0182 1B68     		ldr	r3, [r3]
+ 418 0184 13F0005F 		tst	r3, #536870912
+ 419 0188 14D1     		bne	.L65
+ 420 018a FFF7FEFF 		bl	HAL_GetTick
+ 421 018e 001B     		subs	r0, r0, r4
+ 422 0190 0228     		cmp	r0, #2
+ 423 0192 F5D9     		bls	.L50
+ 424 0194 0320     		movs	r0, #3
+ 425 0196 10E0     		b	.L44
+ 426              	.L47:
+ 427 0198 012E     		cmp	r6, #1
+ 428 019a 05D0     		beq	.L66
+ 429 019c 074A     		ldr	r2, .L67
+ 430 019e D36A     		ldr	r3, [r2, #44]
+ 431 01a0 43F08073 		orr	r3, r3, #16777216
+ 432 01a4 D362     		str	r3, [r2, #44]
+ 433 01a6 E3E7     		b	.L48
+ 434              	.L66:
+ 435 01a8 044A     		ldr	r2, .L67
+ 436 01aa D36A     		ldr	r3, [r2, #44]
+ 437 01ac 43F40003 		orr	r3, r3, #8388608
+ 438 01b0 D362     		str	r3, [r2, #44]
+ 439 01b2 DDE7     		b	.L48
+ 440              	.L65:
+ 441 01b4 0020     		movs	r0, #0
+ 442 01b6 00E0     		b	.L44
+ 443              	.L52:
+ 444 01b8 0120     		movs	r0, #1
+ 445              	.L44:
+ 446 01ba 70BD     		pop	{r4, r5, r6, pc}
+ 447              	.L68:
+ 448              		.align	2
+ 449              	.L67:
+ 450 01bc 00440258 		.word	1476543488
+ 451 01c0 00000000 		.word	.LC0
+ 453              		.section	.text.HAL_RCCEx_PeriphCLKConfig,"ax",%progbits
+ 454              		.align	1
+ 455              		.global	HAL_RCCEx_PeriphCLKConfig
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 9
+
+
+ 456              		.syntax unified
+ 457              		.thumb
+ 458              		.thumb_func
+ 460              	HAL_RCCEx_PeriphCLKConfig:
+ 461              		@ args = 0, pretend = 0, frame = 0
+ 462              		@ frame_needed = 0, uses_anonymous_args = 0
+ 463 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 464 0002 0446     		mov	r4, r0
+ 465 0004 0368     		ldr	r3, [r0]
+ 466 0006 13F0006F 		tst	r3, #134217728
+ 467 000a 2FD0     		beq	.L205
+ 468 000c 436E     		ldr	r3, [r0, #100]
+ 469 000e B3F5001F 		cmp	r3, #2097152
+ 470 0012 25D0     		beq	.L71
+ 471 0014 15D8     		bhi	.L72
+ 472 0016 E3B1     		cbz	r3, .L73
+ 473 0018 B3F5801F 		cmp	r3, #1048576
+ 474 001c 0ED1     		bne	.L253
+ 475 001e 0221     		movs	r1, #2
+ 476 0020 0830     		adds	r0, r0, #8
+ 477 0022 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 478 0026 0546     		mov	r5, r0
+ 479              	.L76:
+ 480 0028 7DBB     		cbnz	r5, .L207
+ 481              	.L75:
+ 482 002a 904A     		ldr	r2, .L284
+ 483 002c 136D     		ldr	r3, [r2, #80]
+ 484 002e 23F44013 		bic	r3, r3, #3145728
+ 485 0032 616E     		ldr	r1, [r4, #100]
+ 486 0034 0B43     		orrs	r3, r3, r1
+ 487 0036 1365     		str	r3, [r2, #80]
+ 488 0038 0026     		movs	r6, #0
+ 489 003a 19E0     		b	.L70
+ 490              	.L253:
+ 491 003c 0126     		movs	r6, #1
+ 492 003e 3546     		mov	r5, r6
+ 493 0040 16E0     		b	.L70
+ 494              	.L72:
+ 495 0042 B3F5401F 		cmp	r3, #3145728
+ 496 0046 01D1     		bne	.L254
+ 497 0048 0025     		movs	r5, #0
+ 498 004a EEE7     		b	.L75
+ 499              	.L254:
+ 500 004c 0126     		movs	r6, #1
+ 501 004e 3546     		mov	r5, r6
+ 502 0050 0EE0     		b	.L70
+ 503              	.L73:
+ 504 0052 864A     		ldr	r2, .L284
+ 505 0054 D36A     		ldr	r3, [r2, #44]
+ 506 0056 43F40033 		orr	r3, r3, #131072
+ 507 005a D362     		str	r3, [r2, #44]
+ 508 005c 0025     		movs	r5, #0
+ 509 005e E4E7     		b	.L75
+ 510              	.L71:
+ 511 0060 0221     		movs	r1, #2
+ 512 0062 2830     		adds	r0, r0, #40
+ 513 0064 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 10
+
+
+ 514 0068 0546     		mov	r5, r0
+ 515 006a DDE7     		b	.L76
+ 516              	.L205:
+ 517 006c 0026     		movs	r6, #0
+ 518 006e 3546     		mov	r5, r6
+ 519              	.L70:
+ 520 0070 2368     		ldr	r3, [r4]
+ 521 0072 13F4807F 		tst	r3, #256
+ 522 0076 19D0     		beq	.L77
+ 523 0078 A36D     		ldr	r3, [r4, #88]
+ 524 007a 042B     		cmp	r3, #4
+ 525 007c 00F29880 		bhi	.L208
+ 526 0080 DFE803F0 		tbb	[pc, r3]
+ 527              	.L79:
+ 528 0084 05       		.byte	(.L82-.L79)/2
+ 529 0085 88       		.byte	(.L81-.L79)/2
+ 530 0086 8F       		.byte	(.L80-.L79)/2
+ 531 0087 0A       		.byte	(.L78-.L79)/2
+ 532 0088 0A       		.byte	(.L78-.L79)/2
+ 533 0089 00       		.p2align 1
+ 534              	.L207:
+ 535 008a 2E46     		mov	r6, r5
+ 536 008c F0E7     		b	.L70
+ 537              	.L82:
+ 538 008e 774A     		ldr	r2, .L284
+ 539 0090 D36A     		ldr	r3, [r2, #44]
+ 540 0092 43F40033 		orr	r3, r3, #131072
+ 541 0096 D362     		str	r3, [r2, #44]
+ 542              	.L78:
+ 543 0098 002D     		cmp	r5, #0
+ 544 009a 40F08C80 		bne	.L209
+ 545 009e 734A     		ldr	r2, .L284
+ 546 00a0 136D     		ldr	r3, [r2, #80]
+ 547 00a2 23F00703 		bic	r3, r3, #7
+ 548 00a6 A16D     		ldr	r1, [r4, #88]
+ 549 00a8 0B43     		orrs	r3, r3, r1
+ 550 00aa 1365     		str	r3, [r2, #80]
+ 551              	.L77:
+ 552 00ac 2368     		ldr	r3, [r4]
+ 553 00ae 13F4806F 		tst	r3, #1024
+ 554 00b2 1DD0     		beq	.L83
+ 555 00b4 D4F8A430 		ldr	r3, [r4, #164]
+ 556 00b8 B3F5800F 		cmp	r3, #4194304
+ 557 00bc 00F09280 		beq	.L84
+ 558 00c0 7ED8     		bhi	.L85
+ 559 00c2 002B     		cmp	r3, #0
+ 560 00c4 00F08880 		beq	.L86
+ 561 00c8 B3F5001F 		cmp	r3, #2097152
+ 562 00cc 75D1     		bne	.L255
+ 563 00ce 0021     		movs	r1, #0
+ 564 00d0 04F10800 		add	r0, r4, #8
+ 565 00d4 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 566 00d8 0546     		mov	r5, r0
+ 567              	.L88:
+ 568 00da 002D     		cmp	r5, #0
+ 569 00dc 40F08980 		bne	.L210
+ 570 00e0 624A     		ldr	r2, .L284
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 11
+
+
+ 571 00e2 936D     		ldr	r3, [r2, #88]
+ 572 00e4 23F46003 		bic	r3, r3, #14680064
+ 573 00e8 D4F8A410 		ldr	r1, [r4, #164]
+ 574 00ec 0B43     		orrs	r3, r3, r1
+ 575 00ee 9365     		str	r3, [r2, #88]
+ 576              	.L83:
+ 577 00f0 2368     		ldr	r3, [r4]
+ 578 00f2 13F4006F 		tst	r3, #2048
+ 579 00f6 1DD0     		beq	.L89
+ 580 00f8 D4F8A830 		ldr	r3, [r4, #168]
+ 581 00fc B3F1007F 		cmp	r3, #33554432
+ 582 0100 00F08E80 		beq	.L90
+ 583 0104 7AD8     		bhi	.L91
+ 584 0106 002B     		cmp	r3, #0
+ 585 0108 00F08480 		beq	.L92
+ 586 010c B3F1807F 		cmp	r3, #16777216
+ 587 0110 71D1     		bne	.L256
+ 588 0112 0021     		movs	r1, #0
+ 589 0114 04F10800 		add	r0, r4, #8
+ 590 0118 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 591 011c 0546     		mov	r5, r0
+ 592              	.L94:
+ 593 011e 002D     		cmp	r5, #0
+ 594 0120 40F08580 		bne	.L211
+ 595 0124 514A     		ldr	r2, .L284
+ 596 0126 936D     		ldr	r3, [r2, #88]
+ 597 0128 23F0E063 		bic	r3, r3, #117440512
+ 598 012c D4F8A810 		ldr	r1, [r4, #168]
+ 599 0130 0B43     		orrs	r3, r3, r1
+ 600 0132 9365     		str	r3, [r2, #88]
+ 601              	.L89:
+ 602 0134 2368     		ldr	r3, [r4]
+ 603 0136 13F0007F 		tst	r3, #33554432
+ 604 013a 14D0     		beq	.L95
+ 605 013c E36C     		ldr	r3, [r4, #76]
+ 606 013e 202B     		cmp	r3, #32
+ 607 0140 7FD0     		beq	.L96
+ 608 0142 79D8     		bhi	.L97
+ 609 0144 33B1     		cbz	r3, .L98
+ 610 0146 102B     		cmp	r3, #16
+ 611 0148 73D1     		bne	.L257
+ 612 014a 484A     		ldr	r2, .L284
+ 613 014c D36A     		ldr	r3, [r2, #44]
+ 614 014e 43F40033 		orr	r3, r3, #131072
+ 615 0152 D362     		str	r3, [r2, #44]
+ 616              	.L98:
+ 617 0154 002D     		cmp	r5, #0
+ 618 0156 7BD1     		bne	.L212
+ 619 0158 444A     		ldr	r2, .L284
+ 620 015a D36C     		ldr	r3, [r2, #76]
+ 621 015c 23F03003 		bic	r3, r3, #48
+ 622 0160 E16C     		ldr	r1, [r4, #76]
+ 623 0162 0B43     		orrs	r3, r3, r1
+ 624 0164 D364     		str	r3, [r2, #76]
+ 625              	.L95:
+ 626 0166 2368     		ldr	r3, [r4]
+ 627 0168 13F4805F 		tst	r3, #4096
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 12
+
+
+ 628 016c 00F08E80 		beq	.L100
+ 629 0170 E36D     		ldr	r3, [r4, #92]
+ 630 0172 B3F5005F 		cmp	r3, #8192
+ 631 0176 00F0D380 		beq	.L101
+ 632 017a 6ED8     		bhi	.L102
+ 633 017c 002B     		cmp	r3, #0
+ 634 017e 77D0     		beq	.L103
+ 635 0180 B3F5805F 		cmp	r3, #4096
+ 636 0184 66D1     		bne	.L258
+ 637 0186 0021     		movs	r1, #0
+ 638 0188 04F10800 		add	r0, r4, #8
+ 639 018c FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 640 0190 0546     		mov	r5, r0
+ 641 0192 72E0     		b	.L105
+ 642              	.L81:
+ 643 0194 0021     		movs	r1, #0
+ 644 0196 04F10800 		add	r0, r4, #8
+ 645 019a FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 646 019e 0546     		mov	r5, r0
+ 647 01a0 7AE7     		b	.L78
+ 648              	.L80:
+ 649 01a2 0021     		movs	r1, #0
+ 650 01a4 04F12800 		add	r0, r4, #40
+ 651 01a8 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 652 01ac 0546     		mov	r5, r0
+ 653 01ae 73E7     		b	.L78
+ 654              	.L208:
+ 655 01b0 0126     		movs	r6, #1
+ 656 01b2 3546     		mov	r5, r6
+ 657 01b4 7AE7     		b	.L77
+ 658              	.L209:
+ 659 01b6 2E46     		mov	r6, r5
+ 660 01b8 78E7     		b	.L77
+ 661              	.L255:
+ 662 01ba 0126     		movs	r6, #1
+ 663 01bc 3546     		mov	r5, r6
+ 664 01be 97E7     		b	.L83
+ 665              	.L85:
+ 666 01c0 B3F5000F 		cmp	r3, #8388608
+ 667 01c4 89D0     		beq	.L88
+ 668 01c6 B3F5200F 		cmp	r3, #10485760
+ 669 01ca 86D0     		beq	.L88
+ 670 01cc B3F5C00F 		cmp	r3, #6291456
+ 671 01d0 83D0     		beq	.L88
+ 672 01d2 0126     		movs	r6, #1
+ 673 01d4 3546     		mov	r5, r6
+ 674 01d6 8BE7     		b	.L83
+ 675              	.L86:
+ 676 01d8 244A     		ldr	r2, .L284
+ 677 01da D36A     		ldr	r3, [r2, #44]
+ 678 01dc 43F40033 		orr	r3, r3, #131072
+ 679 01e0 D362     		str	r3, [r2, #44]
+ 680 01e2 7AE7     		b	.L88
+ 681              	.L84:
+ 682 01e4 0021     		movs	r1, #0
+ 683 01e6 04F12800 		add	r0, r4, #40
+ 684 01ea FFF7FEFF 		bl	RCCEx_PLL3_Config
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 13
+
+
+ 685 01ee 0546     		mov	r5, r0
+ 686 01f0 73E7     		b	.L88
+ 687              	.L210:
+ 688 01f2 2E46     		mov	r6, r5
+ 689 01f4 7CE7     		b	.L83
+ 690              	.L256:
+ 691 01f6 0126     		movs	r6, #1
+ 692 01f8 3546     		mov	r5, r6
+ 693 01fa 9BE7     		b	.L89
+ 694              	.L91:
+ 695 01fc B3F1806F 		cmp	r3, #67108864
+ 696 0200 8DD0     		beq	.L94
+ 697 0202 B3F1A06F 		cmp	r3, #83886080
+ 698 0206 8AD0     		beq	.L94
+ 699 0208 B3F1407F 		cmp	r3, #50331648
+ 700 020c 87D0     		beq	.L94
+ 701 020e 0126     		movs	r6, #1
+ 702 0210 3546     		mov	r5, r6
+ 703 0212 8FE7     		b	.L89
+ 704              	.L92:
+ 705 0214 154A     		ldr	r2, .L284
+ 706 0216 D36A     		ldr	r3, [r2, #44]
+ 707 0218 43F40033 		orr	r3, r3, #131072
+ 708 021c D362     		str	r3, [r2, #44]
+ 709 021e 7EE7     		b	.L94
+ 710              	.L90:
+ 711 0220 0021     		movs	r1, #0
+ 712 0222 04F12800 		add	r0, r4, #40
+ 713 0226 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 714 022a 0546     		mov	r5, r0
+ 715 022c 77E7     		b	.L94
+ 716              	.L211:
+ 717 022e 2E46     		mov	r6, r5
+ 718 0230 80E7     		b	.L89
+ 719              	.L257:
+ 720 0232 0126     		movs	r6, #1
+ 721 0234 3546     		mov	r5, r6
+ 722 0236 96E7     		b	.L95
+ 723              	.L97:
+ 724 0238 302B     		cmp	r3, #48
+ 725 023a 8BD0     		beq	.L98
+ 726 023c 0126     		movs	r6, #1
+ 727 023e 3546     		mov	r5, r6
+ 728 0240 91E7     		b	.L95
+ 729              	.L96:
+ 730 0242 0221     		movs	r1, #2
+ 731 0244 04F10800 		add	r0, r4, #8
+ 732 0248 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 733 024c 0546     		mov	r5, r0
+ 734 024e 81E7     		b	.L98
+ 735              	.L212:
+ 736 0250 2E46     		mov	r6, r5
+ 737 0252 88E7     		b	.L95
+ 738              	.L258:
+ 739 0254 0126     		movs	r6, #1
+ 740 0256 3546     		mov	r5, r6
+ 741 0258 18E0     		b	.L100
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 14
+
+
+ 742              	.L102:
+ 743 025a B3F5405F 		cmp	r3, #12288
+ 744 025e 0CD0     		beq	.L105
+ 745 0260 B3F5804F 		cmp	r3, #16384
+ 746 0264 09D0     		beq	.L105
+ 747 0266 0126     		movs	r6, #1
+ 748 0268 3546     		mov	r5, r6
+ 749 026a 0FE0     		b	.L100
+ 750              	.L285:
+ 751              		.align	2
+ 752              	.L284:
+ 753 026c 00440258 		.word	1476543488
+ 754              	.L103:
+ 755 0270 5A4A     		ldr	r2, .L286
+ 756 0272 D36A     		ldr	r3, [r2, #44]
+ 757 0274 43F40033 		orr	r3, r3, #131072
+ 758 0278 D362     		str	r3, [r2, #44]
+ 759              	.L105:
+ 760 027a 002D     		cmp	r5, #0
+ 761 027c 57D1     		bne	.L213
+ 762 027e 574A     		ldr	r2, .L286
+ 763 0280 136D     		ldr	r3, [r2, #80]
+ 764 0282 23F4E043 		bic	r3, r3, #28672
+ 765 0286 E16D     		ldr	r1, [r4, #92]
+ 766 0288 0B43     		orrs	r3, r3, r1
+ 767 028a 1365     		str	r3, [r2, #80]
+ 768              	.L100:
+ 769 028c 2368     		ldr	r3, [r4]
+ 770 028e 13F4005F 		tst	r3, #8192
+ 771 0292 17D0     		beq	.L106
+ 772 0294 236E     		ldr	r3, [r4, #96]
+ 773 0296 B3F5003F 		cmp	r3, #131072
+ 774 029a 59D0     		beq	.L107
+ 775 029c 4CD8     		bhi	.L108
+ 776 029e 43B1     		cbz	r3, .L109
+ 777 02a0 B3F5803F 		cmp	r3, #65536
+ 778 02a4 45D1     		bne	.L259
+ 779 02a6 0121     		movs	r1, #1
+ 780 02a8 04F10800 		add	r0, r4, #8
+ 781 02ac FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 782 02b0 0546     		mov	r5, r0
+ 783              	.L109:
+ 784 02b2 002D     		cmp	r5, #0
+ 785 02b4 53D1     		bne	.L214
+ 786 02b6 494A     		ldr	r2, .L286
+ 787 02b8 136D     		ldr	r3, [r2, #80]
+ 788 02ba 23F4E023 		bic	r3, r3, #458752
+ 789 02be 216E     		ldr	r1, [r4, #96]
+ 790 02c0 0B43     		orrs	r3, r3, r1
+ 791 02c2 1365     		str	r3, [r2, #80]
+ 792              	.L106:
+ 793 02c4 2368     		ldr	r3, [r4]
+ 794 02c6 13F4804F 		tst	r3, #16384
+ 795 02ca 19D0     		beq	.L111
+ 796 02cc D4F8AC30 		ldr	r3, [r4, #172]
+ 797 02d0 B3F1005F 		cmp	r3, #536870912
+ 798 02d4 54D0     		beq	.L112
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 15
+
+
+ 799 02d6 47D8     		bhi	.L113
+ 800 02d8 43B1     		cbz	r3, .L114
+ 801 02da B3F1805F 		cmp	r3, #268435456
+ 802 02de 40D1     		bne	.L260
+ 803 02e0 0121     		movs	r1, #1
+ 804 02e2 04F10800 		add	r0, r4, #8
+ 805 02e6 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 806 02ea 0546     		mov	r5, r0
+ 807              	.L114:
+ 808 02ec 002D     		cmp	r5, #0
+ 809 02ee 4ED1     		bne	.L215
+ 810 02f0 3A4A     		ldr	r2, .L286
+ 811 02f2 936D     		ldr	r3, [r2, #88]
+ 812 02f4 23F0E043 		bic	r3, r3, #1879048192
+ 813 02f8 D4F8AC10 		ldr	r1, [r4, #172]
+ 814 02fc 0B43     		orrs	r3, r3, r1
+ 815 02fe 9365     		str	r3, [r2, #88]
+ 816              	.L111:
+ 817 0300 2368     		ldr	r3, [r4]
+ 818 0302 13F4004F 		tst	r3, #32768
+ 819 0306 58D0     		beq	.L116
+ 820 0308 E36E     		ldr	r3, [r4, #108]
+ 821 030a B3F1805F 		cmp	r3, #268435456
+ 822 030e 40D0     		beq	.L117
+ 823 0310 B3F1005F 		cmp	r3, #536870912
+ 824 0314 43D0     		beq	.L118
+ 825 0316 002B     		cmp	r3, #0
+ 826 0318 47D0     		beq	.L119
+ 827 031a 0126     		movs	r6, #1
+ 828 031c 3546     		mov	r5, r6
+ 829 031e 4CE0     		b	.L116
+ 830              	.L101:
+ 831 0320 0021     		movs	r1, #0
+ 832 0322 04F12800 		add	r0, r4, #40
+ 833 0326 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 834 032a 0546     		mov	r5, r0
+ 835 032c A5E7     		b	.L105
+ 836              	.L213:
+ 837 032e 2E46     		mov	r6, r5
+ 838 0330 ACE7     		b	.L100
+ 839              	.L259:
+ 840 0332 0126     		movs	r6, #1
+ 841 0334 3546     		mov	r5, r6
+ 842 0336 C5E7     		b	.L106
+ 843              	.L108:
+ 844 0338 B3F5802F 		cmp	r3, #262144
+ 845 033c B9D0     		beq	.L109
+ 846 033e B3F5A02F 		cmp	r3, #327680
+ 847 0342 B6D0     		beq	.L109
+ 848 0344 B3F5403F 		cmp	r3, #196608
+ 849 0348 B3D0     		beq	.L109
+ 850 034a 0126     		movs	r6, #1
+ 851 034c 3546     		mov	r5, r6
+ 852 034e B9E7     		b	.L106
+ 853              	.L107:
+ 854 0350 0121     		movs	r1, #1
+ 855 0352 04F12800 		add	r0, r4, #40
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 16
+
+
+ 856 0356 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 857 035a 0546     		mov	r5, r0
+ 858 035c A9E7     		b	.L109
+ 859              	.L214:
+ 860 035e 2E46     		mov	r6, r5
+ 861 0360 B0E7     		b	.L106
+ 862              	.L260:
+ 863 0362 0126     		movs	r6, #1
+ 864 0364 3546     		mov	r5, r6
+ 865 0366 CBE7     		b	.L111
+ 866              	.L113:
+ 867 0368 B3F1804F 		cmp	r3, #1073741824
+ 868 036c BED0     		beq	.L114
+ 869 036e B3F1A04F 		cmp	r3, #1342177280
+ 870 0372 BBD0     		beq	.L114
+ 871 0374 B3F1405F 		cmp	r3, #805306368
+ 872 0378 B8D0     		beq	.L114
+ 873 037a 0126     		movs	r6, #1
+ 874 037c 3546     		mov	r5, r6
+ 875 037e BFE7     		b	.L111
+ 876              	.L112:
+ 877 0380 0121     		movs	r1, #1
+ 878 0382 04F12800 		add	r0, r4, #40
+ 879 0386 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 880 038a 0546     		mov	r5, r0
+ 881 038c AEE7     		b	.L114
+ 882              	.L215:
+ 883 038e 2E46     		mov	r6, r5
+ 884 0390 B6E7     		b	.L111
+ 885              	.L117:
+ 886 0392 124A     		ldr	r2, .L286
+ 887 0394 D36A     		ldr	r3, [r2, #44]
+ 888 0396 43F40033 		orr	r3, r3, #131072
+ 889 039a D362     		str	r3, [r2, #44]
+ 890 039c 05E0     		b	.L119
+ 891              	.L118:
+ 892 039e 0121     		movs	r1, #1
+ 893 03a0 04F10800 		add	r0, r4, #8
+ 894 03a4 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 895 03a8 0546     		mov	r5, r0
+ 896              	.L119:
+ 897 03aa A5B9     		cbnz	r5, .L216
+ 898 03ac 0B4A     		ldr	r2, .L286
+ 899 03ae 136D     		ldr	r3, [r2, #80]
+ 900 03b0 23F04053 		bic	r3, r3, #805306368
+ 901 03b4 E16E     		ldr	r1, [r4, #108]
+ 902 03b6 0B43     		orrs	r3, r3, r1
+ 903 03b8 1365     		str	r3, [r2, #80]
+ 904              	.L116:
+ 905 03ba 2368     		ldr	r3, [r4]
+ 906 03bc 13F0807F 		tst	r3, #16777216
+ 907 03c0 1DD0     		beq	.L120
+ 908 03c2 A36C     		ldr	r3, [r4, #72]
+ 909 03c4 032B     		cmp	r3, #3
+ 910 03c6 00F28B81 		bhi	.L217
+ 911 03ca DFE813F0 		tbh	[pc, r3, lsl #1]
+ 912              	.L122:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 17
+
+
+ 913 03ce 0E00     		.2byte	(.L121-.L122)/2
+ 914 03d0 0900     		.2byte	(.L124-.L122)/2
+ 915 03d2 8201     		.2byte	(.L123-.L122)/2
+ 916 03d4 0E00     		.2byte	(.L121-.L122)/2
+ 917              		.p2align 1
+ 918              	.L216:
+ 919 03d6 2E46     		mov	r6, r5
+ 920 03d8 EFE7     		b	.L116
+ 921              	.L287:
+ 922 03da 00BF     		.align	2
+ 923              	.L286:
+ 924 03dc 00440258 		.word	1476543488
+ 925              	.L124:
+ 926 03e0 B74A     		ldr	r2, .L288
+ 927 03e2 D36A     		ldr	r3, [r2, #44]
+ 928 03e4 43F40033 		orr	r3, r3, #131072
+ 929 03e8 D362     		str	r3, [r2, #44]
+ 930              	.L121:
+ 931 03ea 002D     		cmp	r5, #0
+ 932 03ec 40F07B81 		bne	.L218
+ 933 03f0 B34A     		ldr	r2, .L288
+ 934 03f2 D36C     		ldr	r3, [r2, #76]
+ 935 03f4 23F00303 		bic	r3, r3, #3
+ 936 03f8 A16C     		ldr	r1, [r4, #72]
+ 937 03fa 0B43     		orrs	r3, r3, r1
+ 938 03fc D364     		str	r3, [r2, #76]
+ 939              	.L120:
+ 940 03fe 2368     		ldr	r3, [r4]
+ 941 0400 13F4800F 		tst	r3, #4194304
+ 942 0404 00F08D81 		beq	.L125
+ 943 0408 D4F8B030 		ldr	r3, [r4, #176]
+ 944 040c B3F5807F 		cmp	r3, #256
+ 945 0410 18BF     		it	ne
+ 946 0412 B3F5007F 		cmpne	r3, #512
+ 947 0416 00F00D81 		beq	.L126
+ 948 041a B3F50C5F 		cmp	r3, #8960
+ 949 041e 00F00981 		beq	.L126
+ 950 0422 B3F54C5F 		cmp	r3, #13056
+ 951 0426 00F00581 		beq	.L126
+ 952 042a B3F5864F 		cmp	r3, #17152
+ 953 042e 00F00181 		beq	.L126
+ 954 0432 B3F5A64F 		cmp	r3, #21248
+ 955 0436 00F0FD80 		beq	.L126
+ 956 043a B3F5C64F 		cmp	r3, #25344
+ 957 043e 00F0F980 		beq	.L126
+ 958 0442 B3F5E64F 		cmp	r3, #29440
+ 959 0446 00F0F580 		beq	.L126
+ 960 044a B3F5034F 		cmp	r3, #33536
+ 961 044e 00F0F180 		beq	.L126
+ 962 0452 B3F5134F 		cmp	r3, #37632
+ 963 0456 00F0ED80 		beq	.L126
+ 964 045a B3F5234F 		cmp	r3, #41728
+ 965 045e 00F0E980 		beq	.L126
+ 966 0462 B3F5334F 		cmp	r3, #45824
+ 967 0466 00F0E580 		beq	.L126
+ 968 046a B3F5434F 		cmp	r3, #49920
+ 969 046e 00F0E180 		beq	.L126
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 18
+
+
+ 970 0472 B3F5534F 		cmp	r3, #54016
+ 971 0476 00F0DD80 		beq	.L126
+ 972 047a B3F5634F 		cmp	r3, #58112
+ 973 047e 00F0D980 		beq	.L126
+ 974 0482 B3F5734F 		cmp	r3, #62208
+ 975 0486 00F0D580 		beq	.L126
+ 976 048a 8E4A     		ldr	r2, .L288+4
+ 977 048c 9342     		cmp	r3, r2
+ 978 048e 00F0D180 		beq	.L126
+ 979 0492 02F58052 		add	r2, r2, #4096
+ 980 0496 9342     		cmp	r3, r2
+ 981 0498 00F0CC80 		beq	.L126
+ 982 049c 02F58052 		add	r2, r2, #4096
+ 983 04a0 9342     		cmp	r3, r2
+ 984 04a2 00F0C780 		beq	.L126
+ 985 04a6 02F58052 		add	r2, r2, #4096
+ 986 04aa 9342     		cmp	r3, r2
+ 987 04ac 00F0C280 		beq	.L126
+ 988 04b0 02F58052 		add	r2, r2, #4096
+ 989 04b4 9342     		cmp	r3, r2
+ 990 04b6 00F0BD80 		beq	.L126
+ 991 04ba 02F58052 		add	r2, r2, #4096
+ 992 04be 9342     		cmp	r3, r2
+ 993 04c0 00F0B880 		beq	.L126
+ 994 04c4 02F58052 		add	r2, r2, #4096
+ 995 04c8 9342     		cmp	r3, r2
+ 996 04ca 00F0B380 		beq	.L126
+ 997 04ce 02F58052 		add	r2, r2, #4096
+ 998 04d2 9342     		cmp	r3, r2
+ 999 04d4 00F0AE80 		beq	.L126
+ 1000 04d8 02F58052 		add	r2, r2, #4096
+ 1001 04dc 9342     		cmp	r3, r2
+ 1002 04de 00F0A980 		beq	.L126
+ 1003 04e2 02F58052 		add	r2, r2, #4096
+ 1004 04e6 9342     		cmp	r3, r2
+ 1005 04e8 00F0A480 		beq	.L126
+ 1006 04ec 02F58052 		add	r2, r2, #4096
+ 1007 04f0 9342     		cmp	r3, r2
+ 1008 04f2 00F09F80 		beq	.L126
+ 1009 04f6 02F58052 		add	r2, r2, #4096
+ 1010 04fa 9342     		cmp	r3, r2
+ 1011 04fc 00F09A80 		beq	.L126
+ 1012 0500 02F58052 		add	r2, r2, #4096
+ 1013 0504 9342     		cmp	r3, r2
+ 1014 0506 00F09580 		beq	.L126
+ 1015 050a 02F58052 		add	r2, r2, #4096
+ 1016 050e 9342     		cmp	r3, r2
+ 1017 0510 00F09080 		beq	.L126
+ 1018 0514 02F58052 		add	r2, r2, #4096
+ 1019 0518 9342     		cmp	r3, r2
+ 1020 051a 00F08B80 		beq	.L126
+ 1021 051e 02F58052 		add	r2, r2, #4096
+ 1022 0522 9342     		cmp	r3, r2
+ 1023 0524 00F08680 		beq	.L126
+ 1024 0528 02F58052 		add	r2, r2, #4096
+ 1025 052c 9342     		cmp	r3, r2
+ 1026 052e 00F08180 		beq	.L126
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 19
+
+
+ 1027 0532 02F58052 		add	r2, r2, #4096
+ 1028 0536 9342     		cmp	r3, r2
+ 1029 0538 7CD0     		beq	.L126
+ 1030 053a 02F58052 		add	r2, r2, #4096
+ 1031 053e 9342     		cmp	r3, r2
+ 1032 0540 78D0     		beq	.L126
+ 1033 0542 02F58052 		add	r2, r2, #4096
+ 1034 0546 9342     		cmp	r3, r2
+ 1035 0548 74D0     		beq	.L126
+ 1036 054a 02F58052 		add	r2, r2, #4096
+ 1037 054e 9342     		cmp	r3, r2
+ 1038 0550 70D0     		beq	.L126
+ 1039 0552 02F58052 		add	r2, r2, #4096
+ 1040 0556 9342     		cmp	r3, r2
+ 1041 0558 6CD0     		beq	.L126
+ 1042 055a 02F58052 		add	r2, r2, #4096
+ 1043 055e 9342     		cmp	r3, r2
+ 1044 0560 68D0     		beq	.L126
+ 1045 0562 02F58052 		add	r2, r2, #4096
+ 1046 0566 9342     		cmp	r3, r2
+ 1047 0568 64D0     		beq	.L126
+ 1048 056a 02F58052 		add	r2, r2, #4096
+ 1049 056e 9342     		cmp	r3, r2
+ 1050 0570 60D0     		beq	.L126
+ 1051 0572 02F58052 		add	r2, r2, #4096
+ 1052 0576 9342     		cmp	r3, r2
+ 1053 0578 5CD0     		beq	.L126
+ 1054 057a 02F58052 		add	r2, r2, #4096
+ 1055 057e 9342     		cmp	r3, r2
+ 1056 0580 58D0     		beq	.L126
+ 1057 0582 02F58052 		add	r2, r2, #4096
+ 1058 0586 9342     		cmp	r3, r2
+ 1059 0588 54D0     		beq	.L126
+ 1060 058a 02F58052 		add	r2, r2, #4096
+ 1061 058e 9342     		cmp	r3, r2
+ 1062 0590 50D0     		beq	.L126
+ 1063 0592 02F58052 		add	r2, r2, #4096
+ 1064 0596 9342     		cmp	r3, r2
+ 1065 0598 4CD0     		beq	.L126
+ 1066 059a 02F58052 		add	r2, r2, #4096
+ 1067 059e 9342     		cmp	r3, r2
+ 1068 05a0 48D0     		beq	.L126
+ 1069 05a2 02F58052 		add	r2, r2, #4096
+ 1070 05a6 9342     		cmp	r3, r2
+ 1071 05a8 44D0     		beq	.L126
+ 1072 05aa 02F58052 		add	r2, r2, #4096
+ 1073 05ae 9342     		cmp	r3, r2
+ 1074 05b0 40D0     		beq	.L126
+ 1075 05b2 02F58052 		add	r2, r2, #4096
+ 1076 05b6 9342     		cmp	r3, r2
+ 1077 05b8 3CD0     		beq	.L126
+ 1078 05ba 02F58052 		add	r2, r2, #4096
+ 1079 05be 9342     		cmp	r3, r2
+ 1080 05c0 38D0     		beq	.L126
+ 1081 05c2 02F58052 		add	r2, r2, #4096
+ 1082 05c6 9342     		cmp	r3, r2
+ 1083 05c8 34D0     		beq	.L126
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 20
+
+
+ 1084 05ca 02F58052 		add	r2, r2, #4096
+ 1085 05ce 9342     		cmp	r3, r2
+ 1086 05d0 30D0     		beq	.L126
+ 1087 05d2 02F58052 		add	r2, r2, #4096
+ 1088 05d6 9342     		cmp	r3, r2
+ 1089 05d8 2CD0     		beq	.L126
+ 1090 05da 02F58052 		add	r2, r2, #4096
+ 1091 05de 9342     		cmp	r3, r2
+ 1092 05e0 28D0     		beq	.L126
+ 1093 05e2 02F58052 		add	r2, r2, #4096
+ 1094 05e6 9342     		cmp	r3, r2
+ 1095 05e8 24D0     		beq	.L126
+ 1096 05ea 02F58052 		add	r2, r2, #4096
+ 1097 05ee 9342     		cmp	r3, r2
+ 1098 05f0 20D0     		beq	.L126
+ 1099 05f2 02F58052 		add	r2, r2, #4096
+ 1100 05f6 9342     		cmp	r3, r2
+ 1101 05f8 1CD0     		beq	.L126
+ 1102 05fa 02F58052 		add	r2, r2, #4096
+ 1103 05fe 9342     		cmp	r3, r2
+ 1104 0600 18D0     		beq	.L126
+ 1105 0602 02F58052 		add	r2, r2, #4096
+ 1106 0606 9342     		cmp	r3, r2
+ 1107 0608 14D0     		beq	.L126
+ 1108 060a 02F58052 		add	r2, r2, #4096
+ 1109 060e 9342     		cmp	r3, r2
+ 1110 0610 10D0     		beq	.L126
+ 1111 0612 02F58052 		add	r2, r2, #4096
+ 1112 0616 9342     		cmp	r3, r2
+ 1113 0618 0CD0     		beq	.L126
+ 1114 061a 02F58052 		add	r2, r2, #4096
+ 1115 061e 9342     		cmp	r3, r2
+ 1116 0620 08D0     		beq	.L126
+ 1117 0622 02F58052 		add	r2, r2, #4096
+ 1118 0626 9342     		cmp	r3, r2
+ 1119 0628 04D0     		beq	.L126
+ 1120 062a 40F27D31 		movw	r1, #893
+ 1121 062e 2648     		ldr	r0, .L288+8
+ 1122 0630 FFF7FEFF 		bl	assert_failed
+ 1123              	.L126:
+ 1124 0634 254A     		ldr	r2, .L288+12
+ 1125 0636 1368     		ldr	r3, [r2]
+ 1126 0638 43F48073 		orr	r3, r3, #256
+ 1127 063c 1360     		str	r3, [r2]
+ 1128 063e FFF7FEFF 		bl	HAL_GetTick
+ 1129 0642 0746     		mov	r7, r0
+ 1130              	.L127:
+ 1131 0644 214B     		ldr	r3, .L288+12
+ 1132 0646 1B68     		ldr	r3, [r3]
+ 1133 0648 13F4807F 		tst	r3, #256
+ 1134 064c 05D1     		bne	.L128
+ 1135 064e FFF7FEFF 		bl	HAL_GetTick
+ 1136 0652 C01B     		subs	r0, r0, r7
+ 1137 0654 6428     		cmp	r0, #100
+ 1138 0656 F5D9     		bls	.L127
+ 1139 0658 0325     		movs	r5, #3
+ 1140              	.L128:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 21
+
+
+ 1141 065a 002D     		cmp	r5, #0
+ 1142 065c 60D1     		bne	.L220
+ 1143 065e 184B     		ldr	r3, .L288
+ 1144 0660 1B6F     		ldr	r3, [r3, #112]
+ 1145 0662 D4F8B020 		ldr	r2, [r4, #176]
+ 1146 0666 5340     		eors	r3, r3, r2
+ 1147 0668 13F4407F 		tst	r3, #768
+ 1148 066c 0CD0     		beq	.L130
+ 1149 066e 144B     		ldr	r3, .L288
+ 1150 0670 1A6F     		ldr	r2, [r3, #112]
+ 1151 0672 22F44072 		bic	r2, r2, #768
+ 1152 0676 196F     		ldr	r1, [r3, #112]
+ 1153 0678 41F48031 		orr	r1, r1, #65536
+ 1154 067c 1967     		str	r1, [r3, #112]
+ 1155 067e 196F     		ldr	r1, [r3, #112]
+ 1156 0680 21F48031 		bic	r1, r1, #65536
+ 1157 0684 1967     		str	r1, [r3, #112]
+ 1158 0686 1A67     		str	r2, [r3, #112]
+ 1159              	.L130:
+ 1160 0688 D4F8B030 		ldr	r3, [r4, #176]
+ 1161 068c B3F5807F 		cmp	r3, #256
+ 1162 0690 2BD0     		beq	.L261
+ 1163              	.L131:
+ 1164 0692 002D     		cmp	r5, #0
+ 1165 0694 63D1     		bne	.L222
+ 1166 0696 D4F8B030 		ldr	r3, [r4, #176]
+ 1167 069a 03F44072 		and	r2, r3, #768
+ 1168 069e B2F5407F 		cmp	r2, #768
+ 1169 06a2 33D0     		beq	.L262
+ 1170 06a4 064A     		ldr	r2, .L288
+ 1171 06a6 1369     		ldr	r3, [r2, #16]
+ 1172 06a8 23F47C53 		bic	r3, r3, #16128
+ 1173 06ac 1361     		str	r3, [r2, #16]
+ 1174              	.L135:
+ 1175 06ae 0449     		ldr	r1, .L288
+ 1176 06b0 0B6F     		ldr	r3, [r1, #112]
+ 1177 06b2 D4F8B020 		ldr	r2, [r4, #176]
+ 1178 06b6 C2F30B02 		ubfx	r2, r2, #0, #12
+ 1179 06ba 1343     		orrs	r3, r3, r2
+ 1180 06bc 0B67     		str	r3, [r1, #112]
+ 1181 06be 07E0     		b	.L289
+ 1182              	.L290:
+ 1183              		.align	2
+ 1184              	.L288:
+ 1185 06c0 00440258 		.word	1476543488
+ 1186 06c4 00030100 		.word	66304
+ 1187 06c8 00000000 		.word	.LC0
+ 1188 06cc 00480258 		.word	1476544512
+ 1189              	.L289:
+ 1190 06d0 27E0     		b	.L125
+ 1191              	.L123:
+ 1192 06d2 0221     		movs	r1, #2
+ 1193 06d4 04F10800 		add	r0, r4, #8
+ 1194 06d8 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1195 06dc 0546     		mov	r5, r0
+ 1196 06de 84E6     		b	.L121
+ 1197              	.L217:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 22
+
+
+ 1198 06e0 0126     		movs	r6, #1
+ 1199 06e2 3546     		mov	r5, r6
+ 1200 06e4 8BE6     		b	.L120
+ 1201              	.L218:
+ 1202 06e6 2E46     		mov	r6, r5
+ 1203 06e8 89E6     		b	.L120
+ 1204              	.L261:
+ 1205 06ea FFF7FEFF 		bl	HAL_GetTick
+ 1206 06ee 0746     		mov	r7, r0
+ 1207              	.L132:
+ 1208 06f0 444B     		ldr	r3, .L291
+ 1209 06f2 1B6F     		ldr	r3, [r3, #112]
+ 1210 06f4 13F0020F 		tst	r3, #2
+ 1211 06f8 CBD1     		bne	.L131
+ 1212 06fa FFF7FEFF 		bl	HAL_GetTick
+ 1213 06fe C01B     		subs	r0, r0, r7
+ 1214 0700 41F28833 		movw	r3, #5000
+ 1215 0704 9842     		cmp	r0, r3
+ 1216 0706 F3D9     		bls	.L132
+ 1217 0708 0325     		movs	r5, #3
+ 1218 070a C2E7     		b	.L131
+ 1219              	.L262:
+ 1220 070c 3D48     		ldr	r0, .L291
+ 1221 070e 0269     		ldr	r2, [r0, #16]
+ 1222 0710 22F47C52 		bic	r2, r2, #16128
+ 1223 0714 3C49     		ldr	r1, .L291+4
+ 1224 0716 01EA1313 		and	r3, r1, r3, lsr #4
+ 1225 071a 1343     		orrs	r3, r3, r2
+ 1226 071c 0361     		str	r3, [r0, #16]
+ 1227 071e C6E7     		b	.L135
+ 1228              	.L220:
+ 1229 0720 2E46     		mov	r6, r5
+ 1230              	.L125:
+ 1231 0722 2368     		ldr	r3, [r4]
+ 1232 0724 13F0010F 		tst	r3, #1
+ 1233 0728 33D0     		beq	.L136
+ 1234 072a A36F     		ldr	r3, [r4, #120]
+ 1235 072c 282B     		cmp	r3, #40
+ 1236 072e 2ED8     		bhi	.L223
+ 1237 0730 DFE803F0 		tbb	[pc, r3]
+ 1238              	.L138:
+ 1239 0734 1D       		.byte	(.L137-.L138)/2
+ 1240 0735 2D       		.byte	(.L223-.L138)/2
+ 1241 0736 2D       		.byte	(.L223-.L138)/2
+ 1242 0737 2D       		.byte	(.L223-.L138)/2
+ 1243 0738 2D       		.byte	(.L223-.L138)/2
+ 1244 0739 2D       		.byte	(.L223-.L138)/2
+ 1245 073a 2D       		.byte	(.L223-.L138)/2
+ 1246 073b 2D       		.byte	(.L223-.L138)/2
+ 1247 073c 17       		.byte	(.L140-.L138)/2
+ 1248 073d 2D       		.byte	(.L223-.L138)/2
+ 1249 073e 2D       		.byte	(.L223-.L138)/2
+ 1250 073f 2D       		.byte	(.L223-.L138)/2
+ 1251 0740 2D       		.byte	(.L223-.L138)/2
+ 1252 0741 2D       		.byte	(.L223-.L138)/2
+ 1253 0742 2D       		.byte	(.L223-.L138)/2
+ 1254 0743 2D       		.byte	(.L223-.L138)/2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 23
+
+
+ 1255 0744 26       		.byte	(.L139-.L138)/2
+ 1256 0745 2D       		.byte	(.L223-.L138)/2
+ 1257 0746 2D       		.byte	(.L223-.L138)/2
+ 1258 0747 2D       		.byte	(.L223-.L138)/2
+ 1259 0748 2D       		.byte	(.L223-.L138)/2
+ 1260 0749 2D       		.byte	(.L223-.L138)/2
+ 1261 074a 2D       		.byte	(.L223-.L138)/2
+ 1262 074b 2D       		.byte	(.L223-.L138)/2
+ 1263 074c 1D       		.byte	(.L137-.L138)/2
+ 1264 074d 2D       		.byte	(.L223-.L138)/2
+ 1265 074e 2D       		.byte	(.L223-.L138)/2
+ 1266 074f 2D       		.byte	(.L223-.L138)/2
+ 1267 0750 2D       		.byte	(.L223-.L138)/2
+ 1268 0751 2D       		.byte	(.L223-.L138)/2
+ 1269 0752 2D       		.byte	(.L223-.L138)/2
+ 1270 0753 2D       		.byte	(.L223-.L138)/2
+ 1271 0754 1D       		.byte	(.L137-.L138)/2
+ 1272 0755 2D       		.byte	(.L223-.L138)/2
+ 1273 0756 2D       		.byte	(.L223-.L138)/2
+ 1274 0757 2D       		.byte	(.L223-.L138)/2
+ 1275 0758 2D       		.byte	(.L223-.L138)/2
+ 1276 0759 2D       		.byte	(.L223-.L138)/2
+ 1277 075a 2D       		.byte	(.L223-.L138)/2
+ 1278 075b 2D       		.byte	(.L223-.L138)/2
+ 1279 075c 1D       		.byte	(.L137-.L138)/2
+ 1280 075d 00       		.p2align 1
+ 1281              	.L222:
+ 1282 075e 2E46     		mov	r6, r5
+ 1283 0760 DFE7     		b	.L125
+ 1284              	.L140:
+ 1285 0762 0121     		movs	r1, #1
+ 1286 0764 04F10800 		add	r0, r4, #8
+ 1287 0768 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1288 076c 0546     		mov	r5, r0
+ 1289              	.L137:
+ 1290 076e E5B9     		cbnz	r5, .L224
+ 1291 0770 244A     		ldr	r2, .L291
+ 1292 0772 536D     		ldr	r3, [r2, #84]
+ 1293 0774 23F03803 		bic	r3, r3, #56
+ 1294 0778 A16F     		ldr	r1, [r4, #120]
+ 1295 077a 0B43     		orrs	r3, r3, r1
+ 1296 077c 5365     		str	r3, [r2, #84]
+ 1297 077e 08E0     		b	.L136
+ 1298              	.L139:
+ 1299 0780 0121     		movs	r1, #1
+ 1300 0782 04F12800 		add	r0, r4, #40
+ 1301 0786 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1302 078a 0546     		mov	r5, r0
+ 1303 078c EFE7     		b	.L137
+ 1304              	.L223:
+ 1305 078e 0126     		movs	r6, #1
+ 1306 0790 3546     		mov	r5, r6
+ 1307              	.L136:
+ 1308 0792 2368     		ldr	r3, [r4]
+ 1309 0794 13F0020F 		tst	r3, #2
+ 1310 0798 17D0     		beq	.L141
+ 1311 079a 636F     		ldr	r3, [r4, #116]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 24
+
+
+ 1312 079c 052B     		cmp	r3, #5
+ 1313 079e 2CD8     		bhi	.L225
+ 1314 07a0 DFE803F0 		tbb	[pc, r3]
+ 1315              	.L143:
+ 1316 07a4 0B       		.byte	(.L142-.L143)/2
+ 1317 07a5 05       		.byte	(.L145-.L143)/2
+ 1318 07a6 24       		.byte	(.L144-.L143)/2
+ 1319 07a7 0B       		.byte	(.L142-.L143)/2
+ 1320 07a8 0B       		.byte	(.L142-.L143)/2
+ 1321 07a9 0B       		.byte	(.L142-.L143)/2
+ 1322              		.p2align 1
+ 1323              	.L224:
+ 1324 07aa 2E46     		mov	r6, r5
+ 1325 07ac F1E7     		b	.L136
+ 1326              	.L145:
+ 1327 07ae 0121     		movs	r1, #1
+ 1328 07b0 04F10800 		add	r0, r4, #8
+ 1329 07b4 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1330 07b8 0546     		mov	r5, r0
+ 1331              	.L142:
+ 1332 07ba 0DBB     		cbnz	r5, .L226
+ 1333 07bc 114A     		ldr	r2, .L291
+ 1334 07be 536D     		ldr	r3, [r2, #84]
+ 1335 07c0 23F00703 		bic	r3, r3, #7
+ 1336 07c4 616F     		ldr	r1, [r4, #116]
+ 1337 07c6 0B43     		orrs	r3, r3, r1
+ 1338 07c8 5365     		str	r3, [r2, #84]
+ 1339              	.L141:
+ 1340 07ca 2368     		ldr	r3, [r4]
+ 1341 07cc 13F0040F 		tst	r3, #4
+ 1342 07d0 2DD0     		beq	.L146
+ 1343 07d2 D4F89030 		ldr	r3, [r4, #144]
+ 1344 07d6 052B     		cmp	r3, #5
+ 1345 07d8 00F24681 		bhi	.L227
+ 1346 07dc DFE813F0 		tbh	[pc, r3, lsl #1]
+ 1347              	.L148:
+ 1348 07e0 1C00     		.2byte	(.L147-.L148)/2
+ 1349 07e2 1600     		.2byte	(.L150-.L148)/2
+ 1350 07e4 3D01     		.2byte	(.L149-.L148)/2
+ 1351 07e6 1C00     		.2byte	(.L147-.L148)/2
+ 1352 07e8 1C00     		.2byte	(.L147-.L148)/2
+ 1353 07ea 1C00     		.2byte	(.L147-.L148)/2
+ 1354              		.p2align 1
+ 1355              	.L144:
+ 1356 07ec 0121     		movs	r1, #1
+ 1357 07ee 04F12800 		add	r0, r4, #40
+ 1358 07f2 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1359 07f6 0546     		mov	r5, r0
+ 1360 07f8 DFE7     		b	.L142
+ 1361              	.L225:
+ 1362 07fa 0126     		movs	r6, #1
+ 1363 07fc 3546     		mov	r5, r6
+ 1364 07fe E4E7     		b	.L141
+ 1365              	.L226:
+ 1366 0800 2E46     		mov	r6, r5
+ 1367 0802 E2E7     		b	.L141
+ 1368              	.L292:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 25
+
+
+ 1369              		.align	2
+ 1370              	.L291:
+ 1371 0804 00440258 		.word	1476543488
+ 1372 0808 CFFFFF00 		.word	16777167
+ 1373              	.L150:
+ 1374 080c 0121     		movs	r1, #1
+ 1375 080e 04F10800 		add	r0, r4, #8
+ 1376 0812 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1377 0816 0546     		mov	r5, r0
+ 1378              	.L147:
+ 1379 0818 002D     		cmp	r5, #0
+ 1380 081a 40F02881 		bne	.L228
+ 1381 081e B94A     		ldr	r2, .L293
+ 1382 0820 936D     		ldr	r3, [r2, #88]
+ 1383 0822 23F00703 		bic	r3, r3, #7
+ 1384 0826 D4F89010 		ldr	r1, [r4, #144]
+ 1385 082a 0B43     		orrs	r3, r3, r1
+ 1386 082c 9365     		str	r3, [r2, #88]
+ 1387              	.L146:
+ 1388 082e 2368     		ldr	r3, [r4]
+ 1389 0830 13F0200F 		tst	r3, #32
+ 1390 0834 1DD0     		beq	.L151
+ 1391 0836 D4F88C30 		ldr	r3, [r4, #140]
+ 1392 083a B3F1005F 		cmp	r3, #536870912
+ 1393 083e 00F02A81 		beq	.L152
+ 1394 0842 00F21981 		bhi	.L153
+ 1395 0846 4BB1     		cbz	r3, .L154
+ 1396 0848 B3F1805F 		cmp	r3, #268435456
+ 1397 084c 40F01181 		bne	.L263
+ 1398 0850 0021     		movs	r1, #0
+ 1399 0852 04F10800 		add	r0, r4, #8
+ 1400 0856 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1401 085a 0546     		mov	r5, r0
+ 1402              	.L154:
+ 1403 085c 002D     		cmp	r5, #0
+ 1404 085e 40F02181 		bne	.L229
+ 1405 0862 A84A     		ldr	r2, .L293
+ 1406 0864 536D     		ldr	r3, [r2, #84]
+ 1407 0866 23F0E043 		bic	r3, r3, #1879048192
+ 1408 086a D4F88C10 		ldr	r1, [r4, #140]
+ 1409 086e 0B43     		orrs	r3, r3, r1
+ 1410 0870 5365     		str	r3, [r2, #84]
+ 1411              	.L151:
+ 1412 0872 2368     		ldr	r3, [r4]
+ 1413 0874 13F0400F 		tst	r3, #64
+ 1414 0878 1DD0     		beq	.L156
+ 1415 087a D4F89830 		ldr	r3, [r4, #152]
+ 1416 087e B3F5006F 		cmp	r3, #2048
+ 1417 0882 00F02381 		beq	.L157
+ 1418 0886 00F21281 		bhi	.L158
+ 1419 088a 4BB1     		cbz	r3, .L159
+ 1420 088c B3F5806F 		cmp	r3, #1024
+ 1421 0890 40F00A81 		bne	.L264
+ 1422 0894 0021     		movs	r1, #0
+ 1423 0896 04F10800 		add	r0, r4, #8
+ 1424 089a FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1425 089e 0546     		mov	r5, r0
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 26
+
+
+ 1426              	.L159:
+ 1427 08a0 002D     		cmp	r5, #0
+ 1428 08a2 40F01A81 		bne	.L230
+ 1429 08a6 974A     		ldr	r2, .L293
+ 1430 08a8 936D     		ldr	r3, [r2, #88]
+ 1431 08aa 23F4E053 		bic	r3, r3, #7168
+ 1432 08ae D4F89810 		ldr	r1, [r4, #152]
+ 1433 08b2 0B43     		orrs	r3, r3, r1
+ 1434 08b4 9365     		str	r3, [r2, #88]
+ 1435              	.L156:
+ 1436 08b6 2368     		ldr	r3, [r4]
+ 1437 08b8 13F0800F 		tst	r3, #128
+ 1438 08bc 1DD0     		beq	.L161
+ 1439 08be D4F89C30 		ldr	r3, [r4, #156]
+ 1440 08c2 B3F5804F 		cmp	r3, #16384
+ 1441 08c6 00F01F81 		beq	.L162
+ 1442 08ca 00F20B81 		bhi	.L163
+ 1443 08ce 4BB1     		cbz	r3, .L164
+ 1444 08d0 B3F5005F 		cmp	r3, #8192
+ 1445 08d4 40F00381 		bne	.L265
+ 1446 08d8 0021     		movs	r1, #0
+ 1447 08da 04F10800 		add	r0, r4, #8
+ 1448 08de FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1449 08e2 0546     		mov	r5, r0
+ 1450              	.L164:
+ 1451 08e4 002D     		cmp	r5, #0
+ 1452 08e6 40F01681 		bne	.L231
+ 1453 08ea 864A     		ldr	r2, .L293
+ 1454 08ec 936D     		ldr	r3, [r2, #88]
+ 1455 08ee 23F46043 		bic	r3, r3, #57344
+ 1456 08f2 D4F89C10 		ldr	r1, [r4, #156]
+ 1457 08f6 0B43     		orrs	r3, r3, r1
+ 1458 08f8 9365     		str	r3, [r2, #88]
+ 1459              	.L161:
+ 1460 08fa 2368     		ldr	r3, [r4]
+ 1461 08fc 13F0080F 		tst	r3, #8
+ 1462 0900 1AD0     		beq	.L166
+ 1463 0902 D4F88030 		ldr	r3, [r4, #128]
+ 1464 0906 B3F5805F 		cmp	r3, #4096
+ 1465 090a 18BF     		it	ne
+ 1466 090c B3F5005F 		cmpne	r3, #8192
+ 1467 0910 04D0     		beq	.L167
+ 1468 0912 1BB1     		cbz	r3, .L167
+ 1469 0914 B3F5405F 		cmp	r3, #12288
+ 1470 0918 40F0FF80 		bne	.L266
+ 1471              	.L167:
+ 1472 091c D4F88030 		ldr	r3, [r4, #128]
+ 1473 0920 B3F5805F 		cmp	r3, #4096
+ 1474 0924 00F0FF80 		beq	.L267
+ 1475              	.L168:
+ 1476 0928 764A     		ldr	r2, .L293
+ 1477 092a 536D     		ldr	r3, [r2, #84]
+ 1478 092c 23F44053 		bic	r3, r3, #12288
+ 1479 0930 D4F88010 		ldr	r1, [r4, #128]
+ 1480 0934 0B43     		orrs	r3, r3, r1
+ 1481 0936 5365     		str	r3, [r2, #84]
+ 1482              	.L166:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 27
+
+
+ 1483 0938 2368     		ldr	r3, [r4]
+ 1484 093a 13F0100F 		tst	r3, #16
+ 1485 093e 1AD0     		beq	.L169
+ 1486 0940 D4F89430 		ldr	r3, [r4, #148]
+ 1487 0944 B3F5807F 		cmp	r3, #256
+ 1488 0948 18BF     		it	ne
+ 1489 094a B3F5007F 		cmpne	r3, #512
+ 1490 094e 04D0     		beq	.L170
+ 1491 0950 1BB1     		cbz	r3, .L170
+ 1492 0952 B3F5407F 		cmp	r3, #768
+ 1493 0956 40F0F080 		bne	.L268
+ 1494              	.L170:
+ 1495 095a D4F89430 		ldr	r3, [r4, #148]
+ 1496 095e B3F5807F 		cmp	r3, #256
+ 1497 0962 00F0F080 		beq	.L269
+ 1498              	.L171:
+ 1499 0966 674A     		ldr	r2, .L293
+ 1500 0968 936D     		ldr	r3, [r2, #88]
+ 1501 096a 23F44073 		bic	r3, r3, #768
+ 1502 096e D4F89410 		ldr	r1, [r4, #148]
+ 1503 0972 0B43     		orrs	r3, r3, r1
+ 1504 0974 9365     		str	r3, [r2, #88]
+ 1505              	.L169:
+ 1506 0976 2368     		ldr	r3, [r4]
+ 1507 0978 13F4002F 		tst	r3, #524288
+ 1508 097c 1CD0     		beq	.L172
+ 1509 097e D4F8A030 		ldr	r3, [r4, #160]
+ 1510 0982 B3F5803F 		cmp	r3, #65536
+ 1511 0986 00F0E880 		beq	.L173
+ 1512 098a B3F5003F 		cmp	r3, #131072
+ 1513 098e 08D0     		beq	.L174
+ 1514 0990 002B     		cmp	r3, #0
+ 1515 0992 40F0E980 		bne	.L234
+ 1516 0996 0021     		movs	r1, #0
+ 1517 0998 04F10800 		add	r0, r4, #8
+ 1518 099c FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1519 09a0 0546     		mov	r5, r0
+ 1520              	.L174:
+ 1521 09a2 002D     		cmp	r5, #0
+ 1522 09a4 40F0E380 		bne	.L235
+ 1523 09a8 564A     		ldr	r2, .L293
+ 1524 09aa 936D     		ldr	r3, [r2, #88]
+ 1525 09ac 23F44033 		bic	r3, r3, #196608
+ 1526 09b0 D4F8A010 		ldr	r1, [r4, #160]
+ 1527 09b4 0B43     		orrs	r3, r3, r1
+ 1528 09b6 9365     		str	r3, [r2, #88]
+ 1529              	.L172:
+ 1530 09b8 2368     		ldr	r3, [r4]
+ 1531 09ba 13F4802F 		tst	r3, #262144
+ 1532 09be 1CD0     		beq	.L175
+ 1533 09c0 D4F88430 		ldr	r3, [r4, #132]
+ 1534 09c4 B3F5001F 		cmp	r3, #2097152
+ 1535 09c8 00F0D380 		beq	.L176
+ 1536 09cc B3F5401F 		cmp	r3, #3145728
+ 1537 09d0 08D0     		beq	.L177
+ 1538 09d2 B3F5801F 		cmp	r3, #1048576
+ 1539 09d6 40F0D380 		bne	.L236
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 28
+
+
+ 1540 09da 4A4A     		ldr	r2, .L293
+ 1541 09dc D36A     		ldr	r3, [r2, #44]
+ 1542 09de 43F40033 		orr	r3, r3, #131072
+ 1543 09e2 D362     		str	r3, [r2, #44]
+ 1544              	.L177:
+ 1545 09e4 002D     		cmp	r5, #0
+ 1546 09e6 40F0CE80 		bne	.L237
+ 1547 09ea 464A     		ldr	r2, .L293
+ 1548 09ec 536D     		ldr	r3, [r2, #84]
+ 1549 09ee 23F44013 		bic	r3, r3, #3145728
+ 1550 09f2 D4F88410 		ldr	r1, [r4, #132]
+ 1551 09f6 0B43     		orrs	r3, r3, r1
+ 1552 09f8 5365     		str	r3, [r2, #84]
+ 1553              	.L175:
+ 1554 09fa 2368     		ldr	r3, [r4]
+ 1555 09fc 13F4803F 		tst	r3, #65536
+ 1556 0a00 10D0     		beq	.L178
+ 1557 0a02 236D     		ldr	r3, [r4, #80]
+ 1558 0a04 002B     		cmp	r3, #0
+ 1559 0a06 18BF     		it	ne
+ 1560 0a08 B3F5803F 		cmpne	r3, #65536
+ 1561 0a0c 40F0BD80 		bne	.L270
+ 1562              	.L179:
+ 1563 0a10 236D     		ldr	r3, [r4, #80]
+ 1564 0a12 002B     		cmp	r3, #0
+ 1565 0a14 00F0BF80 		beq	.L180
+ 1566 0a18 B3F5803F 		cmp	r3, #65536
+ 1567 0a1c 00F0C980 		beq	.L181
+ 1568 0a20 0126     		movs	r6, #1
+ 1569 0a22 3546     		mov	r5, r6
+ 1570              	.L178:
+ 1571 0a24 2368     		ldr	r3, [r4]
+ 1572 0a26 13F0005F 		tst	r3, #536870912
+ 1573 0a2a 40F0CB80 		bne	.L271
+ 1574              	.L183:
+ 1575 0a2e 2368     		ldr	r3, [r4]
+ 1576 0a30 13F4003F 		tst	r3, #131072
+ 1577 0a34 00F0E280 		beq	.L184
+ 1578 0a38 E36F     		ldr	r3, [r4, #124]
+ 1579 0a3a B3F5807F 		cmp	r3, #256
+ 1580 0a3e 00F0CE80 		beq	.L185
+ 1581 0a42 40F2C980 		bls	.L272
+ 1582 0a46 B3F5007F 		cmp	r3, #512
+ 1583 0a4a 00F0CD80 		beq	.L187
+ 1584 0a4e B3F5407F 		cmp	r3, #768
+ 1585 0a52 00F0C980 		beq	.L187
+ 1586 0a56 0126     		movs	r6, #1
+ 1587 0a58 D0E0     		b	.L184
+ 1588              	.L149:
+ 1589 0a5a 0121     		movs	r1, #1
+ 1590 0a5c 04F12800 		add	r0, r4, #40
+ 1591 0a60 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1592 0a64 0546     		mov	r5, r0
+ 1593 0a66 D7E6     		b	.L147
+ 1594              	.L227:
+ 1595 0a68 0126     		movs	r6, #1
+ 1596 0a6a 3546     		mov	r5, r6
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 29
+
+
+ 1597 0a6c DFE6     		b	.L146
+ 1598              	.L228:
+ 1599 0a6e 2E46     		mov	r6, r5
+ 1600 0a70 DDE6     		b	.L146
+ 1601              	.L263:
+ 1602 0a72 0126     		movs	r6, #1
+ 1603 0a74 3546     		mov	r5, r6
+ 1604 0a76 FCE6     		b	.L151
+ 1605              	.L153:
+ 1606 0a78 B3F1804F 		cmp	r3, #1073741824
+ 1607 0a7c 3FF4EEAE 		beq	.L154
+ 1608 0a80 B3F1A04F 		cmp	r3, #1342177280
+ 1609 0a84 3FF4EAAE 		beq	.L154
+ 1610 0a88 B3F1405F 		cmp	r3, #805306368
+ 1611 0a8c 3FF4E6AE 		beq	.L154
+ 1612 0a90 0126     		movs	r6, #1
+ 1613 0a92 3546     		mov	r5, r6
+ 1614 0a94 EDE6     		b	.L151
+ 1615              	.L152:
+ 1616 0a96 0221     		movs	r1, #2
+ 1617 0a98 04F12800 		add	r0, r4, #40
+ 1618 0a9c FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1619 0aa0 0546     		mov	r5, r0
+ 1620 0aa2 DBE6     		b	.L154
+ 1621              	.L229:
+ 1622 0aa4 2E46     		mov	r6, r5
+ 1623 0aa6 E4E6     		b	.L151
+ 1624              	.L264:
+ 1625 0aa8 0126     		movs	r6, #1
+ 1626 0aaa 3546     		mov	r5, r6
+ 1627 0aac 03E7     		b	.L156
+ 1628              	.L158:
+ 1629 0aae B3F5805F 		cmp	r3, #4096
+ 1630 0ab2 3FF4F5AE 		beq	.L159
+ 1631 0ab6 B3F5A05F 		cmp	r3, #5120
+ 1632 0aba 3FF4F1AE 		beq	.L159
+ 1633 0abe B3F5406F 		cmp	r3, #3072
+ 1634 0ac2 3FF4EDAE 		beq	.L159
+ 1635 0ac6 0126     		movs	r6, #1
+ 1636 0ac8 3546     		mov	r5, r6
+ 1637 0aca F4E6     		b	.L156
+ 1638              	.L157:
+ 1639 0acc 0221     		movs	r1, #2
+ 1640 0ace 04F12800 		add	r0, r4, #40
+ 1641 0ad2 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1642 0ad6 0546     		mov	r5, r0
+ 1643 0ad8 E2E6     		b	.L159
+ 1644              	.L230:
+ 1645 0ada 2E46     		mov	r6, r5
+ 1646 0adc EBE6     		b	.L156
+ 1647              	.L265:
+ 1648 0ade 0126     		movs	r6, #1
+ 1649 0ae0 3546     		mov	r5, r6
+ 1650 0ae2 0AE7     		b	.L161
+ 1651              	.L163:
+ 1652 0ae4 B3F5004F 		cmp	r3, #32768
+ 1653 0ae8 3FF4FCAE 		beq	.L164
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 30
+
+
+ 1654 0aec B3F5204F 		cmp	r3, #40960
+ 1655 0af0 3FF4F8AE 		beq	.L164
+ 1656 0af4 B3F5C04F 		cmp	r3, #24576
+ 1657 0af8 3FF4F4AE 		beq	.L164
+ 1658 0afc 0126     		movs	r6, #1
+ 1659 0afe 3546     		mov	r5, r6
+ 1660 0b00 FBE6     		b	.L161
+ 1661              	.L294:
+ 1662 0b02 00BF     		.align	2
+ 1663              	.L293:
+ 1664 0b04 00440258 		.word	1476543488
+ 1665              	.L162:
+ 1666 0b08 0221     		movs	r1, #2
+ 1667 0b0a 04F12800 		add	r0, r4, #40
+ 1668 0b0e FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1669 0b12 0546     		mov	r5, r0
+ 1670 0b14 E6E6     		b	.L164
+ 1671              	.L231:
+ 1672 0b16 2E46     		mov	r6, r5
+ 1673 0b18 EFE6     		b	.L161
+ 1674              	.L266:
+ 1675 0b1a 40F2FC41 		movw	r1, #1276
+ 1676 0b1e 9F48     		ldr	r0, .L295
+ 1677 0b20 FFF7FEFF 		bl	assert_failed
+ 1678 0b24 FAE6     		b	.L167
+ 1679              	.L267:
+ 1680 0b26 0221     		movs	r1, #2
+ 1681 0b28 04F12800 		add	r0, r4, #40
+ 1682 0b2c FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1683 0b30 0028     		cmp	r0, #0
+ 1684 0b32 3FF4F9AE 		beq	.L168
+ 1685 0b36 0126     		movs	r6, #1
+ 1686 0b38 F6E6     		b	.L168
+ 1687              	.L268:
+ 1688 0b3a 4FF4A461 		mov	r1, #1312
+ 1689 0b3e 9748     		ldr	r0, .L295
+ 1690 0b40 FFF7FEFF 		bl	assert_failed
+ 1691 0b44 09E7     		b	.L170
+ 1692              	.L269:
+ 1693 0b46 0221     		movs	r1, #2
+ 1694 0b48 04F12800 		add	r0, r4, #40
+ 1695 0b4c FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1696 0b50 0028     		cmp	r0, #0
+ 1697 0b52 3FF408AF 		beq	.L171
+ 1698 0b56 0126     		movs	r6, #1
+ 1699 0b58 05E7     		b	.L171
+ 1700              	.L173:
+ 1701 0b5a 0221     		movs	r1, #2
+ 1702 0b5c 04F12800 		add	r0, r4, #40
+ 1703 0b60 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1704 0b64 0546     		mov	r5, r0
+ 1705 0b66 1CE7     		b	.L174
+ 1706              	.L234:
+ 1707 0b68 0126     		movs	r6, #1
+ 1708 0b6a 3546     		mov	r5, r6
+ 1709 0b6c 24E7     		b	.L172
+ 1710              	.L235:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 31
+
+
+ 1711 0b6e 2E46     		mov	r6, r5
+ 1712 0b70 22E7     		b	.L172
+ 1713              	.L176:
+ 1714 0b72 0121     		movs	r1, #1
+ 1715 0b74 04F12800 		add	r0, r4, #40
+ 1716 0b78 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1717 0b7c 0546     		mov	r5, r0
+ 1718 0b7e 31E7     		b	.L177
+ 1719              	.L236:
+ 1720 0b80 0126     		movs	r6, #1
+ 1721 0b82 3546     		mov	r5, r6
+ 1722 0b84 39E7     		b	.L175
+ 1723              	.L237:
+ 1724 0b86 2E46     		mov	r6, r5
+ 1725 0b88 37E7     		b	.L175
+ 1726              	.L270:
+ 1727 0b8a 40F28651 		movw	r1, #1414
+ 1728 0b8e 8348     		ldr	r0, .L295
+ 1729 0b90 FFF7FEFF 		bl	assert_failed
+ 1730 0b94 3CE7     		b	.L179
+ 1731              	.L180:
+ 1732 0b96 824A     		ldr	r2, .L295+4
+ 1733 0b98 D36A     		ldr	r3, [r2, #44]
+ 1734 0b9a 43F40033 		orr	r3, r3, #131072
+ 1735 0b9e D362     		str	r3, [r2, #44]
+ 1736              	.L182:
+ 1737 0ba0 75B9     		cbnz	r5, .L238
+ 1738 0ba2 7F4A     		ldr	r2, .L295+4
+ 1739 0ba4 D36C     		ldr	r3, [r2, #76]
+ 1740 0ba6 23F48033 		bic	r3, r3, #65536
+ 1741 0baa 216D     		ldr	r1, [r4, #80]
+ 1742 0bac 0B43     		orrs	r3, r3, r1
+ 1743 0bae D364     		str	r3, [r2, #76]
+ 1744 0bb0 38E7     		b	.L178
+ 1745              	.L181:
+ 1746 0bb2 0221     		movs	r1, #2
+ 1747 0bb4 04F10800 		add	r0, r4, #8
+ 1748 0bb8 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1749 0bbc 0546     		mov	r5, r0
+ 1750 0bbe EFE7     		b	.L182
+ 1751              	.L238:
+ 1752 0bc0 2E46     		mov	r6, r5
+ 1753 0bc2 2FE7     		b	.L178
+ 1754              	.L271:
+ 1755 0bc4 0221     		movs	r1, #2
+ 1756 0bc6 04F12800 		add	r0, r4, #40
+ 1757 0bca FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1758 0bce 0028     		cmp	r0, #0
+ 1759 0bd0 3FF42DAF 		beq	.L183
+ 1760 0bd4 0126     		movs	r6, #1
+ 1761 0bd6 2AE7     		b	.L183
+ 1762              	.L272:
+ 1763 0bd8 33B1     		cbz	r3, .L187
+ 1764 0bda 0126     		movs	r6, #1
+ 1765 0bdc 0EE0     		b	.L184
+ 1766              	.L185:
+ 1767 0bde 704A     		ldr	r2, .L295+4
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 32
+
+
+ 1768 0be0 D36A     		ldr	r3, [r2, #44]
+ 1769 0be2 43F40033 		orr	r3, r3, #131072
+ 1770 0be6 D362     		str	r3, [r2, #44]
+ 1771              	.L187:
+ 1772 0be8 3DB9     		cbnz	r5, .L240
+ 1773 0bea 6D4A     		ldr	r2, .L295+4
+ 1774 0bec 536D     		ldr	r3, [r2, #84]
+ 1775 0bee 23F44073 		bic	r3, r3, #768
+ 1776 0bf2 E16F     		ldr	r1, [r4, #124]
+ 1777 0bf4 0B43     		orrs	r3, r3, r1
+ 1778 0bf6 5365     		str	r3, [r2, #84]
+ 1779 0bf8 00E0     		b	.L184
+ 1780              	.L240:
+ 1781 0bfa 2E46     		mov	r6, r5
+ 1782              	.L184:
+ 1783 0bfc 2368     		ldr	r3, [r4]
+ 1784 0bfe 13F4801F 		tst	r3, #1048576
+ 1785 0c02 0CD0     		beq	.L188
+ 1786 0c04 236F     		ldr	r3, [r4, #112]
+ 1787 0c06 002B     		cmp	r3, #0
+ 1788 0c08 18BF     		it	ne
+ 1789 0c0a B3F1004F 		cmpne	r3, #-2147483648
+ 1790 0c0e 71D1     		bne	.L273
+ 1791              	.L189:
+ 1792 0c10 634A     		ldr	r2, .L295+4
+ 1793 0c12 136D     		ldr	r3, [r2, #80]
+ 1794 0c14 23F00043 		bic	r3, r3, #-2147483648
+ 1795 0c18 216F     		ldr	r1, [r4, #112]
+ 1796 0c1a 0B43     		orrs	r3, r3, r1
+ 1797 0c1c 1365     		str	r3, [r2, #80]
+ 1798              	.L188:
+ 1799 0c1e 2368     		ldr	r3, [r4]
+ 1800 0c20 13F4001F 		tst	r3, #2097152
+ 1801 0c24 0CD0     		beq	.L190
+ 1802 0c26 A36E     		ldr	r3, [r4, #104]
+ 1803 0c28 002B     		cmp	r3, #0
+ 1804 0c2a 18BF     		it	ne
+ 1805 0c2c B3F1807F 		cmpne	r3, #16777216
+ 1806 0c30 66D1     		bne	.L274
+ 1807              	.L191:
+ 1808 0c32 5B4A     		ldr	r2, .L295+4
+ 1809 0c34 136D     		ldr	r3, [r2, #80]
+ 1810 0c36 23F08073 		bic	r3, r3, #16777216
+ 1811 0c3a A16E     		ldr	r1, [r4, #104]
+ 1812 0c3c 0B43     		orrs	r3, r3, r1
+ 1813 0c3e 1365     		str	r3, [r2, #80]
+ 1814              	.L190:
+ 1815 0c40 2368     		ldr	r3, [r4]
+ 1816 0c42 13F0804F 		tst	r3, #1073741824
+ 1817 0c46 10D0     		beq	.L192
+ 1818 0c48 D4F8B430 		ldr	r3, [r4, #180]
+ 1819 0c4c 002B     		cmp	r3, #0
+ 1820 0c4e 18BF     		it	ne
+ 1821 0c50 B3F5004F 		cmpne	r3, #32768
+ 1822 0c54 5AD1     		bne	.L275
+ 1823              	.L193:
+ 1824 0c56 524B     		ldr	r3, .L295+4
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 33
+
+
+ 1825 0c58 1A69     		ldr	r2, [r3, #16]
+ 1826 0c5a 22F40042 		bic	r2, r2, #32768
+ 1827 0c5e 1A61     		str	r2, [r3, #16]
+ 1828 0c60 1A69     		ldr	r2, [r3, #16]
+ 1829 0c62 D4F8B410 		ldr	r1, [r4, #180]
+ 1830 0c66 0A43     		orrs	r2, r2, r1
+ 1831 0c68 1A61     		str	r2, [r3, #16]
+ 1832              	.L192:
+ 1833 0c6a 2368     		ldr	r3, [r4]
+ 1834 0c6c 002B     		cmp	r3, #0
+ 1835 0c6e 0FDA     		bge	.L194
+ 1836 0c70 636D     		ldr	r3, [r4, #84]
+ 1837 0c72 002B     		cmp	r3, #0
+ 1838 0c74 18BF     		it	ne
+ 1839 0c76 B3F1805F 		cmpne	r3, #268435456
+ 1840 0c7a 02D0     		beq	.L195
+ 1841 0c7c B3F1005F 		cmp	r3, #536870912
+ 1842 0c80 4AD1     		bne	.L276
+ 1843              	.L195:
+ 1844 0c82 474A     		ldr	r2, .L295+4
+ 1845 0c84 D36C     		ldr	r3, [r2, #76]
+ 1846 0c86 23F04053 		bic	r3, r3, #805306368
+ 1847 0c8a 616D     		ldr	r1, [r4, #84]
+ 1848 0c8c 0B43     		orrs	r3, r3, r1
+ 1849 0c8e D364     		str	r3, [r2, #76]
+ 1850              	.L194:
+ 1851 0c90 2368     		ldr	r3, [r4]
+ 1852 0c92 13F4000F 		tst	r3, #8388608
+ 1853 0c96 11D0     		beq	.L196
+ 1854 0c98 D4F88830 		ldr	r3, [r4, #136]
+ 1855 0c9c 002B     		cmp	r3, #0
+ 1856 0c9e 18BF     		it	ne
+ 1857 0ca0 B3F5800F 		cmpne	r3, #4194304
+ 1858 0ca4 02D0     		beq	.L197
+ 1859 0ca6 B3F5000F 		cmp	r3, #8388608
+ 1860 0caa 3BD1     		bne	.L277
+ 1861              	.L197:
+ 1862 0cac 3C4A     		ldr	r2, .L295+4
+ 1863 0cae 536D     		ldr	r3, [r2, #84]
+ 1864 0cb0 23F44003 		bic	r3, r3, #12582912
+ 1865 0cb4 D4F88810 		ldr	r1, [r4, #136]
+ 1866 0cb8 0B43     		orrs	r3, r3, r1
+ 1867 0cba 5365     		str	r3, [r2, #84]
+ 1868              	.L196:
+ 1869 0cbc 6368     		ldr	r3, [r4, #4]
+ 1870 0cbe 13F0010F 		tst	r3, #1
+ 1871 0cc2 35D1     		bne	.L278
+ 1872              	.L198:
+ 1873 0cc4 6368     		ldr	r3, [r4, #4]
+ 1874 0cc6 13F0020F 		tst	r3, #2
+ 1875 0cca 3AD1     		bne	.L279
+ 1876              	.L199:
+ 1877 0ccc 6368     		ldr	r3, [r4, #4]
+ 1878 0cce 13F0040F 		tst	r3, #4
+ 1879 0cd2 3FD1     		bne	.L280
+ 1880              	.L200:
+ 1881 0cd4 6368     		ldr	r3, [r4, #4]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 34
+
+
+ 1882 0cd6 13F0080F 		tst	r3, #8
+ 1883 0cda 44D1     		bne	.L281
+ 1884              	.L201:
+ 1885 0cdc 6368     		ldr	r3, [r4, #4]
+ 1886 0cde 13F0100F 		tst	r3, #16
+ 1887 0ce2 49D1     		bne	.L282
+ 1888              	.L202:
+ 1889 0ce4 6368     		ldr	r3, [r4, #4]
+ 1890 0ce6 13F0200F 		tst	r3, #32
+ 1891 0cea 4ED1     		bne	.L283
+ 1892              	.L203:
+ 1893 0cec 06B1     		cbz	r6, .L204
+ 1894 0cee 0126     		movs	r6, #1
+ 1895              	.L204:
+ 1896 0cf0 3046     		mov	r0, r6
+ 1897 0cf2 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1898              	.L273:
+ 1899 0cf4 40F2E551 		movw	r1, #1509
+ 1900 0cf8 2848     		ldr	r0, .L295
+ 1901 0cfa FFF7FEFF 		bl	assert_failed
+ 1902 0cfe 87E7     		b	.L189
+ 1903              	.L274:
+ 1904 0d00 40F2F951 		movw	r1, #1529
+ 1905 0d04 2548     		ldr	r0, .L295
+ 1906 0d06 FFF7FEFF 		bl	assert_failed
+ 1907 0d0a 92E7     		b	.L191
+ 1908              	.L275:
+ 1909 0d0c 40F20F61 		movw	r1, #1551
+ 1910 0d10 2248     		ldr	r0, .L295
+ 1911 0d12 FFF7FEFF 		bl	assert_failed
+ 1912 0d16 9EE7     		b	.L193
+ 1913              	.L276:
+ 1914 0d18 40F21961 		movw	r1, #1561
+ 1915 0d1c 1F48     		ldr	r0, .L295
+ 1916 0d1e FFF7FEFF 		bl	assert_failed
+ 1917 0d22 AEE7     		b	.L195
+ 1918              	.L277:
+ 1919 0d24 40F22361 		movw	r1, #1571
+ 1920 0d28 1C48     		ldr	r0, .L295
+ 1921 0d2a FFF7FEFF 		bl	assert_failed
+ 1922 0d2e BDE7     		b	.L197
+ 1923              	.L278:
+ 1924 0d30 0021     		movs	r1, #0
+ 1925 0d32 04F10800 		add	r0, r4, #8
+ 1926 0d36 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1927 0d3a 0028     		cmp	r0, #0
+ 1928 0d3c C2D0     		beq	.L198
+ 1929 0d3e 0646     		mov	r6, r0
+ 1930 0d40 C0E7     		b	.L198
+ 1931              	.L279:
+ 1932 0d42 0121     		movs	r1, #1
+ 1933 0d44 04F10800 		add	r0, r4, #8
+ 1934 0d48 FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1935 0d4c 0028     		cmp	r0, #0
+ 1936 0d4e BDD0     		beq	.L199
+ 1937 0d50 0646     		mov	r6, r0
+ 1938 0d52 BBE7     		b	.L199
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 35
+
+
+ 1939              	.L280:
+ 1940 0d54 0221     		movs	r1, #2
+ 1941 0d56 04F10800 		add	r0, r4, #8
+ 1942 0d5a FFF7FEFF 		bl	RCCEx_PLL2_Config
+ 1943 0d5e 0028     		cmp	r0, #0
+ 1944 0d60 B8D0     		beq	.L200
+ 1945 0d62 0646     		mov	r6, r0
+ 1946 0d64 B6E7     		b	.L200
+ 1947              	.L281:
+ 1948 0d66 0021     		movs	r1, #0
+ 1949 0d68 04F12800 		add	r0, r4, #40
+ 1950 0d6c FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1951 0d70 0028     		cmp	r0, #0
+ 1952 0d72 B3D0     		beq	.L201
+ 1953 0d74 0646     		mov	r6, r0
+ 1954 0d76 B1E7     		b	.L201
+ 1955              	.L282:
+ 1956 0d78 0121     		movs	r1, #1
+ 1957 0d7a 04F12800 		add	r0, r4, #40
+ 1958 0d7e FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1959 0d82 0028     		cmp	r0, #0
+ 1960 0d84 AED0     		beq	.L202
+ 1961 0d86 0646     		mov	r6, r0
+ 1962 0d88 ACE7     		b	.L202
+ 1963              	.L283:
+ 1964 0d8a 0221     		movs	r1, #2
+ 1965 0d8c 04F12800 		add	r0, r4, #40
+ 1966 0d90 FFF7FEFF 		bl	RCCEx_PLL3_Config
+ 1967 0d94 0028     		cmp	r0, #0
+ 1968 0d96 A9D0     		beq	.L203
+ 1969 0d98 0126     		movs	r6, #1
+ 1970 0d9a A9E7     		b	.L204
+ 1971              	.L296:
+ 1972              		.align	2
+ 1973              	.L295:
+ 1974 0d9c 00000000 		.word	.LC0
+ 1975 0da0 00440258 		.word	1476543488
+ 1977              		.section	.text.HAL_RCCEx_GetPeriphCLKConfig,"ax",%progbits
+ 1978              		.align	1
+ 1979              		.global	HAL_RCCEx_GetPeriphCLKConfig
+ 1980              		.syntax unified
+ 1981              		.thumb
+ 1982              		.thumb_func
+ 1984              	HAL_RCCEx_GetPeriphCLKConfig:
+ 1985              		@ args = 0, pretend = 0, frame = 0
+ 1986              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1987              		@ link register save eliminated.
+ 1988 0000 6C4A     		ldr	r2, .L300
+ 1989 0002 0023     		movs	r3, #0
+ 1990 0004 C0E90023 		strd	r2, [r0]
+ 1991 0008 6B4A     		ldr	r2, .L300+4
+ 1992 000a 0023     		movs	r3, #0
+ 1993 000c C0E90023 		strd	r2, [r0]
+ 1994 0010 6A4A     		ldr	r2, .L300+8
+ 1995 0012 0023     		movs	r3, #0
+ 1996 0014 C0E90023 		strd	r2, [r0]
+ 1997 0018 694A     		ldr	r2, .L300+12
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 36
+
+
+ 1998 001a 0023     		movs	r3, #0
+ 1999 001c C0E90023 		strd	r2, [r0]
+ 2000 0020 684A     		ldr	r2, .L300+16
+ 2001 0022 0023     		movs	r3, #0
+ 2002 0024 C0E90023 		strd	r2, [r0]
+ 2003 0028 674A     		ldr	r2, .L300+20
+ 2004 002a 0023     		movs	r3, #0
+ 2005 002c C0E90023 		strd	r2, [r0]
+ 2006 0030 664B     		ldr	r3, .L300+24
+ 2007 0032 9A6A     		ldr	r2, [r3, #40]
+ 2008 0034 C2F30552 		ubfx	r2, r2, #20, #6
+ 2009 0038 8262     		str	r2, [r0, #40]
+ 2010 003a 1A6C     		ldr	r2, [r3, #64]
+ 2011 003c C2F30802 		ubfx	r2, r2, #0, #9
+ 2012 0040 0132     		adds	r2, r2, #1
+ 2013 0042 C262     		str	r2, [r0, #44]
+ 2014 0044 1A6C     		ldr	r2, [r3, #64]
+ 2015 0046 C2F30662 		ubfx	r2, r2, #24, #7
+ 2016 004a 0132     		adds	r2, r2, #1
+ 2017 004c 8263     		str	r2, [r0, #56]
+ 2018 004e 1A6C     		ldr	r2, [r3, #64]
+ 2019 0050 C2F34622 		ubfx	r2, r2, #9, #7
+ 2020 0054 0132     		adds	r2, r2, #1
+ 2021 0056 0263     		str	r2, [r0, #48]
+ 2022 0058 1A6C     		ldr	r2, [r3, #64]
+ 2023 005a C2F30642 		ubfx	r2, r2, #16, #7
+ 2024 005e 0132     		adds	r2, r2, #1
+ 2025 0060 4263     		str	r2, [r0, #52]
+ 2026 0062 DA6A     		ldr	r2, [r3, #44]
+ 2027 0064 C2F38122 		ubfx	r2, r2, #10, #2
+ 2028 0068 C263     		str	r2, [r0, #60]
+ 2029 006a DA6A     		ldr	r2, [r3, #44]
+ 2030 006c C2F34022 		ubfx	r2, r2, #9, #1
+ 2031 0070 0264     		str	r2, [r0, #64]
+ 2032 0072 9A6A     		ldr	r2, [r3, #40]
+ 2033 0074 C2F30532 		ubfx	r2, r2, #12, #6
+ 2034 0078 8260     		str	r2, [r0, #8]
+ 2035 007a 9A6B     		ldr	r2, [r3, #56]
+ 2036 007c C2F30802 		ubfx	r2, r2, #0, #9
+ 2037 0080 0132     		adds	r2, r2, #1
+ 2038 0082 C260     		str	r2, [r0, #12]
+ 2039 0084 9A6B     		ldr	r2, [r3, #56]
+ 2040 0086 C2F30662 		ubfx	r2, r2, #24, #7
+ 2041 008a 0132     		adds	r2, r2, #1
+ 2042 008c 8261     		str	r2, [r0, #24]
+ 2043 008e 9A6B     		ldr	r2, [r3, #56]
+ 2044 0090 C2F34622 		ubfx	r2, r2, #9, #7
+ 2045 0094 0132     		adds	r2, r2, #1
+ 2046 0096 0261     		str	r2, [r0, #16]
+ 2047 0098 9A6B     		ldr	r2, [r3, #56]
+ 2048 009a C2F30642 		ubfx	r2, r2, #16, #7
+ 2049 009e 0132     		adds	r2, r2, #1
+ 2050 00a0 4261     		str	r2, [r0, #20]
+ 2051 00a2 DA6A     		ldr	r2, [r3, #44]
+ 2052 00a4 C2F38112 		ubfx	r2, r2, #6, #2
+ 2053 00a8 C261     		str	r2, [r0, #28]
+ 2054 00aa DA6A     		ldr	r2, [r3, #44]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 37
+
+
+ 2055 00ac C2F34012 		ubfx	r2, r2, #5, #1
+ 2056 00b0 0262     		str	r2, [r0, #32]
+ 2057 00b2 5A6D     		ldr	r2, [r3, #84]
+ 2058 00b4 02F03802 		and	r2, r2, #56
+ 2059 00b8 8267     		str	r2, [r0, #120]
+ 2060 00ba 5A6D     		ldr	r2, [r3, #84]
+ 2061 00bc 02F00702 		and	r2, r2, #7
+ 2062 00c0 4267     		str	r2, [r0, #116]
+ 2063 00c2 9A6D     		ldr	r2, [r3, #88]
+ 2064 00c4 02F00702 		and	r2, r2, #7
+ 2065 00c8 C0F89020 		str	r2, [r0, #144]
+ 2066 00cc 5A6D     		ldr	r2, [r3, #84]
+ 2067 00ce 02F44052 		and	r2, r2, #12288
+ 2068 00d2 C0F88020 		str	r2, [r0, #128]
+ 2069 00d6 5A6D     		ldr	r2, [r3, #84]
+ 2070 00d8 02F0E042 		and	r2, r2, #1879048192
+ 2071 00dc C0F88C20 		str	r2, [r0, #140]
+ 2072 00e0 9A6D     		ldr	r2, [r3, #88]
+ 2073 00e2 02F4E052 		and	r2, r2, #7168
+ 2074 00e6 C0F89820 		str	r2, [r0, #152]
+ 2075 00ea 9A6D     		ldr	r2, [r3, #88]
+ 2076 00ec 02F46042 		and	r2, r2, #57344
+ 2077 00f0 C0F89C20 		str	r2, [r0, #156]
+ 2078 00f4 1A6D     		ldr	r2, [r3, #80]
+ 2079 00f6 02F00702 		and	r2, r2, #7
+ 2080 00fa 8265     		str	r2, [r0, #88]
+ 2081 00fc 9A6D     		ldr	r2, [r3, #88]
+ 2082 00fe 02F46002 		and	r2, r2, #14680064
+ 2083 0102 C0F8A420 		str	r2, [r0, #164]
+ 2084 0106 9A6D     		ldr	r2, [r3, #88]
+ 2085 0108 02F0E062 		and	r2, r2, #117440512
+ 2086 010c C0F8A820 		str	r2, [r0, #168]
+ 2087 0110 1A6F     		ldr	r2, [r3, #112]
+ 2088 0112 02F44072 		and	r2, r2, #768
+ 2089 0116 C0F8B020 		str	r2, [r0, #176]
+ 2090 011a 5A6D     		ldr	r2, [r3, #84]
+ 2091 011c 02F44012 		and	r2, r2, #3145728
+ 2092 0120 C0F88420 		str	r2, [r0, #132]
+ 2093 0124 DA6C     		ldr	r2, [r3, #76]
+ 2094 0126 02F48032 		and	r2, r2, #65536
+ 2095 012a 0265     		str	r2, [r0, #80]
+ 2096 012c 5A6D     		ldr	r2, [r3, #84]
+ 2097 012e 02F44072 		and	r2, r2, #768
+ 2098 0132 C267     		str	r2, [r0, #124]
+ 2099 0134 9A6D     		ldr	r2, [r3, #88]
+ 2100 0136 02F44032 		and	r2, r2, #196608
+ 2101 013a C0F8A020 		str	r2, [r0, #160]
+ 2102 013e 1A6D     		ldr	r2, [r3, #80]
+ 2103 0140 02F00042 		and	r2, r2, #-2147483648
+ 2104 0144 0267     		str	r2, [r0, #112]
+ 2105 0146 1A6D     		ldr	r2, [r3, #80]
+ 2106 0148 02F08072 		and	r2, r2, #16777216
+ 2107 014c 8266     		str	r2, [r0, #104]
+ 2108 014e 1A6D     		ldr	r2, [r3, #80]
+ 2109 0150 02F44012 		and	r2, r2, #3145728
+ 2110 0154 4266     		str	r2, [r0, #100]
+ 2111 0156 1A6D     		ldr	r2, [r3, #80]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 38
+
+
+ 2112 0158 02F4E042 		and	r2, r2, #28672
+ 2113 015c C265     		str	r2, [r0, #92]
+ 2114 015e 1A6D     		ldr	r2, [r3, #80]
+ 2115 0160 02F4E022 		and	r2, r2, #458752
+ 2116 0164 0266     		str	r2, [r0, #96]
+ 2117 0166 9A6D     		ldr	r2, [r3, #88]
+ 2118 0168 02F0E042 		and	r2, r2, #1879048192
+ 2119 016c C0F8AC20 		str	r2, [r0, #172]
+ 2120 0170 1A6D     		ldr	r2, [r3, #80]
+ 2121 0172 02F04052 		and	r2, r2, #805306368
+ 2122 0176 C266     		str	r2, [r0, #108]
+ 2123 0178 5A6D     		ldr	r2, [r3, #84]
+ 2124 017a 02F44002 		and	r2, r2, #12582912
+ 2125 017e C0F88820 		str	r2, [r0, #136]
+ 2126 0182 DA6C     		ldr	r2, [r3, #76]
+ 2127 0184 02F00302 		and	r2, r2, #3
+ 2128 0188 8264     		str	r2, [r0, #72]
+ 2129 018a DA6C     		ldr	r2, [r3, #76]
+ 2130 018c 02F03002 		and	r2, r2, #48
+ 2131 0190 C264     		str	r2, [r0, #76]
+ 2132 0192 DA6C     		ldr	r2, [r3, #76]
+ 2133 0194 02F04052 		and	r2, r2, #805306368
+ 2134 0198 4265     		str	r2, [r0, #84]
+ 2135 019a 1B69     		ldr	r3, [r3, #16]
+ 2136 019c 13F4004F 		tst	r3, #32768
+ 2137 01a0 03D1     		bne	.L298
+ 2138 01a2 0023     		movs	r3, #0
+ 2139 01a4 C0F8B430 		str	r3, [r0, #180]
+ 2140 01a8 7047     		bx	lr
+ 2141              	.L298:
+ 2142 01aa 4FF40043 		mov	r3, #32768
+ 2143 01ae C0F8B430 		str	r3, [r0, #180]
+ 2144 01b2 7047     		bx	lr
+ 2145              	.L301:
+ 2146              		.align	2
+ 2147              	.L300:
+ 2148 01b4 F7F1FFC9 		.word	-905973257
+ 2149 01b8 FFF1FFC9 		.word	-905973249
+ 2150 01bc FFF5FFC9 		.word	-905972225
+ 2151 01c0 FFFDFFC9 		.word	-905970177
+ 2152 01c4 FFFDFFCB 		.word	-872415745
+ 2153 01c8 FFFDFFEB 		.word	-335544833
+ 2154 01cc 00440258 		.word	1476543488
+ 2156              		.section	.text.HAL_RCCEx_GetD1PCLK1Freq,"ax",%progbits
+ 2157              		.align	1
+ 2158              		.global	HAL_RCCEx_GetD1PCLK1Freq
+ 2159              		.syntax unified
+ 2160              		.thumb
+ 2161              		.thumb_func
+ 2163              	HAL_RCCEx_GetD1PCLK1Freq:
+ 2164              		@ args = 0, pretend = 0, frame = 0
+ 2165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2166 0000 08B5     		push	{r3, lr}
+ 2167 0002 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 2168 0006 054B     		ldr	r3, .L304
+ 2169 0008 9B69     		ldr	r3, [r3, #24]
+ 2170 000a C3F30213 		ubfx	r3, r3, #4, #3
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 39
+
+
+ 2171 000e 044A     		ldr	r2, .L304+4
+ 2172 0010 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 2173 0012 03F01F03 		and	r3, r3, #31
+ 2174 0016 D840     		lsrs	r0, r0, r3
+ 2175 0018 08BD     		pop	{r3, pc}
+ 2176              	.L305:
+ 2177 001a 00BF     		.align	2
+ 2178              	.L304:
+ 2179 001c 00440258 		.word	1476543488
+ 2180 0020 00000000 		.word	D1CorePrescTable
+ 2182              		.section	.text.HAL_RCCEx_GetD3PCLK1Freq,"ax",%progbits
+ 2183              		.align	1
+ 2184              		.global	HAL_RCCEx_GetD3PCLK1Freq
+ 2185              		.syntax unified
+ 2186              		.thumb
+ 2187              		.thumb_func
+ 2189              	HAL_RCCEx_GetD3PCLK1Freq:
+ 2190              		@ args = 0, pretend = 0, frame = 0
+ 2191              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2192 0000 08B5     		push	{r3, lr}
+ 2193 0002 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 2194 0006 054B     		ldr	r3, .L308
+ 2195 0008 1B6A     		ldr	r3, [r3, #32]
+ 2196 000a C3F30213 		ubfx	r3, r3, #4, #3
+ 2197 000e 044A     		ldr	r2, .L308+4
+ 2198 0010 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 2199 0012 03F01F03 		and	r3, r3, #31
+ 2200 0016 D840     		lsrs	r0, r0, r3
+ 2201 0018 08BD     		pop	{r3, pc}
+ 2202              	.L309:
+ 2203 001a 00BF     		.align	2
+ 2204              	.L308:
+ 2205 001c 00440258 		.word	1476543488
+ 2206 0020 00000000 		.word	D1CorePrescTable
+ 2208              		.section	.text.HAL_RCCEx_GetPLL2ClockFreq,"ax",%progbits
+ 2209              		.align	1
+ 2210              		.global	HAL_RCCEx_GetPLL2ClockFreq
+ 2211              		.syntax unified
+ 2212              		.thumb
+ 2213              		.thumb_func
+ 2215              	HAL_RCCEx_GetPLL2ClockFreq:
+ 2216              		@ args = 0, pretend = 0, frame = 0
+ 2217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2218              		@ link register save eliminated.
+ 2219 0000 10B4     		push	{r4}
+ 2220 0002 794B     		ldr	r3, .L319
+ 2221 0004 9A6A     		ldr	r2, [r3, #40]
+ 2222 0006 9C6A     		ldr	r4, [r3, #40]
+ 2223 0008 C4F3053C 		ubfx	ip, r4, #12, #6
+ 2224 000c D96A     		ldr	r1, [r3, #44]
+ 2225 000e C1F30011 		ubfx	r1, r1, #4, #1
+ 2226 0012 DB6B     		ldr	r3, [r3, #60]
+ 2227 0014 C3F3CC03 		ubfx	r3, r3, #3, #13
+ 2228 0018 01FB03F3 		mul	r3, r1, r3
+ 2229 001c 14F47C3F 		tst	r4, #258048
+ 2230 0020 00F0DD80 		beq	.L311
+ 2231 0024 02F00302 		and	r2, r2, #3
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 40
+
+
+ 2232 0028 07EE903A 		vmov	s15, r3	@ int
+ 2233 002c F8EE677A 		vcvt.f32.u32	s15, s15
+ 2234 0030 012A     		cmp	r2, #1
+ 2235 0032 4BD0     		beq	.L312
+ 2236 0034 022A     		cmp	r2, #2
+ 2237 0036 00F09880 		beq	.L313
+ 2238 003a 002A     		cmp	r2, #0
+ 2239 003c 40F0B280 		bne	.L314
+ 2240 0040 694B     		ldr	r3, .L319
+ 2241 0042 1B68     		ldr	r3, [r3]
+ 2242 0044 13F0200F 		tst	r3, #32
+ 2243 0048 23D0     		beq	.L315
+ 2244 004a 6749     		ldr	r1, .L319
+ 2245 004c 0A68     		ldr	r2, [r1]
+ 2246 004e C2F3C102 		ubfx	r2, r2, #3, #2
+ 2247 0052 664B     		ldr	r3, .L319+4
+ 2248 0054 D340     		lsrs	r3, r3, r2
+ 2249 0056 07EE103A 		vmov	s14, r3	@ int
+ 2250 005a F8EE476A 		vcvt.f32.u32	s13, s14
+ 2251 005e 07EE10CA 		vmov	s14, ip	@ int
+ 2252 0062 B8EE476A 		vcvt.f32.u32	s12, s14
+ 2253 0066 86EE867A 		vdiv.f32	s14, s13, s12
+ 2254 006a 8B6B     		ldr	r3, [r1, #56]
+ 2255 006c C3F30803 		ubfx	r3, r3, #0, #9
+ 2256 0070 06EE903A 		vmov	s13, r3	@ int
+ 2257 0074 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2258 0078 9FED5D6A 		vldr.32	s12, .L319+8
+ 2259 007c 67EE867A 		vmul.f32	s15, s15, s12
+ 2260 0080 76EEA77A 		vadd.f32	s15, s13, s15
+ 2261 0084 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2262 0088 77EEA67A 		vadd.f32	s15, s15, s13
+ 2263 008c 27EE277A 		vmul.f32	s14, s14, s15
+ 2264 0090 38E0     		b	.L316
+ 2265              	.L315:
+ 2266 0092 07EE10CA 		vmov	s14, ip	@ int
+ 2267 0096 F8EE476A 		vcvt.f32.u32	s13, s14
+ 2268 009a 9FED566A 		vldr.32	s12, .L319+12
+ 2269 009e 86EE267A 		vdiv.f32	s14, s12, s13
+ 2270 00a2 514B     		ldr	r3, .L319
+ 2271 00a4 9B6B     		ldr	r3, [r3, #56]
+ 2272 00a6 C3F30803 		ubfx	r3, r3, #0, #9
+ 2273 00aa 06EE903A 		vmov	s13, r3	@ int
+ 2274 00ae F8EE666A 		vcvt.f32.u32	s13, s13
+ 2275 00b2 9FED4F6A 		vldr.32	s12, .L319+8
+ 2276 00b6 67EE867A 		vmul.f32	s15, s15, s12
+ 2277 00ba 76EEA77A 		vadd.f32	s15, s13, s15
+ 2278 00be F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2279 00c2 77EEA67A 		vadd.f32	s15, s15, s13
+ 2280 00c6 27EE277A 		vmul.f32	s14, s14, s15
+ 2281 00ca 1BE0     		b	.L316
+ 2282              	.L312:
+ 2283 00cc 07EE10CA 		vmov	s14, ip	@ int
+ 2284 00d0 F8EE476A 		vcvt.f32.u32	s13, s14
+ 2285 00d4 9FED486A 		vldr.32	s12, .L319+16
+ 2286 00d8 86EE267A 		vdiv.f32	s14, s12, s13
+ 2287 00dc 424B     		ldr	r3, .L319
+ 2288 00de 9B6B     		ldr	r3, [r3, #56]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 41
+
+
+ 2289 00e0 C3F30803 		ubfx	r3, r3, #0, #9
+ 2290 00e4 06EE903A 		vmov	s13, r3	@ int
+ 2291 00e8 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2292 00ec 9FED406A 		vldr.32	s12, .L319+8
+ 2293 00f0 67EE867A 		vmul.f32	s15, s15, s12
+ 2294 00f4 76EEA77A 		vadd.f32	s15, s13, s15
+ 2295 00f8 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2296 00fc 77EEA67A 		vadd.f32	s15, s15, s13
+ 2297 0100 27EE277A 		vmul.f32	s14, s14, s15
+ 2298              	.L316:
+ 2299 0104 384A     		ldr	r2, .L319
+ 2300 0106 936B     		ldr	r3, [r2, #56]
+ 2301 0108 C3F34623 		ubfx	r3, r3, #9, #7
+ 2302 010c 07EE903A 		vmov	s15, r3	@ int
+ 2303 0110 F8EE677A 		vcvt.f32.u32	s15, s15
+ 2304 0114 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2305 0118 77EEA67A 		vadd.f32	s15, s15, s13
+ 2306 011c 87EE276A 		vdiv.f32	s12, s14, s15
+ 2307 0120 BCEEC66A 		vcvt.u32.f32	s12, s12
+ 2308 0124 80ED006A 		vstr.32	s12, [r0]	@ int
+ 2309 0128 936B     		ldr	r3, [r2, #56]
+ 2310 012a C3F30643 		ubfx	r3, r3, #16, #7
+ 2311 012e 07EE903A 		vmov	s15, r3	@ int
+ 2312 0132 F8EE677A 		vcvt.f32.u32	s15, s15
+ 2313 0136 77EEA67A 		vadd.f32	s15, s15, s13
+ 2314 013a 87EE276A 		vdiv.f32	s12, s14, s15
+ 2315 013e BCEEC66A 		vcvt.u32.f32	s12, s12
+ 2316 0142 80ED016A 		vstr.32	s12, [r0, #4]	@ int
+ 2317 0146 936B     		ldr	r3, [r2, #56]
+ 2318 0148 C3F30663 		ubfx	r3, r3, #24, #7
+ 2319 014c 07EE903A 		vmov	s15, r3	@ int
+ 2320 0150 F8EE677A 		vcvt.f32.u32	s15, s15
+ 2321 0154 77EEA67A 		vadd.f32	s15, s15, s13
+ 2322 0158 C7EE276A 		vdiv.f32	s13, s14, s15
+ 2323 015c FCEEE66A 		vcvt.u32.f32	s13, s13
+ 2324 0160 C0ED026A 		vstr.32	s13, [r0, #8]	@ int
+ 2325              	.L310:
+ 2326 0164 5DF8044B 		ldr	r4, [sp], #4
+ 2327 0168 7047     		bx	lr
+ 2328              	.L313:
+ 2329 016a 07EE10CA 		vmov	s14, ip	@ int
+ 2330 016e F8EE476A 		vcvt.f32.u32	s13, s14
+ 2331 0172 9FED226A 		vldr.32	s12, .L319+20
+ 2332 0176 86EE267A 		vdiv.f32	s14, s12, s13
+ 2333 017a 1B4B     		ldr	r3, .L319
+ 2334 017c 9B6B     		ldr	r3, [r3, #56]
+ 2335 017e C3F30803 		ubfx	r3, r3, #0, #9
+ 2336 0182 06EE903A 		vmov	s13, r3	@ int
+ 2337 0186 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2338 018a 9FED196A 		vldr.32	s12, .L319+8
+ 2339 018e 67EE867A 		vmul.f32	s15, s15, s12
+ 2340 0192 76EEA77A 		vadd.f32	s15, s13, s15
+ 2341 0196 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2342 019a 77EEA67A 		vadd.f32	s15, s15, s13
+ 2343 019e 27EE277A 		vmul.f32	s14, s14, s15
+ 2344 01a2 AFE7     		b	.L316
+ 2345              	.L314:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 42
+
+
+ 2346 01a4 07EE10CA 		vmov	s14, ip	@ int
+ 2347 01a8 F8EE476A 		vcvt.f32.u32	s13, s14
+ 2348 01ac 9FED126A 		vldr.32	s12, .L319+16
+ 2349 01b0 86EE267A 		vdiv.f32	s14, s12, s13
+ 2350 01b4 0C4B     		ldr	r3, .L319
+ 2351 01b6 9B6B     		ldr	r3, [r3, #56]
+ 2352 01b8 C3F30803 		ubfx	r3, r3, #0, #9
+ 2353 01bc 06EE903A 		vmov	s13, r3	@ int
+ 2354 01c0 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2355 01c4 9FED0A6A 		vldr.32	s12, .L319+8
+ 2356 01c8 67EE867A 		vmul.f32	s15, s15, s12
+ 2357 01cc 76EEA77A 		vadd.f32	s15, s13, s15
+ 2358 01d0 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2359 01d4 77EEA67A 		vadd.f32	s15, s15, s13
+ 2360 01d8 27EE277A 		vmul.f32	s14, s14, s15
+ 2361 01dc 92E7     		b	.L316
+ 2362              	.L311:
+ 2363 01de 0023     		movs	r3, #0
+ 2364 01e0 0360     		str	r3, [r0]
+ 2365 01e2 4360     		str	r3, [r0, #4]
+ 2366 01e4 8360     		str	r3, [r0, #8]
+ 2367 01e6 BDE7     		b	.L310
+ 2368              	.L320:
+ 2369              		.align	2
+ 2370              	.L319:
+ 2371 01e8 00440258 		.word	1476543488
+ 2372 01ec 0090D003 		.word	64000000
+ 2373 01f0 00000039 		.word	956301312
+ 2374 01f4 0024744C 		.word	1282679808
+ 2375 01f8 0024744A 		.word	1249125376
+ 2376 01fc 001BB74B 		.word	1270291200
+ 2378              		.section	.text.HAL_RCCEx_GetPLL3ClockFreq,"ax",%progbits
+ 2379              		.align	1
+ 2380              		.global	HAL_RCCEx_GetPLL3ClockFreq
+ 2381              		.syntax unified
+ 2382              		.thumb
+ 2383              		.thumb_func
+ 2385              	HAL_RCCEx_GetPLL3ClockFreq:
+ 2386              		@ args = 0, pretend = 0, frame = 0
+ 2387              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2388              		@ link register save eliminated.
+ 2389 0000 10B4     		push	{r4}
+ 2390 0002 794B     		ldr	r3, .L330
+ 2391 0004 9A6A     		ldr	r2, [r3, #40]
+ 2392 0006 9C6A     		ldr	r4, [r3, #40]
+ 2393 0008 C4F3055C 		ubfx	ip, r4, #20, #6
+ 2394 000c D96A     		ldr	r1, [r3, #44]
+ 2395 000e C1F30021 		ubfx	r1, r1, #8, #1
+ 2396 0012 5B6C     		ldr	r3, [r3, #68]
+ 2397 0014 C3F3CC03 		ubfx	r3, r3, #3, #13
+ 2398 0018 01FB03F3 		mul	r3, r1, r3
+ 2399 001c 14F07C7F 		tst	r4, #66060288
+ 2400 0020 00F0DD80 		beq	.L322
+ 2401 0024 02F00302 		and	r2, r2, #3
+ 2402 0028 07EE903A 		vmov	s15, r3	@ int
+ 2403 002c F8EE677A 		vcvt.f32.u32	s15, s15
+ 2404 0030 012A     		cmp	r2, #1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 43
+
+
+ 2405 0032 4BD0     		beq	.L323
+ 2406 0034 022A     		cmp	r2, #2
+ 2407 0036 00F09880 		beq	.L324
+ 2408 003a 002A     		cmp	r2, #0
+ 2409 003c 40F0B280 		bne	.L325
+ 2410 0040 694B     		ldr	r3, .L330
+ 2411 0042 1B68     		ldr	r3, [r3]
+ 2412 0044 13F0200F 		tst	r3, #32
+ 2413 0048 23D0     		beq	.L326
+ 2414 004a 6749     		ldr	r1, .L330
+ 2415 004c 0A68     		ldr	r2, [r1]
+ 2416 004e C2F3C102 		ubfx	r2, r2, #3, #2
+ 2417 0052 664B     		ldr	r3, .L330+4
+ 2418 0054 D340     		lsrs	r3, r3, r2
+ 2419 0056 07EE103A 		vmov	s14, r3	@ int
+ 2420 005a F8EE476A 		vcvt.f32.u32	s13, s14
+ 2421 005e 07EE10CA 		vmov	s14, ip	@ int
+ 2422 0062 B8EE476A 		vcvt.f32.u32	s12, s14
+ 2423 0066 86EE867A 		vdiv.f32	s14, s13, s12
+ 2424 006a 0B6C     		ldr	r3, [r1, #64]
+ 2425 006c C3F30803 		ubfx	r3, r3, #0, #9
+ 2426 0070 06EE903A 		vmov	s13, r3	@ int
+ 2427 0074 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2428 0078 9FED5D6A 		vldr.32	s12, .L330+8
+ 2429 007c 67EE867A 		vmul.f32	s15, s15, s12
+ 2430 0080 76EEA77A 		vadd.f32	s15, s13, s15
+ 2431 0084 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2432 0088 77EEA67A 		vadd.f32	s15, s15, s13
+ 2433 008c 27EE277A 		vmul.f32	s14, s14, s15
+ 2434 0090 38E0     		b	.L327
+ 2435              	.L326:
+ 2436 0092 07EE10CA 		vmov	s14, ip	@ int
+ 2437 0096 F8EE476A 		vcvt.f32.u32	s13, s14
+ 2438 009a 9FED566A 		vldr.32	s12, .L330+12
+ 2439 009e 86EE267A 		vdiv.f32	s14, s12, s13
+ 2440 00a2 514B     		ldr	r3, .L330
+ 2441 00a4 1B6C     		ldr	r3, [r3, #64]
+ 2442 00a6 C3F30803 		ubfx	r3, r3, #0, #9
+ 2443 00aa 06EE903A 		vmov	s13, r3	@ int
+ 2444 00ae F8EE666A 		vcvt.f32.u32	s13, s13
+ 2445 00b2 9FED4F6A 		vldr.32	s12, .L330+8
+ 2446 00b6 67EE867A 		vmul.f32	s15, s15, s12
+ 2447 00ba 76EEA77A 		vadd.f32	s15, s13, s15
+ 2448 00be F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2449 00c2 77EEA67A 		vadd.f32	s15, s15, s13
+ 2450 00c6 27EE277A 		vmul.f32	s14, s14, s15
+ 2451 00ca 1BE0     		b	.L327
+ 2452              	.L323:
+ 2453 00cc 07EE10CA 		vmov	s14, ip	@ int
+ 2454 00d0 F8EE476A 		vcvt.f32.u32	s13, s14
+ 2455 00d4 9FED486A 		vldr.32	s12, .L330+16
+ 2456 00d8 86EE267A 		vdiv.f32	s14, s12, s13
+ 2457 00dc 424B     		ldr	r3, .L330
+ 2458 00de 1B6C     		ldr	r3, [r3, #64]
+ 2459 00e0 C3F30803 		ubfx	r3, r3, #0, #9
+ 2460 00e4 06EE903A 		vmov	s13, r3	@ int
+ 2461 00e8 F8EE666A 		vcvt.f32.u32	s13, s13
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 44
+
+
+ 2462 00ec 9FED406A 		vldr.32	s12, .L330+8
+ 2463 00f0 67EE867A 		vmul.f32	s15, s15, s12
+ 2464 00f4 76EEA77A 		vadd.f32	s15, s13, s15
+ 2465 00f8 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2466 00fc 77EEA67A 		vadd.f32	s15, s15, s13
+ 2467 0100 27EE277A 		vmul.f32	s14, s14, s15
+ 2468              	.L327:
+ 2469 0104 384A     		ldr	r2, .L330
+ 2470 0106 136C     		ldr	r3, [r2, #64]
+ 2471 0108 C3F34623 		ubfx	r3, r3, #9, #7
+ 2472 010c 07EE903A 		vmov	s15, r3	@ int
+ 2473 0110 F8EE677A 		vcvt.f32.u32	s15, s15
+ 2474 0114 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2475 0118 77EEA67A 		vadd.f32	s15, s15, s13
+ 2476 011c 87EE276A 		vdiv.f32	s12, s14, s15
+ 2477 0120 BCEEC66A 		vcvt.u32.f32	s12, s12
+ 2478 0124 80ED006A 		vstr.32	s12, [r0]	@ int
+ 2479 0128 136C     		ldr	r3, [r2, #64]
+ 2480 012a C3F30643 		ubfx	r3, r3, #16, #7
+ 2481 012e 07EE903A 		vmov	s15, r3	@ int
+ 2482 0132 F8EE677A 		vcvt.f32.u32	s15, s15
+ 2483 0136 77EEA67A 		vadd.f32	s15, s15, s13
+ 2484 013a 87EE276A 		vdiv.f32	s12, s14, s15
+ 2485 013e BCEEC66A 		vcvt.u32.f32	s12, s12
+ 2486 0142 80ED016A 		vstr.32	s12, [r0, #4]	@ int
+ 2487 0146 136C     		ldr	r3, [r2, #64]
+ 2488 0148 C3F30663 		ubfx	r3, r3, #24, #7
+ 2489 014c 07EE903A 		vmov	s15, r3	@ int
+ 2490 0150 F8EE677A 		vcvt.f32.u32	s15, s15
+ 2491 0154 77EEA67A 		vadd.f32	s15, s15, s13
+ 2492 0158 C7EE276A 		vdiv.f32	s13, s14, s15
+ 2493 015c FCEEE66A 		vcvt.u32.f32	s13, s13
+ 2494 0160 C0ED026A 		vstr.32	s13, [r0, #8]	@ int
+ 2495              	.L321:
+ 2496 0164 5DF8044B 		ldr	r4, [sp], #4
+ 2497 0168 7047     		bx	lr
+ 2498              	.L324:
+ 2499 016a 07EE10CA 		vmov	s14, ip	@ int
+ 2500 016e F8EE476A 		vcvt.f32.u32	s13, s14
+ 2501 0172 9FED226A 		vldr.32	s12, .L330+20
+ 2502 0176 86EE267A 		vdiv.f32	s14, s12, s13
+ 2503 017a 1B4B     		ldr	r3, .L330
+ 2504 017c 1B6C     		ldr	r3, [r3, #64]
+ 2505 017e C3F30803 		ubfx	r3, r3, #0, #9
+ 2506 0182 06EE903A 		vmov	s13, r3	@ int
+ 2507 0186 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2508 018a 9FED196A 		vldr.32	s12, .L330+8
+ 2509 018e 67EE867A 		vmul.f32	s15, s15, s12
+ 2510 0192 76EEA77A 		vadd.f32	s15, s13, s15
+ 2511 0196 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2512 019a 77EEA67A 		vadd.f32	s15, s15, s13
+ 2513 019e 27EE277A 		vmul.f32	s14, s14, s15
+ 2514 01a2 AFE7     		b	.L327
+ 2515              	.L325:
+ 2516 01a4 07EE10CA 		vmov	s14, ip	@ int
+ 2517 01a8 F8EE476A 		vcvt.f32.u32	s13, s14
+ 2518 01ac 9FED126A 		vldr.32	s12, .L330+16
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 45
+
+
+ 2519 01b0 86EE267A 		vdiv.f32	s14, s12, s13
+ 2520 01b4 0C4B     		ldr	r3, .L330
+ 2521 01b6 1B6C     		ldr	r3, [r3, #64]
+ 2522 01b8 C3F30803 		ubfx	r3, r3, #0, #9
+ 2523 01bc 06EE903A 		vmov	s13, r3	@ int
+ 2524 01c0 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2525 01c4 9FED0A6A 		vldr.32	s12, .L330+8
+ 2526 01c8 67EE867A 		vmul.f32	s15, s15, s12
+ 2527 01cc 76EEA77A 		vadd.f32	s15, s13, s15
+ 2528 01d0 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2529 01d4 77EEA67A 		vadd.f32	s15, s15, s13
+ 2530 01d8 27EE277A 		vmul.f32	s14, s14, s15
+ 2531 01dc 92E7     		b	.L327
+ 2532              	.L322:
+ 2533 01de 0023     		movs	r3, #0
+ 2534 01e0 0360     		str	r3, [r0]
+ 2535 01e2 4360     		str	r3, [r0, #4]
+ 2536 01e4 8360     		str	r3, [r0, #8]
+ 2537 01e6 BDE7     		b	.L321
+ 2538              	.L331:
+ 2539              		.align	2
+ 2540              	.L330:
+ 2541 01e8 00440258 		.word	1476543488
+ 2542 01ec 0090D003 		.word	64000000
+ 2543 01f0 00000039 		.word	956301312
+ 2544 01f4 0024744C 		.word	1282679808
+ 2545 01f8 0024744A 		.word	1249125376
+ 2546 01fc 001BB74B 		.word	1270291200
+ 2548              		.section	.text.HAL_RCCEx_GetPLL1ClockFreq,"ax",%progbits
+ 2549              		.align	1
+ 2550              		.global	HAL_RCCEx_GetPLL1ClockFreq
+ 2551              		.syntax unified
+ 2552              		.thumb
+ 2553              		.thumb_func
+ 2555              	HAL_RCCEx_GetPLL1ClockFreq:
+ 2556              		@ args = 0, pretend = 0, frame = 0
+ 2557              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2558              		@ link register save eliminated.
+ 2559 0000 10B4     		push	{r4}
+ 2560 0002 794B     		ldr	r3, .L341
+ 2561 0004 9A6A     		ldr	r2, [r3, #40]
+ 2562 0006 9C6A     		ldr	r4, [r3, #40]
+ 2563 0008 C4F3051C 		ubfx	ip, r4, #4, #6
+ 2564 000c D96A     		ldr	r1, [r3, #44]
+ 2565 000e 01F00101 		and	r1, r1, #1
+ 2566 0012 5B6B     		ldr	r3, [r3, #52]
+ 2567 0014 C3F3CC03 		ubfx	r3, r3, #3, #13
+ 2568 0018 01FB03F3 		mul	r3, r1, r3
+ 2569 001c 14F47C7F 		tst	r4, #1008
+ 2570 0020 00F0DD80 		beq	.L333
+ 2571 0024 02F00302 		and	r2, r2, #3
+ 2572 0028 07EE903A 		vmov	s15, r3	@ int
+ 2573 002c F8EE677A 		vcvt.f32.u32	s15, s15
+ 2574 0030 012A     		cmp	r2, #1
+ 2575 0032 4BD0     		beq	.L334
+ 2576 0034 022A     		cmp	r2, #2
+ 2577 0036 00F09880 		beq	.L335
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 46
+
+
+ 2578 003a 002A     		cmp	r2, #0
+ 2579 003c 40F0B280 		bne	.L336
+ 2580 0040 694B     		ldr	r3, .L341
+ 2581 0042 1B68     		ldr	r3, [r3]
+ 2582 0044 13F0200F 		tst	r3, #32
+ 2583 0048 23D0     		beq	.L337
+ 2584 004a 6749     		ldr	r1, .L341
+ 2585 004c 0A68     		ldr	r2, [r1]
+ 2586 004e C2F3C102 		ubfx	r2, r2, #3, #2
+ 2587 0052 664B     		ldr	r3, .L341+4
+ 2588 0054 D340     		lsrs	r3, r3, r2
+ 2589 0056 07EE103A 		vmov	s14, r3	@ int
+ 2590 005a F8EE476A 		vcvt.f32.u32	s13, s14
+ 2591 005e 07EE10CA 		vmov	s14, ip	@ int
+ 2592 0062 B8EE476A 		vcvt.f32.u32	s12, s14
+ 2593 0066 86EE867A 		vdiv.f32	s14, s13, s12
+ 2594 006a 0B6B     		ldr	r3, [r1, #48]
+ 2595 006c C3F30803 		ubfx	r3, r3, #0, #9
+ 2596 0070 06EE903A 		vmov	s13, r3	@ int
+ 2597 0074 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2598 0078 9FED5D6A 		vldr.32	s12, .L341+8
+ 2599 007c 67EE867A 		vmul.f32	s15, s15, s12
+ 2600 0080 76EEA77A 		vadd.f32	s15, s13, s15
+ 2601 0084 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2602 0088 77EEA67A 		vadd.f32	s15, s15, s13
+ 2603 008c 27EE277A 		vmul.f32	s14, s14, s15
+ 2604 0090 38E0     		b	.L338
+ 2605              	.L337:
+ 2606 0092 07EE10CA 		vmov	s14, ip	@ int
+ 2607 0096 F8EE476A 		vcvt.f32.u32	s13, s14
+ 2608 009a 9FED566A 		vldr.32	s12, .L341+12
+ 2609 009e 86EE267A 		vdiv.f32	s14, s12, s13
+ 2610 00a2 514B     		ldr	r3, .L341
+ 2611 00a4 1B6B     		ldr	r3, [r3, #48]
+ 2612 00a6 C3F30803 		ubfx	r3, r3, #0, #9
+ 2613 00aa 06EE903A 		vmov	s13, r3	@ int
+ 2614 00ae F8EE666A 		vcvt.f32.u32	s13, s13
+ 2615 00b2 9FED4F6A 		vldr.32	s12, .L341+8
+ 2616 00b6 67EE867A 		vmul.f32	s15, s15, s12
+ 2617 00ba 76EEA77A 		vadd.f32	s15, s13, s15
+ 2618 00be F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2619 00c2 77EEA67A 		vadd.f32	s15, s15, s13
+ 2620 00c6 27EE277A 		vmul.f32	s14, s14, s15
+ 2621 00ca 1BE0     		b	.L338
+ 2622              	.L334:
+ 2623 00cc 07EE10CA 		vmov	s14, ip	@ int
+ 2624 00d0 F8EE476A 		vcvt.f32.u32	s13, s14
+ 2625 00d4 9FED486A 		vldr.32	s12, .L341+16
+ 2626 00d8 86EE267A 		vdiv.f32	s14, s12, s13
+ 2627 00dc 424B     		ldr	r3, .L341
+ 2628 00de 1B6B     		ldr	r3, [r3, #48]
+ 2629 00e0 C3F30803 		ubfx	r3, r3, #0, #9
+ 2630 00e4 06EE903A 		vmov	s13, r3	@ int
+ 2631 00e8 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2632 00ec 9FED406A 		vldr.32	s12, .L341+8
+ 2633 00f0 67EE867A 		vmul.f32	s15, s15, s12
+ 2634 00f4 76EEA77A 		vadd.f32	s15, s13, s15
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 47
+
+
+ 2635 00f8 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2636 00fc 77EEA67A 		vadd.f32	s15, s15, s13
+ 2637 0100 27EE277A 		vmul.f32	s14, s14, s15
+ 2638              	.L338:
+ 2639 0104 384A     		ldr	r2, .L341
+ 2640 0106 136B     		ldr	r3, [r2, #48]
+ 2641 0108 C3F34623 		ubfx	r3, r3, #9, #7
+ 2642 010c 07EE903A 		vmov	s15, r3	@ int
+ 2643 0110 F8EE677A 		vcvt.f32.u32	s15, s15
+ 2644 0114 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2645 0118 77EEA67A 		vadd.f32	s15, s15, s13
+ 2646 011c 87EE276A 		vdiv.f32	s12, s14, s15
+ 2647 0120 BCEEC66A 		vcvt.u32.f32	s12, s12
+ 2648 0124 80ED006A 		vstr.32	s12, [r0]	@ int
+ 2649 0128 136B     		ldr	r3, [r2, #48]
+ 2650 012a C3F30643 		ubfx	r3, r3, #16, #7
+ 2651 012e 07EE903A 		vmov	s15, r3	@ int
+ 2652 0132 F8EE677A 		vcvt.f32.u32	s15, s15
+ 2653 0136 77EEA67A 		vadd.f32	s15, s15, s13
+ 2654 013a 87EE276A 		vdiv.f32	s12, s14, s15
+ 2655 013e BCEEC66A 		vcvt.u32.f32	s12, s12
+ 2656 0142 80ED016A 		vstr.32	s12, [r0, #4]	@ int
+ 2657 0146 136B     		ldr	r3, [r2, #48]
+ 2658 0148 C3F30663 		ubfx	r3, r3, #24, #7
+ 2659 014c 07EE903A 		vmov	s15, r3	@ int
+ 2660 0150 F8EE677A 		vcvt.f32.u32	s15, s15
+ 2661 0154 77EEA67A 		vadd.f32	s15, s15, s13
+ 2662 0158 C7EE276A 		vdiv.f32	s13, s14, s15
+ 2663 015c FCEEE66A 		vcvt.u32.f32	s13, s13
+ 2664 0160 C0ED026A 		vstr.32	s13, [r0, #8]	@ int
+ 2665              	.L332:
+ 2666 0164 5DF8044B 		ldr	r4, [sp], #4
+ 2667 0168 7047     		bx	lr
+ 2668              	.L335:
+ 2669 016a 07EE10CA 		vmov	s14, ip	@ int
+ 2670 016e F8EE476A 		vcvt.f32.u32	s13, s14
+ 2671 0172 9FED226A 		vldr.32	s12, .L341+20
+ 2672 0176 86EE267A 		vdiv.f32	s14, s12, s13
+ 2673 017a 1B4B     		ldr	r3, .L341
+ 2674 017c 1B6B     		ldr	r3, [r3, #48]
+ 2675 017e C3F30803 		ubfx	r3, r3, #0, #9
+ 2676 0182 06EE903A 		vmov	s13, r3	@ int
+ 2677 0186 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2678 018a 9FED196A 		vldr.32	s12, .L341+8
+ 2679 018e 67EE867A 		vmul.f32	s15, s15, s12
+ 2680 0192 76EEA77A 		vadd.f32	s15, s13, s15
+ 2681 0196 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2682 019a 77EEA67A 		vadd.f32	s15, s15, s13
+ 2683 019e 27EE277A 		vmul.f32	s14, s14, s15
+ 2684 01a2 AFE7     		b	.L338
+ 2685              	.L336:
+ 2686 01a4 07EE10CA 		vmov	s14, ip	@ int
+ 2687 01a8 F8EE476A 		vcvt.f32.u32	s13, s14
+ 2688 01ac 9FED116A 		vldr.32	s12, .L341+12
+ 2689 01b0 86EE267A 		vdiv.f32	s14, s12, s13
+ 2690 01b4 0C4B     		ldr	r3, .L341
+ 2691 01b6 1B6B     		ldr	r3, [r3, #48]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 48
+
+
+ 2692 01b8 C3F30803 		ubfx	r3, r3, #0, #9
+ 2693 01bc 06EE903A 		vmov	s13, r3	@ int
+ 2694 01c0 F8EE666A 		vcvt.f32.u32	s13, s13
+ 2695 01c4 9FED0A6A 		vldr.32	s12, .L341+8
+ 2696 01c8 67EE867A 		vmul.f32	s15, s15, s12
+ 2697 01cc 76EEA77A 		vadd.f32	s15, s13, s15
+ 2698 01d0 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 2699 01d4 77EEA67A 		vadd.f32	s15, s15, s13
+ 2700 01d8 27EE277A 		vmul.f32	s14, s14, s15
+ 2701 01dc 92E7     		b	.L338
+ 2702              	.L333:
+ 2703 01de 0023     		movs	r3, #0
+ 2704 01e0 0360     		str	r3, [r0]
+ 2705 01e2 4360     		str	r3, [r0, #4]
+ 2706 01e4 8360     		str	r3, [r0, #8]
+ 2707 01e6 BDE7     		b	.L332
+ 2708              	.L342:
+ 2709              		.align	2
+ 2710              	.L341:
+ 2711 01e8 00440258 		.word	1476543488
+ 2712 01ec 0090D003 		.word	64000000
+ 2713 01f0 00000039 		.word	956301312
+ 2714 01f4 0024744C 		.word	1282679808
+ 2715 01f8 0024744A 		.word	1249125376
+ 2716 01fc 001BB74B 		.word	1270291200
+ 2718              		.section	.text.HAL_RCCEx_GetPeriphCLKFreq,"ax",%progbits
+ 2719              		.align	1
+ 2720              		.global	HAL_RCCEx_GetPeriphCLKFreq
+ 2721              		.syntax unified
+ 2722              		.thumb
+ 2723              		.thumb_func
+ 2725              	HAL_RCCEx_GetPeriphCLKFreq:
+ 2726              		@ args = 0, pretend = 0, frame = 40
+ 2727              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2728 0000 00B5     		push	{lr}
+ 2729 0002 8BB0     		sub	sp, sp, #44
+ 2730 0004 A0F58073 		sub	r3, r0, #256
+ 2731 0008 0B43     		orrs	r3, r3, r1
+ 2732 000a 28D0     		beq	.L427
+ 2733 000c A0F58063 		sub	r3, r0, #1024
+ 2734 0010 0B43     		orrs	r3, r3, r1
+ 2735 0012 77D0     		beq	.L428
+ 2736 0014 A0F50063 		sub	r3, r0, #2048
+ 2737 0018 0B43     		orrs	r3, r3, r1
+ 2738 001a 00F0CE80 		beq	.L429
+ 2739 001e A0F58053 		sub	r3, r0, #4096
+ 2740 0022 0B43     		orrs	r3, r3, r1
+ 2741 0024 00F02681 		beq	.L430
+ 2742 0028 A0F50053 		sub	r3, r0, #8192
+ 2743 002c 0B43     		orrs	r3, r3, r1
+ 2744 002e 00F08581 		beq	.L431
+ 2745 0032 A0F50023 		sub	r3, r0, #524288
+ 2746 0036 0B43     		orrs	r3, r3, r1
+ 2747 0038 00F0CE81 		beq	.L432
+ 2748 003c A0F58033 		sub	r3, r0, #65536
+ 2749 0040 0B43     		orrs	r3, r3, r1
+ 2750 0042 00F01182 		beq	.L433
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 49
+
+
+ 2751 0046 A0F58043 		sub	r3, r0, #16384
+ 2752 004a 0B43     		orrs	r3, r3, r1
+ 2753 004c 00F02A82 		beq	.L434
+ 2754 0050 A0F50040 		sub	r0, r0, #32768
+ 2755 0054 0843     		orrs	r0, r0, r1
+ 2756 0056 00F07B82 		beq	.L435
+ 2757 005a 0020     		movs	r0, #0
+ 2758 005c 0CE0     		b	.L343
+ 2759              	.L427:
+ 2760 005e 954B     		ldr	r3, .L449
+ 2761 0060 1B6D     		ldr	r3, [r3, #80]
+ 2762 0062 03F00703 		and	r3, r3, #7
+ 2763 0066 042B     		cmp	r3, #4
+ 2764 0068 00F29C82 		bhi	.L404
+ 2765 006c DFE803F0 		tbb	[pc, r3]
+ 2766              	.L347:
+ 2767 0070 07       		.byte	(.L351-.L347)/2
+ 2768 0071 11       		.byte	(.L350-.L347)/2
+ 2769 0072 1B       		.byte	(.L349-.L347)/2
+ 2770 0073 03       		.byte	(.L348-.L347)/2
+ 2771 0074 25       		.byte	(.L346-.L347)/2
+ 2772 0075 00       		.p2align 1
+ 2773              	.L348:
+ 2774 0076 9048     		ldr	r0, .L449+4
+ 2775              	.L343:
+ 2776 0078 0BB0     		add	sp, sp, #44
+ 2777              		@ sp needed
+ 2778 007a 5DF804FB 		ldr	pc, [sp], #4
+ 2779              	.L351:
+ 2780 007e 8D4B     		ldr	r3, .L449
+ 2781 0080 1868     		ldr	r0, [r3]
+ 2782 0082 10F00070 		ands	r0, r0, #33554432
+ 2783 0086 F7D0     		beq	.L343
+ 2784 0088 07A8     		add	r0, sp, #28
+ 2785 008a FFF7FEFF 		bl	HAL_RCCEx_GetPLL1ClockFreq
+ 2786 008e 0898     		ldr	r0, [sp, #32]
+ 2787 0090 F2E7     		b	.L343
+ 2788              	.L350:
+ 2789 0092 884B     		ldr	r3, .L449
+ 2790 0094 1868     		ldr	r0, [r3]
+ 2791 0096 10F00060 		ands	r0, r0, #134217728
+ 2792 009a EDD0     		beq	.L343
+ 2793 009c 04A8     		add	r0, sp, #16
+ 2794 009e FFF7FEFF 		bl	HAL_RCCEx_GetPLL2ClockFreq
+ 2795 00a2 0498     		ldr	r0, [sp, #16]
+ 2796 00a4 E8E7     		b	.L343
+ 2797              	.L349:
+ 2798 00a6 834B     		ldr	r3, .L449
+ 2799 00a8 1868     		ldr	r0, [r3]
+ 2800 00aa 10F00050 		ands	r0, r0, #536870912
+ 2801 00ae E3D0     		beq	.L343
+ 2802 00b0 01A8     		add	r0, sp, #4
+ 2803 00b2 FFF7FEFF 		bl	HAL_RCCEx_GetPLL3ClockFreq
+ 2804 00b6 0198     		ldr	r0, [sp, #4]
+ 2805 00b8 DEE7     		b	.L343
+ 2806              	.L346:
+ 2807 00ba 7E4A     		ldr	r2, .L449
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 50
+
+
+ 2808 00bc D36C     		ldr	r3, [r2, #76]
+ 2809 00be 03F04053 		and	r3, r3, #805306368
+ 2810 00c2 1268     		ldr	r2, [r2]
+ 2811 00c4 12F0040F 		tst	r2, #4
+ 2812 00c8 07D0     		beq	.L352
+ 2813 00ca 33B9     		cbnz	r3, .L352
+ 2814 00cc 794B     		ldr	r3, .L449
+ 2815 00ce 1B68     		ldr	r3, [r3]
+ 2816 00d0 C3F3C103 		ubfx	r3, r3, #3, #2
+ 2817 00d4 7948     		ldr	r0, .L449+8
+ 2818 00d6 D840     		lsrs	r0, r0, r3
+ 2819 00d8 CEE7     		b	.L343
+ 2820              	.L352:
+ 2821 00da 764A     		ldr	r2, .L449
+ 2822 00dc 1268     		ldr	r2, [r2]
+ 2823 00de 12F4807F 		tst	r2, #256
+ 2824 00e2 03D0     		beq	.L353
+ 2825 00e4 B3F1805F 		cmp	r3, #268435456
+ 2826 00e8 00F05E82 		beq	.L405
+ 2827              	.L353:
+ 2828 00ec 714A     		ldr	r2, .L449
+ 2829 00ee 1268     		ldr	r2, [r2]
+ 2830 00f0 12F4003F 		tst	r2, #131072
+ 2831 00f4 00F05A82 		beq	.L406
+ 2832 00f8 B3F1005F 		cmp	r3, #536870912
+ 2833 00fc 00F05882 		beq	.L407
+ 2834 0100 0020     		movs	r0, #0
+ 2835 0102 B9E7     		b	.L343
+ 2836              	.L428:
+ 2837 0104 6B4B     		ldr	r3, .L449
+ 2838 0106 9B6D     		ldr	r3, [r3, #88]
+ 2839 0108 03F46003 		and	r3, r3, #14680064
+ 2840 010c B3F5800F 		cmp	r3, #4194304
+ 2841 0110 33D0     		beq	.L355
+ 2842 0112 16D9     		bls	.L436
+ 2843 0114 B3F5C00F 		cmp	r3, #6291456
+ 2844 0118 00F04C82 		beq	.L408
+ 2845 011c B3F5000F 		cmp	r3, #8388608
+ 2846 0120 1FD1     		bne	.L437
+ 2847 0122 644A     		ldr	r2, .L449
+ 2848 0124 D36C     		ldr	r3, [r2, #76]
+ 2849 0126 03F04053 		and	r3, r3, #805306368
+ 2850 012a 1268     		ldr	r2, [r2]
+ 2851 012c 12F0040F 		tst	r2, #4
+ 2852 0130 2ED0     		beq	.L360
+ 2853 0132 6BBB     		cbnz	r3, .L360
+ 2854 0134 5F4B     		ldr	r3, .L449
+ 2855 0136 1B68     		ldr	r3, [r3]
+ 2856 0138 C3F3C103 		ubfx	r3, r3, #3, #2
+ 2857 013c 5F48     		ldr	r0, .L449+8
+ 2858 013e D840     		lsrs	r0, r0, r3
+ 2859 0140 9AE7     		b	.L343
+ 2860              	.L436:
+ 2861 0142 83B1     		cbz	r3, .L357
+ 2862 0144 B3F5001F 		cmp	r3, #2097152
+ 2863 0148 09D1     		bne	.L438
+ 2864 014a 5A4B     		ldr	r3, .L449
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 51
+
+
+ 2865 014c 1868     		ldr	r0, [r3]
+ 2866 014e 10F00060 		ands	r0, r0, #134217728
+ 2867 0152 91D0     		beq	.L343
+ 2868 0154 04A8     		add	r0, sp, #16
+ 2869 0156 FFF7FEFF 		bl	HAL_RCCEx_GetPLL2ClockFreq
+ 2870 015a 0498     		ldr	r0, [sp, #16]
+ 2871 015c 8CE7     		b	.L343
+ 2872              	.L438:
+ 2873 015e 0020     		movs	r0, #0
+ 2874 0160 8AE7     		b	.L343
+ 2875              	.L437:
+ 2876 0162 0020     		movs	r0, #0
+ 2877 0164 88E7     		b	.L343
+ 2878              	.L357:
+ 2879 0166 534B     		ldr	r3, .L449
+ 2880 0168 1868     		ldr	r0, [r3]
+ 2881 016a 10F00070 		ands	r0, r0, #33554432
+ 2882 016e 83D0     		beq	.L343
+ 2883 0170 07A8     		add	r0, sp, #28
+ 2884 0172 FFF7FEFF 		bl	HAL_RCCEx_GetPLL1ClockFreq
+ 2885 0176 0898     		ldr	r0, [sp, #32]
+ 2886 0178 7EE7     		b	.L343
+ 2887              	.L355:
+ 2888 017a 4E4B     		ldr	r3, .L449
+ 2889 017c 1868     		ldr	r0, [r3]
+ 2890 017e 10F00050 		ands	r0, r0, #536870912
+ 2891 0182 3FF479AF 		beq	.L343
+ 2892 0186 01A8     		add	r0, sp, #4
+ 2893 0188 FFF7FEFF 		bl	HAL_RCCEx_GetPLL3ClockFreq
+ 2894 018c 0198     		ldr	r0, [sp, #4]
+ 2895 018e 73E7     		b	.L343
+ 2896              	.L360:
+ 2897 0190 484A     		ldr	r2, .L449
+ 2898 0192 1268     		ldr	r2, [r2]
+ 2899 0194 12F4807F 		tst	r2, #256
+ 2900 0198 03D0     		beq	.L361
+ 2901 019a B3F1805F 		cmp	r3, #268435456
+ 2902 019e 00F00B82 		beq	.L409
+ 2903              	.L361:
+ 2904 01a2 444A     		ldr	r2, .L449
+ 2905 01a4 1268     		ldr	r2, [r2]
+ 2906 01a6 12F4003F 		tst	r2, #131072
+ 2907 01aa 00F00782 		beq	.L410
+ 2908 01ae B3F1005F 		cmp	r3, #536870912
+ 2909 01b2 00F00582 		beq	.L411
+ 2910 01b6 0020     		movs	r0, #0
+ 2911 01b8 5EE7     		b	.L343
+ 2912              	.L429:
+ 2913 01ba 3E4B     		ldr	r3, .L449
+ 2914 01bc 9B6D     		ldr	r3, [r3, #88]
+ 2915 01be 03F0E063 		and	r3, r3, #117440512
+ 2916 01c2 B3F1007F 		cmp	r3, #33554432
+ 2917 01c6 35D0     		beq	.L363
+ 2918 01c8 16D9     		bls	.L439
+ 2919 01ca B3F1407F 		cmp	r3, #50331648
+ 2920 01ce 00F0F981 		beq	.L412
+ 2921 01d2 B3F1806F 		cmp	r3, #67108864
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 52
+
+
+ 2922 01d6 20D1     		bne	.L440
+ 2923 01d8 364A     		ldr	r2, .L449
+ 2924 01da D36C     		ldr	r3, [r2, #76]
+ 2925 01dc 03F04053 		and	r3, r3, #805306368
+ 2926 01e0 1268     		ldr	r2, [r2]
+ 2927 01e2 12F0040F 		tst	r2, #4
+ 2928 01e6 30D0     		beq	.L368
+ 2929 01e8 7BBB     		cbnz	r3, .L368
+ 2930 01ea 324B     		ldr	r3, .L449
+ 2931 01ec 1B68     		ldr	r3, [r3]
+ 2932 01ee C3F3C103 		ubfx	r3, r3, #3, #2
+ 2933 01f2 3248     		ldr	r0, .L449+8
+ 2934 01f4 D840     		lsrs	r0, r0, r3
+ 2935 01f6 3FE7     		b	.L343
+ 2936              	.L439:
+ 2937 01f8 8BB1     		cbz	r3, .L365
+ 2938 01fa B3F1807F 		cmp	r3, #16777216
+ 2939 01fe 0AD1     		bne	.L441
+ 2940 0200 2C4B     		ldr	r3, .L449
+ 2941 0202 1868     		ldr	r0, [r3]
+ 2942 0204 10F00060 		ands	r0, r0, #134217728
+ 2943 0208 3FF436AF 		beq	.L343
+ 2944 020c 04A8     		add	r0, sp, #16
+ 2945 020e FFF7FEFF 		bl	HAL_RCCEx_GetPLL2ClockFreq
+ 2946 0212 0498     		ldr	r0, [sp, #16]
+ 2947 0214 30E7     		b	.L343
+ 2948              	.L441:
+ 2949 0216 0020     		movs	r0, #0
+ 2950 0218 2EE7     		b	.L343
+ 2951              	.L440:
+ 2952 021a 0020     		movs	r0, #0
+ 2953 021c 2CE7     		b	.L343
+ 2954              	.L365:
+ 2955 021e 254B     		ldr	r3, .L449
+ 2956 0220 1868     		ldr	r0, [r3]
+ 2957 0222 10F00070 		ands	r0, r0, #33554432
+ 2958 0226 3FF427AF 		beq	.L343
+ 2959 022a 07A8     		add	r0, sp, #28
+ 2960 022c FFF7FEFF 		bl	HAL_RCCEx_GetPLL1ClockFreq
+ 2961 0230 0898     		ldr	r0, [sp, #32]
+ 2962 0232 21E7     		b	.L343
+ 2963              	.L363:
+ 2964 0234 1F4B     		ldr	r3, .L449
+ 2965 0236 1868     		ldr	r0, [r3]
+ 2966 0238 10F00050 		ands	r0, r0, #536870912
+ 2967 023c 3FF41CAF 		beq	.L343
+ 2968 0240 01A8     		add	r0, sp, #4
+ 2969 0242 FFF7FEFF 		bl	HAL_RCCEx_GetPLL3ClockFreq
+ 2970 0246 0198     		ldr	r0, [sp, #4]
+ 2971 0248 16E7     		b	.L343
+ 2972              	.L368:
+ 2973 024a 1A4A     		ldr	r2, .L449
+ 2974 024c 1268     		ldr	r2, [r2]
+ 2975 024e 12F4807F 		tst	r2, #256
+ 2976 0252 03D0     		beq	.L369
+ 2977 0254 B3F1805F 		cmp	r3, #268435456
+ 2978 0258 00F0B681 		beq	.L413
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 53
+
+
+ 2979              	.L369:
+ 2980 025c 154A     		ldr	r2, .L449
+ 2981 025e 1268     		ldr	r2, [r2]
+ 2982 0260 12F4003F 		tst	r2, #131072
+ 2983 0264 00F0B281 		beq	.L414
+ 2984 0268 B3F1005F 		cmp	r3, #536870912
+ 2985 026c 00F0B081 		beq	.L415
+ 2986 0270 0020     		movs	r0, #0
+ 2987 0272 01E7     		b	.L343
+ 2988              	.L430:
+ 2989 0274 0F4B     		ldr	r3, .L449
+ 2990 0276 1B6D     		ldr	r3, [r3, #80]
+ 2991 0278 03F4E043 		and	r3, r3, #28672
+ 2992 027c B3F5005F 		cmp	r3, #8192
+ 2993 0280 3CD0     		beq	.L371
+ 2994 0282 1DD9     		bls	.L442
+ 2995 0284 B3F5405F 		cmp	r3, #12288
+ 2996 0288 00F0A481 		beq	.L416
+ 2997 028c B3F5804F 		cmp	r3, #16384
+ 2998 0290 27D1     		bne	.L443
+ 2999 0292 084A     		ldr	r2, .L449
+ 3000 0294 D36C     		ldr	r3, [r2, #76]
+ 3001 0296 03F04053 		and	r3, r3, #805306368
+ 3002 029a 1268     		ldr	r2, [r2]
+ 3003 029c 12F0040F 		tst	r2, #4
+ 3004 02a0 37D0     		beq	.L376
+ 3005 02a2 002B     		cmp	r3, #0
+ 3006 02a4 35D1     		bne	.L376
+ 3007 02a6 034B     		ldr	r3, .L449
+ 3008 02a8 1B68     		ldr	r3, [r3]
+ 3009 02aa C3F3C103 		ubfx	r3, r3, #3, #2
+ 3010 02ae 0348     		ldr	r0, .L449+8
+ 3011 02b0 D840     		lsrs	r0, r0, r3
+ 3012 02b2 E1E6     		b	.L343
+ 3013              	.L450:
+ 3014              		.align	2
+ 3015              	.L449:
+ 3016 02b4 00440258 		.word	1476543488
+ 3017 02b8 0080BB00 		.word	12288000
+ 3018 02bc 0090D003 		.word	64000000
+ 3019              	.L442:
+ 3020 02c0 8BB1     		cbz	r3, .L373
+ 3021 02c2 B3F5805F 		cmp	r3, #4096
+ 3022 02c6 0AD1     		bne	.L444
+ 3023 02c8 9D4B     		ldr	r3, .L451
+ 3024 02ca 1868     		ldr	r0, [r3]
+ 3025 02cc 10F00060 		ands	r0, r0, #134217728
+ 3026 02d0 3FF4D2AE 		beq	.L343
+ 3027 02d4 04A8     		add	r0, sp, #16
+ 3028 02d6 FFF7FEFF 		bl	HAL_RCCEx_GetPLL2ClockFreq
+ 3029 02da 0498     		ldr	r0, [sp, #16]
+ 3030 02dc CCE6     		b	.L343
+ 3031              	.L444:
+ 3032 02de 0020     		movs	r0, #0
+ 3033 02e0 CAE6     		b	.L343
+ 3034              	.L443:
+ 3035 02e2 0020     		movs	r0, #0
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 54
+
+
+ 3036 02e4 C8E6     		b	.L343
+ 3037              	.L373:
+ 3038 02e6 964B     		ldr	r3, .L451
+ 3039 02e8 1868     		ldr	r0, [r3]
+ 3040 02ea 10F00070 		ands	r0, r0, #33554432
+ 3041 02ee 3FF4C3AE 		beq	.L343
+ 3042 02f2 07A8     		add	r0, sp, #28
+ 3043 02f4 FFF7FEFF 		bl	HAL_RCCEx_GetPLL1ClockFreq
+ 3044 02f8 0898     		ldr	r0, [sp, #32]
+ 3045 02fa BDE6     		b	.L343
+ 3046              	.L371:
+ 3047 02fc 904B     		ldr	r3, .L451
+ 3048 02fe 1868     		ldr	r0, [r3]
+ 3049 0300 10F00050 		ands	r0, r0, #536870912
+ 3050 0304 3FF4B8AE 		beq	.L343
+ 3051 0308 01A8     		add	r0, sp, #4
+ 3052 030a FFF7FEFF 		bl	HAL_RCCEx_GetPLL3ClockFreq
+ 3053 030e 0198     		ldr	r0, [sp, #4]
+ 3054 0310 B2E6     		b	.L343
+ 3055              	.L376:
+ 3056 0312 8B4A     		ldr	r2, .L451
+ 3057 0314 1268     		ldr	r2, [r2]
+ 3058 0316 12F4807F 		tst	r2, #256
+ 3059 031a 03D0     		beq	.L377
+ 3060 031c B3F1805F 		cmp	r3, #268435456
+ 3061 0320 00F05A81 		beq	.L417
+ 3062              	.L377:
+ 3063 0324 864A     		ldr	r2, .L451
+ 3064 0326 1268     		ldr	r2, [r2]
+ 3065 0328 12F4003F 		tst	r2, #131072
+ 3066 032c 00F05681 		beq	.L418
+ 3067 0330 B3F1005F 		cmp	r3, #536870912
+ 3068 0334 00F05481 		beq	.L419
+ 3069 0338 0020     		movs	r0, #0
+ 3070 033a 9DE6     		b	.L343
+ 3071              	.L431:
+ 3072 033c 804B     		ldr	r3, .L451
+ 3073 033e 1B6D     		ldr	r3, [r3, #80]
+ 3074 0340 03F4E023 		and	r3, r3, #458752
+ 3075 0344 B3F5403F 		cmp	r3, #196608
+ 3076 0348 32D0     		beq	.L379
+ 3077 034a 0BD8     		bhi	.L380
+ 3078 034c B3F5803F 		cmp	r3, #65536
+ 3079 0350 18D0     		beq	.L381
+ 3080 0352 B3F5003F 		cmp	r3, #131072
+ 3081 0356 20D0     		beq	.L382
+ 3082 0358 13B9     		cbnz	r3, .L445
+ 3083 035a FFF7FEFF 		bl	HAL_RCC_GetPCLK1Freq
+ 3084 035e 8BE6     		b	.L343
+ 3085              	.L445:
+ 3086 0360 0020     		movs	r0, #0
+ 3087 0362 89E6     		b	.L343
+ 3088              	.L380:
+ 3089 0364 B3F5802F 		cmp	r3, #262144
+ 3090 0368 2ED0     		beq	.L384
+ 3091 036a B3F5A02F 		cmp	r3, #327680
+ 3092 036e 07D1     		bne	.L446
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 55
+
+
+ 3093 0370 734B     		ldr	r3, .L451
+ 3094 0372 1868     		ldr	r0, [r3]
+ 3095 0374 10F40030 		ands	r0, r0, #131072
+ 3096 0378 3FF47EAE 		beq	.L343
+ 3097 037c 7148     		ldr	r0, .L451+4
+ 3098 037e 7BE6     		b	.L343
+ 3099              	.L446:
+ 3100 0380 0020     		movs	r0, #0
+ 3101 0382 79E6     		b	.L343
+ 3102              	.L381:
+ 3103 0384 6E4B     		ldr	r3, .L451
+ 3104 0386 1868     		ldr	r0, [r3]
+ 3105 0388 10F00060 		ands	r0, r0, #134217728
+ 3106 038c 3FF474AE 		beq	.L343
+ 3107 0390 04A8     		add	r0, sp, #16
+ 3108 0392 FFF7FEFF 		bl	HAL_RCCEx_GetPLL2ClockFreq
+ 3109 0396 0598     		ldr	r0, [sp, #20]
+ 3110 0398 6EE6     		b	.L343
+ 3111              	.L382:
+ 3112 039a 694B     		ldr	r3, .L451
+ 3113 039c 1868     		ldr	r0, [r3]
+ 3114 039e 10F00050 		ands	r0, r0, #536870912
+ 3115 03a2 3FF469AE 		beq	.L343
+ 3116 03a6 01A8     		add	r0, sp, #4
+ 3117 03a8 FFF7FEFF 		bl	HAL_RCCEx_GetPLL3ClockFreq
+ 3118 03ac 0298     		ldr	r0, [sp, #8]
+ 3119 03ae 63E6     		b	.L343
+ 3120              	.L379:
+ 3121 03b0 634B     		ldr	r3, .L451
+ 3122 03b2 1868     		ldr	r0, [r3]
+ 3123 03b4 10F00400 		ands	r0, r0, #4
+ 3124 03b8 3FF45EAE 		beq	.L343
+ 3125 03bc 1B68     		ldr	r3, [r3]
+ 3126 03be C3F3C103 		ubfx	r3, r3, #3, #2
+ 3127 03c2 6148     		ldr	r0, .L451+8
+ 3128 03c4 D840     		lsrs	r0, r0, r3
+ 3129 03c6 57E6     		b	.L343
+ 3130              	.L384:
+ 3131 03c8 5D4B     		ldr	r3, .L451
+ 3132 03ca 1868     		ldr	r0, [r3]
+ 3133 03cc 10F48070 		ands	r0, r0, #256
+ 3134 03d0 3FF452AE 		beq	.L343
+ 3135 03d4 5D48     		ldr	r0, .L451+12
+ 3136 03d6 4FE6     		b	.L343
+ 3137              	.L432:
+ 3138 03d8 594B     		ldr	r3, .L451
+ 3139 03da 9B6D     		ldr	r3, [r3, #88]
+ 3140 03dc 03F44033 		and	r3, r3, #196608
+ 3141 03e0 B3F5803F 		cmp	r3, #65536
+ 3142 03e4 10D0     		beq	.L387
+ 3143 03e6 B3F5003F 		cmp	r3, #131072
+ 3144 03ea 18D0     		beq	.L388
+ 3145 03ec 002B     		cmp	r3, #0
+ 3146 03ee 40F0F980 		bne	.L420
+ 3147 03f2 534B     		ldr	r3, .L451
+ 3148 03f4 1868     		ldr	r0, [r3]
+ 3149 03f6 10F00060 		ands	r0, r0, #134217728
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 56
+
+
+ 3150 03fa 3FF43DAE 		beq	.L343
+ 3151 03fe 04A8     		add	r0, sp, #16
+ 3152 0400 FFF7FEFF 		bl	HAL_RCCEx_GetPLL2ClockFreq
+ 3153 0404 0498     		ldr	r0, [sp, #16]
+ 3154 0406 37E6     		b	.L343
+ 3155              	.L387:
+ 3156 0408 4D4B     		ldr	r3, .L451
+ 3157 040a 1868     		ldr	r0, [r3]
+ 3158 040c 10F00050 		ands	r0, r0, #536870912
+ 3159 0410 3FF432AE 		beq	.L343
+ 3160 0414 01A8     		add	r0, sp, #4
+ 3161 0416 FFF7FEFF 		bl	HAL_RCCEx_GetPLL3ClockFreq
+ 3162 041a 0398     		ldr	r0, [sp, #12]
+ 3163 041c 2CE6     		b	.L343
+ 3164              	.L388:
+ 3165 041e 484A     		ldr	r2, .L451
+ 3166 0420 D36C     		ldr	r3, [r2, #76]
+ 3167 0422 03F04053 		and	r3, r3, #805306368
+ 3168 0426 1268     		ldr	r2, [r2]
+ 3169 0428 12F0040F 		tst	r2, #4
+ 3170 042c 07D0     		beq	.L389
+ 3171 042e 33B9     		cbnz	r3, .L389
+ 3172 0430 434B     		ldr	r3, .L451
+ 3173 0432 1B68     		ldr	r3, [r3]
+ 3174 0434 C3F3C103 		ubfx	r3, r3, #3, #2
+ 3175 0438 4348     		ldr	r0, .L451+8
+ 3176 043a D840     		lsrs	r0, r0, r3
+ 3177 043c 1CE6     		b	.L343
+ 3178              	.L389:
+ 3179 043e 404A     		ldr	r2, .L451
+ 3180 0440 1268     		ldr	r2, [r2]
+ 3181 0442 12F4807F 		tst	r2, #256
+ 3182 0446 03D0     		beq	.L390
+ 3183 0448 B3F1805F 		cmp	r3, #268435456
+ 3184 044c 00F0CC80 		beq	.L421
+ 3185              	.L390:
+ 3186 0450 3B4A     		ldr	r2, .L451
+ 3187 0452 1268     		ldr	r2, [r2]
+ 3188 0454 12F4003F 		tst	r2, #131072
+ 3189 0458 00F0C880 		beq	.L422
+ 3190 045c B3F1005F 		cmp	r3, #536870912
+ 3191 0460 00F0C680 		beq	.L423
+ 3192 0464 0020     		movs	r0, #0
+ 3193 0466 07E6     		b	.L343
+ 3194              	.L433:
+ 3195 0468 354B     		ldr	r3, .L451
+ 3196 046a DB6C     		ldr	r3, [r3, #76]
+ 3197 046c 13F48033 		ands	r3, r3, #65536
+ 3198 0470 02D0     		beq	.L392
+ 3199 0472 63B9     		cbnz	r3, .L393
+ 3200 0474 0020     		movs	r0, #0
+ 3201 0476 FFE5     		b	.L343
+ 3202              	.L392:
+ 3203 0478 314B     		ldr	r3, .L451
+ 3204 047a 1868     		ldr	r0, [r3]
+ 3205 047c 10F00070 		ands	r0, r0, #33554432
+ 3206 0480 3FF4FAAD 		beq	.L343
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 57
+
+
+ 3207 0484 07A8     		add	r0, sp, #28
+ 3208 0486 FFF7FEFF 		bl	HAL_RCCEx_GetPLL1ClockFreq
+ 3209 048a 0898     		ldr	r0, [sp, #32]
+ 3210 048c F4E5     		b	.L343
+ 3211              	.L393:
+ 3212 048e 2C4B     		ldr	r3, .L451
+ 3213 0490 1868     		ldr	r0, [r3]
+ 3214 0492 10F00060 		ands	r0, r0, #134217728
+ 3215 0496 3FF4EFAD 		beq	.L343
+ 3216 049a 04A8     		add	r0, sp, #16
+ 3217 049c FFF7FEFF 		bl	HAL_RCCEx_GetPLL2ClockFreq
+ 3218 04a0 0698     		ldr	r0, [sp, #24]
+ 3219 04a2 E9E5     		b	.L343
+ 3220              	.L434:
+ 3221 04a4 264B     		ldr	r3, .L451
+ 3222 04a6 9B6D     		ldr	r3, [r3, #88]
+ 3223 04a8 03F0E043 		and	r3, r3, #1879048192
+ 3224 04ac B3F1405F 		cmp	r3, #805306368
+ 3225 04b0 32D0     		beq	.L395
+ 3226 04b2 0BD8     		bhi	.L396
+ 3227 04b4 B3F1805F 		cmp	r3, #268435456
+ 3228 04b8 18D0     		beq	.L397
+ 3229 04ba B3F1005F 		cmp	r3, #536870912
+ 3230 04be 20D0     		beq	.L398
+ 3231 04c0 13B9     		cbnz	r3, .L447
+ 3232 04c2 FFF7FEFF 		bl	HAL_RCCEx_GetD3PCLK1Freq
+ 3233 04c6 D7E5     		b	.L343
+ 3234              	.L447:
+ 3235 04c8 0020     		movs	r0, #0
+ 3236 04ca D5E5     		b	.L343
+ 3237              	.L396:
+ 3238 04cc B3F1804F 		cmp	r3, #1073741824
+ 3239 04d0 2ED0     		beq	.L400
+ 3240 04d2 B3F1A04F 		cmp	r3, #1342177280
+ 3241 04d6 07D1     		bne	.L448
+ 3242 04d8 194B     		ldr	r3, .L451
+ 3243 04da 1868     		ldr	r0, [r3]
+ 3244 04dc 10F40030 		ands	r0, r0, #131072
+ 3245 04e0 3FF4CAAD 		beq	.L343
+ 3246 04e4 1748     		ldr	r0, .L451+4
+ 3247 04e6 C7E5     		b	.L343
+ 3248              	.L448:
+ 3249 04e8 0020     		movs	r0, #0
+ 3250 04ea C5E5     		b	.L343
+ 3251              	.L397:
+ 3252 04ec 144B     		ldr	r3, .L451
+ 3253 04ee 1868     		ldr	r0, [r3]
+ 3254 04f0 10F00060 		ands	r0, r0, #134217728
+ 3255 04f4 3FF4C0AD 		beq	.L343
+ 3256 04f8 04A8     		add	r0, sp, #16
+ 3257 04fa FFF7FEFF 		bl	HAL_RCCEx_GetPLL2ClockFreq
+ 3258 04fe 0598     		ldr	r0, [sp, #20]
+ 3259 0500 BAE5     		b	.L343
+ 3260              	.L398:
+ 3261 0502 0F4B     		ldr	r3, .L451
+ 3262 0504 1868     		ldr	r0, [r3]
+ 3263 0506 10F00050 		ands	r0, r0, #536870912
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 58
+
+
+ 3264 050a 3FF4B5AD 		beq	.L343
+ 3265 050e 01A8     		add	r0, sp, #4
+ 3266 0510 FFF7FEFF 		bl	HAL_RCCEx_GetPLL3ClockFreq
+ 3267 0514 0298     		ldr	r0, [sp, #8]
+ 3268 0516 AFE5     		b	.L343
+ 3269              	.L395:
+ 3270 0518 094B     		ldr	r3, .L451
+ 3271 051a 1868     		ldr	r0, [r3]
+ 3272 051c 10F00400 		ands	r0, r0, #4
+ 3273 0520 3FF4AAAD 		beq	.L343
+ 3274 0524 1B68     		ldr	r3, [r3]
+ 3275 0526 C3F3C103 		ubfx	r3, r3, #3, #2
+ 3276 052a 0748     		ldr	r0, .L451+8
+ 3277 052c D840     		lsrs	r0, r0, r3
+ 3278 052e A3E5     		b	.L343
+ 3279              	.L400:
+ 3280 0530 034B     		ldr	r3, .L451
+ 3281 0532 1868     		ldr	r0, [r3]
+ 3282 0534 10F48070 		ands	r0, r0, #256
+ 3283 0538 3FF49EAD 		beq	.L343
+ 3284 053c 0348     		ldr	r0, .L451+12
+ 3285 053e 9BE5     		b	.L343
+ 3286              	.L452:
+ 3287              		.align	2
+ 3288              	.L451:
+ 3289 0540 00440258 		.word	1476543488
+ 3290 0544 00366E01 		.word	24000000
+ 3291 0548 0090D003 		.word	64000000
+ 3292 054c 00093D00 		.word	4000000
+ 3293              	.L435:
+ 3294 0550 294B     		ldr	r3, .L453
+ 3295 0552 1B6D     		ldr	r3, [r3, #80]
+ 3296 0554 03F04053 		and	r3, r3, #805306368
+ 3297 0558 B3F1805F 		cmp	r3, #268435456
+ 3298 055c 0CD0     		beq	.L402
+ 3299 055e B3F1005F 		cmp	r3, #536870912
+ 3300 0562 14D0     		beq	.L403
+ 3301 0564 002B     		cmp	r3, #0
+ 3302 0566 45D1     		bne	.L425
+ 3303 0568 234B     		ldr	r3, .L453
+ 3304 056a 1868     		ldr	r0, [r3]
+ 3305 056c 10F40030 		ands	r0, r0, #131072
+ 3306 0570 3FF482AD 		beq	.L343
+ 3307 0574 2148     		ldr	r0, .L453+4
+ 3308 0576 7FE5     		b	.L343
+ 3309              	.L402:
+ 3310 0578 1F4B     		ldr	r3, .L453
+ 3311 057a 1868     		ldr	r0, [r3]
+ 3312 057c 10F00070 		ands	r0, r0, #33554432
+ 3313 0580 3FF47AAD 		beq	.L343
+ 3314 0584 07A8     		add	r0, sp, #28
+ 3315 0586 FFF7FEFF 		bl	HAL_RCCEx_GetPLL1ClockFreq
+ 3316 058a 0898     		ldr	r0, [sp, #32]
+ 3317 058c 74E5     		b	.L343
+ 3318              	.L403:
+ 3319 058e 1A4B     		ldr	r3, .L453
+ 3320 0590 1868     		ldr	r0, [r3]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 59
+
+
+ 3321 0592 10F00060 		ands	r0, r0, #134217728
+ 3322 0596 3FF46FAD 		beq	.L343
+ 3323 059a 04A8     		add	r0, sp, #16
+ 3324 059c FFF7FEFF 		bl	HAL_RCCEx_GetPLL2ClockFreq
+ 3325 05a0 0598     		ldr	r0, [sp, #20]
+ 3326 05a2 69E5     		b	.L343
+ 3327              	.L404:
+ 3328 05a4 0020     		movs	r0, #0
+ 3329 05a6 67E5     		b	.L343
+ 3330              	.L405:
+ 3331 05a8 1548     		ldr	r0, .L453+8
+ 3332 05aa 65E5     		b	.L343
+ 3333              	.L406:
+ 3334 05ac 0020     		movs	r0, #0
+ 3335 05ae 63E5     		b	.L343
+ 3336              	.L407:
+ 3337 05b0 1248     		ldr	r0, .L453+4
+ 3338 05b2 61E5     		b	.L343
+ 3339              	.L408:
+ 3340 05b4 1348     		ldr	r0, .L453+12
+ 3341 05b6 5FE5     		b	.L343
+ 3342              	.L409:
+ 3343 05b8 1148     		ldr	r0, .L453+8
+ 3344 05ba 5DE5     		b	.L343
+ 3345              	.L410:
+ 3346 05bc 0020     		movs	r0, #0
+ 3347 05be 5BE5     		b	.L343
+ 3348              	.L411:
+ 3349 05c0 0E48     		ldr	r0, .L453+4
+ 3350 05c2 59E5     		b	.L343
+ 3351              	.L412:
+ 3352 05c4 0F48     		ldr	r0, .L453+12
+ 3353 05c6 57E5     		b	.L343
+ 3354              	.L413:
+ 3355 05c8 0D48     		ldr	r0, .L453+8
+ 3356 05ca 55E5     		b	.L343
+ 3357              	.L414:
+ 3358 05cc 0020     		movs	r0, #0
+ 3359 05ce 53E5     		b	.L343
+ 3360              	.L415:
+ 3361 05d0 0A48     		ldr	r0, .L453+4
+ 3362 05d2 51E5     		b	.L343
+ 3363              	.L416:
+ 3364 05d4 0B48     		ldr	r0, .L453+12
+ 3365 05d6 4FE5     		b	.L343
+ 3366              	.L417:
+ 3367 05d8 0948     		ldr	r0, .L453+8
+ 3368 05da 4DE5     		b	.L343
+ 3369              	.L418:
+ 3370 05dc 0020     		movs	r0, #0
+ 3371 05de 4BE5     		b	.L343
+ 3372              	.L419:
+ 3373 05e0 0648     		ldr	r0, .L453+4
+ 3374 05e2 49E5     		b	.L343
+ 3375              	.L420:
+ 3376 05e4 0020     		movs	r0, #0
+ 3377 05e6 47E5     		b	.L343
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 60
+
+
+ 3378              	.L421:
+ 3379 05e8 0548     		ldr	r0, .L453+8
+ 3380 05ea 45E5     		b	.L343
+ 3381              	.L422:
+ 3382 05ec 0020     		movs	r0, #0
+ 3383 05ee 43E5     		b	.L343
+ 3384              	.L423:
+ 3385 05f0 0248     		ldr	r0, .L453+4
+ 3386 05f2 41E5     		b	.L343
+ 3387              	.L425:
+ 3388 05f4 0020     		movs	r0, #0
+ 3389 05f6 3FE5     		b	.L343
+ 3390              	.L454:
+ 3391              		.align	2
+ 3392              	.L453:
+ 3393 05f8 00440258 		.word	1476543488
+ 3394 05fc 00366E01 		.word	24000000
+ 3395 0600 00093D00 		.word	4000000
+ 3396 0604 0080BB00 		.word	12288000
+ 3398              		.section	.text.HAL_RCCEx_GetD1SysClockFreq,"ax",%progbits
+ 3399              		.align	1
+ 3400              		.global	HAL_RCCEx_GetD1SysClockFreq
+ 3401              		.syntax unified
+ 3402              		.thumb
+ 3403              		.thumb_func
+ 3405              	HAL_RCCEx_GetD1SysClockFreq:
+ 3406              		@ args = 0, pretend = 0, frame = 0
+ 3407              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3408 0000 08B5     		push	{r3, lr}
+ 3409 0002 FFF7FEFF 		bl	HAL_RCC_GetSysClockFreq
+ 3410 0006 0B49     		ldr	r1, .L457
+ 3411 0008 8B69     		ldr	r3, [r1, #24]
+ 3412 000a C3F30323 		ubfx	r3, r3, #8, #4
+ 3413 000e 0A4A     		ldr	r2, .L457+4
+ 3414 0010 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 3415 0012 03F01F03 		and	r3, r3, #31
+ 3416 0016 D840     		lsrs	r0, r0, r3
+ 3417 0018 8B69     		ldr	r3, [r1, #24]
+ 3418 001a 03F00F03 		and	r3, r3, #15
+ 3419 001e D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 3420 0020 03F01F03 		and	r3, r3, #31
+ 3421 0024 20FA03F3 		lsr	r3, r0, r3
+ 3422 0028 044A     		ldr	r2, .L457+8
+ 3423 002a 1360     		str	r3, [r2]
+ 3424 002c 044B     		ldr	r3, .L457+12
+ 3425 002e 1860     		str	r0, [r3]
+ 3426 0030 08BD     		pop	{r3, pc}
+ 3427              	.L458:
+ 3428 0032 00BF     		.align	2
+ 3429              	.L457:
+ 3430 0034 00440258 		.word	1476543488
+ 3431 0038 00000000 		.word	D1CorePrescTable
+ 3432 003c 00000000 		.word	SystemD2Clock
+ 3433 0040 00000000 		.word	SystemCoreClock
+ 3435              		.section	.text.HAL_RCCEx_EnableLSECSS,"ax",%progbits
+ 3436              		.align	1
+ 3437              		.global	HAL_RCCEx_EnableLSECSS
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 61
+
+
+ 3438              		.syntax unified
+ 3439              		.thumb
+ 3440              		.thumb_func
+ 3442              	HAL_RCCEx_EnableLSECSS:
+ 3443              		@ args = 0, pretend = 0, frame = 0
+ 3444              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3445              		@ link register save eliminated.
+ 3446 0000 024A     		ldr	r2, .L460
+ 3447 0002 136F     		ldr	r3, [r2, #112]
+ 3448 0004 43F02003 		orr	r3, r3, #32
+ 3449 0008 1367     		str	r3, [r2, #112]
+ 3450 000a 7047     		bx	lr
+ 3451              	.L461:
+ 3452              		.align	2
+ 3453              	.L460:
+ 3454 000c 00440258 		.word	1476543488
+ 3456              		.section	.text.HAL_RCCEx_DisableLSECSS,"ax",%progbits
+ 3457              		.align	1
+ 3458              		.global	HAL_RCCEx_DisableLSECSS
+ 3459              		.syntax unified
+ 3460              		.thumb
+ 3461              		.thumb_func
+ 3463              	HAL_RCCEx_DisableLSECSS:
+ 3464              		@ args = 0, pretend = 0, frame = 0
+ 3465              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3466              		@ link register save eliminated.
+ 3467 0000 044B     		ldr	r3, .L463
+ 3468 0002 1A6F     		ldr	r2, [r3, #112]
+ 3469 0004 22F02002 		bic	r2, r2, #32
+ 3470 0008 1A67     		str	r2, [r3, #112]
+ 3471 000a 1A6E     		ldr	r2, [r3, #96]
+ 3472 000c 22F40072 		bic	r2, r2, #512
+ 3473 0010 1A66     		str	r2, [r3, #96]
+ 3474 0012 7047     		bx	lr
+ 3475              	.L464:
+ 3476              		.align	2
+ 3477              	.L463:
+ 3478 0014 00440258 		.word	1476543488
+ 3480              		.section	.text.HAL_RCCEx_EnableLSECSS_IT,"ax",%progbits
+ 3481              		.align	1
+ 3482              		.global	HAL_RCCEx_EnableLSECSS_IT
+ 3483              		.syntax unified
+ 3484              		.thumb
+ 3485              		.thumb_func
+ 3487              	HAL_RCCEx_EnableLSECSS_IT:
+ 3488              		@ args = 0, pretend = 0, frame = 0
+ 3489              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3490              		@ link register save eliminated.
+ 3491 0000 0A4B     		ldr	r3, .L466
+ 3492 0002 1A6F     		ldr	r2, [r3, #112]
+ 3493 0004 42F02002 		orr	r2, r2, #32
+ 3494 0008 1A67     		str	r2, [r3, #112]
+ 3495 000a 1A6E     		ldr	r2, [r3, #96]
+ 3496 000c 42F40072 		orr	r2, r2, #512
+ 3497 0010 1A66     		str	r2, [r3, #96]
+ 3498 0012 4FF0B043 		mov	r3, #1476395008
+ 3499 0016 D3F88020 		ldr	r2, [r3, #128]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 62
+
+
+ 3500 001a 42F48022 		orr	r2, r2, #262144
+ 3501 001e C3F88020 		str	r2, [r3, #128]
+ 3502 0022 1A68     		ldr	r2, [r3]
+ 3503 0024 42F48022 		orr	r2, r2, #262144
+ 3504 0028 1A60     		str	r2, [r3]
+ 3505 002a 7047     		bx	lr
+ 3506              	.L467:
+ 3507              		.align	2
+ 3508              	.L466:
+ 3509 002c 00440258 		.word	1476543488
+ 3511              		.section	.text.HAL_RCCEx_WakeUpStopCLKConfig,"ax",%progbits
+ 3512              		.align	1
+ 3513              		.global	HAL_RCCEx_WakeUpStopCLKConfig
+ 3514              		.syntax unified
+ 3515              		.thumb
+ 3516              		.thumb_func
+ 3518              	HAL_RCCEx_WakeUpStopCLKConfig:
+ 3519              		@ args = 0, pretend = 0, frame = 0
+ 3520              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3521 0000 10B5     		push	{r4, lr}
+ 3522 0002 0446     		mov	r4, r0
+ 3523 0004 4028     		cmp	r0, #64
+ 3524 0006 18BF     		it	ne
+ 3525 0008 0028     		cmpne	r0, #0
+ 3526 000a 06D1     		bne	.L471
+ 3527              	.L469:
+ 3528 000c 064A     		ldr	r2, .L472
+ 3529 000e 1369     		ldr	r3, [r2, #16]
+ 3530 0010 23F04003 		bic	r3, r3, #64
+ 3531 0014 2343     		orrs	r3, r3, r4
+ 3532 0016 1361     		str	r3, [r2, #16]
+ 3533 0018 10BD     		pop	{r4, pc}
+ 3534              	.L471:
+ 3535 001a 40F6A241 		movw	r1, #3234
+ 3536 001e 0348     		ldr	r0, .L472+4
+ 3537 0020 FFF7FEFF 		bl	assert_failed
+ 3538 0024 F2E7     		b	.L469
+ 3539              	.L473:
+ 3540 0026 00BF     		.align	2
+ 3541              	.L472:
+ 3542 0028 00440258 		.word	1476543488
+ 3543 002c 00000000 		.word	.LC0
+ 3545              		.section	.text.HAL_RCCEx_KerWakeUpStopCLKConfig,"ax",%progbits
+ 3546              		.align	1
+ 3547              		.global	HAL_RCCEx_KerWakeUpStopCLKConfig
+ 3548              		.syntax unified
+ 3549              		.thumb
+ 3550              		.thumb_func
+ 3552              	HAL_RCCEx_KerWakeUpStopCLKConfig:
+ 3553              		@ args = 0, pretend = 0, frame = 0
+ 3554              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3555 0000 10B5     		push	{r4, lr}
+ 3556 0002 0446     		mov	r4, r0
+ 3557 0004 8028     		cmp	r0, #128
+ 3558 0006 18BF     		it	ne
+ 3559 0008 0028     		cmpne	r0, #0
+ 3560 000a 06D1     		bne	.L477
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 63
+
+
+ 3561              	.L475:
+ 3562 000c 064A     		ldr	r2, .L478
+ 3563 000e 1369     		ldr	r3, [r2, #16]
+ 3564 0010 23F08003 		bic	r3, r3, #128
+ 3565 0014 2343     		orrs	r3, r3, r4
+ 3566 0016 1361     		str	r3, [r2, #16]
+ 3567 0018 10BD     		pop	{r4, pc}
+ 3568              	.L477:
+ 3569 001a 40F6B141 		movw	r1, #3249
+ 3570 001e 0348     		ldr	r0, .L478+4
+ 3571 0020 FFF7FEFF 		bl	assert_failed
+ 3572 0024 F2E7     		b	.L475
+ 3573              	.L479:
+ 3574 0026 00BF     		.align	2
+ 3575              	.L478:
+ 3576 0028 00440258 		.word	1476543488
+ 3577 002c 00000000 		.word	.LC0
+ 3579              		.section	.text.HAL_RCCEx_WWDGxSysResetConfig,"ax",%progbits
+ 3580              		.align	1
+ 3581              		.global	HAL_RCCEx_WWDGxSysResetConfig
+ 3582              		.syntax unified
+ 3583              		.thumb
+ 3584              		.thumb_func
+ 3586              	HAL_RCCEx_WWDGxSysResetConfig:
+ 3587              		@ args = 0, pretend = 0, frame = 0
+ 3588              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3589 0000 10B5     		push	{r4, lr}
+ 3590 0002 0446     		mov	r4, r0
+ 3591 0004 0128     		cmp	r0, #1
+ 3592 0006 06D1     		bne	.L483
+ 3593              	.L481:
+ 3594 0008 064A     		ldr	r2, .L484
+ 3595 000a D2F8A030 		ldr	r3, [r2, #160]
+ 3596 000e 2343     		orrs	r3, r3, r4
+ 3597 0010 C2F8A030 		str	r3, [r2, #160]
+ 3598 0014 10BD     		pop	{r4, pc}
+ 3599              	.L483:
+ 3600 0016 40F6E741 		movw	r1, #3303
+ 3601 001a 0348     		ldr	r0, .L484+4
+ 3602 001c FFF7FEFF 		bl	assert_failed
+ 3603 0020 F2E7     		b	.L481
+ 3604              	.L485:
+ 3605 0022 00BF     		.align	2
+ 3606              	.L484:
+ 3607 0024 00440258 		.word	1476543488
+ 3608 0028 00000000 		.word	.LC0
+ 3610              		.section	.text.HAL_RCCEx_CRSConfig,"ax",%progbits
+ 3611              		.align	1
+ 3612              		.global	HAL_RCCEx_CRSConfig
+ 3613              		.syntax unified
+ 3614              		.thumb
+ 3615              		.thumb_func
+ 3617              	HAL_RCCEx_CRSConfig:
+ 3618              		@ args = 0, pretend = 0, frame = 0
+ 3619              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3620 0000 10B5     		push	{r4, lr}
+ 3621 0002 0446     		mov	r4, r0
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 64
+
+
+ 3622 0004 0368     		ldr	r3, [r0]
+ 3623 0006 002B     		cmp	r3, #0
+ 3624 0008 18BF     		it	ne
+ 3625 000a B3F1807F 		cmpne	r3, #16777216
+ 3626 000e 11D0     		beq	.L487
+ 3627 0010 B3F1007F 		cmp	r3, #33554432
+ 3628 0014 0ED0     		beq	.L487
+ 3629 0016 B3F1407F 		cmp	r3, #50331648
+ 3630 001a 0BD0     		beq	.L487
+ 3631 001c B3F1806F 		cmp	r3, #67108864
+ 3632 0020 08D0     		beq	.L487
+ 3633 0022 B3F1A06F 		cmp	r3, #83886080
+ 3634 0026 05D0     		beq	.L487
+ 3635 0028 B3F1C06F 		cmp	r3, #100663296
+ 3636 002c 02D0     		beq	.L487
+ 3637 002e B3F1E06F 		cmp	r3, #117440512
+ 3638 0032 4AD1     		bne	.L496
+ 3639              	.L487:
+ 3640 0034 6368     		ldr	r3, [r4, #4]
+ 3641 0036 B3F1405F 		cmp	r3, #805306368
+ 3642 003a 18BF     		it	ne
+ 3643 003c B3F1805F 		cmpne	r3, #268435456
+ 3644 0040 04D0     		beq	.L488
+ 3645 0042 B3F1005F 		cmp	r3, #536870912
+ 3646 0046 01D0     		beq	.L488
+ 3647 0048 002B     		cmp	r3, #0
+ 3648 004a 44D1     		bne	.L497
+ 3649              	.L488:
+ 3650 004c A368     		ldr	r3, [r4, #8]
+ 3651 004e 002B     		cmp	r3, #0
+ 3652 0050 18BF     		it	ne
+ 3653 0052 B3F1004F 		cmpne	r3, #-2147483648
+ 3654 0056 44D1     		bne	.L498
+ 3655              	.L489:
+ 3656 0058 E368     		ldr	r3, [r4, #12]
+ 3657 005a B3F5803F 		cmp	r3, #65536
+ 3658 005e 46D2     		bcs	.L499
+ 3659              	.L490:
+ 3660 0060 2369     		ldr	r3, [r4, #16]
+ 3661 0062 FF2B     		cmp	r3, #255
+ 3662 0064 49D8     		bhi	.L500
+ 3663              	.L491:
+ 3664 0066 6369     		ldr	r3, [r4, #20]
+ 3665 0068 3F2B     		cmp	r3, #63
+ 3666 006a 4CD8     		bhi	.L501
+ 3667              	.L492:
+ 3668 006c 2B4B     		ldr	r3, .L503
+ 3669 006e D3F89420 		ldr	r2, [r3, #148]
+ 3670 0072 42F00202 		orr	r2, r2, #2
+ 3671 0076 C3F89420 		str	r2, [r3, #148]
+ 3672 007a D3F89420 		ldr	r2, [r3, #148]
+ 3673 007e 22F00202 		bic	r2, r2, #2
+ 3674 0082 C3F89420 		str	r2, [r3, #148]
+ 3675 0086 FFF7FEFF 		bl	HAL_GetREVID
+ 3676 008a 41F20303 		movw	r3, #4099
+ 3677 008e 9842     		cmp	r0, r3
+ 3678 0090 03D8     		bhi	.L493
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 65
+
+
+ 3679 0092 6368     		ldr	r3, [r4, #4]
+ 3680 0094 B3F1405F 		cmp	r3, #805306368
+ 3681 0098 3BD0     		beq	.L502
+ 3682              	.L493:
+ 3683 009a 2268     		ldr	r2, [r4]
+ 3684 009c 6368     		ldr	r3, [r4, #4]
+ 3685 009e 1A43     		orrs	r2, r2, r3
+ 3686 00a0 A368     		ldr	r3, [r4, #8]
+ 3687 00a2 1A43     		orrs	r2, r2, r3
+ 3688              	.L494:
+ 3689 00a4 E368     		ldr	r3, [r4, #12]
+ 3690 00a6 1343     		orrs	r3, r3, r2
+ 3691 00a8 2269     		ldr	r2, [r4, #16]
+ 3692 00aa 43EA0242 		orr	r2, r3, r2, lsl #16
+ 3693 00ae 1C4B     		ldr	r3, .L503+4
+ 3694 00b0 5A60     		str	r2, [r3, #4]
+ 3695 00b2 1A68     		ldr	r2, [r3]
+ 3696 00b4 22F47C52 		bic	r2, r2, #16128
+ 3697 00b8 6169     		ldr	r1, [r4, #20]
+ 3698 00ba 42EA0122 		orr	r2, r2, r1, lsl #8
+ 3699 00be 1A60     		str	r2, [r3]
+ 3700 00c0 1A68     		ldr	r2, [r3]
+ 3701 00c2 42F06002 		orr	r2, r2, #96
+ 3702 00c6 1A60     		str	r2, [r3]
+ 3703 00c8 10BD     		pop	{r4, pc}
+ 3704              	.L496:
+ 3705 00ca 40F63B51 		movw	r1, #3387
+ 3706 00ce 1548     		ldr	r0, .L503+8
+ 3707 00d0 FFF7FEFF 		bl	assert_failed
+ 3708 00d4 AEE7     		b	.L487
+ 3709              	.L497:
+ 3710 00d6 40F63C51 		movw	r1, #3388
+ 3711 00da 1248     		ldr	r0, .L503+8
+ 3712 00dc FFF7FEFF 		bl	assert_failed
+ 3713 00e0 B4E7     		b	.L488
+ 3714              	.L498:
+ 3715 00e2 40F63D51 		movw	r1, #3389
+ 3716 00e6 0F48     		ldr	r0, .L503+8
+ 3717 00e8 FFF7FEFF 		bl	assert_failed
+ 3718 00ec B4E7     		b	.L489
+ 3719              	.L499:
+ 3720 00ee 40F63E51 		movw	r1, #3390
+ 3721 00f2 0C48     		ldr	r0, .L503+8
+ 3722 00f4 FFF7FEFF 		bl	assert_failed
+ 3723 00f8 B2E7     		b	.L490
+ 3724              	.L500:
+ 3725 00fa 40F63F51 		movw	r1, #3391
+ 3726 00fe 0948     		ldr	r0, .L503+8
+ 3727 0100 FFF7FEFF 		bl	assert_failed
+ 3728 0104 AFE7     		b	.L491
+ 3729              	.L501:
+ 3730 0106 4FF45461 		mov	r1, #3392
+ 3731 010a 0648     		ldr	r0, .L503+8
+ 3732 010c FFF7FEFF 		bl	assert_failed
+ 3733 0110 ACE7     		b	.L492
+ 3734              	.L502:
+ 3735 0112 2268     		ldr	r2, [r4]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 66
+
+
+ 3736 0114 A368     		ldr	r3, [r4, #8]
+ 3737 0116 1A43     		orrs	r2, r2, r3
+ 3738 0118 C4E7     		b	.L494
+ 3739              	.L504:
+ 3740 011a 00BF     		.align	2
+ 3741              	.L503:
+ 3742 011c 00440258 		.word	1476543488
+ 3743 0120 00840040 		.word	1073775616
+ 3744 0124 00000000 		.word	.LC0
+ 3746              		.section	.text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate,"ax",%progbits
+ 3747              		.align	1
+ 3748              		.global	HAL_RCCEx_CRSSoftwareSynchronizationGenerate
+ 3749              		.syntax unified
+ 3750              		.thumb
+ 3751              		.thumb_func
+ 3753              	HAL_RCCEx_CRSSoftwareSynchronizationGenerate:
+ 3754              		@ args = 0, pretend = 0, frame = 0
+ 3755              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3756              		@ link register save eliminated.
+ 3757 0000 024A     		ldr	r2, .L506
+ 3758 0002 1368     		ldr	r3, [r2]
+ 3759 0004 43F08003 		orr	r3, r3, #128
+ 3760 0008 1360     		str	r3, [r2]
+ 3761 000a 7047     		bx	lr
+ 3762              	.L507:
+ 3763              		.align	2
+ 3764              	.L506:
+ 3765 000c 00840040 		.word	1073775616
+ 3767              		.section	.text.HAL_RCCEx_CRSGetSynchronizationInfo,"ax",%progbits
+ 3768              		.align	1
+ 3769              		.global	HAL_RCCEx_CRSGetSynchronizationInfo
+ 3770              		.syntax unified
+ 3771              		.thumb
+ 3772              		.thumb_func
+ 3774              	HAL_RCCEx_CRSGetSynchronizationInfo:
+ 3775              		@ args = 0, pretend = 0, frame = 0
+ 3776              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3777 0000 10B5     		push	{r4, lr}
+ 3778 0002 0446     		mov	r4, r0
+ 3779 0004 78B1     		cbz	r0, .L511
+ 3780              	.L509:
+ 3781 0006 0B4B     		ldr	r3, .L512
+ 3782 0008 5A68     		ldr	r2, [r3, #4]
+ 3783 000a 92B2     		uxth	r2, r2
+ 3784 000c 2260     		str	r2, [r4]
+ 3785 000e 1A68     		ldr	r2, [r3]
+ 3786 0010 C2F30522 		ubfx	r2, r2, #8, #6
+ 3787 0014 6260     		str	r2, [r4, #4]
+ 3788 0016 9A68     		ldr	r2, [r3, #8]
+ 3789 0018 120C     		lsrs	r2, r2, #16
+ 3790 001a A260     		str	r2, [r4, #8]
+ 3791 001c 9B68     		ldr	r3, [r3, #8]
+ 3792 001e 03F40043 		and	r3, r3, #32768
+ 3793 0022 E360     		str	r3, [r4, #12]
+ 3794 0024 10BD     		pop	{r4, pc}
+ 3795              	.L511:
+ 3796 0026 40F67551 		movw	r1, #3445
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 67
+
+
+ 3797 002a 0348     		ldr	r0, .L512+4
+ 3798 002c FFF7FEFF 		bl	assert_failed
+ 3799 0030 E9E7     		b	.L509
+ 3800              	.L513:
+ 3801 0032 00BF     		.align	2
+ 3802              	.L512:
+ 3803 0034 00840040 		.word	1073775616
+ 3804 0038 00000000 		.word	.LC0
+ 3806              		.section	.text.HAL_RCCEx_CRSWaitSynchronization,"ax",%progbits
+ 3807              		.align	1
+ 3808              		.global	HAL_RCCEx_CRSWaitSynchronization
+ 3809              		.syntax unified
+ 3810              		.thumb
+ 3811              		.thumb_func
+ 3813              	HAL_RCCEx_CRSWaitSynchronization:
+ 3814              		@ args = 0, pretend = 0, frame = 0
+ 3815              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3816 0000 70B5     		push	{r4, r5, r6, lr}
+ 3817 0002 0546     		mov	r5, r0
+ 3818 0004 FFF7FEFF 		bl	HAL_GetTick
+ 3819 0008 0646     		mov	r6, r0
+ 3820 000a 0024     		movs	r4, #0
+ 3821 000c 0BE0     		b	.L522
+ 3822              	.L527:
+ 3823 000e FFF7FEFF 		bl	HAL_GetTick
+ 3824 0012 801B     		subs	r0, r0, r6
+ 3825 0014 A842     		cmp	r0, r5
+ 3826 0016 02D8     		bhi	.L523
+ 3827 0018 45B9     		cbnz	r5, .L515
+ 3828 001a 0124     		movs	r4, #1
+ 3829 001c 06E0     		b	.L515
+ 3830              	.L523:
+ 3831 001e 0124     		movs	r4, #1
+ 3832 0020 04E0     		b	.L515
+ 3833              	.L521:
+ 3834 0022 002C     		cmp	r4, #0
+ 3835 0024 3DD1     		bne	.L526
+ 3836              	.L522:
+ 3837 0026 B5F1FF3F 		cmp	r5, #-1
+ 3838 002a F0D1     		bne	.L527
+ 3839              	.L515:
+ 3840 002c 1E4B     		ldr	r3, .L528
+ 3841 002e 9B68     		ldr	r3, [r3, #8]
+ 3842 0030 13F0010F 		tst	r3, #1
+ 3843 0034 04D0     		beq	.L516
+ 3844 0036 44F00204 		orr	r4, r4, #2
+ 3845 003a 1B4B     		ldr	r3, .L528
+ 3846 003c 0122     		movs	r2, #1
+ 3847 003e DA60     		str	r2, [r3, #12]
+ 3848              	.L516:
+ 3849 0040 194B     		ldr	r3, .L528
+ 3850 0042 9B68     		ldr	r3, [r3, #8]
+ 3851 0044 13F0020F 		tst	r3, #2
+ 3852 0048 04D0     		beq	.L517
+ 3853 004a 44F00404 		orr	r4, r4, #4
+ 3854 004e 164B     		ldr	r3, .L528
+ 3855 0050 0222     		movs	r2, #2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 68
+
+
+ 3856 0052 DA60     		str	r2, [r3, #12]
+ 3857              	.L517:
+ 3858 0054 144B     		ldr	r3, .L528
+ 3859 0056 9B68     		ldr	r3, [r3, #8]
+ 3860 0058 13F4806F 		tst	r3, #1024
+ 3861 005c 04D0     		beq	.L518
+ 3862 005e 44F02004 		orr	r4, r4, #32
+ 3863 0062 114B     		ldr	r3, .L528
+ 3864 0064 0422     		movs	r2, #4
+ 3865 0066 DA60     		str	r2, [r3, #12]
+ 3866              	.L518:
+ 3867 0068 0F4B     		ldr	r3, .L528
+ 3868 006a 9B68     		ldr	r3, [r3, #8]
+ 3869 006c 13F4807F 		tst	r3, #256
+ 3870 0070 04D0     		beq	.L519
+ 3871 0072 44F00804 		orr	r4, r4, #8
+ 3872 0076 0C4B     		ldr	r3, .L528
+ 3873 0078 0422     		movs	r2, #4
+ 3874 007a DA60     		str	r2, [r3, #12]
+ 3875              	.L519:
+ 3876 007c 0A4B     		ldr	r3, .L528
+ 3877 007e 9B68     		ldr	r3, [r3, #8]
+ 3878 0080 13F4007F 		tst	r3, #512
+ 3879 0084 04D0     		beq	.L520
+ 3880 0086 44F01004 		orr	r4, r4, #16
+ 3881 008a 074B     		ldr	r3, .L528
+ 3882 008c 0422     		movs	r2, #4
+ 3883 008e DA60     		str	r2, [r3, #12]
+ 3884              	.L520:
+ 3885 0090 054B     		ldr	r3, .L528
+ 3886 0092 9B68     		ldr	r3, [r3, #8]
+ 3887 0094 13F0080F 		tst	r3, #8
+ 3888 0098 C3D0     		beq	.L521
+ 3889 009a 034B     		ldr	r3, .L528
+ 3890 009c 0822     		movs	r2, #8
+ 3891 009e DA60     		str	r2, [r3, #12]
+ 3892 00a0 BFE7     		b	.L521
+ 3893              	.L526:
+ 3894 00a2 2046     		mov	r0, r4
+ 3895 00a4 70BD     		pop	{r4, r5, r6, pc}
+ 3896              	.L529:
+ 3897 00a6 00BF     		.align	2
+ 3898              	.L528:
+ 3899 00a8 00840040 		.word	1073775616
+ 3901              		.section	.text.HAL_RCCEx_CRS_SyncOkCallback,"ax",%progbits
+ 3902              		.align	1
+ 3903              		.weak	HAL_RCCEx_CRS_SyncOkCallback
+ 3904              		.syntax unified
+ 3905              		.thumb
+ 3906              		.thumb_func
+ 3908              	HAL_RCCEx_CRS_SyncOkCallback:
+ 3909              		@ args = 0, pretend = 0, frame = 0
+ 3910              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3911              		@ link register save eliminated.
+ 3912 0000 7047     		bx	lr
+ 3914              		.section	.text.HAL_RCCEx_CRS_SyncWarnCallback,"ax",%progbits
+ 3915              		.align	1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 69
+
+
+ 3916              		.weak	HAL_RCCEx_CRS_SyncWarnCallback
+ 3917              		.syntax unified
+ 3918              		.thumb
+ 3919              		.thumb_func
+ 3921              	HAL_RCCEx_CRS_SyncWarnCallback:
+ 3922              		@ args = 0, pretend = 0, frame = 0
+ 3923              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3924              		@ link register save eliminated.
+ 3925 0000 7047     		bx	lr
+ 3927              		.section	.text.HAL_RCCEx_CRS_ExpectedSyncCallback,"ax",%progbits
+ 3928              		.align	1
+ 3929              		.weak	HAL_RCCEx_CRS_ExpectedSyncCallback
+ 3930              		.syntax unified
+ 3931              		.thumb
+ 3932              		.thumb_func
+ 3934              	HAL_RCCEx_CRS_ExpectedSyncCallback:
+ 3935              		@ args = 0, pretend = 0, frame = 0
+ 3936              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3937              		@ link register save eliminated.
+ 3938 0000 7047     		bx	lr
+ 3940              		.section	.text.HAL_RCCEx_CRS_ErrorCallback,"ax",%progbits
+ 3941              		.align	1
+ 3942              		.weak	HAL_RCCEx_CRS_ErrorCallback
+ 3943              		.syntax unified
+ 3944              		.thumb
+ 3945              		.thumb_func
+ 3947              	HAL_RCCEx_CRS_ErrorCallback:
+ 3948              		@ args = 0, pretend = 0, frame = 0
+ 3949              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3950              		@ link register save eliminated.
+ 3951 0000 7047     		bx	lr
+ 3953              		.section	.text.HAL_RCCEx_CRS_IRQHandler,"ax",%progbits
+ 3954              		.align	1
+ 3955              		.global	HAL_RCCEx_CRS_IRQHandler
+ 3956              		.syntax unified
+ 3957              		.thumb
+ 3958              		.thumb_func
+ 3960              	HAL_RCCEx_CRS_IRQHandler:
+ 3961              		@ args = 0, pretend = 0, frame = 0
+ 3962              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3963 0000 08B5     		push	{r3, lr}
+ 3964 0002 204A     		ldr	r2, .L547
+ 3965 0004 9368     		ldr	r3, [r2, #8]
+ 3966 0006 1268     		ldr	r2, [r2]
+ 3967 0008 13F0010F 		tst	r3, #1
+ 3968 000c 02D0     		beq	.L535
+ 3969 000e 12F0010F 		tst	r2, #1
+ 3970 0012 25D1     		bne	.L544
+ 3971              	.L535:
+ 3972 0014 13F0020F 		tst	r3, #2
+ 3973 0018 02D0     		beq	.L537
+ 3974 001a 12F0020F 		tst	r2, #2
+ 3975 001e 25D1     		bne	.L545
+ 3976              	.L537:
+ 3977 0020 13F0080F 		tst	r3, #8
+ 3978 0024 02D0     		beq	.L538
+ 3979 0026 12F0080F 		tst	r2, #8
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 70
+
+
+ 3980 002a 25D1     		bne	.L546
+ 3981              	.L538:
+ 3982 002c 13F0040F 		tst	r3, #4
+ 3983 0030 1BD0     		beq	.L534
+ 3984 0032 12F0040F 		tst	r2, #4
+ 3985 0036 18D0     		beq	.L534
+ 3986 0038 13F48070 		ands	r0, r3, #256
+ 3987 003c 00D0     		beq	.L539
+ 3988 003e 0820     		movs	r0, #8
+ 3989              	.L539:
+ 3990 0040 13F4007F 		tst	r3, #512
+ 3991 0044 01D0     		beq	.L540
+ 3992 0046 40F01000 		orr	r0, r0, #16
+ 3993              	.L540:
+ 3994 004a 13F4806F 		tst	r3, #1024
+ 3995 004e 01D0     		beq	.L541
+ 3996 0050 40F02000 		orr	r0, r0, #32
+ 3997              	.L541:
+ 3998 0054 0B4B     		ldr	r3, .L547
+ 3999 0056 0422     		movs	r2, #4
+ 4000 0058 DA60     		str	r2, [r3, #12]
+ 4001 005a FFF7FEFF 		bl	HAL_RCCEx_CRS_ErrorCallback
+ 4002 005e 04E0     		b	.L534
+ 4003              	.L544:
+ 4004 0060 084B     		ldr	r3, .L547
+ 4005 0062 0122     		movs	r2, #1
+ 4006 0064 DA60     		str	r2, [r3, #12]
+ 4007 0066 FFF7FEFF 		bl	HAL_RCCEx_CRS_SyncOkCallback
+ 4008              	.L534:
+ 4009 006a 08BD     		pop	{r3, pc}
+ 4010              	.L545:
+ 4011 006c 054B     		ldr	r3, .L547
+ 4012 006e 0222     		movs	r2, #2
+ 4013 0070 DA60     		str	r2, [r3, #12]
+ 4014 0072 FFF7FEFF 		bl	HAL_RCCEx_CRS_SyncWarnCallback
+ 4015 0076 F8E7     		b	.L534
+ 4016              	.L546:
+ 4017 0078 024B     		ldr	r3, .L547
+ 4018 007a 0822     		movs	r2, #8
+ 4019 007c DA60     		str	r2, [r3, #12]
+ 4020 007e FFF7FEFF 		bl	HAL_RCCEx_CRS_ExpectedSyncCallback
+ 4021 0082 F2E7     		b	.L534
+ 4022              	.L548:
+ 4023              		.align	2
+ 4024              	.L547:
+ 4025 0084 00840040 		.word	1073775616
+ 4027              		.section	.text.HAL_RCCEx_LSECSS_Callback,"ax",%progbits
+ 4028              		.align	1
+ 4029              		.weak	HAL_RCCEx_LSECSS_Callback
+ 4030              		.syntax unified
+ 4031              		.thumb
+ 4032              		.thumb_func
+ 4034              	HAL_RCCEx_LSECSS_Callback:
+ 4035              		@ args = 0, pretend = 0, frame = 0
+ 4036              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4037              		@ link register save eliminated.
+ 4038 0000 7047     		bx	lr
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 71
+
+
+ 4040              		.section	.text.HAL_RCCEx_LSECSS_IRQHandler,"ax",%progbits
+ 4041              		.align	1
+ 4042              		.global	HAL_RCCEx_LSECSS_IRQHandler
+ 4043              		.syntax unified
+ 4044              		.thumb
+ 4045              		.thumb_func
+ 4047              	HAL_RCCEx_LSECSS_IRQHandler:
+ 4048              		@ args = 0, pretend = 0, frame = 0
+ 4049              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4050 0000 08B5     		push	{r3, lr}
+ 4051 0002 064B     		ldr	r3, .L554
+ 4052 0004 5B6E     		ldr	r3, [r3, #100]
+ 4053 0006 13F4007F 		tst	r3, #512
+ 4054 000a 00D1     		bne	.L553
+ 4055              	.L550:
+ 4056 000c 08BD     		pop	{r3, pc}
+ 4057              	.L553:
+ 4058 000e 034B     		ldr	r3, .L554
+ 4059 0010 4FF40072 		mov	r2, #512
+ 4060 0014 9A66     		str	r2, [r3, #104]
+ 4061 0016 FFF7FEFF 		bl	HAL_RCCEx_LSECSS_Callback
+ 4062 001a F7E7     		b	.L550
+ 4063              	.L555:
+ 4064              		.align	2
+ 4065              	.L554:
+ 4066 001c 00440258 		.word	1476543488
+ 4068              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 72
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32h7xx_hal_rcc_ex.c
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:17     .rodata.RCCEx_PLL2_Config.str1.4:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:22     .text.RCCEx_PLL2_Config:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:27     .text.RCCEx_PLL2_Config:00000000 RCCEx_PLL2_Config
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:234    .text.RCCEx_PLL2_Config:000001b4 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:238    .text.RCCEx_PLL3_Config:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:243    .text.RCCEx_PLL3_Config:00000000 RCCEx_PLL3_Config
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:450    .text.RCCEx_PLL3_Config:000001bc $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:454    .text.HAL_RCCEx_PeriphCLKConfig:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:460    .text.HAL_RCCEx_PeriphCLKConfig:00000000 HAL_RCCEx_PeriphCLKConfig
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:528    .text.HAL_RCCEx_PeriphCLKConfig:00000084 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:753    .text.HAL_RCCEx_PeriphCLKConfig:0000026c $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:755    .text.HAL_RCCEx_PeriphCLKConfig:00000270 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:913    .text.HAL_RCCEx_PeriphCLKConfig:000003ce $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:917    .text.HAL_RCCEx_PeriphCLKConfig:000003d6 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:924    .text.HAL_RCCEx_PeriphCLKConfig:000003dc $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:926    .text.HAL_RCCEx_PeriphCLKConfig:000003e0 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1185   .text.HAL_RCCEx_PeriphCLKConfig:000006c0 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1190   .text.HAL_RCCEx_PeriphCLKConfig:000006d0 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1239   .text.HAL_RCCEx_PeriphCLKConfig:00000734 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1316   .text.HAL_RCCEx_PeriphCLKConfig:000007a4 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1322   .text.HAL_RCCEx_PeriphCLKConfig:000007aa $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1348   .text.HAL_RCCEx_PeriphCLKConfig:000007e0 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1354   .text.HAL_RCCEx_PeriphCLKConfig:000007ec $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1371   .text.HAL_RCCEx_PeriphCLKConfig:00000804 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1374   .text.HAL_RCCEx_PeriphCLKConfig:0000080c $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1664   .text.HAL_RCCEx_PeriphCLKConfig:00000b04 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1666   .text.HAL_RCCEx_PeriphCLKConfig:00000b08 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1974   .text.HAL_RCCEx_PeriphCLKConfig:00000d9c $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1978   .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1984   .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 HAL_RCCEx_GetPeriphCLKConfig
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2148   .text.HAL_RCCEx_GetPeriphCLKConfig:000001b4 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2157   .text.HAL_RCCEx_GetD1PCLK1Freq:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2163   .text.HAL_RCCEx_GetD1PCLK1Freq:00000000 HAL_RCCEx_GetD1PCLK1Freq
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2179   .text.HAL_RCCEx_GetD1PCLK1Freq:0000001c $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2183   .text.HAL_RCCEx_GetD3PCLK1Freq:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2189   .text.HAL_RCCEx_GetD3PCLK1Freq:00000000 HAL_RCCEx_GetD3PCLK1Freq
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2205   .text.HAL_RCCEx_GetD3PCLK1Freq:0000001c $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2209   .text.HAL_RCCEx_GetPLL2ClockFreq:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2215   .text.HAL_RCCEx_GetPLL2ClockFreq:00000000 HAL_RCCEx_GetPLL2ClockFreq
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2371   .text.HAL_RCCEx_GetPLL2ClockFreq:000001e8 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2379   .text.HAL_RCCEx_GetPLL3ClockFreq:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2385   .text.HAL_RCCEx_GetPLL3ClockFreq:00000000 HAL_RCCEx_GetPLL3ClockFreq
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2541   .text.HAL_RCCEx_GetPLL3ClockFreq:000001e8 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2549   .text.HAL_RCCEx_GetPLL1ClockFreq:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2555   .text.HAL_RCCEx_GetPLL1ClockFreq:00000000 HAL_RCCEx_GetPLL1ClockFreq
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2711   .text.HAL_RCCEx_GetPLL1ClockFreq:000001e8 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2719   .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2725   .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 HAL_RCCEx_GetPeriphCLKFreq
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2767   .text.HAL_RCCEx_GetPeriphCLKFreq:00000070 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3016   .text.HAL_RCCEx_GetPeriphCLKFreq:000002b4 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3020   .text.HAL_RCCEx_GetPeriphCLKFreq:000002c0 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3289   .text.HAL_RCCEx_GetPeriphCLKFreq:00000540 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3294   .text.HAL_RCCEx_GetPeriphCLKFreq:00000550 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3393   .text.HAL_RCCEx_GetPeriphCLKFreq:000005f8 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3399   .text.HAL_RCCEx_GetD1SysClockFreq:00000000 $t
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 73
+
+
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3405   .text.HAL_RCCEx_GetD1SysClockFreq:00000000 HAL_RCCEx_GetD1SysClockFreq
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3430   .text.HAL_RCCEx_GetD1SysClockFreq:00000034 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3436   .text.HAL_RCCEx_EnableLSECSS:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3442   .text.HAL_RCCEx_EnableLSECSS:00000000 HAL_RCCEx_EnableLSECSS
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3454   .text.HAL_RCCEx_EnableLSECSS:0000000c $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3457   .text.HAL_RCCEx_DisableLSECSS:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3463   .text.HAL_RCCEx_DisableLSECSS:00000000 HAL_RCCEx_DisableLSECSS
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3478   .text.HAL_RCCEx_DisableLSECSS:00000014 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3481   .text.HAL_RCCEx_EnableLSECSS_IT:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3487   .text.HAL_RCCEx_EnableLSECSS_IT:00000000 HAL_RCCEx_EnableLSECSS_IT
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3509   .text.HAL_RCCEx_EnableLSECSS_IT:0000002c $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3512   .text.HAL_RCCEx_WakeUpStopCLKConfig:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3518   .text.HAL_RCCEx_WakeUpStopCLKConfig:00000000 HAL_RCCEx_WakeUpStopCLKConfig
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3542   .text.HAL_RCCEx_WakeUpStopCLKConfig:00000028 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3546   .text.HAL_RCCEx_KerWakeUpStopCLKConfig:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3552   .text.HAL_RCCEx_KerWakeUpStopCLKConfig:00000000 HAL_RCCEx_KerWakeUpStopCLKConfig
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3576   .text.HAL_RCCEx_KerWakeUpStopCLKConfig:00000028 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3580   .text.HAL_RCCEx_WWDGxSysResetConfig:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3586   .text.HAL_RCCEx_WWDGxSysResetConfig:00000000 HAL_RCCEx_WWDGxSysResetConfig
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3607   .text.HAL_RCCEx_WWDGxSysResetConfig:00000024 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3611   .text.HAL_RCCEx_CRSConfig:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3617   .text.HAL_RCCEx_CRSConfig:00000000 HAL_RCCEx_CRSConfig
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3742   .text.HAL_RCCEx_CRSConfig:0000011c $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3747   .text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3753   .text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate:00000000 HAL_RCCEx_CRSSoftwareSynchronizationGenerate
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3765   .text.HAL_RCCEx_CRSSoftwareSynchronizationGenerate:0000000c $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3768   .text.HAL_RCCEx_CRSGetSynchronizationInfo:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3774   .text.HAL_RCCEx_CRSGetSynchronizationInfo:00000000 HAL_RCCEx_CRSGetSynchronizationInfo
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3803   .text.HAL_RCCEx_CRSGetSynchronizationInfo:00000034 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3807   .text.HAL_RCCEx_CRSWaitSynchronization:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3813   .text.HAL_RCCEx_CRSWaitSynchronization:00000000 HAL_RCCEx_CRSWaitSynchronization
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3899   .text.HAL_RCCEx_CRSWaitSynchronization:000000a8 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3902   .text.HAL_RCCEx_CRS_SyncOkCallback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3908   .text.HAL_RCCEx_CRS_SyncOkCallback:00000000 HAL_RCCEx_CRS_SyncOkCallback
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3915   .text.HAL_RCCEx_CRS_SyncWarnCallback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3921   .text.HAL_RCCEx_CRS_SyncWarnCallback:00000000 HAL_RCCEx_CRS_SyncWarnCallback
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3928   .text.HAL_RCCEx_CRS_ExpectedSyncCallback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3934   .text.HAL_RCCEx_CRS_ExpectedSyncCallback:00000000 HAL_RCCEx_CRS_ExpectedSyncCallback
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3941   .text.HAL_RCCEx_CRS_ErrorCallback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3947   .text.HAL_RCCEx_CRS_ErrorCallback:00000000 HAL_RCCEx_CRS_ErrorCallback
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3954   .text.HAL_RCCEx_CRS_IRQHandler:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:3960   .text.HAL_RCCEx_CRS_IRQHandler:00000000 HAL_RCCEx_CRS_IRQHandler
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:4025   .text.HAL_RCCEx_CRS_IRQHandler:00000084 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:4028   .text.HAL_RCCEx_LSECSS_Callback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:4034   .text.HAL_RCCEx_LSECSS_Callback:00000000 HAL_RCCEx_LSECSS_Callback
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:4041   .text.HAL_RCCEx_LSECSS_IRQHandler:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:4047   .text.HAL_RCCEx_LSECSS_IRQHandler:00000000 HAL_RCCEx_LSECSS_IRQHandler
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:4066   .text.HAL_RCCEx_LSECSS_IRQHandler:0000001c $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:533    .text.HAL_RCCEx_PeriphCLKConfig:00000089 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:533    .text.HAL_RCCEx_PeriphCLKConfig:0000008a $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1280   .text.HAL_RCCEx_PeriphCLKConfig:0000075d $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:1280   .text.HAL_RCCEx_PeriphCLKConfig:0000075e $t
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2772   .text.HAL_RCCEx_GetPeriphCLKFreq:00000075 $d
+C:\Users\thewo\AppData\Local\Temp\cclPESGa.s:2772   .text.HAL_RCCEx_GetPeriphCLKFreq:00000076 $t
+
+UNDEFINED SYMBOLS
+HAL_GetTick
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cclPESGa.s 			page 74
+
+
+assert_failed
+HAL_RCC_GetHCLKFreq
+D1CorePrescTable
+HAL_RCC_GetPCLK1Freq
+HAL_RCC_GetSysClockFreq
+SystemD2Clock
+SystemCoreClock
+HAL_GetREVID

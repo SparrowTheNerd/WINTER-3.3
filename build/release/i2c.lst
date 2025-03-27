@@ -1,0 +1,225 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"i2c.c"
+  15              		.text
+  16              		.section	.text.MX_I2C3_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_I2C3_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_I2C3_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27 0002 1248     		ldr	r0, .L9
+  28 0004 124B     		ldr	r3, .L9+4
+  29 0006 0360     		str	r3, [r0]
+  30 0008 124B     		ldr	r3, .L9+8
+  31 000a 4360     		str	r3, [r0, #4]
+  32 000c 0023     		movs	r3, #0
+  33 000e 8360     		str	r3, [r0, #8]
+  34 0010 0122     		movs	r2, #1
+  35 0012 C260     		str	r2, [r0, #12]
+  36 0014 0361     		str	r3, [r0, #16]
+  37 0016 4361     		str	r3, [r0, #20]
+  38 0018 8361     		str	r3, [r0, #24]
+  39 001a C361     		str	r3, [r0, #28]
+  40 001c 0362     		str	r3, [r0, #32]
+  41 001e FFF7FEFF 		bl	HAL_I2C_Init
+  42 0022 50B9     		cbnz	r0, .L6
+  43              	.L2:
+  44 0024 0021     		movs	r1, #0
+  45 0026 0948     		ldr	r0, .L9
+  46 0028 FFF7FEFF 		bl	HAL_I2CEx_ConfigAnalogFilter
+  47 002c 40B9     		cbnz	r0, .L7
+  48              	.L3:
+  49 002e 0021     		movs	r1, #0
+  50 0030 0648     		ldr	r0, .L9
+  51 0032 FFF7FEFF 		bl	HAL_I2CEx_ConfigDigitalFilter
+  52 0036 30B9     		cbnz	r0, .L8
+  53              	.L1:
+  54 0038 08BD     		pop	{r3, pc}
+  55              	.L6:
+  56 003a FFF7FEFF 		bl	Error_Handler
+  57 003e F1E7     		b	.L2
+  58              	.L7:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s 			page 2
+
+
+  59 0040 FFF7FEFF 		bl	Error_Handler
+  60 0044 F3E7     		b	.L3
+  61              	.L8:
+  62 0046 FFF7FEFF 		bl	Error_Handler
+  63 004a F5E7     		b	.L1
+  64              	.L10:
+  65              		.align	2
+  66              	.L9:
+  67 004c 00000000 		.word	hi2c3
+  68 0050 005C0040 		.word	1073765376
+  69 0054 73216000 		.word	6300019
+  71              		.section	.text.HAL_I2C_MspInit,"ax",%progbits
+  72              		.align	1
+  73              		.global	HAL_I2C_MspInit
+  74              		.syntax unified
+  75              		.thumb
+  76              		.thumb_func
+  78              	HAL_I2C_MspInit:
+  79              		@ args = 0, pretend = 0, frame = 32
+  80              		@ frame_needed = 0, uses_anonymous_args = 0
+  81 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  82 0002 89B0     		sub	sp, sp, #36
+  83 0004 0023     		movs	r3, #0
+  84 0006 0393     		str	r3, [sp, #12]
+  85 0008 0493     		str	r3, [sp, #16]
+  86 000a 0593     		str	r3, [sp, #20]
+  87 000c 0693     		str	r3, [sp, #24]
+  88 000e 0793     		str	r3, [sp, #28]
+  89 0010 0268     		ldr	r2, [r0]
+  90 0012 214B     		ldr	r3, .L15
+  91 0014 9A42     		cmp	r2, r3
+  92 0016 01D0     		beq	.L14
+  93              	.L11:
+  94 0018 09B0     		add	sp, sp, #36
+  95              		@ sp needed
+  96 001a F0BD     		pop	{r4, r5, r6, r7, pc}
+  97              	.L14:
+  98 001c 1F4C     		ldr	r4, .L15+4
+  99 001e D4F8E030 		ldr	r3, [r4, #224]
+ 100 0022 43F00403 		orr	r3, r3, #4
+ 101 0026 C4F8E030 		str	r3, [r4, #224]
+ 102 002a D4F8E030 		ldr	r3, [r4, #224]
+ 103 002e 03F00403 		and	r3, r3, #4
+ 104 0032 0093     		str	r3, [sp]
+ 105 0034 009B     		ldr	r3, [sp]
+ 106 0036 D4F8E030 		ldr	r3, [r4, #224]
+ 107 003a 43F00103 		orr	r3, r3, #1
+ 108 003e C4F8E030 		str	r3, [r4, #224]
+ 109 0042 D4F8E030 		ldr	r3, [r4, #224]
+ 110 0046 03F00103 		and	r3, r3, #1
+ 111 004a 0193     		str	r3, [sp, #4]
+ 112 004c 019B     		ldr	r3, [sp, #4]
+ 113 004e 4FF40073 		mov	r3, #512
+ 114 0052 0393     		str	r3, [sp, #12]
+ 115 0054 1227     		movs	r7, #18
+ 116 0056 0497     		str	r7, [sp, #16]
+ 117 0058 0426     		movs	r6, #4
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s 			page 3
+
+
+ 118 005a 0796     		str	r6, [sp, #28]
+ 119 005c 03AD     		add	r5, sp, #12
+ 120 005e 2946     		mov	r1, r5
+ 121 0060 0F48     		ldr	r0, .L15+8
+ 122 0062 FFF7FEFF 		bl	HAL_GPIO_Init
+ 123 0066 4FF48073 		mov	r3, #256
+ 124 006a 0393     		str	r3, [sp, #12]
+ 125 006c 0497     		str	r7, [sp, #16]
+ 126 006e 0023     		movs	r3, #0
+ 127 0070 0593     		str	r3, [sp, #20]
+ 128 0072 0693     		str	r3, [sp, #24]
+ 129 0074 0796     		str	r6, [sp, #28]
+ 130 0076 2946     		mov	r1, r5
+ 131 0078 0A48     		ldr	r0, .L15+12
+ 132 007a FFF7FEFF 		bl	HAL_GPIO_Init
+ 133 007e D4F8E830 		ldr	r3, [r4, #232]
+ 134 0082 43F40003 		orr	r3, r3, #8388608
+ 135 0086 C4F8E830 		str	r3, [r4, #232]
+ 136 008a D4F8E830 		ldr	r3, [r4, #232]
+ 137 008e 03F40003 		and	r3, r3, #8388608
+ 138 0092 0293     		str	r3, [sp, #8]
+ 139 0094 029B     		ldr	r3, [sp, #8]
+ 140 0096 BFE7     		b	.L11
+ 141              	.L16:
+ 142              		.align	2
+ 143              	.L15:
+ 144 0098 005C0040 		.word	1073765376
+ 145 009c 00440258 		.word	1476543488
+ 146 00a0 00080258 		.word	1476528128
+ 147 00a4 00000258 		.word	1476526080
+ 149              		.section	.text.HAL_I2C_MspDeInit,"ax",%progbits
+ 150              		.align	1
+ 151              		.global	HAL_I2C_MspDeInit
+ 152              		.syntax unified
+ 153              		.thumb
+ 154              		.thumb_func
+ 156              	HAL_I2C_MspDeInit:
+ 157              		@ args = 0, pretend = 0, frame = 0
+ 158              		@ frame_needed = 0, uses_anonymous_args = 0
+ 159 0000 08B5     		push	{r3, lr}
+ 160 0002 0268     		ldr	r2, [r0]
+ 161 0004 0A4B     		ldr	r3, .L21
+ 162 0006 9A42     		cmp	r2, r3
+ 163 0008 00D0     		beq	.L20
+ 164              	.L17:
+ 165 000a 08BD     		pop	{r3, pc}
+ 166              	.L20:
+ 167 000c 094A     		ldr	r2, .L21+4
+ 168 000e D2F8E830 		ldr	r3, [r2, #232]
+ 169 0012 23F40003 		bic	r3, r3, #8388608
+ 170 0016 C2F8E830 		str	r3, [r2, #232]
+ 171 001a 4FF40071 		mov	r1, #512
+ 172 001e 0648     		ldr	r0, .L21+8
+ 173 0020 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 174 0024 4FF48071 		mov	r1, #256
+ 175 0028 0448     		ldr	r0, .L21+12
+ 176 002a FFF7FEFF 		bl	HAL_GPIO_DeInit
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s 			page 4
+
+
+ 177 002e ECE7     		b	.L17
+ 178              	.L22:
+ 179              		.align	2
+ 180              	.L21:
+ 181 0030 005C0040 		.word	1073765376
+ 182 0034 00440258 		.word	1476543488
+ 183 0038 00080258 		.word	1476528128
+ 184 003c 00000258 		.word	1476526080
+ 186              		.global	hi2c3
+ 187              		.section	.bss.hi2c3,"aw",%nobits
+ 188              		.align	2
+ 191              	hi2c3:
+ 192 0000 00000000 		.space	84
+ 192      00000000 
+ 192      00000000 
+ 192      00000000 
+ 192      00000000 
+ 193              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 i2c.c
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:17     .text.MX_I2C3_Init:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:23     .text.MX_I2C3_Init:00000000 MX_I2C3_Init
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:67     .text.MX_I2C3_Init:0000004c $d
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:191    .bss.hi2c3:00000000 hi2c3
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:72     .text.HAL_I2C_MspInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:78     .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:144    .text.HAL_I2C_MspInit:00000098 $d
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:150    .text.HAL_I2C_MspDeInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:156    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:181    .text.HAL_I2C_MspDeInit:00000030 $d
+C:\Users\thewo\AppData\Local\Temp\ccJg2JkX.s:188    .bss.hi2c3:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_I2C_Init
+HAL_I2CEx_ConfigAnalogFilter
+HAL_I2CEx_ConfigDigitalFilter
+Error_Handler
+HAL_GPIO_Init
+HAL_GPIO_DeInit

@@ -1,0 +1,302 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"adc.c"
+  15              		.text
+  16              		.section	.text.MX_ADC1_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_ADC1_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_ADC1_Init:
+  24              		@ args = 0, pretend = 0, frame = 48
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 10B5     		push	{r4, lr}
+  27 0002 8CB0     		sub	sp, sp, #48
+  28 0004 0024     		movs	r4, #0
+  29 0006 0994     		str	r4, [sp, #36]
+  30 0008 0A94     		str	r4, [sp, #40]
+  31 000a 0B94     		str	r4, [sp, #44]
+  32 000c 2422     		movs	r2, #36
+  33 000e 2146     		mov	r1, r4
+  34 0010 6846     		mov	r0, sp
+  35 0012 FFF7FEFF 		bl	memset
+  36 0016 1F48     		ldr	r0, .L9
+  37 0018 1F4B     		ldr	r3, .L9+4
+  38 001a 0360     		str	r3, [r0]
+  39 001c 4460     		str	r4, [r0, #4]
+  40 001e 8460     		str	r4, [r0, #8]
+  41 0020 0461     		str	r4, [r0, #16]
+  42 0022 0423     		movs	r3, #4
+  43 0024 4361     		str	r3, [r0, #20]
+  44 0026 0476     		strb	r4, [r0, #24]
+  45 0028 4476     		strb	r4, [r0, #25]
+  46 002a 0123     		movs	r3, #1
+  47 002c C361     		str	r3, [r0, #28]
+  48 002e 80F82040 		strb	r4, [r0, #32]
+  49 0032 8462     		str	r4, [r0, #40]
+  50 0034 C462     		str	r4, [r0, #44]
+  51 0036 0463     		str	r4, [r0, #48]
+  52 0038 C463     		str	r4, [r0, #60]
+  53 003a 0464     		str	r4, [r0, #64]
+  54 003c 80F84440 		strb	r4, [r0, #68]
+  55 0040 8364     		str	r3, [r0, #72]
+  56 0042 FFF7FEFF 		bl	HAL_ADC_Init
+  57 0046 D8B9     		cbnz	r0, .L6
+  58              	.L2:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s 			page 2
+
+
+  59 0048 0023     		movs	r3, #0
+  60 004a 0993     		str	r3, [sp, #36]
+  61 004c 09A9     		add	r1, sp, #36
+  62 004e 1148     		ldr	r0, .L9
+  63 0050 FFF7FEFF 		bl	HAL_ADCEx_MultiModeConfigChannel
+  64 0054 B8B9     		cbnz	r0, .L7
+  65              	.L3:
+  66 0056 114B     		ldr	r3, .L9+8
+  67 0058 0093     		str	r3, [sp]
+  68 005a 0623     		movs	r3, #6
+  69 005c 0193     		str	r3, [sp, #4]
+  70 005e 0023     		movs	r3, #0
+  71 0060 0293     		str	r3, [sp, #8]
+  72 0062 40F2FF72 		movw	r2, #2047
+  73 0066 0392     		str	r2, [sp, #12]
+  74 0068 0422     		movs	r2, #4
+  75 006a 0492     		str	r2, [sp, #16]
+  76 006c 0593     		str	r3, [sp, #20]
+  77 006e 8DF82130 		strb	r3, [sp, #33]
+  78 0072 6946     		mov	r1, sp
+  79 0074 0748     		ldr	r0, .L9
+  80 0076 FFF7FEFF 		bl	HAL_ADC_ConfigChannel
+  81 007a 38B9     		cbnz	r0, .L8
+  82              	.L1:
+  83 007c 0CB0     		add	sp, sp, #48
+  84              		@ sp needed
+  85 007e 10BD     		pop	{r4, pc}
+  86              	.L6:
+  87 0080 FFF7FEFF 		bl	Error_Handler
+  88 0084 E0E7     		b	.L2
+  89              	.L7:
+  90 0086 FFF7FEFF 		bl	Error_Handler
+  91 008a E4E7     		b	.L3
+  92              	.L8:
+  93 008c FFF7FEFF 		bl	Error_Handler
+  94 0090 F4E7     		b	.L1
+  95              	.L10:
+  96 0092 00BF     		.align	2
+  97              	.L9:
+  98 0094 00000000 		.word	hadc1
+  99 0098 00200240 		.word	1073881088
+ 100 009c 0004002A 		.word	704644096
+ 102              		.section	.text.HAL_ADC_MspInit,"ax",%progbits
+ 103              		.align	1
+ 104              		.global	HAL_ADC_MspInit
+ 105              		.syntax unified
+ 106              		.thumb
+ 107              		.thumb_func
+ 109              	HAL_ADC_MspInit:
+ 110              		@ args = 0, pretend = 0, frame = 224
+ 111              		@ frame_needed = 0, uses_anonymous_args = 0
+ 112 0000 70B5     		push	{r4, r5, r6, lr}
+ 113 0002 B8B0     		sub	sp, sp, #224
+ 114 0004 0446     		mov	r4, r0
+ 115 0006 0021     		movs	r1, #0
+ 116 0008 3391     		str	r1, [sp, #204]
+ 117 000a 3491     		str	r1, [sp, #208]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s 			page 3
+
+
+ 118 000c 3591     		str	r1, [sp, #212]
+ 119 000e 3691     		str	r1, [sp, #216]
+ 120 0010 3791     		str	r1, [sp, #220]
+ 121 0012 B822     		movs	r2, #184
+ 122 0014 04A8     		add	r0, sp, #16
+ 123 0016 FFF7FEFF 		bl	memset
+ 124 001a 2268     		ldr	r2, [r4]
+ 125 001c 344B     		ldr	r3, .L17
+ 126 001e 9A42     		cmp	r2, r3
+ 127 0020 01D0     		beq	.L15
+ 128              	.L11:
+ 129 0022 38B0     		add	sp, sp, #224
+ 130              		@ sp needed
+ 131 0024 70BD     		pop	{r4, r5, r6, pc}
+ 132              	.L15:
+ 133 0026 4FF40022 		mov	r2, #524288
+ 134 002a 0023     		movs	r3, #0
+ 135 002c CDE90423 		strd	r2, [sp, #16]
+ 136 0030 0223     		movs	r3, #2
+ 137 0032 0693     		str	r3, [sp, #24]
+ 138 0034 1022     		movs	r2, #16
+ 139 0036 0792     		str	r2, [sp, #28]
+ 140 0038 0422     		movs	r2, #4
+ 141 003a 0892     		str	r2, [sp, #32]
+ 142 003c 0993     		str	r3, [sp, #36]
+ 143 003e 0A93     		str	r3, [sp, #40]
+ 144 0040 C023     		movs	r3, #192
+ 145 0042 0B93     		str	r3, [sp, #44]
+ 146 0044 04A8     		add	r0, sp, #16
+ 147 0046 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 148 004a 0028     		cmp	r0, #0
+ 149 004c 4CD1     		bne	.L16
+ 150              	.L13:
+ 151 004e 294B     		ldr	r3, .L17+4
+ 152 0050 D3F8D820 		ldr	r2, [r3, #216]
+ 153 0054 42F02002 		orr	r2, r2, #32
+ 154 0058 C3F8D820 		str	r2, [r3, #216]
+ 155 005c D3F8D820 		ldr	r2, [r3, #216]
+ 156 0060 02F02002 		and	r2, r2, #32
+ 157 0064 0092     		str	r2, [sp]
+ 158 0066 009A     		ldr	r2, [sp]
+ 159 0068 D3F8E020 		ldr	r2, [r3, #224]
+ 160 006c 42F00402 		orr	r2, r2, #4
+ 161 0070 C3F8E020 		str	r2, [r3, #224]
+ 162 0074 D3F8E020 		ldr	r2, [r3, #224]
+ 163 0078 02F00402 		and	r2, r2, #4
+ 164 007c 0192     		str	r2, [sp, #4]
+ 165 007e 019A     		ldr	r2, [sp, #4]
+ 166 0080 D3F8E020 		ldr	r2, [r3, #224]
+ 167 0084 42F00102 		orr	r2, r2, #1
+ 168 0088 C3F8E020 		str	r2, [r3, #224]
+ 169 008c D3F8E020 		ldr	r2, [r3, #224]
+ 170 0090 02F00102 		and	r2, r2, #1
+ 171 0094 0292     		str	r2, [sp, #8]
+ 172 0096 029A     		ldr	r2, [sp, #8]
+ 173 0098 D3F8E020 		ldr	r2, [r3, #224]
+ 174 009c 42F00202 		orr	r2, r2, #2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s 			page 4
+
+
+ 175 00a0 C3F8E020 		str	r2, [r3, #224]
+ 176 00a4 D3F8E030 		ldr	r3, [r3, #224]
+ 177 00a8 03F00203 		and	r3, r3, #2
+ 178 00ac 0393     		str	r3, [sp, #12]
+ 179 00ae 039B     		ldr	r3, [sp, #12]
+ 180 00b0 1123     		movs	r3, #17
+ 181 00b2 3393     		str	r3, [sp, #204]
+ 182 00b4 0326     		movs	r6, #3
+ 183 00b6 3496     		str	r6, [sp, #208]
+ 184 00b8 0025     		movs	r5, #0
+ 185 00ba 3595     		str	r5, [sp, #212]
+ 186 00bc 33AC     		add	r4, sp, #204
+ 187 00be 2146     		mov	r1, r4
+ 188 00c0 0D48     		ldr	r0, .L17+8
+ 189 00c2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 190 00c6 9923     		movs	r3, #153
+ 191 00c8 3393     		str	r3, [sp, #204]
+ 192 00ca 3496     		str	r6, [sp, #208]
+ 193 00cc 3595     		str	r5, [sp, #212]
+ 194 00ce 2146     		mov	r1, r4
+ 195 00d0 0A48     		ldr	r0, .L17+12
+ 196 00d2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 197 00d6 0223     		movs	r3, #2
+ 198 00d8 3393     		str	r3, [sp, #204]
+ 199 00da 3496     		str	r6, [sp, #208]
+ 200 00dc 3595     		str	r5, [sp, #212]
+ 201 00de 2146     		mov	r1, r4
+ 202 00e0 0748     		ldr	r0, .L17+16
+ 203 00e2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 204 00e6 9CE7     		b	.L11
+ 205              	.L16:
+ 206 00e8 FFF7FEFF 		bl	Error_Handler
+ 207 00ec AFE7     		b	.L13
+ 208              	.L18:
+ 209 00ee 00BF     		.align	2
+ 210              	.L17:
+ 211 00f0 00200240 		.word	1073881088
+ 212 00f4 00440258 		.word	1476543488
+ 213 00f8 00080258 		.word	1476528128
+ 214 00fc 00000258 		.word	1476526080
+ 215 0100 00040258 		.word	1476527104
+ 217              		.section	.text.HAL_ADC_MspDeInit,"ax",%progbits
+ 218              		.align	1
+ 219              		.global	HAL_ADC_MspDeInit
+ 220              		.syntax unified
+ 221              		.thumb
+ 222              		.thumb_func
+ 224              	HAL_ADC_MspDeInit:
+ 225              		@ args = 0, pretend = 0, frame = 0
+ 226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 227 0000 08B5     		push	{r3, lr}
+ 228 0002 0268     		ldr	r2, [r0]
+ 229 0004 0B4B     		ldr	r3, .L23
+ 230 0006 9A42     		cmp	r2, r3
+ 231 0008 00D0     		beq	.L22
+ 232              	.L19:
+ 233 000a 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s 			page 5
+
+
+ 234              	.L22:
+ 235 000c 0A4A     		ldr	r2, .L23+4
+ 236 000e D2F8D830 		ldr	r3, [r2, #216]
+ 237 0012 23F02003 		bic	r3, r3, #32
+ 238 0016 C2F8D830 		str	r3, [r2, #216]
+ 239 001a 1121     		movs	r1, #17
+ 240 001c 0748     		ldr	r0, .L23+8
+ 241 001e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 242 0022 9921     		movs	r1, #153
+ 243 0024 0648     		ldr	r0, .L23+12
+ 244 0026 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 245 002a 0221     		movs	r1, #2
+ 246 002c 0548     		ldr	r0, .L23+16
+ 247 002e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 248 0032 EAE7     		b	.L19
+ 249              	.L24:
+ 250              		.align	2
+ 251              	.L23:
+ 252 0034 00200240 		.word	1073881088
+ 253 0038 00440258 		.word	1476543488
+ 254 003c 00080258 		.word	1476528128
+ 255 0040 00000258 		.word	1476526080
+ 256 0044 00040258 		.word	1476527104
+ 258              		.global	hadc1
+ 259              		.section	.bss.hadc1,"aw",%nobits
+ 260              		.align	2
+ 263              	hadc1:
+ 264 0000 00000000 		.space	112
+ 264      00000000 
+ 264      00000000 
+ 264      00000000 
+ 264      00000000 
+ 265              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 adc.c
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:17     .text.MX_ADC1_Init:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:23     .text.MX_ADC1_Init:00000000 MX_ADC1_Init
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:98     .text.MX_ADC1_Init:00000094 $d
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:263    .bss.hadc1:00000000 hadc1
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:103    .text.HAL_ADC_MspInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:109    .text.HAL_ADC_MspInit:00000000 HAL_ADC_MspInit
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:211    .text.HAL_ADC_MspInit:000000f0 $d
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:218    .text.HAL_ADC_MspDeInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:224    .text.HAL_ADC_MspDeInit:00000000 HAL_ADC_MspDeInit
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:252    .text.HAL_ADC_MspDeInit:00000034 $d
+C:\Users\thewo\AppData\Local\Temp\ccdUKZRN.s:260    .bss.hadc1:00000000 $d
+
+UNDEFINED SYMBOLS
+memset
+HAL_ADC_Init
+HAL_ADCEx_MultiModeConfigChannel
+HAL_ADC_ConfigChannel
+Error_Handler
+HAL_RCCEx_PeriphCLKConfig
+HAL_GPIO_Init
+HAL_GPIO_DeInit

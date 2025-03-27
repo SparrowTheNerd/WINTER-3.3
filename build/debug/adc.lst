@@ -1,0 +1,832 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"adc.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.file 1 "Core/Src/adc.c"
+  19              		.section	.text.MX_ADC1_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	MX_ADC1_Init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	MX_ADC1_Init:
+  27              	.LFB350:
+   1:Core/Src/adc.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/adc.c **** /**
+   3:Core/Src/adc.c ****   ******************************************************************************
+   4:Core/Src/adc.c ****   * @file    adc.c
+   5:Core/Src/adc.c ****   * @brief   This file provides code for the configuration
+   6:Core/Src/adc.c ****   *          of the ADC instances.
+   7:Core/Src/adc.c ****   ******************************************************************************
+   8:Core/Src/adc.c ****   * @attention
+   9:Core/Src/adc.c ****   *
+  10:Core/Src/adc.c ****   * Copyright (c) 2025 STMicroelectronics.
+  11:Core/Src/adc.c ****   * All rights reserved.
+  12:Core/Src/adc.c ****   *
+  13:Core/Src/adc.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Core/Src/adc.c ****   * in the root directory of this software component.
+  15:Core/Src/adc.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Core/Src/adc.c ****   *
+  17:Core/Src/adc.c ****   ******************************************************************************
+  18:Core/Src/adc.c ****   */
+  19:Core/Src/adc.c **** /* USER CODE END Header */
+  20:Core/Src/adc.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/adc.c **** #include "adc.h"
+  22:Core/Src/adc.c **** 
+  23:Core/Src/adc.c **** /* USER CODE BEGIN 0 */
+  24:Core/Src/adc.c **** 
+  25:Core/Src/adc.c **** /* USER CODE END 0 */
+  26:Core/Src/adc.c **** 
+  27:Core/Src/adc.c **** ADC_HandleTypeDef hadc1;
+  28:Core/Src/adc.c **** 
+  29:Core/Src/adc.c **** /* ADC1 init function */
+  30:Core/Src/adc.c **** void MX_ADC1_Init(void)
+  31:Core/Src/adc.c **** {
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 2
+
+
+  28              		.loc 1 31 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 48
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36 0002 8CB0     		sub	sp, sp, #48
+  37              		.cfi_def_cfa_offset 56
+  32:Core/Src/adc.c **** 
+  33:Core/Src/adc.c ****   /* USER CODE BEGIN ADC1_Init 0 */
+  34:Core/Src/adc.c **** 
+  35:Core/Src/adc.c ****   /* USER CODE END ADC1_Init 0 */
+  36:Core/Src/adc.c **** 
+  37:Core/Src/adc.c ****   ADC_MultiModeTypeDef multimode = {0};
+  38              		.loc 1 37 3 view .LVU1
+  39              		.loc 1 37 24 is_stmt 0 view .LVU2
+  40 0004 0024     		movs	r4, #0
+  41 0006 0994     		str	r4, [sp, #36]
+  42 0008 0A94     		str	r4, [sp, #40]
+  43 000a 0B94     		str	r4, [sp, #44]
+  38:Core/Src/adc.c ****   ADC_ChannelConfTypeDef sConfig = {0};
+  44              		.loc 1 38 3 is_stmt 1 view .LVU3
+  45              		.loc 1 38 26 is_stmt 0 view .LVU4
+  46 000c 2422     		movs	r2, #36
+  47 000e 2146     		mov	r1, r4
+  48 0010 6846     		mov	r0, sp
+  49 0012 FFF7FEFF 		bl	memset
+  50              	.LVL0:
+  39:Core/Src/adc.c **** 
+  40:Core/Src/adc.c ****   /* USER CODE BEGIN ADC1_Init 1 */
+  41:Core/Src/adc.c **** 
+  42:Core/Src/adc.c ****   /* USER CODE END ADC1_Init 1 */
+  43:Core/Src/adc.c **** 
+  44:Core/Src/adc.c ****   /** Common config
+  45:Core/Src/adc.c ****   */
+  46:Core/Src/adc.c ****   hadc1.Instance = ADC1;
+  51              		.loc 1 46 3 is_stmt 1 view .LVU5
+  52              		.loc 1 46 18 is_stmt 0 view .LVU6
+  53 0016 1F48     		ldr	r0, .L9
+  54 0018 1F4B     		ldr	r3, .L9+4
+  55 001a 0360     		str	r3, [r0]
+  47:Core/Src/adc.c ****   hadc1.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+  56              		.loc 1 47 3 is_stmt 1 view .LVU7
+  57              		.loc 1 47 29 is_stmt 0 view .LVU8
+  58 001c 4460     		str	r4, [r0, #4]
+  48:Core/Src/adc.c ****   hadc1.Init.Resolution = ADC_RESOLUTION_16B;
+  59              		.loc 1 48 3 is_stmt 1 view .LVU9
+  60              		.loc 1 48 25 is_stmt 0 view .LVU10
+  61 001e 8460     		str	r4, [r0, #8]
+  49:Core/Src/adc.c ****   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  62              		.loc 1 49 3 is_stmt 1 view .LVU11
+  63              		.loc 1 49 27 is_stmt 0 view .LVU12
+  64 0020 0461     		str	r4, [r0, #16]
+  50:Core/Src/adc.c ****   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  65              		.loc 1 50 3 is_stmt 1 view .LVU13
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 3
+
+
+  66              		.loc 1 50 27 is_stmt 0 view .LVU14
+  67 0022 0423     		movs	r3, #4
+  68 0024 4361     		str	r3, [r0, #20]
+  51:Core/Src/adc.c ****   hadc1.Init.LowPowerAutoWait = DISABLE;
+  69              		.loc 1 51 3 is_stmt 1 view .LVU15
+  70              		.loc 1 51 31 is_stmt 0 view .LVU16
+  71 0026 0476     		strb	r4, [r0, #24]
+  52:Core/Src/adc.c ****   hadc1.Init.ContinuousConvMode = DISABLE;
+  72              		.loc 1 52 3 is_stmt 1 view .LVU17
+  73              		.loc 1 52 33 is_stmt 0 view .LVU18
+  74 0028 4476     		strb	r4, [r0, #25]
+  53:Core/Src/adc.c ****   hadc1.Init.NbrOfConversion = 1;
+  75              		.loc 1 53 3 is_stmt 1 view .LVU19
+  76              		.loc 1 53 30 is_stmt 0 view .LVU20
+  77 002a 0123     		movs	r3, #1
+  78 002c C361     		str	r3, [r0, #28]
+  54:Core/Src/adc.c ****   hadc1.Init.DiscontinuousConvMode = DISABLE;
+  79              		.loc 1 54 3 is_stmt 1 view .LVU21
+  80              		.loc 1 54 36 is_stmt 0 view .LVU22
+  81 002e 80F82040 		strb	r4, [r0, #32]
+  55:Core/Src/adc.c ****   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  82              		.loc 1 55 3 is_stmt 1 view .LVU23
+  83              		.loc 1 55 31 is_stmt 0 view .LVU24
+  84 0032 8462     		str	r4, [r0, #40]
+  56:Core/Src/adc.c ****   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  85              		.loc 1 56 3 is_stmt 1 view .LVU25
+  86              		.loc 1 56 35 is_stmt 0 view .LVU26
+  87 0034 C462     		str	r4, [r0, #44]
+  57:Core/Src/adc.c ****   hadc1.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DR;
+  88              		.loc 1 57 3 is_stmt 1 view .LVU27
+  89              		.loc 1 57 39 is_stmt 0 view .LVU28
+  90 0036 0463     		str	r4, [r0, #48]
+  58:Core/Src/adc.c ****   hadc1.Init.Overrun = ADC_OVR_DATA_PRESERVED;
+  91              		.loc 1 58 3 is_stmt 1 view .LVU29
+  92              		.loc 1 58 22 is_stmt 0 view .LVU30
+  93 0038 C463     		str	r4, [r0, #60]
+  59:Core/Src/adc.c ****   hadc1.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
+  94              		.loc 1 59 3 is_stmt 1 view .LVU31
+  95              		.loc 1 59 27 is_stmt 0 view .LVU32
+  96 003a 0464     		str	r4, [r0, #64]
+  60:Core/Src/adc.c ****   hadc1.Init.OversamplingMode = DISABLE;
+  97              		.loc 1 60 3 is_stmt 1 view .LVU33
+  98              		.loc 1 60 31 is_stmt 0 view .LVU34
+  99 003c 80F84440 		strb	r4, [r0, #68]
+  61:Core/Src/adc.c ****   hadc1.Init.Oversampling.Ratio = 1;
+ 100              		.loc 1 61 3 is_stmt 1 view .LVU35
+ 101              		.loc 1 61 33 is_stmt 0 view .LVU36
+ 102 0040 8364     		str	r3, [r0, #72]
+  62:Core/Src/adc.c ****   if (HAL_ADC_Init(&hadc1) != HAL_OK)
+ 103              		.loc 1 62 3 is_stmt 1 view .LVU37
+ 104              		.loc 1 62 7 is_stmt 0 view .LVU38
+ 105 0042 FFF7FEFF 		bl	HAL_ADC_Init
+ 106              	.LVL1:
+ 107              		.loc 1 62 6 discriminator 1 view .LVU39
+ 108 0046 D8B9     		cbnz	r0, .L6
+ 109              	.L2:
+  63:Core/Src/adc.c ****   {
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 4
+
+
+  64:Core/Src/adc.c ****     Error_Handler();
+  65:Core/Src/adc.c ****   }
+  66:Core/Src/adc.c **** 
+  67:Core/Src/adc.c ****   /** Configure the ADC multi-mode
+  68:Core/Src/adc.c ****   */
+  69:Core/Src/adc.c ****   multimode.Mode = ADC_MODE_INDEPENDENT;
+ 110              		.loc 1 69 3 is_stmt 1 view .LVU40
+ 111              		.loc 1 69 18 is_stmt 0 view .LVU41
+ 112 0048 0023     		movs	r3, #0
+ 113 004a 0993     		str	r3, [sp, #36]
+  70:Core/Src/adc.c ****   if (HAL_ADCEx_MultiModeConfigChannel(&hadc1, &multimode) != HAL_OK)
+ 114              		.loc 1 70 3 is_stmt 1 view .LVU42
+ 115              		.loc 1 70 7 is_stmt 0 view .LVU43
+ 116 004c 09A9     		add	r1, sp, #36
+ 117 004e 1148     		ldr	r0, .L9
+ 118 0050 FFF7FEFF 		bl	HAL_ADCEx_MultiModeConfigChannel
+ 119              	.LVL2:
+ 120              		.loc 1 70 6 discriminator 1 view .LVU44
+ 121 0054 B8B9     		cbnz	r0, .L7
+ 122              	.L3:
+  71:Core/Src/adc.c ****   {
+  72:Core/Src/adc.c ****     Error_Handler();
+  73:Core/Src/adc.c ****   }
+  74:Core/Src/adc.c **** 
+  75:Core/Src/adc.c ****   /** Configure Regular Channel
+  76:Core/Src/adc.c ****   */
+  77:Core/Src/adc.c ****   sConfig.Channel = ADC_CHANNEL_10;
+ 123              		.loc 1 77 3 is_stmt 1 view .LVU45
+ 124              		.loc 1 77 19 is_stmt 0 view .LVU46
+ 125 0056 114B     		ldr	r3, .L9+8
+ 126 0058 0093     		str	r3, [sp]
+  78:Core/Src/adc.c ****   sConfig.Rank = ADC_REGULAR_RANK_1;
+ 127              		.loc 1 78 3 is_stmt 1 view .LVU47
+ 128              		.loc 1 78 16 is_stmt 0 view .LVU48
+ 129 005a 0623     		movs	r3, #6
+ 130 005c 0193     		str	r3, [sp, #4]
+  79:Core/Src/adc.c ****   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+ 131              		.loc 1 79 3 is_stmt 1 view .LVU49
+ 132              		.loc 1 79 24 is_stmt 0 view .LVU50
+ 133 005e 0023     		movs	r3, #0
+ 134 0060 0293     		str	r3, [sp, #8]
+  80:Core/Src/adc.c ****   sConfig.SingleDiff = ADC_SINGLE_ENDED;
+ 135              		.loc 1 80 3 is_stmt 1 view .LVU51
+ 136              		.loc 1 80 22 is_stmt 0 view .LVU52
+ 137 0062 40F2FF72 		movw	r2, #2047
+ 138 0066 0392     		str	r2, [sp, #12]
+  81:Core/Src/adc.c ****   sConfig.OffsetNumber = ADC_OFFSET_NONE;
+ 139              		.loc 1 81 3 is_stmt 1 view .LVU53
+ 140              		.loc 1 81 24 is_stmt 0 view .LVU54
+ 141 0068 0422     		movs	r2, #4
+ 142 006a 0492     		str	r2, [sp, #16]
+  82:Core/Src/adc.c ****   sConfig.Offset = 0;
+ 143              		.loc 1 82 3 is_stmt 1 view .LVU55
+ 144              		.loc 1 82 18 is_stmt 0 view .LVU56
+ 145 006c 0593     		str	r3, [sp, #20]
+  83:Core/Src/adc.c ****   sConfig.OffsetSignedSaturation = DISABLE;
+ 146              		.loc 1 83 3 is_stmt 1 view .LVU57
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 5
+
+
+ 147              		.loc 1 83 34 is_stmt 0 view .LVU58
+ 148 006e 8DF82130 		strb	r3, [sp, #33]
+  84:Core/Src/adc.c ****   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+ 149              		.loc 1 84 3 is_stmt 1 view .LVU59
+ 150              		.loc 1 84 7 is_stmt 0 view .LVU60
+ 151 0072 6946     		mov	r1, sp
+ 152 0074 0748     		ldr	r0, .L9
+ 153 0076 FFF7FEFF 		bl	HAL_ADC_ConfigChannel
+ 154              	.LVL3:
+ 155              		.loc 1 84 6 discriminator 1 view .LVU61
+ 156 007a 38B9     		cbnz	r0, .L8
+ 157              	.L1:
+  85:Core/Src/adc.c ****   {
+  86:Core/Src/adc.c ****     Error_Handler();
+  87:Core/Src/adc.c ****   }
+  88:Core/Src/adc.c ****   /* USER CODE BEGIN ADC1_Init 2 */
+  89:Core/Src/adc.c **** 
+  90:Core/Src/adc.c ****   /* USER CODE END ADC1_Init 2 */
+  91:Core/Src/adc.c **** 
+  92:Core/Src/adc.c **** }
+ 158              		.loc 1 92 1 view .LVU62
+ 159 007c 0CB0     		add	sp, sp, #48
+ 160              		.cfi_remember_state
+ 161              		.cfi_def_cfa_offset 8
+ 162              		@ sp needed
+ 163 007e 10BD     		pop	{r4, pc}
+ 164              	.L6:
+ 165              		.cfi_restore_state
+  64:Core/Src/adc.c ****   }
+ 166              		.loc 1 64 5 is_stmt 1 view .LVU63
+ 167 0080 FFF7FEFF 		bl	Error_Handler
+ 168              	.LVL4:
+ 169 0084 E0E7     		b	.L2
+ 170              	.L7:
+  72:Core/Src/adc.c ****   }
+ 171              		.loc 1 72 5 view .LVU64
+ 172 0086 FFF7FEFF 		bl	Error_Handler
+ 173              	.LVL5:
+ 174 008a E4E7     		b	.L3
+ 175              	.L8:
+  86:Core/Src/adc.c ****   }
+ 176              		.loc 1 86 5 view .LVU65
+ 177 008c FFF7FEFF 		bl	Error_Handler
+ 178              	.LVL6:
+ 179              		.loc 1 92 1 is_stmt 0 view .LVU66
+ 180 0090 F4E7     		b	.L1
+ 181              	.L10:
+ 182 0092 00BF     		.align	2
+ 183              	.L9:
+ 184 0094 00000000 		.word	hadc1
+ 185 0098 00200240 		.word	1073881088
+ 186 009c 0004002A 		.word	704644096
+ 187              		.cfi_endproc
+ 188              	.LFE350:
+ 190              		.section	.text.HAL_ADC_MspInit,"ax",%progbits
+ 191              		.align	1
+ 192              		.global	HAL_ADC_MspInit
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 6
+
+
+ 193              		.syntax unified
+ 194              		.thumb
+ 195              		.thumb_func
+ 197              	HAL_ADC_MspInit:
+ 198              	.LVL7:
+ 199              	.LFB351:
+  93:Core/Src/adc.c **** 
+  94:Core/Src/adc.c **** void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
+  95:Core/Src/adc.c **** {
+ 200              		.loc 1 95 1 is_stmt 1 view -0
+ 201              		.cfi_startproc
+ 202              		@ args = 0, pretend = 0, frame = 224
+ 203              		@ frame_needed = 0, uses_anonymous_args = 0
+ 204              		.loc 1 95 1 is_stmt 0 view .LVU68
+ 205 0000 70B5     		push	{r4, r5, r6, lr}
+ 206              		.cfi_def_cfa_offset 16
+ 207              		.cfi_offset 4, -16
+ 208              		.cfi_offset 5, -12
+ 209              		.cfi_offset 6, -8
+ 210              		.cfi_offset 14, -4
+ 211 0002 B8B0     		sub	sp, sp, #224
+ 212              		.cfi_def_cfa_offset 240
+ 213 0004 0446     		mov	r4, r0
+  96:Core/Src/adc.c **** 
+  97:Core/Src/adc.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+ 214              		.loc 1 97 3 is_stmt 1 view .LVU69
+ 215              		.loc 1 97 20 is_stmt 0 view .LVU70
+ 216 0006 0021     		movs	r1, #0
+ 217 0008 3391     		str	r1, [sp, #204]
+ 218 000a 3491     		str	r1, [sp, #208]
+ 219 000c 3591     		str	r1, [sp, #212]
+ 220 000e 3691     		str	r1, [sp, #216]
+ 221 0010 3791     		str	r1, [sp, #220]
+  98:Core/Src/adc.c ****   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+ 222              		.loc 1 98 3 is_stmt 1 view .LVU71
+ 223              		.loc 1 98 28 is_stmt 0 view .LVU72
+ 224 0012 B822     		movs	r2, #184
+ 225 0014 04A8     		add	r0, sp, #16
+ 226              	.LVL8:
+ 227              		.loc 1 98 28 view .LVU73
+ 228 0016 FFF7FEFF 		bl	memset
+ 229              	.LVL9:
+  99:Core/Src/adc.c ****   if(adcHandle->Instance==ADC1)
+ 230              		.loc 1 99 3 is_stmt 1 view .LVU74
+ 231              		.loc 1 99 15 is_stmt 0 view .LVU75
+ 232 001a 2268     		ldr	r2, [r4]
+ 233              		.loc 1 99 5 view .LVU76
+ 234 001c 344B     		ldr	r3, .L17
+ 235 001e 9A42     		cmp	r2, r3
+ 236 0020 01D0     		beq	.L15
+ 237              	.LVL10:
+ 238              	.L11:
+ 100:Core/Src/adc.c ****   {
+ 101:Core/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 0 */
+ 102:Core/Src/adc.c **** 
+ 103:Core/Src/adc.c ****   /* USER CODE END ADC1_MspInit 0 */
+ 104:Core/Src/adc.c **** 
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 7
+
+
+ 105:Core/Src/adc.c ****   /** Initializes the peripherals clock
+ 106:Core/Src/adc.c ****   */
+ 107:Core/Src/adc.c ****     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+ 108:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2M = 2;
+ 109:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2N = 16;
+ 110:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2P = 4;
+ 111:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2Q = 2;
+ 112:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2R = 2;
+ 113:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_3;
+ 114:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOWIDE;
+ 115:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
+ 116:Core/Src/adc.c ****     PeriphClkInitStruct.AdcClockSelection = RCC_ADCCLKSOURCE_PLL2;
+ 117:Core/Src/adc.c ****     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+ 118:Core/Src/adc.c ****     {
+ 119:Core/Src/adc.c ****       Error_Handler();
+ 120:Core/Src/adc.c ****     }
+ 121:Core/Src/adc.c **** 
+ 122:Core/Src/adc.c ****     /* ADC1 clock enable */
+ 123:Core/Src/adc.c ****     __HAL_RCC_ADC12_CLK_ENABLE();
+ 124:Core/Src/adc.c **** 
+ 125:Core/Src/adc.c ****     __HAL_RCC_GPIOC_CLK_ENABLE();
+ 126:Core/Src/adc.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 127:Core/Src/adc.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 128:Core/Src/adc.c ****     /**ADC1 GPIO Configuration
+ 129:Core/Src/adc.c ****     PC0     ------> ADC1_INP10
+ 130:Core/Src/adc.c ****     PA0     ------> ADC1_INP16
+ 131:Core/Src/adc.c ****     PA3     ------> ADC1_INP15
+ 132:Core/Src/adc.c ****     PA4     ------> ADC1_INP18
+ 133:Core/Src/adc.c ****     PA7     ------> ADC1_INP7
+ 134:Core/Src/adc.c ****     PC4     ------> ADC1_INP4
+ 135:Core/Src/adc.c ****     PB1     ------> ADC1_INP5
+ 136:Core/Src/adc.c ****     */
+ 137:Core/Src/adc.c ****     GPIO_InitStruct.Pin = LIPO_VOLT_Pin|SENS2_Pin;
+ 138:Core/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 139:Core/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 140:Core/Src/adc.c ****     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 141:Core/Src/adc.c **** 
+ 142:Core/Src/adc.c ****     GPIO_InitStruct.Pin = SENS6_Pin|SENS5_Pin|SENS4_Pin|SENS3_Pin;
+ 143:Core/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 144:Core/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 145:Core/Src/adc.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 146:Core/Src/adc.c **** 
+ 147:Core/Src/adc.c ****     GPIO_InitStruct.Pin = SENS1_Pin;
+ 148:Core/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 149:Core/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 150:Core/Src/adc.c ****     HAL_GPIO_Init(SENS1_GPIO_Port, &GPIO_InitStruct);
+ 151:Core/Src/adc.c **** 
+ 152:Core/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspInit 1 */
+ 153:Core/Src/adc.c **** 
+ 154:Core/Src/adc.c ****   /* USER CODE END ADC1_MspInit 1 */
+ 155:Core/Src/adc.c ****   }
+ 156:Core/Src/adc.c **** }
+ 239              		.loc 1 156 1 view .LVU77
+ 240 0022 38B0     		add	sp, sp, #224
+ 241              		.cfi_remember_state
+ 242              		.cfi_def_cfa_offset 16
+ 243              		@ sp needed
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 8
+
+
+ 244 0024 70BD     		pop	{r4, r5, r6, pc}
+ 245              	.LVL11:
+ 246              	.L15:
+ 247              		.cfi_restore_state
+ 107:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2M = 2;
+ 248              		.loc 1 107 5 is_stmt 1 view .LVU78
+ 107:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2M = 2;
+ 249              		.loc 1 107 46 is_stmt 0 view .LVU79
+ 250 0026 4FF40022 		mov	r2, #524288
+ 251 002a 0023     		movs	r3, #0
+ 252 002c CDE90423 		strd	r2, [sp, #16]
+ 108:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2N = 16;
+ 253              		.loc 1 108 5 is_stmt 1 view .LVU80
+ 108:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2N = 16;
+ 254              		.loc 1 108 36 is_stmt 0 view .LVU81
+ 255 0030 0223     		movs	r3, #2
+ 256 0032 0693     		str	r3, [sp, #24]
+ 109:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2P = 4;
+ 257              		.loc 1 109 5 is_stmt 1 view .LVU82
+ 109:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2P = 4;
+ 258              		.loc 1 109 36 is_stmt 0 view .LVU83
+ 259 0034 1022     		movs	r2, #16
+ 260 0036 0792     		str	r2, [sp, #28]
+ 110:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2Q = 2;
+ 261              		.loc 1 110 5 is_stmt 1 view .LVU84
+ 110:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2Q = 2;
+ 262              		.loc 1 110 36 is_stmt 0 view .LVU85
+ 263 0038 0422     		movs	r2, #4
+ 264 003a 0892     		str	r2, [sp, #32]
+ 111:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2R = 2;
+ 265              		.loc 1 111 5 is_stmt 1 view .LVU86
+ 111:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2R = 2;
+ 266              		.loc 1 111 36 is_stmt 0 view .LVU87
+ 267 003c 0993     		str	r3, [sp, #36]
+ 112:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_3;
+ 268              		.loc 1 112 5 is_stmt 1 view .LVU88
+ 112:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_3;
+ 269              		.loc 1 112 36 is_stmt 0 view .LVU89
+ 270 003e 0A93     		str	r3, [sp, #40]
+ 113:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOWIDE;
+ 271              		.loc 1 113 5 is_stmt 1 view .LVU90
+ 113:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOWIDE;
+ 272              		.loc 1 113 38 is_stmt 0 view .LVU91
+ 273 0040 C023     		movs	r3, #192
+ 274 0042 0B93     		str	r3, [sp, #44]
+ 114:Core/Src/adc.c ****     PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
+ 275              		.loc 1 114 5 is_stmt 1 view .LVU92
+ 115:Core/Src/adc.c ****     PeriphClkInitStruct.AdcClockSelection = RCC_ADCCLKSOURCE_PLL2;
+ 276              		.loc 1 115 5 view .LVU93
+ 116:Core/Src/adc.c ****     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+ 277              		.loc 1 116 5 view .LVU94
+ 117:Core/Src/adc.c ****     {
+ 278              		.loc 1 117 5 view .LVU95
+ 117:Core/Src/adc.c ****     {
+ 279              		.loc 1 117 9 is_stmt 0 view .LVU96
+ 280 0044 04A8     		add	r0, sp, #16
+ 281 0046 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 9
+
+
+ 282              	.LVL12:
+ 117:Core/Src/adc.c ****     {
+ 283              		.loc 1 117 8 discriminator 1 view .LVU97
+ 284 004a 0028     		cmp	r0, #0
+ 285 004c 4CD1     		bne	.L16
+ 286              	.L13:
+ 123:Core/Src/adc.c **** 
+ 287              		.loc 1 123 5 is_stmt 1 view .LVU98
+ 288              	.LBB2:
+ 123:Core/Src/adc.c **** 
+ 289              		.loc 1 123 5 view .LVU99
+ 123:Core/Src/adc.c **** 
+ 290              		.loc 1 123 5 view .LVU100
+ 291 004e 294B     		ldr	r3, .L17+4
+ 292 0050 D3F8D820 		ldr	r2, [r3, #216]
+ 293 0054 42F02002 		orr	r2, r2, #32
+ 294 0058 C3F8D820 		str	r2, [r3, #216]
+ 123:Core/Src/adc.c **** 
+ 295              		.loc 1 123 5 view .LVU101
+ 296 005c D3F8D820 		ldr	r2, [r3, #216]
+ 297 0060 02F02002 		and	r2, r2, #32
+ 298 0064 0092     		str	r2, [sp]
+ 123:Core/Src/adc.c **** 
+ 299              		.loc 1 123 5 view .LVU102
+ 300 0066 009A     		ldr	r2, [sp]
+ 301              	.LBE2:
+ 123:Core/Src/adc.c **** 
+ 302              		.loc 1 123 5 view .LVU103
+ 125:Core/Src/adc.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 303              		.loc 1 125 5 view .LVU104
+ 304              	.LBB3:
+ 125:Core/Src/adc.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 305              		.loc 1 125 5 view .LVU105
+ 125:Core/Src/adc.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 306              		.loc 1 125 5 view .LVU106
+ 307 0068 D3F8E020 		ldr	r2, [r3, #224]
+ 308 006c 42F00402 		orr	r2, r2, #4
+ 309 0070 C3F8E020 		str	r2, [r3, #224]
+ 125:Core/Src/adc.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 310              		.loc 1 125 5 view .LVU107
+ 311 0074 D3F8E020 		ldr	r2, [r3, #224]
+ 312 0078 02F00402 		and	r2, r2, #4
+ 313 007c 0192     		str	r2, [sp, #4]
+ 125:Core/Src/adc.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 314              		.loc 1 125 5 view .LVU108
+ 315 007e 019A     		ldr	r2, [sp, #4]
+ 316              	.LBE3:
+ 125:Core/Src/adc.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 317              		.loc 1 125 5 view .LVU109
+ 126:Core/Src/adc.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 318              		.loc 1 126 5 view .LVU110
+ 319              	.LBB4:
+ 126:Core/Src/adc.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 320              		.loc 1 126 5 view .LVU111
+ 126:Core/Src/adc.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 321              		.loc 1 126 5 view .LVU112
+ 322 0080 D3F8E020 		ldr	r2, [r3, #224]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 10
+
+
+ 323 0084 42F00102 		orr	r2, r2, #1
+ 324 0088 C3F8E020 		str	r2, [r3, #224]
+ 126:Core/Src/adc.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 325              		.loc 1 126 5 view .LVU113
+ 326 008c D3F8E020 		ldr	r2, [r3, #224]
+ 327 0090 02F00102 		and	r2, r2, #1
+ 328 0094 0292     		str	r2, [sp, #8]
+ 126:Core/Src/adc.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 329              		.loc 1 126 5 view .LVU114
+ 330 0096 029A     		ldr	r2, [sp, #8]
+ 331              	.LBE4:
+ 126:Core/Src/adc.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 332              		.loc 1 126 5 view .LVU115
+ 127:Core/Src/adc.c ****     /**ADC1 GPIO Configuration
+ 333              		.loc 1 127 5 view .LVU116
+ 334              	.LBB5:
+ 127:Core/Src/adc.c ****     /**ADC1 GPIO Configuration
+ 335              		.loc 1 127 5 view .LVU117
+ 127:Core/Src/adc.c ****     /**ADC1 GPIO Configuration
+ 336              		.loc 1 127 5 view .LVU118
+ 337 0098 D3F8E020 		ldr	r2, [r3, #224]
+ 338 009c 42F00202 		orr	r2, r2, #2
+ 339 00a0 C3F8E020 		str	r2, [r3, #224]
+ 127:Core/Src/adc.c ****     /**ADC1 GPIO Configuration
+ 340              		.loc 1 127 5 view .LVU119
+ 341 00a4 D3F8E030 		ldr	r3, [r3, #224]
+ 342 00a8 03F00203 		and	r3, r3, #2
+ 343 00ac 0393     		str	r3, [sp, #12]
+ 127:Core/Src/adc.c ****     /**ADC1 GPIO Configuration
+ 344              		.loc 1 127 5 view .LVU120
+ 345 00ae 039B     		ldr	r3, [sp, #12]
+ 346              	.LBE5:
+ 127:Core/Src/adc.c ****     /**ADC1 GPIO Configuration
+ 347              		.loc 1 127 5 view .LVU121
+ 137:Core/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 348              		.loc 1 137 5 view .LVU122
+ 137:Core/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 349              		.loc 1 137 25 is_stmt 0 view .LVU123
+ 350 00b0 1123     		movs	r3, #17
+ 351 00b2 3393     		str	r3, [sp, #204]
+ 138:Core/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 352              		.loc 1 138 5 is_stmt 1 view .LVU124
+ 138:Core/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 353              		.loc 1 138 26 is_stmt 0 view .LVU125
+ 354 00b4 0326     		movs	r6, #3
+ 355 00b6 3496     		str	r6, [sp, #208]
+ 139:Core/Src/adc.c ****     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 356              		.loc 1 139 5 is_stmt 1 view .LVU126
+ 139:Core/Src/adc.c ****     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 357              		.loc 1 139 26 is_stmt 0 view .LVU127
+ 358 00b8 0025     		movs	r5, #0
+ 359 00ba 3595     		str	r5, [sp, #212]
+ 140:Core/Src/adc.c **** 
+ 360              		.loc 1 140 5 is_stmt 1 view .LVU128
+ 361 00bc 33AC     		add	r4, sp, #204
+ 362              	.LVL13:
+ 140:Core/Src/adc.c **** 
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 11
+
+
+ 363              		.loc 1 140 5 is_stmt 0 view .LVU129
+ 364 00be 2146     		mov	r1, r4
+ 365 00c0 0D48     		ldr	r0, .L17+8
+ 366 00c2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 367              	.LVL14:
+ 142:Core/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 368              		.loc 1 142 5 is_stmt 1 view .LVU130
+ 142:Core/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 369              		.loc 1 142 25 is_stmt 0 view .LVU131
+ 370 00c6 9923     		movs	r3, #153
+ 371 00c8 3393     		str	r3, [sp, #204]
+ 143:Core/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 372              		.loc 1 143 5 is_stmt 1 view .LVU132
+ 143:Core/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 373              		.loc 1 143 26 is_stmt 0 view .LVU133
+ 374 00ca 3496     		str	r6, [sp, #208]
+ 144:Core/Src/adc.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 375              		.loc 1 144 5 is_stmt 1 view .LVU134
+ 144:Core/Src/adc.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 376              		.loc 1 144 26 is_stmt 0 view .LVU135
+ 377 00cc 3595     		str	r5, [sp, #212]
+ 145:Core/Src/adc.c **** 
+ 378              		.loc 1 145 5 is_stmt 1 view .LVU136
+ 379 00ce 2146     		mov	r1, r4
+ 380 00d0 0A48     		ldr	r0, .L17+12
+ 381 00d2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 382              	.LVL15:
+ 147:Core/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 383              		.loc 1 147 5 view .LVU137
+ 147:Core/Src/adc.c ****     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 384              		.loc 1 147 25 is_stmt 0 view .LVU138
+ 385 00d6 0223     		movs	r3, #2
+ 386 00d8 3393     		str	r3, [sp, #204]
+ 148:Core/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 387              		.loc 1 148 5 is_stmt 1 view .LVU139
+ 148:Core/Src/adc.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 388              		.loc 1 148 26 is_stmt 0 view .LVU140
+ 389 00da 3496     		str	r6, [sp, #208]
+ 149:Core/Src/adc.c ****     HAL_GPIO_Init(SENS1_GPIO_Port, &GPIO_InitStruct);
+ 390              		.loc 1 149 5 is_stmt 1 view .LVU141
+ 149:Core/Src/adc.c ****     HAL_GPIO_Init(SENS1_GPIO_Port, &GPIO_InitStruct);
+ 391              		.loc 1 149 26 is_stmt 0 view .LVU142
+ 392 00dc 3595     		str	r5, [sp, #212]
+ 150:Core/Src/adc.c **** 
+ 393              		.loc 1 150 5 is_stmt 1 view .LVU143
+ 394 00de 2146     		mov	r1, r4
+ 395 00e0 0748     		ldr	r0, .L17+16
+ 396 00e2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 397              	.LVL16:
+ 398              		.loc 1 156 1 is_stmt 0 view .LVU144
+ 399 00e6 9CE7     		b	.L11
+ 400              	.LVL17:
+ 401              	.L16:
+ 119:Core/Src/adc.c ****     }
+ 402              		.loc 1 119 7 is_stmt 1 view .LVU145
+ 403 00e8 FFF7FEFF 		bl	Error_Handler
+ 404              	.LVL18:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 12
+
+
+ 405 00ec AFE7     		b	.L13
+ 406              	.L18:
+ 407 00ee 00BF     		.align	2
+ 408              	.L17:
+ 409 00f0 00200240 		.word	1073881088
+ 410 00f4 00440258 		.word	1476543488
+ 411 00f8 00080258 		.word	1476528128
+ 412 00fc 00000258 		.word	1476526080
+ 413 0100 00040258 		.word	1476527104
+ 414              		.cfi_endproc
+ 415              	.LFE351:
+ 417              		.section	.text.HAL_ADC_MspDeInit,"ax",%progbits
+ 418              		.align	1
+ 419              		.global	HAL_ADC_MspDeInit
+ 420              		.syntax unified
+ 421              		.thumb
+ 422              		.thumb_func
+ 424              	HAL_ADC_MspDeInit:
+ 425              	.LVL19:
+ 426              	.LFB352:
+ 157:Core/Src/adc.c **** 
+ 158:Core/Src/adc.c **** void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
+ 159:Core/Src/adc.c **** {
+ 427              		.loc 1 159 1 view -0
+ 428              		.cfi_startproc
+ 429              		@ args = 0, pretend = 0, frame = 0
+ 430              		@ frame_needed = 0, uses_anonymous_args = 0
+ 431              		.loc 1 159 1 is_stmt 0 view .LVU147
+ 432 0000 08B5     		push	{r3, lr}
+ 433              		.cfi_def_cfa_offset 8
+ 434              		.cfi_offset 3, -8
+ 435              		.cfi_offset 14, -4
+ 160:Core/Src/adc.c **** 
+ 161:Core/Src/adc.c ****   if(adcHandle->Instance==ADC1)
+ 436              		.loc 1 161 3 is_stmt 1 view .LVU148
+ 437              		.loc 1 161 15 is_stmt 0 view .LVU149
+ 438 0002 0268     		ldr	r2, [r0]
+ 439              		.loc 1 161 5 view .LVU150
+ 440 0004 0B4B     		ldr	r3, .L23
+ 441 0006 9A42     		cmp	r2, r3
+ 442 0008 00D0     		beq	.L22
+ 443              	.LVL20:
+ 444              	.L19:
+ 162:Core/Src/adc.c ****   {
+ 163:Core/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 0 */
+ 164:Core/Src/adc.c **** 
+ 165:Core/Src/adc.c ****   /* USER CODE END ADC1_MspDeInit 0 */
+ 166:Core/Src/adc.c ****     /* Peripheral clock disable */
+ 167:Core/Src/adc.c ****     __HAL_RCC_ADC12_CLK_DISABLE();
+ 168:Core/Src/adc.c **** 
+ 169:Core/Src/adc.c ****     /**ADC1 GPIO Configuration
+ 170:Core/Src/adc.c ****     PC0     ------> ADC1_INP10
+ 171:Core/Src/adc.c ****     PA0     ------> ADC1_INP16
+ 172:Core/Src/adc.c ****     PA3     ------> ADC1_INP15
+ 173:Core/Src/adc.c ****     PA4     ------> ADC1_INP18
+ 174:Core/Src/adc.c ****     PA7     ------> ADC1_INP7
+ 175:Core/Src/adc.c ****     PC4     ------> ADC1_INP4
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 13
+
+
+ 176:Core/Src/adc.c ****     PB1     ------> ADC1_INP5
+ 177:Core/Src/adc.c ****     */
+ 178:Core/Src/adc.c ****     HAL_GPIO_DeInit(GPIOC, LIPO_VOLT_Pin|SENS2_Pin);
+ 179:Core/Src/adc.c **** 
+ 180:Core/Src/adc.c ****     HAL_GPIO_DeInit(GPIOA, SENS6_Pin|SENS5_Pin|SENS4_Pin|SENS3_Pin);
+ 181:Core/Src/adc.c **** 
+ 182:Core/Src/adc.c ****     HAL_GPIO_DeInit(SENS1_GPIO_Port, SENS1_Pin);
+ 183:Core/Src/adc.c **** 
+ 184:Core/Src/adc.c ****   /* USER CODE BEGIN ADC1_MspDeInit 1 */
+ 185:Core/Src/adc.c **** 
+ 186:Core/Src/adc.c ****   /* USER CODE END ADC1_MspDeInit 1 */
+ 187:Core/Src/adc.c ****   }
+ 188:Core/Src/adc.c **** }
+ 445              		.loc 1 188 1 view .LVU151
+ 446 000a 08BD     		pop	{r3, pc}
+ 447              	.LVL21:
+ 448              	.L22:
+ 167:Core/Src/adc.c **** 
+ 449              		.loc 1 167 5 is_stmt 1 view .LVU152
+ 450 000c 0A4A     		ldr	r2, .L23+4
+ 451 000e D2F8D830 		ldr	r3, [r2, #216]
+ 452 0012 23F02003 		bic	r3, r3, #32
+ 453 0016 C2F8D830 		str	r3, [r2, #216]
+ 178:Core/Src/adc.c **** 
+ 454              		.loc 1 178 5 view .LVU153
+ 455 001a 1121     		movs	r1, #17
+ 456 001c 0748     		ldr	r0, .L23+8
+ 457              	.LVL22:
+ 178:Core/Src/adc.c **** 
+ 458              		.loc 1 178 5 is_stmt 0 view .LVU154
+ 459 001e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 460              	.LVL23:
+ 180:Core/Src/adc.c **** 
+ 461              		.loc 1 180 5 is_stmt 1 view .LVU155
+ 462 0022 9921     		movs	r1, #153
+ 463 0024 0648     		ldr	r0, .L23+12
+ 464 0026 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 465              	.LVL24:
+ 182:Core/Src/adc.c **** 
+ 466              		.loc 1 182 5 view .LVU156
+ 467 002a 0221     		movs	r1, #2
+ 468 002c 0548     		ldr	r0, .L23+16
+ 469 002e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 470              	.LVL25:
+ 471              		.loc 1 188 1 is_stmt 0 view .LVU157
+ 472 0032 EAE7     		b	.L19
+ 473              	.L24:
+ 474              		.align	2
+ 475              	.L23:
+ 476 0034 00200240 		.word	1073881088
+ 477 0038 00440258 		.word	1476543488
+ 478 003c 00080258 		.word	1476528128
+ 479 0040 00000258 		.word	1476526080
+ 480 0044 00040258 		.word	1476527104
+ 481              		.cfi_endproc
+ 482              	.LFE352:
+ 484              		.global	hadc1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 14
+
+
+ 485              		.section	.bss.hadc1,"aw",%nobits
+ 486              		.align	2
+ 489              	hadc1:
+ 490 0000 00000000 		.space	112
+ 490      00000000 
+ 490      00000000 
+ 490      00000000 
+ 490      00000000 
+ 491              		.text
+ 492              	.Letext0:
+ 493              		.file 2 "C:/Users/thewo/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 494              		.file 3 "C:/Users/thewo/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-to
+ 495              		.file 4 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h725xx.h"
+ 496              		.file 5 "Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h"
+ 497              		.file 6 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h"
+ 498              		.file 7 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h"
+ 499              		.file 8 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h"
+ 500              		.file 9 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h"
+ 501              		.file 10 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_adc.h"
+ 502              		.file 11 "Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_adc_ex.h"
+ 503              		.file 12 "Core/Inc/adc.h"
+ 504              		.file 13 "Core/Inc/main.h"
+ 505              		.file 14 "<built-in>"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 adc.c
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:20     .text.MX_ADC1_Init:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:26     .text.MX_ADC1_Init:00000000 MX_ADC1_Init
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:184    .text.MX_ADC1_Init:00000094 $d
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:489    .bss.hadc1:00000000 hadc1
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:191    .text.HAL_ADC_MspInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:197    .text.HAL_ADC_MspInit:00000000 HAL_ADC_MspInit
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:409    .text.HAL_ADC_MspInit:000000f0 $d
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:418    .text.HAL_ADC_MspDeInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:424    .text.HAL_ADC_MspDeInit:00000000 HAL_ADC_MspDeInit
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:476    .text.HAL_ADC_MspDeInit:00000034 $d
+C:\Users\thewo\AppData\Local\Temp\cc6ATB9D.s:486    .bss.hadc1:00000000 $d
+
+UNDEFINED SYMBOLS
+memset
+HAL_ADC_Init
+HAL_ADCEx_MultiModeConfigChannel
+HAL_ADC_ConfigChannel
+Error_Handler
+HAL_RCCEx_PeriphCLKConfig
+HAL_GPIO_Init
+HAL_GPIO_DeInit

@@ -1,0 +1,103 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc9EJ11C.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"usb_device.c"
+  15              		.text
+  16              		.section	.text.MX_USB_DEVICE_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_USB_DEVICE_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_USB_DEVICE_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27 0002 0122     		movs	r2, #1
+  28 0004 1049     		ldr	r1, .L11
+  29 0006 1148     		ldr	r0, .L11+4
+  30 0008 FFF7FEFF 		bl	USBD_Init
+  31 000c 80B9     		cbnz	r0, .L7
+  32              	.L2:
+  33 000e 1049     		ldr	r1, .L11+8
+  34 0010 0E48     		ldr	r0, .L11+4
+  35 0012 FFF7FEFF 		bl	USBD_RegisterClass
+  36 0016 70B9     		cbnz	r0, .L8
+  37              	.L3:
+  38 0018 0E49     		ldr	r1, .L11+12
+  39 001a 0C48     		ldr	r0, .L11+4
+  40 001c FFF7FEFF 		bl	USBD_CDC_RegisterInterface
+  41 0020 60B9     		cbnz	r0, .L9
+  42              	.L4:
+  43 0022 0A48     		ldr	r0, .L11+4
+  44 0024 FFF7FEFF 		bl	USBD_Start
+  45 0028 58B9     		cbnz	r0, .L10
+  46              	.L5:
+  47 002a FFF7FEFF 		bl	HAL_PWREx_EnableUSBVoltageDetector
+  48 002e 08BD     		pop	{r3, pc}
+  49              	.L7:
+  50 0030 FFF7FEFF 		bl	Error_Handler
+  51 0034 EBE7     		b	.L2
+  52              	.L8:
+  53 0036 FFF7FEFF 		bl	Error_Handler
+  54 003a EDE7     		b	.L3
+  55              	.L9:
+  56 003c FFF7FEFF 		bl	Error_Handler
+  57 0040 EFE7     		b	.L4
+  58              	.L10:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc9EJ11C.s 			page 2
+
+
+  59 0042 FFF7FEFF 		bl	Error_Handler
+  60 0046 F0E7     		b	.L5
+  61              	.L12:
+  62              		.align	2
+  63              	.L11:
+  64 0048 00000000 		.word	HS_Desc
+  65 004c 00000000 		.word	hUsbDeviceHS
+  66 0050 00000000 		.word	USBD_CDC
+  67 0054 00000000 		.word	USBD_Interface_fops_HS
+  69              		.global	hUsbDeviceHS
+  70              		.section	.bss.hUsbDeviceHS,"aw",%nobits
+  71              		.align	2
+  74              	hUsbDeviceHS:
+  75 0000 00000000 		.space	732
+  75      00000000 
+  75      00000000 
+  75      00000000 
+  75      00000000 
+  76              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cc9EJ11C.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usb_device.c
+C:\Users\thewo\AppData\Local\Temp\cc9EJ11C.s:17     .text.MX_USB_DEVICE_Init:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cc9EJ11C.s:23     .text.MX_USB_DEVICE_Init:00000000 MX_USB_DEVICE_Init
+C:\Users\thewo\AppData\Local\Temp\cc9EJ11C.s:64     .text.MX_USB_DEVICE_Init:00000048 $d
+C:\Users\thewo\AppData\Local\Temp\cc9EJ11C.s:74     .bss.hUsbDeviceHS:00000000 hUsbDeviceHS
+C:\Users\thewo\AppData\Local\Temp\cc9EJ11C.s:71     .bss.hUsbDeviceHS:00000000 $d
+
+UNDEFINED SYMBOLS
+USBD_Init
+USBD_RegisterClass
+USBD_CDC_RegisterInterface
+USBD_Start
+HAL_PWREx_EnableUSBVoltageDetector
+Error_Handler
+HS_Desc
+USBD_CDC
+USBD_Interface_fops_HS

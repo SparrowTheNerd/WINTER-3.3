@@ -1,0 +1,925 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32h7xx_hal_gpio.c"
+  15              		.text
+  16              		.section	.rodata.HAL_GPIO_Init.str1.4,"aMS",%progbits,1
+  17              		.align	2
+  18              	.LC0:
+  19 0000 44726976 		.ascii	"Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio"
+  19      6572732F 
+  19      53544D33 
+  19      32483778 
+  19      785F4841 
+  20 0033 2E6300   		.ascii	".c\000"
+  21              		.section	.text.HAL_GPIO_Init,"ax",%progbits
+  22              		.align	1
+  23              		.global	HAL_GPIO_Init
+  24              		.syntax unified
+  25              		.thumb
+  26              		.thumb_func
+  28              	HAL_GPIO_Init:
+  29              		@ args = 0, pretend = 0, frame = 8
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  32 0004 83B0     		sub	sp, sp, #12
+  33 0006 8046     		mov	r8, r0
+  34 0008 0C46     		mov	r4, r1
+  35 000a 6B4A     		ldr	r2, .L44
+  36 000c 6B4B     		ldr	r3, .L44+4
+  37 000e 9042     		cmp	r0, r2
+  38 0010 18BF     		it	ne
+  39 0012 9842     		cmpne	r0, r3
+  40 0014 14BF     		ite	ne
+  41 0016 4FF00109 		movne	r9, #1
+  42 001a 4FF00009 		moveq	r9, #0
+  43 001e 24D0     		beq	.L2
+  44 0020 03F50063 		add	r3, r3, #2048
+  45 0024 C31A     		subs	r3, r0, r3
+  46 0026 18BF     		it	ne
+  47 0028 0123     		movne	r3, #1
+  48 002a 02F50062 		add	r2, r2, #2048
+  49 002e 9042     		cmp	r0, r2
+  50 0030 1BD0     		beq	.L2
+  51 0032 D3B1     		cbz	r3, .L2
+  52 0034 624B     		ldr	r3, .L44+8
+  53 0036 C31A     		subs	r3, r0, r3
+  54 0038 18BF     		it	ne
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 2
+
+
+  55 003a 0123     		movne	r3, #1
+  56 003c 02F50062 		add	r2, r2, #2048
+  57 0040 9042     		cmp	r0, r2
+  58 0042 12D0     		beq	.L2
+  59 0044 8BB1     		cbz	r3, .L2
+  60 0046 5F4B     		ldr	r3, .L44+12
+  61 0048 C31A     		subs	r3, r0, r3
+  62 004a 18BF     		it	ne
+  63 004c 0123     		movne	r3, #1
+  64 004e 02F50062 		add	r2, r2, #2048
+  65 0052 9042     		cmp	r0, r2
+  66 0054 09D0     		beq	.L2
+  67 0056 43B1     		cbz	r3, .L2
+  68 0058 5B4B     		ldr	r3, .L44+16
+  69 005a C31A     		subs	r3, r0, r3
+  70 005c 18BF     		it	ne
+  71 005e 0123     		movne	r3, #1
+  72 0060 02F54062 		add	r2, r2, #3072
+  73 0064 9042     		cmp	r0, r2
+  74 0066 00D0     		beq	.L2
+  75 0068 DBB9     		cbnz	r3, .L35
+  76              	.L2:
+  77 006a 2368     		ldr	r3, [r4]
+  78 006c 9AB2     		uxth	r2, r3
+  79 006e 12B1     		cbz	r2, .L3
+  80 0070 B3F5803F 		cmp	r3, #65536
+  81 0074 03D3     		bcc	.L4
+  82              	.L3:
+  83 0076 B421     		movs	r1, #180
+  84 0078 5448     		ldr	r0, .L44+20
+  85 007a FFF7FEFF 		bl	assert_failed
+  86              	.L4:
+  87 007e 6368     		ldr	r3, [r4, #4]
+  88 0080 112B     		cmp	r3, #17
+  89 0082 18BF     		it	ne
+  90 0084 012B     		cmpne	r3, #1
+  91 0086 25D9     		bls	.L5
+  92 0088 B3F5041F 		cmp	r3, #2162688
+  93 008c 22D0     		beq	.L5
+  94 008e 14D8     		bhi	.L6
+  95 0090 B3F5881F 		cmp	r3, #1114112
+  96 0094 1ED0     		beq	.L5
+  97 0096 0CD8     		bhi	.L7
+  98 0098 032B     		cmp	r3, #3
+  99 009a 07D8     		bhi	.L8
+ 100 009c 022B     		cmp	r3, #2
+ 101 009e 19D2     		bcs	.L5
+ 102 00a0 14E0     		b	.L9
+ 103              	.L35:
+ 104 00a2 B321     		movs	r1, #179
+ 105 00a4 4948     		ldr	r0, .L44+20
+ 106 00a6 FFF7FEFF 		bl	assert_failed
+ 107 00aa DEE7     		b	.L2
+ 108              	.L8:
+ 109 00ac 122B     		cmp	r3, #18
+ 110 00ae 11D0     		beq	.L5
+ 111 00b0 0CE0     		b	.L9
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 3
+
+
+ 112              	.L7:
+ 113 00b2 B3F5901F 		cmp	r3, #1179648
+ 114 00b6 0DD0     		beq	.L5
+ 115 00b8 08E0     		b	.L9
+ 116              	.L6:
+ 117 00ba B3F5441F 		cmp	r3, #3211264
+ 118 00be 09D0     		beq	.L5
+ 119 00c0 B3F5481F 		cmp	r3, #3276800
+ 120 00c4 06D0     		beq	.L5
+ 121 00c6 B3F5081F 		cmp	r3, #2228224
+ 122 00ca 03D0     		beq	.L5
+ 123              	.L9:
+ 124 00cc B521     		movs	r1, #181
+ 125 00ce 3F48     		ldr	r0, .L44+20
+ 126 00d0 FFF7FEFF 		bl	assert_failed
+ 127              	.L5:
+ 128 00d4 0025     		movs	r5, #0
+ 129 00d6 BDE0     		b	.L23
+ 130              	.L40:
+ 131 00d8 E368     		ldr	r3, [r4, #12]
+ 132 00da 032B     		cmp	r3, #3
+ 133 00dc 17D8     		bhi	.L36
+ 134              	.L12:
+ 135 00de D8F80820 		ldr	r2, [r8, #8]
+ 136 00e2 6900     		lsls	r1, r5, #1
+ 137 00e4 0323     		movs	r3, #3
+ 138 00e6 8B40     		lsls	r3, r3, r1
+ 139 00e8 22EA0302 		bic	r2, r2, r3
+ 140 00ec E368     		ldr	r3, [r4, #12]
+ 141 00ee 8B40     		lsls	r3, r3, r1
+ 142 00f0 1343     		orrs	r3, r3, r2
+ 143 00f2 C8F80830 		str	r3, [r8, #8]
+ 144 00f6 D8F80420 		ldr	r2, [r8, #4]
+ 145 00fa 22EA0702 		bic	r2, r2, r7
+ 146 00fe 6368     		ldr	r3, [r4, #4]
+ 147 0100 C3F30013 		ubfx	r3, r3, #4, #1
+ 148 0104 AB40     		lsls	r3, r3, r5
+ 149 0106 1343     		orrs	r3, r3, r2
+ 150 0108 C8F80430 		str	r3, [r8, #4]
+ 151 010c B2E0     		b	.L11
+ 152              	.L36:
+ 153 010e C421     		movs	r1, #196
+ 154 0110 2E48     		ldr	r0, .L44+20
+ 155 0112 FFF7FEFF 		bl	assert_failed
+ 156 0116 E2E7     		b	.L12
+ 157              	.L41:
+ 158 0118 D621     		movs	r1, #214
+ 159 011a 2C48     		ldr	r0, .L44+20
+ 160 011c FFF7FEFF 		bl	assert_failed
+ 161 0120 B1E0     		b	.L14
+ 162              	.L42:
+ 163 0122 B9F1000F 		cmp	r9, #0
+ 164 0126 26D0     		beq	.L16
+ 165 0128 294B     		ldr	r3, .L44+24
+ 166 012a B8EB0303 		subs	r3, r8, r3
+ 167 012e 18BF     		it	ne
+ 168 0130 0123     		movne	r3, #1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 4
+
+
+ 169 0132 284A     		ldr	r2, .L44+28
+ 170 0134 9045     		cmp	r8, r2
+ 171 0136 1ED0     		beq	.L16
+ 172 0138 EBB1     		cbz	r3, .L16
+ 173 013a 214B     		ldr	r3, .L44+8
+ 174 013c B8EB0303 		subs	r3, r8, r3
+ 175 0140 18BF     		it	ne
+ 176 0142 0123     		movne	r3, #1
+ 177 0144 02F50062 		add	r2, r2, #2048
+ 178 0148 9045     		cmp	r8, r2
+ 179 014a 14D0     		beq	.L16
+ 180 014c 9BB1     		cbz	r3, .L16
+ 181 014e 1D4B     		ldr	r3, .L44+12
+ 182 0150 B8EB0303 		subs	r3, r8, r3
+ 183 0154 18BF     		it	ne
+ 184 0156 0123     		movne	r3, #1
+ 185 0158 02F50062 		add	r2, r2, #2048
+ 186 015c 9045     		cmp	r8, r2
+ 187 015e 0AD0     		beq	.L16
+ 188 0160 4BB1     		cbz	r3, .L16
+ 189 0162 194B     		ldr	r3, .L44+16
+ 190 0164 B8EB0303 		subs	r3, r8, r3
+ 191 0168 18BF     		it	ne
+ 192 016a 0123     		movne	r3, #1
+ 193 016c 02F54062 		add	r2, r2, #3072
+ 194 0170 9045     		cmp	r8, r2
+ 195 0172 00D0     		beq	.L16
+ 196 0174 9BB9     		cbnz	r3, .L37
+ 197              	.L16:
+ 198 0176 2369     		ldr	r3, [r4, #16]
+ 199 0178 0F2B     		cmp	r3, #15
+ 200 017a 15D8     		bhi	.L38
+ 201              	.L17:
+ 202 017c EA08     		lsrs	r2, r5, #3
+ 203 017e 0832     		adds	r2, r2, #8
+ 204 0180 58F82200 		ldr	r0, [r8, r2, lsl #2]
+ 205 0184 05F00701 		and	r1, r5, #7
+ 206 0188 8900     		lsls	r1, r1, #2
+ 207 018a 0F23     		movs	r3, #15
+ 208 018c 8B40     		lsls	r3, r3, r1
+ 209 018e 20EA0300 		bic	r0, r0, r3
+ 210 0192 2369     		ldr	r3, [r4, #16]
+ 211 0194 8B40     		lsls	r3, r3, r1
+ 212 0196 0343     		orrs	r3, r3, r0
+ 213 0198 48F82230 		str	r3, [r8, r2, lsl #2]
+ 214 019c 85E0     		b	.L15
+ 215              	.L37:
+ 216 019e E321     		movs	r1, #227
+ 217 01a0 0A48     		ldr	r0, .L44+20
+ 218 01a2 FFF7FEFF 		bl	assert_failed
+ 219 01a6 E6E7     		b	.L16
+ 220              	.L38:
+ 221 01a8 E421     		movs	r1, #228
+ 222 01aa 0848     		ldr	r0, .L44+20
+ 223 01ac FFF7FEFF 		bl	assert_failed
+ 224 01b0 E4E7     		b	.L17
+ 225              	.L43:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 5
+
+
+ 226 01b2 0923     		movs	r3, #9
+ 227 01b4 11E0     		b	.L18
+ 228              	.L45:
+ 229 01b6 00BF     		.align	2
+ 230              	.L44:
+ 231 01b8 00000258 		.word	1476526080
+ 232 01bc 00040258 		.word	1476527104
+ 233 01c0 00140258 		.word	1476531200
+ 234 01c4 001C0258 		.word	1476533248
+ 235 01c8 00280258 		.word	1476536320
+ 236 01cc 00000000 		.word	.LC0
+ 237 01d0 000C0258 		.word	1476529152
+ 238 01d4 00080258 		.word	1476528128
+ 239              	.L25:
+ 240 01d8 0023     		movs	r3, #0
+ 241              	.L18:
+ 242 01da 8B40     		lsls	r3, r3, r1
+ 243 01dc 0343     		orrs	r3, r3, r0
+ 244 01de 0232     		adds	r2, r2, #2
+ 245 01e0 6349     		ldr	r1, .L46
+ 246 01e2 41F82230 		str	r3, [r1, r2, lsl #2]
+ 247 01e6 4FF0B043 		mov	r3, #1476395008
+ 248 01ea 1A68     		ldr	r2, [r3]
+ 249 01ec F343     		mvns	r3, r6
+ 250 01ee 22EA0601 		bic	r1, r2, r6
+ 251 01f2 6068     		ldr	r0, [r4, #4]
+ 252 01f4 10F4801F 		tst	r0, #1048576
+ 253 01f8 01D0     		beq	.L19
+ 254 01fa 46EA0201 		orr	r1, r6, r2
+ 255              	.L19:
+ 256 01fe 4FF0B042 		mov	r2, #1476395008
+ 257 0202 1160     		str	r1, [r2]
+ 258 0204 5268     		ldr	r2, [r2, #4]
+ 259 0206 03EA0201 		and	r1, r3, r2
+ 260 020a 6068     		ldr	r0, [r4, #4]
+ 261 020c 10F4001F 		tst	r0, #2097152
+ 262 0210 01D0     		beq	.L20
+ 263 0212 46EA0201 		orr	r1, r6, r2
+ 264              	.L20:
+ 265 0216 4FF0B042 		mov	r2, #1476395008
+ 266 021a 5160     		str	r1, [r2, #4]
+ 267 021c D2F88420 		ldr	r2, [r2, #132]
+ 268 0220 03EA0201 		and	r1, r3, r2
+ 269 0224 6068     		ldr	r0, [r4, #4]
+ 270 0226 10F4003F 		tst	r0, #131072
+ 271 022a 01D0     		beq	.L21
+ 272 022c 46EA0201 		orr	r1, r6, r2
+ 273              	.L21:
+ 274 0230 4FF0B042 		mov	r2, #1476395008
+ 275 0234 C2F88410 		str	r1, [r2, #132]
+ 276 0238 D2F88020 		ldr	r2, [r2, #128]
+ 277 023c 1340     		ands	r3, r3, r2
+ 278 023e 6168     		ldr	r1, [r4, #4]
+ 279 0240 11F4803F 		tst	r1, #65536
+ 280 0244 01D0     		beq	.L22
+ 281 0246 46EA0203 		orr	r3, r6, r2
+ 282              	.L22:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 6
+
+
+ 283 024a 4FF0B042 		mov	r2, #1476395008
+ 284 024e C2F88030 		str	r3, [r2, #128]
+ 285              	.L10:
+ 286 0252 0135     		adds	r5, r5, #1
+ 287              	.L23:
+ 288 0254 2668     		ldr	r6, [r4]
+ 289 0256 36FA05F2 		lsrs	r2, r6, r5
+ 290 025a 00F08680 		beq	.L39
+ 291 025e 0127     		movs	r7, #1
+ 292 0260 AF40     		lsls	r7, r7, r5
+ 293 0262 3E40     		ands	r6, r7, r6
+ 294 0264 F5D0     		beq	.L10
+ 295 0266 6368     		ldr	r3, [r4, #4]
+ 296 0268 03F00303 		and	r3, r3, #3
+ 297 026c 013B     		subs	r3, r3, #1
+ 298 026e 012B     		cmp	r3, #1
+ 299 0270 7FF632AF 		bls	.L40
+ 300              	.L11:
+ 301 0274 6368     		ldr	r3, [r4, #4]
+ 302 0276 03F00303 		and	r3, r3, #3
+ 303 027a 032B     		cmp	r3, #3
+ 304 027c 0FD0     		beq	.L13
+ 305 027e A368     		ldr	r3, [r4, #8]
+ 306 0280 022B     		cmp	r3, #2
+ 307 0282 3FF649AF 		bhi	.L41
+ 308              	.L14:
+ 309 0286 D8F80C20 		ldr	r2, [r8, #12]
+ 310 028a 6900     		lsls	r1, r5, #1
+ 311 028c 0323     		movs	r3, #3
+ 312 028e 8B40     		lsls	r3, r3, r1
+ 313 0290 22EA0302 		bic	r2, r2, r3
+ 314 0294 A368     		ldr	r3, [r4, #8]
+ 315 0296 8B40     		lsls	r3, r3, r1
+ 316 0298 1343     		orrs	r3, r3, r2
+ 317 029a C8F80C30 		str	r3, [r8, #12]
+ 318              	.L13:
+ 319 029e 6368     		ldr	r3, [r4, #4]
+ 320 02a0 03F00303 		and	r3, r3, #3
+ 321 02a4 022B     		cmp	r3, #2
+ 322 02a6 3FF43CAF 		beq	.L42
+ 323              	.L15:
+ 324 02aa D8F80020 		ldr	r2, [r8]
+ 325 02ae 6900     		lsls	r1, r5, #1
+ 326 02b0 0323     		movs	r3, #3
+ 327 02b2 8B40     		lsls	r3, r3, r1
+ 328 02b4 22EA0302 		bic	r2, r2, r3
+ 329 02b8 6368     		ldr	r3, [r4, #4]
+ 330 02ba 03F00303 		and	r3, r3, #3
+ 331 02be 8B40     		lsls	r3, r3, r1
+ 332 02c0 1343     		orrs	r3, r3, r2
+ 333 02c2 C8F80030 		str	r3, [r8]
+ 334 02c6 6368     		ldr	r3, [r4, #4]
+ 335 02c8 13F4403F 		tst	r3, #196608
+ 336 02cc C1D0     		beq	.L10
+ 337 02ce 294B     		ldr	r3, .L46+4
+ 338 02d0 D3F8F420 		ldr	r2, [r3, #244]
+ 339 02d4 42F00202 		orr	r2, r2, #2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 7
+
+
+ 340 02d8 C3F8F420 		str	r2, [r3, #244]
+ 341 02dc D3F8F430 		ldr	r3, [r3, #244]
+ 342 02e0 03F00203 		and	r3, r3, #2
+ 343 02e4 0193     		str	r3, [sp, #4]
+ 344 02e6 019B     		ldr	r3, [sp, #4]
+ 345 02e8 AA08     		lsrs	r2, r5, #2
+ 346 02ea 911C     		adds	r1, r2, #2
+ 347 02ec 204B     		ldr	r3, .L46
+ 348 02ee 53F82100 		ldr	r0, [r3, r1, lsl #2]
+ 349 02f2 05F00301 		and	r1, r5, #3
+ 350 02f6 8900     		lsls	r1, r1, #2
+ 351 02f8 0F23     		movs	r3, #15
+ 352 02fa 8B40     		lsls	r3, r3, r1
+ 353 02fc 20EA0300 		bic	r0, r0, r3
+ 354 0300 1D4B     		ldr	r3, .L46+8
+ 355 0302 9845     		cmp	r8, r3
+ 356 0304 3FF468AF 		beq	.L25
+ 357 0308 03F58063 		add	r3, r3, #1024
+ 358 030c 9845     		cmp	r8, r3
+ 359 030e 1ED0     		beq	.L26
+ 360 0310 03F58063 		add	r3, r3, #1024
+ 361 0314 9845     		cmp	r8, r3
+ 362 0316 1CD0     		beq	.L27
+ 363 0318 03F58063 		add	r3, r3, #1024
+ 364 031c 9845     		cmp	r8, r3
+ 365 031e 1AD0     		beq	.L28
+ 366 0320 03F58063 		add	r3, r3, #1024
+ 367 0324 9845     		cmp	r8, r3
+ 368 0326 18D0     		beq	.L29
+ 369 0328 03F58063 		add	r3, r3, #1024
+ 370 032c 9845     		cmp	r8, r3
+ 371 032e 16D0     		beq	.L30
+ 372 0330 03F58063 		add	r3, r3, #1024
+ 373 0334 9845     		cmp	r8, r3
+ 374 0336 14D0     		beq	.L31
+ 375 0338 03F58063 		add	r3, r3, #1024
+ 376 033c 9845     		cmp	r8, r3
+ 377 033e 12D0     		beq	.L32
+ 378 0340 03F50063 		add	r3, r3, #2048
+ 379 0344 9845     		cmp	r8, r3
+ 380 0346 3FF434AF 		beq	.L43
+ 381 034a 0A23     		movs	r3, #10
+ 382 034c 45E7     		b	.L18
+ 383              	.L26:
+ 384 034e 0123     		movs	r3, #1
+ 385 0350 43E7     		b	.L18
+ 386              	.L27:
+ 387 0352 0223     		movs	r3, #2
+ 388 0354 41E7     		b	.L18
+ 389              	.L28:
+ 390 0356 0323     		movs	r3, #3
+ 391 0358 3FE7     		b	.L18
+ 392              	.L29:
+ 393 035a 0423     		movs	r3, #4
+ 394 035c 3DE7     		b	.L18
+ 395              	.L30:
+ 396 035e 0523     		movs	r3, #5
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 8
+
+
+ 397 0360 3BE7     		b	.L18
+ 398              	.L31:
+ 399 0362 0623     		movs	r3, #6
+ 400 0364 39E7     		b	.L18
+ 401              	.L32:
+ 402 0366 0723     		movs	r3, #7
+ 403 0368 37E7     		b	.L18
+ 404              	.L39:
+ 405 036a 03B0     		add	sp, sp, #12
+ 406              		@ sp needed
+ 407 036c BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 408              	.L47:
+ 409              		.align	2
+ 410              	.L46:
+ 411 0370 00040058 		.word	1476396032
+ 412 0374 00440258 		.word	1476543488
+ 413 0378 00000258 		.word	1476526080
+ 415              		.section	.text.HAL_GPIO_DeInit,"ax",%progbits
+ 416              		.align	1
+ 417              		.global	HAL_GPIO_DeInit
+ 418              		.syntax unified
+ 419              		.thumb
+ 420              		.thumb_func
+ 422              	HAL_GPIO_DeInit:
+ 423              		@ args = 0, pretend = 0, frame = 0
+ 424              		@ frame_needed = 0, uses_anonymous_args = 0
+ 425 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 426 0002 0446     		mov	r4, r0
+ 427 0004 0D46     		mov	r5, r1
+ 428 0006 684A     		ldr	r2, .L71
+ 429 0008 684B     		ldr	r3, .L71+4
+ 430 000a 9042     		cmp	r0, r2
+ 431 000c 18BF     		it	ne
+ 432 000e 9842     		cmpne	r0, r3
+ 433 0010 24D0     		beq	.L49
+ 434 0012 03F50063 		add	r3, r3, #2048
+ 435 0016 C31A     		subs	r3, r0, r3
+ 436 0018 18BF     		it	ne
+ 437 001a 0123     		movne	r3, #1
+ 438 001c 02F50062 		add	r2, r2, #2048
+ 439 0020 9042     		cmp	r0, r2
+ 440 0022 1BD0     		beq	.L49
+ 441 0024 D3B1     		cbz	r3, .L49
+ 442 0026 624B     		ldr	r3, .L71+8
+ 443 0028 C31A     		subs	r3, r0, r3
+ 444 002a 18BF     		it	ne
+ 445 002c 0123     		movne	r3, #1
+ 446 002e 02F50062 		add	r2, r2, #2048
+ 447 0032 9042     		cmp	r0, r2
+ 448 0034 12D0     		beq	.L49
+ 449 0036 8BB1     		cbz	r3, .L49
+ 450 0038 5E4B     		ldr	r3, .L71+12
+ 451 003a C31A     		subs	r3, r0, r3
+ 452 003c 18BF     		it	ne
+ 453 003e 0123     		movne	r3, #1
+ 454 0040 02F50062 		add	r2, r2, #2048
+ 455 0044 9042     		cmp	r0, r2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 9
+
+
+ 456 0046 09D0     		beq	.L49
+ 457 0048 43B1     		cbz	r3, .L49
+ 458 004a 5B4B     		ldr	r3, .L71+16
+ 459 004c C31A     		subs	r3, r0, r3
+ 460 004e 18BF     		it	ne
+ 461 0050 0123     		movne	r3, #1
+ 462 0052 02F54062 		add	r2, r2, #3072
+ 463 0056 9042     		cmp	r0, r2
+ 464 0058 00D0     		beq	.L49
+ 465 005a 5BB9     		cbnz	r3, .L67
+ 466              	.L49:
+ 467 005c ABB2     		uxth	r3, r5
+ 468 005e 13B1     		cbz	r3, .L50
+ 469 0060 B5F5803F 		cmp	r5, #65536
+ 470 0064 04D3     		bcc	.L51
+ 471              	.L50:
+ 472 0066 40F23D11 		movw	r1, #317
+ 473 006a 5448     		ldr	r0, .L71+20
+ 474 006c FFF7FEFF 		bl	assert_failed
+ 475              	.L51:
+ 476 0070 0023     		movs	r3, #0
+ 477 0072 2FE0     		b	.L55
+ 478              	.L67:
+ 479 0074 4FF49E71 		mov	r1, #316
+ 480 0078 5048     		ldr	r0, .L71+20
+ 481 007a FFF7FEFF 		bl	assert_failed
+ 482 007e EDE7     		b	.L49
+ 483              	.L70:
+ 484 0080 0926     		movs	r6, #9
+ 485 0082 00E0     		b	.L53
+ 486              	.L57:
+ 487 0084 0026     		movs	r6, #0
+ 488              	.L53:
+ 489 0086 06FA01F1 		lsl	r1, r6, r1
+ 490 008a 8142     		cmp	r1, r0
+ 491 008c 6BD0     		beq	.L68
+ 492              	.L54:
+ 493 008e 2068     		ldr	r0, [r4]
+ 494 0090 5E00     		lsls	r6, r3, #1
+ 495 0092 0321     		movs	r1, #3
+ 496 0094 B140     		lsls	r1, r1, r6
+ 497 0096 0843     		orrs	r0, r0, r1
+ 498 0098 2060     		str	r0, [r4]
+ 499 009a D808     		lsrs	r0, r3, #3
+ 500 009c 0830     		adds	r0, r0, #8
+ 501 009e 54F82060 		ldr	r6, [r4, r0, lsl #2]
+ 502 00a2 03F0070E 		and	lr, r3, #7
+ 503 00a6 4FEA8E0E 		lsl	lr, lr, #2
+ 504 00aa 4FF00F0C 		mov	ip, #15
+ 505 00ae 0CFA0EFC 		lsl	ip, ip, lr
+ 506 00b2 26EA0C06 		bic	r6, r6, ip
+ 507 00b6 44F82060 		str	r6, [r4, r0, lsl #2]
+ 508 00ba E068     		ldr	r0, [r4, #12]
+ 509 00bc 20EA0100 		bic	r0, r0, r1
+ 510 00c0 E060     		str	r0, [r4, #12]
+ 511 00c2 6068     		ldr	r0, [r4, #4]
+ 512 00c4 20EA0202 		bic	r2, r0, r2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 10
+
+
+ 513 00c8 6260     		str	r2, [r4, #4]
+ 514 00ca A268     		ldr	r2, [r4, #8]
+ 515 00cc 22EA0102 		bic	r2, r2, r1
+ 516 00d0 A260     		str	r2, [r4, #8]
+ 517              	.L52:
+ 518 00d2 0133     		adds	r3, r3, #1
+ 519              	.L55:
+ 520 00d4 35FA03F2 		lsrs	r2, r5, r3
+ 521 00d8 65D0     		beq	.L69
+ 522 00da 0122     		movs	r2, #1
+ 523 00dc 9A40     		lsls	r2, r2, r3
+ 524 00de 12EA050E 		ands	lr, r2, r5
+ 525 00e2 F6D0     		beq	.L52
+ 526 00e4 4FEA930C 		lsr	ip, r3, #2
+ 527 00e8 0CF10200 		add	r0, ip, #2
+ 528 00ec 3449     		ldr	r1, .L71+24
+ 529 00ee 51F82000 		ldr	r0, [r1, r0, lsl #2]
+ 530 00f2 03F00301 		and	r1, r3, #3
+ 531 00f6 8900     		lsls	r1, r1, #2
+ 532 00f8 0F26     		movs	r6, #15
+ 533 00fa 06FA01F7 		lsl	r7, r6, r1
+ 534 00fe 3840     		ands	r0, r0, r7
+ 535 0100 294E     		ldr	r6, .L71
+ 536 0102 B442     		cmp	r4, r6
+ 537 0104 BED0     		beq	.L57
+ 538 0106 06F58066 		add	r6, r6, #1024
+ 539 010a B442     		cmp	r4, r6
+ 540 010c 1DD0     		beq	.L58
+ 541 010e 06F58066 		add	r6, r6, #1024
+ 542 0112 B442     		cmp	r4, r6
+ 543 0114 1BD0     		beq	.L59
+ 544 0116 06F58066 		add	r6, r6, #1024
+ 545 011a B442     		cmp	r4, r6
+ 546 011c 19D0     		beq	.L60
+ 547 011e 06F58066 		add	r6, r6, #1024
+ 548 0122 B442     		cmp	r4, r6
+ 549 0124 17D0     		beq	.L61
+ 550 0126 06F58066 		add	r6, r6, #1024
+ 551 012a B442     		cmp	r4, r6
+ 552 012c 15D0     		beq	.L62
+ 553 012e 06F58066 		add	r6, r6, #1024
+ 554 0132 B442     		cmp	r4, r6
+ 555 0134 13D0     		beq	.L63
+ 556 0136 06F58066 		add	r6, r6, #1024
+ 557 013a B442     		cmp	r4, r6
+ 558 013c 11D0     		beq	.L64
+ 559 013e 06F50066 		add	r6, r6, #2048
+ 560 0142 B442     		cmp	r4, r6
+ 561 0144 9CD0     		beq	.L70
+ 562 0146 0A26     		movs	r6, #10
+ 563 0148 9DE7     		b	.L53
+ 564              	.L58:
+ 565 014a 0126     		movs	r6, #1
+ 566 014c 9BE7     		b	.L53
+ 567              	.L59:
+ 568 014e 0226     		movs	r6, #2
+ 569 0150 99E7     		b	.L53
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 11
+
+
+ 570              	.L60:
+ 571 0152 0326     		movs	r6, #3
+ 572 0154 97E7     		b	.L53
+ 573              	.L61:
+ 574 0156 0426     		movs	r6, #4
+ 575 0158 95E7     		b	.L53
+ 576              	.L62:
+ 577 015a 0526     		movs	r6, #5
+ 578 015c 93E7     		b	.L53
+ 579              	.L63:
+ 580 015e 0626     		movs	r6, #6
+ 581 0160 91E7     		b	.L53
+ 582              	.L64:
+ 583 0162 0726     		movs	r6, #7
+ 584 0164 8FE7     		b	.L53
+ 585              	.L68:
+ 586 0166 4FF0B041 		mov	r1, #1476395008
+ 587 016a D1F88000 		ldr	r0, [r1, #128]
+ 588 016e 20EA0E00 		bic	r0, r0, lr
+ 589 0172 C1F88000 		str	r0, [r1, #128]
+ 590 0176 D1F88400 		ldr	r0, [r1, #132]
+ 591 017a 20EA0E00 		bic	r0, r0, lr
+ 592 017e C1F88400 		str	r0, [r1, #132]
+ 593 0182 4868     		ldr	r0, [r1, #4]
+ 594 0184 20EA0E00 		bic	r0, r0, lr
+ 595 0188 4860     		str	r0, [r1, #4]
+ 596 018a 0868     		ldr	r0, [r1]
+ 597 018c 20EA0E00 		bic	r0, r0, lr
+ 598 0190 0860     		str	r0, [r1]
+ 599 0192 0B4E     		ldr	r6, .L71+24
+ 600 0194 0CF10201 		add	r1, ip, #2
+ 601 0198 56F82100 		ldr	r0, [r6, r1, lsl #2]
+ 602 019c 20EA0700 		bic	r0, r0, r7
+ 603 01a0 46F82100 		str	r0, [r6, r1, lsl #2]
+ 604 01a4 73E7     		b	.L54
+ 605              	.L69:
+ 606 01a6 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 607              	.L72:
+ 608              		.align	2
+ 609              	.L71:
+ 610 01a8 00000258 		.word	1476526080
+ 611 01ac 00040258 		.word	1476527104
+ 612 01b0 00140258 		.word	1476531200
+ 613 01b4 001C0258 		.word	1476533248
+ 614 01b8 00280258 		.word	1476536320
+ 615 01bc 00000000 		.word	.LC0
+ 616 01c0 00040058 		.word	1476396032
+ 618              		.section	.text.HAL_GPIO_ReadPin,"ax",%progbits
+ 619              		.align	1
+ 620              		.global	HAL_GPIO_ReadPin
+ 621              		.syntax unified
+ 622              		.thumb
+ 623              		.thumb_func
+ 625              	HAL_GPIO_ReadPin:
+ 626              		@ args = 0, pretend = 0, frame = 0
+ 627              		@ frame_needed = 0, uses_anonymous_args = 0
+ 628 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 12
+
+
+ 629 0002 0446     		mov	r4, r0
+ 630 0004 0D46     		mov	r5, r1
+ 631 0006 21B1     		cbz	r1, .L78
+ 632              	.L74:
+ 633 0008 2369     		ldr	r3, [r4, #16]
+ 634 000a 1D42     		tst	r5, r3
+ 635 000c 07D0     		beq	.L76
+ 636 000e 0120     		movs	r0, #1
+ 637              	.L75:
+ 638 0010 38BD     		pop	{r3, r4, r5, pc}
+ 639              	.L78:
+ 640 0012 4FF4C571 		mov	r1, #394
+ 641 0016 0348     		ldr	r0, .L79
+ 642 0018 FFF7FEFF 		bl	assert_failed
+ 643 001c F4E7     		b	.L74
+ 644              	.L76:
+ 645 001e 0020     		movs	r0, #0
+ 646 0020 F6E7     		b	.L75
+ 647              	.L80:
+ 648 0022 00BF     		.align	2
+ 649              	.L79:
+ 650 0024 00000000 		.word	.LC0
+ 652              		.section	.text.HAL_GPIO_WritePin,"ax",%progbits
+ 653              		.align	1
+ 654              		.global	HAL_GPIO_WritePin
+ 655              		.syntax unified
+ 656              		.thumb
+ 657              		.thumb_func
+ 659              	HAL_GPIO_WritePin:
+ 660              		@ args = 0, pretend = 0, frame = 0
+ 661              		@ frame_needed = 0, uses_anonymous_args = 0
+ 662 0000 70B5     		push	{r4, r5, r6, lr}
+ 663 0002 0546     		mov	r5, r0
+ 664 0004 1446     		mov	r4, r2
+ 665 0006 0E46     		mov	r6, r1
+ 666 0008 21B1     		cbz	r1, .L87
+ 667              	.L82:
+ 668 000a 012C     		cmp	r4, #1
+ 669 000c 08D8     		bhi	.L88
+ 670              	.L83:
+ 671 000e 6CB1     		cbz	r4, .L84
+ 672 0010 AE61     		str	r6, [r5, #24]
+ 673              	.L81:
+ 674 0012 70BD     		pop	{r4, r5, r6, pc}
+ 675              	.L87:
+ 676 0014 4FF4D571 		mov	r1, #426
+ 677 0018 0648     		ldr	r0, .L89
+ 678 001a FFF7FEFF 		bl	assert_failed
+ 679 001e F4E7     		b	.L82
+ 680              	.L88:
+ 681 0020 40F2AB11 		movw	r1, #427
+ 682 0024 0348     		ldr	r0, .L89
+ 683 0026 FFF7FEFF 		bl	assert_failed
+ 684 002a F0E7     		b	.L83
+ 685              	.L84:
+ 686 002c 3604     		lsls	r6, r6, #16
+ 687 002e AE61     		str	r6, [r5, #24]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 13
+
+
+ 688 0030 EFE7     		b	.L81
+ 689              	.L90:
+ 690 0032 00BF     		.align	2
+ 691              	.L89:
+ 692 0034 00000000 		.word	.LC0
+ 694              		.section	.text.HAL_GPIO_TogglePin,"ax",%progbits
+ 695              		.align	1
+ 696              		.global	HAL_GPIO_TogglePin
+ 697              		.syntax unified
+ 698              		.thumb
+ 699              		.thumb_func
+ 701              	HAL_GPIO_TogglePin:
+ 702              		@ args = 0, pretend = 0, frame = 0
+ 703              		@ frame_needed = 0, uses_anonymous_args = 0
+ 704 0000 38B5     		push	{r3, r4, r5, lr}
+ 705 0002 0546     		mov	r5, r0
+ 706 0004 0C46     		mov	r4, r1
+ 707 0006 41B1     		cbz	r1, .L94
+ 708              	.L92:
+ 709 0008 6B69     		ldr	r3, [r5, #20]
+ 710 000a 04EA0302 		and	r2, r4, r3
+ 711 000e 24EA0304 		bic	r4, r4, r3
+ 712 0012 44EA0244 		orr	r4, r4, r2, lsl #16
+ 713 0016 AC61     		str	r4, [r5, #24]
+ 714 0018 38BD     		pop	{r3, r4, r5, pc}
+ 715              	.L94:
+ 716 001a 4FF4E171 		mov	r1, #450
+ 717 001e 0248     		ldr	r0, .L95
+ 718 0020 FFF7FEFF 		bl	assert_failed
+ 719 0024 F0E7     		b	.L92
+ 720              	.L96:
+ 721 0026 00BF     		.align	2
+ 722              	.L95:
+ 723 0028 00000000 		.word	.LC0
+ 725              		.section	.text.HAL_GPIO_LockPin,"ax",%progbits
+ 726              		.align	1
+ 727              		.global	HAL_GPIO_LockPin
+ 728              		.syntax unified
+ 729              		.thumb
+ 730              		.thumb_func
+ 732              	HAL_GPIO_LockPin:
+ 733              		@ args = 0, pretend = 0, frame = 8
+ 734              		@ frame_needed = 0, uses_anonymous_args = 0
+ 735 0000 30B5     		push	{r4, r5, lr}
+ 736 0002 83B0     		sub	sp, sp, #12
+ 737 0004 0446     		mov	r4, r0
+ 738 0006 0D46     		mov	r5, r1
+ 739 0008 4FF48033 		mov	r3, #65536
+ 740 000c 0193     		str	r3, [sp, #4]
+ 741 000e 254A     		ldr	r2, .L105
+ 742 0010 254B     		ldr	r3, .L105+4
+ 743 0012 9042     		cmp	r0, r2
+ 744 0014 18BF     		it	ne
+ 745 0016 9842     		cmpne	r0, r3
+ 746 0018 24D0     		beq	.L98
+ 747 001a 03F50063 		add	r3, r3, #2048
+ 748 001e C31A     		subs	r3, r0, r3
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 14
+
+
+ 749 0020 18BF     		it	ne
+ 750 0022 0123     		movne	r3, #1
+ 751 0024 02F50062 		add	r2, r2, #2048
+ 752 0028 9042     		cmp	r0, r2
+ 753 002a 1BD0     		beq	.L98
+ 754 002c D3B1     		cbz	r3, .L98
+ 755 002e 1F4B     		ldr	r3, .L105+8
+ 756 0030 C31A     		subs	r3, r0, r3
+ 757 0032 18BF     		it	ne
+ 758 0034 0123     		movne	r3, #1
+ 759 0036 02F50062 		add	r2, r2, #2048
+ 760 003a 9042     		cmp	r0, r2
+ 761 003c 12D0     		beq	.L98
+ 762 003e 8BB1     		cbz	r3, .L98
+ 763 0040 1B4B     		ldr	r3, .L105+12
+ 764 0042 C31A     		subs	r3, r0, r3
+ 765 0044 18BF     		it	ne
+ 766 0046 0123     		movne	r3, #1
+ 767 0048 02F50062 		add	r2, r2, #2048
+ 768 004c 9042     		cmp	r0, r2
+ 769 004e 09D0     		beq	.L98
+ 770 0050 43B1     		cbz	r3, .L98
+ 771 0052 184B     		ldr	r3, .L105+16
+ 772 0054 C31A     		subs	r3, r0, r3
+ 773 0056 18BF     		it	ne
+ 774 0058 0123     		movne	r3, #1
+ 775 005a 02F54062 		add	r2, r2, #3072
+ 776 005e 9042     		cmp	r0, r2
+ 777 0060 00D0     		beq	.L98
+ 778 0062 8BB9     		cbnz	r3, .L103
+ 779              	.L98:
+ 780 0064 B5B1     		cbz	r5, .L104
+ 781              	.L99:
+ 782 0066 019B     		ldr	r3, [sp, #4]
+ 783 0068 2B43     		orrs	r3, r3, r5
+ 784 006a 0193     		str	r3, [sp, #4]
+ 785 006c 019B     		ldr	r3, [sp, #4]
+ 786 006e E361     		str	r3, [r4, #28]
+ 787 0070 E561     		str	r5, [r4, #28]
+ 788 0072 019B     		ldr	r3, [sp, #4]
+ 789 0074 E361     		str	r3, [r4, #28]
+ 790 0076 E369     		ldr	r3, [r4, #28]
+ 791 0078 0193     		str	r3, [sp, #4]
+ 792 007a E369     		ldr	r3, [r4, #28]
+ 793 007c 13F4803F 		tst	r3, #65536
+ 794 0080 0ED0     		beq	.L101
+ 795 0082 0020     		movs	r0, #0
+ 796              	.L100:
+ 797 0084 03B0     		add	sp, sp, #12
+ 798              		@ sp needed
+ 799 0086 30BD     		pop	{r4, r5, pc}
+ 800              	.L103:
+ 801 0088 40F2DB11 		movw	r1, #475
+ 802 008c 0A48     		ldr	r0, .L105+20
+ 803 008e FFF7FEFF 		bl	assert_failed
+ 804 0092 E7E7     		b	.L98
+ 805              	.L104:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 15
+
+
+ 806 0094 4FF4EE71 		mov	r1, #476
+ 807 0098 0748     		ldr	r0, .L105+20
+ 808 009a FFF7FEFF 		bl	assert_failed
+ 809 009e E2E7     		b	.L99
+ 810              	.L101:
+ 811 00a0 0120     		movs	r0, #1
+ 812 00a2 EFE7     		b	.L100
+ 813              	.L106:
+ 814              		.align	2
+ 815              	.L105:
+ 816 00a4 00000258 		.word	1476526080
+ 817 00a8 00040258 		.word	1476527104
+ 818 00ac 00140258 		.word	1476531200
+ 819 00b0 001C0258 		.word	1476533248
+ 820 00b4 00280258 		.word	1476536320
+ 821 00b8 00000000 		.word	.LC0
+ 823              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
+ 824              		.align	1
+ 825              		.weak	HAL_GPIO_EXTI_Callback
+ 826              		.syntax unified
+ 827              		.thumb
+ 828              		.thumb_func
+ 830              	HAL_GPIO_EXTI_Callback:
+ 831              		@ args = 0, pretend = 0, frame = 0
+ 832              		@ frame_needed = 0, uses_anonymous_args = 0
+ 833              		@ link register save eliminated.
+ 834 0000 7047     		bx	lr
+ 836              		.section	.text.HAL_GPIO_EXTI_IRQHandler,"ax",%progbits
+ 837              		.align	1
+ 838              		.global	HAL_GPIO_EXTI_IRQHandler
+ 839              		.syntax unified
+ 840              		.thumb
+ 841              		.thumb_func
+ 843              	HAL_GPIO_EXTI_IRQHandler:
+ 844              		@ args = 0, pretend = 0, frame = 0
+ 845              		@ frame_needed = 0, uses_anonymous_args = 0
+ 846 0000 08B5     		push	{r3, lr}
+ 847 0002 4FF0B043 		mov	r3, #1476395008
+ 848 0006 D3F88830 		ldr	r3, [r3, #136]
+ 849 000a 0342     		tst	r3, r0
+ 850 000c 00D1     		bne	.L111
+ 851              	.L108:
+ 852 000e 08BD     		pop	{r3, pc}
+ 853              	.L111:
+ 854 0010 4FF0B043 		mov	r3, #1476395008
+ 855 0014 C3F88800 		str	r0, [r3, #136]
+ 856 0018 FFF7FEFF 		bl	HAL_GPIO_EXTI_Callback
+ 857 001c F7E7     		b	.L108
+ 859              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s 			page 16
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32h7xx_hal_gpio.c
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:17     .rodata.HAL_GPIO_Init.str1.4:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:22     .text.HAL_GPIO_Init:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:28     .text.HAL_GPIO_Init:00000000 HAL_GPIO_Init
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:231    .text.HAL_GPIO_Init:000001b8 $d
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:240    .text.HAL_GPIO_Init:000001d8 $t
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:411    .text.HAL_GPIO_Init:00000370 $d
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:416    .text.HAL_GPIO_DeInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:422    .text.HAL_GPIO_DeInit:00000000 HAL_GPIO_DeInit
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:610    .text.HAL_GPIO_DeInit:000001a8 $d
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:619    .text.HAL_GPIO_ReadPin:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:625    .text.HAL_GPIO_ReadPin:00000000 HAL_GPIO_ReadPin
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:650    .text.HAL_GPIO_ReadPin:00000024 $d
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:653    .text.HAL_GPIO_WritePin:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:659    .text.HAL_GPIO_WritePin:00000000 HAL_GPIO_WritePin
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:692    .text.HAL_GPIO_WritePin:00000034 $d
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:695    .text.HAL_GPIO_TogglePin:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:701    .text.HAL_GPIO_TogglePin:00000000 HAL_GPIO_TogglePin
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:723    .text.HAL_GPIO_TogglePin:00000028 $d
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:726    .text.HAL_GPIO_LockPin:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:732    .text.HAL_GPIO_LockPin:00000000 HAL_GPIO_LockPin
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:816    .text.HAL_GPIO_LockPin:000000a4 $d
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:824    .text.HAL_GPIO_EXTI_Callback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:830    .text.HAL_GPIO_EXTI_Callback:00000000 HAL_GPIO_EXTI_Callback
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:837    .text.HAL_GPIO_EXTI_IRQHandler:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccS8b2WI.s:843    .text.HAL_GPIO_EXTI_IRQHandler:00000000 HAL_GPIO_EXTI_IRQHandler
+
+UNDEFINED SYMBOLS
+assert_failed

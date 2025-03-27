@@ -1,0 +1,2936 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32h7xx_ll_usb.c"
+  15              		.text
+  16              		.section	.text.USB_CoreReset,"ax",%progbits
+  17              		.align	1
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	USB_CoreReset:
+  23              		@ args = 0, pretend = 0, frame = 8
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 82B0     		sub	sp, sp, #8
+  27 0002 0023     		movs	r3, #0
+  28 0004 0193     		str	r3, [sp, #4]
+  29              	.L3:
+  30 0006 019B     		ldr	r3, [sp, #4]
+  31 0008 0133     		adds	r3, r3, #1
+  32 000a 0193     		str	r3, [sp, #4]
+  33 000c 019B     		ldr	r3, [sp, #4]
+  34 000e B3F1706F 		cmp	r3, #251658240
+  35 0012 15D8     		bhi	.L5
+  36 0014 0369     		ldr	r3, [r0, #16]
+  37 0016 002B     		cmp	r3, #0
+  38 0018 F5DA     		bge	.L3
+  39 001a 0023     		movs	r3, #0
+  40 001c 0193     		str	r3, [sp, #4]
+  41 001e 0369     		ldr	r3, [r0, #16]
+  42 0020 43F00103 		orr	r3, r3, #1
+  43 0024 0361     		str	r3, [r0, #16]
+  44              	.L4:
+  45 0026 019B     		ldr	r3, [sp, #4]
+  46 0028 0133     		adds	r3, r3, #1
+  47 002a 0193     		str	r3, [sp, #4]
+  48 002c 019B     		ldr	r3, [sp, #4]
+  49 002e B3F1706F 		cmp	r3, #251658240
+  50 0032 08D8     		bhi	.L6
+  51 0034 0369     		ldr	r3, [r0, #16]
+  52 0036 13F0010F 		tst	r3, #1
+  53 003a F4D1     		bne	.L4
+  54 003c 0020     		movs	r0, #0
+  55 003e 00E0     		b	.L2
+  56              	.L5:
+  57 0040 0320     		movs	r0, #3
+  58              	.L2:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 2
+
+
+  59 0042 02B0     		add	sp, sp, #8
+  60              		@ sp needed
+  61 0044 7047     		bx	lr
+  62              	.L6:
+  63 0046 0320     		movs	r0, #3
+  64 0048 FBE7     		b	.L2
+  66              		.section	.text.USB_CoreInit,"ax",%progbits
+  67              		.align	1
+  68              		.global	USB_CoreInit
+  69              		.syntax unified
+  70              		.thumb
+  71              		.thumb_func
+  73              	USB_CoreInit:
+  74              		@ args = 20, pretend = 16, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76 0000 84B0     		sub	sp, sp, #16
+  77 0002 10B5     		push	{r4, lr}
+  78 0004 0446     		mov	r4, r0
+  79 0006 03A8     		add	r0, sp, #12
+  80 0008 80E80E00 		stm	r0, {r1, r2, r3}
+  81 000c 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+  82 0010 012B     		cmp	r3, #1
+  83 0012 1FD1     		bne	.L9
+  84 0014 A36B     		ldr	r3, [r4, #56]
+  85 0016 23F48033 		bic	r3, r3, #65536
+  86 001a A363     		str	r3, [r4, #56]
+  87 001c E268     		ldr	r2, [r4, #12]
+  88 001e 1F4B     		ldr	r3, .L17
+  89 0020 1340     		ands	r3, r3, r2
+  90 0022 E360     		str	r3, [r4, #12]
+  91 0024 E368     		ldr	r3, [r4, #12]
+  92 0026 23F44013 		bic	r3, r3, #3145728
+  93 002a E360     		str	r3, [r4, #12]
+  94 002c 9DF81830 		ldrb	r3, [sp, #24]	@ zero_extendqisi2
+  95 0030 012B     		cmp	r3, #1
+  96 0032 0AD0     		beq	.L15
+  97              	.L10:
+  98 0034 2046     		mov	r0, r4
+  99 0036 FFF7FEFF 		bl	USB_CoreReset
+ 100              	.L11:
+ 101 003a 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 102 003e 012B     		cmp	r3, #1
+ 103 0040 1CD0     		beq	.L16
+ 104              	.L13:
+ 105 0042 BDE81040 		pop	{r4, lr}
+ 106 0046 04B0     		add	sp, sp, #16
+ 107 0048 7047     		bx	lr
+ 108              	.L15:
+ 109 004a E368     		ldr	r3, [r4, #12]
+ 110 004c 43F48013 		orr	r3, r3, #1048576
+ 111 0050 E360     		str	r3, [r4, #12]
+ 112 0052 EFE7     		b	.L10
+ 113              	.L9:
+ 114 0054 E368     		ldr	r3, [r4, #12]
+ 115 0056 43F04003 		orr	r3, r3, #64
+ 116 005a E360     		str	r3, [r4, #12]
+ 117 005c 2046     		mov	r0, r4
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 3
+
+
+ 118 005e FFF7FEFF 		bl	USB_CoreReset
+ 119 0062 9DF81530 		ldrb	r3, [sp, #21]	@ zero_extendqisi2
+ 120 0066 23B9     		cbnz	r3, .L12
+ 121 0068 A36B     		ldr	r3, [r4, #56]
+ 122 006a 43F48033 		orr	r3, r3, #65536
+ 123 006e A363     		str	r3, [r4, #56]
+ 124 0070 E3E7     		b	.L11
+ 125              	.L12:
+ 126 0072 A36B     		ldr	r3, [r4, #56]
+ 127 0074 23F48033 		bic	r3, r3, #65536
+ 128 0078 A363     		str	r3, [r4, #56]
+ 129 007a DEE7     		b	.L11
+ 130              	.L16:
+ 131 007c E36D     		ldr	r3, [r4, #92]
+ 132 007e 9BB2     		uxth	r3, r3
+ 133 0080 E365     		str	r3, [r4, #92]
+ 134 0082 E26D     		ldr	r2, [r4, #92]
+ 135 0084 064B     		ldr	r3, .L17+4
+ 136 0086 1343     		orrs	r3, r3, r2
+ 137 0088 E365     		str	r3, [r4, #92]
+ 138 008a A368     		ldr	r3, [r4, #8]
+ 139 008c 43F00603 		orr	r3, r3, #6
+ 140 0090 A360     		str	r3, [r4, #8]
+ 141 0092 A368     		ldr	r3, [r4, #8]
+ 142 0094 43F02003 		orr	r3, r3, #32
+ 143 0098 A360     		str	r3, [r4, #8]
+ 144 009a D2E7     		b	.L13
+ 145              	.L18:
+ 146              		.align	2
+ 147              	.L17:
+ 148 009c BFFFBDFF 		.word	-4325441
+ 149 00a0 0000EE03 		.word	65929216
+ 151              		.section	.text.USB_SetTurnaroundTime,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	USB_SetTurnaroundTime
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	USB_SetTurnaroundTime:
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 161              		@ link register save eliminated.
+ 162 0000 022A     		cmp	r2, #2
+ 163 0002 0AD0     		beq	.L31
+ 164 0004 0922     		movs	r2, #9
+ 165              	.L20:
+ 166 0006 C368     		ldr	r3, [r0, #12]
+ 167 0008 23F47053 		bic	r3, r3, #15360
+ 168 000c C360     		str	r3, [r0, #12]
+ 169 000e C368     		ldr	r3, [r0, #12]
+ 170 0010 43EA8223 		orr	r3, r3, r2, lsl #10
+ 171 0014 C360     		str	r3, [r0, #12]
+ 172 0016 0020     		movs	r0, #0
+ 173 0018 7047     		bx	lr
+ 174              	.L31:
+ 175 001a 204B     		ldr	r3, .L32
+ 176 001c 0B44     		add	r3, r3, r1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 4
+
+
+ 177 001e 204A     		ldr	r2, .L32+4
+ 178 0020 9342     		cmp	r3, r2
+ 179 0022 29D9     		bls	.L22
+ 180 0024 1F4B     		ldr	r3, .L32+8
+ 181 0026 0B44     		add	r3, r3, r1
+ 182 0028 1F4A     		ldr	r2, .L32+12
+ 183 002a 9342     		cmp	r3, r2
+ 184 002c 26D9     		bls	.L23
+ 185 002e 1F4B     		ldr	r3, .L32+16
+ 186 0030 0B44     		add	r3, r3, r1
+ 187 0032 1F4A     		ldr	r2, .L32+20
+ 188 0034 9342     		cmp	r3, r2
+ 189 0036 23D9     		bls	.L24
+ 190 0038 1E4B     		ldr	r3, .L32+24
+ 191 003a 0B44     		add	r3, r3, r1
+ 192 003c 1E4A     		ldr	r2, .L32+28
+ 193 003e 9342     		cmp	r3, r2
+ 194 0040 20D3     		bcc	.L25
+ 195 0042 1E4B     		ldr	r3, .L32+32
+ 196 0044 0B44     		add	r3, r3, r1
+ 197 0046 1E4A     		ldr	r2, .L32+36
+ 198 0048 9342     		cmp	r3, r2
+ 199 004a 1DD9     		bls	.L26
+ 200 004c 1D4B     		ldr	r3, .L32+40
+ 201 004e 0B44     		add	r3, r3, r1
+ 202 0050 1D4A     		ldr	r2, .L32+44
+ 203 0052 9342     		cmp	r3, r2
+ 204 0054 1AD3     		bcc	.L27
+ 205 0056 1D4B     		ldr	r3, .L32+48
+ 206 0058 0B44     		add	r3, r3, r1
+ 207 005a 1D4A     		ldr	r2, .L32+52
+ 208 005c 9342     		cmp	r3, r2
+ 209 005e 17D3     		bcc	.L28
+ 210 0060 1C4B     		ldr	r3, .L32+56
+ 211 0062 0B44     		add	r3, r3, r1
+ 212 0064 1C4A     		ldr	r2, .L32+60
+ 213 0066 9342     		cmp	r3, r2
+ 214 0068 14D3     		bcc	.L29
+ 215 006a 1C4B     		ldr	r3, .L32+64
+ 216 006c 0B44     		add	r3, r3, r1
+ 217 006e 1C4A     		ldr	r2, .L32+68
+ 218 0070 9342     		cmp	r3, r2
+ 219 0072 11D2     		bcs	.L30
+ 220 0074 0722     		movs	r2, #7
+ 221 0076 C6E7     		b	.L20
+ 222              	.L22:
+ 223 0078 0F22     		movs	r2, #15
+ 224 007a C4E7     		b	.L20
+ 225              	.L23:
+ 226 007c 0E22     		movs	r2, #14
+ 227 007e C2E7     		b	.L20
+ 228              	.L24:
+ 229 0080 0D22     		movs	r2, #13
+ 230 0082 C0E7     		b	.L20
+ 231              	.L25:
+ 232 0084 0C22     		movs	r2, #12
+ 233 0086 BEE7     		b	.L20
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 5
+
+
+ 234              	.L26:
+ 235 0088 0B22     		movs	r2, #11
+ 236 008a BCE7     		b	.L20
+ 237              	.L27:
+ 238 008c 0A22     		movs	r2, #10
+ 239 008e BAE7     		b	.L20
+ 240              	.L28:
+ 241 0090 0922     		movs	r2, #9
+ 242 0092 B8E7     		b	.L20
+ 243              	.L29:
+ 244 0094 0822     		movs	r2, #8
+ 245 0096 B6E7     		b	.L20
+ 246              	.L30:
+ 247 0098 0622     		movs	r2, #6
+ 248 009a B4E7     		b	.L20
+ 249              	.L33:
+ 250              		.align	2
+ 251              	.L32:
+ 252 009c 405327FF 		.word	-14200000
+ 253 00a0 FF340C00 		.word	799999
+ 254 00a4 401E1BFF 		.word	-15000000
+ 255 00a8 3F420F00 		.word	999999
+ 256 00ac 00DC0BFF 		.word	-16000000
+ 257 00b0 7F4F1200 		.word	1199999
+ 258 00b4 808CF9FE 		.word	-17200000
+ 259 00b8 20D61300 		.word	1300000
+ 260 00bc 60B6E5FE 		.word	-18500000
+ 261 00c0 5FE31600 		.word	1499999
+ 262 00c4 00D3CEFE 		.word	-20000000
+ 263 00c8 40771B00 		.word	1800000
+ 264 00cc C05BB3FE 		.word	-21800000
+ 265 00d0 C0912100 		.word	2200000
+ 266 00d4 00CA91FE 		.word	-24000000
+ 267 00d8 20753800 		.word	3700000
+ 268 00dc E05459FE 		.word	-27700000
+ 269 00e0 E09C4100 		.word	4300000
+ 271              		.section	.text.USB_EnableGlobalInt,"ax",%progbits
+ 272              		.align	1
+ 273              		.global	USB_EnableGlobalInt
+ 274              		.syntax unified
+ 275              		.thumb
+ 276              		.thumb_func
+ 278              	USB_EnableGlobalInt:
+ 279              		@ args = 0, pretend = 0, frame = 0
+ 280              		@ frame_needed = 0, uses_anonymous_args = 0
+ 281              		@ link register save eliminated.
+ 282 0000 8368     		ldr	r3, [r0, #8]
+ 283 0002 43F00103 		orr	r3, r3, #1
+ 284 0006 8360     		str	r3, [r0, #8]
+ 285 0008 0020     		movs	r0, #0
+ 286 000a 7047     		bx	lr
+ 288              		.section	.text.USB_DisableGlobalInt,"ax",%progbits
+ 289              		.align	1
+ 290              		.global	USB_DisableGlobalInt
+ 291              		.syntax unified
+ 292              		.thumb
+ 293              		.thumb_func
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 6
+
+
+ 295              	USB_DisableGlobalInt:
+ 296              		@ args = 0, pretend = 0, frame = 0
+ 297              		@ frame_needed = 0, uses_anonymous_args = 0
+ 298              		@ link register save eliminated.
+ 299 0000 8368     		ldr	r3, [r0, #8]
+ 300 0002 23F00103 		bic	r3, r3, #1
+ 301 0006 8360     		str	r3, [r0, #8]
+ 302 0008 0020     		movs	r0, #0
+ 303 000a 7047     		bx	lr
+ 305              		.section	.text.USB_FlushTxFifo,"ax",%progbits
+ 306              		.align	1
+ 307              		.global	USB_FlushTxFifo
+ 308              		.syntax unified
+ 309              		.thumb
+ 310              		.thumb_func
+ 312              	USB_FlushTxFifo:
+ 313              		@ args = 0, pretend = 0, frame = 8
+ 314              		@ frame_needed = 0, uses_anonymous_args = 0
+ 315              		@ link register save eliminated.
+ 316 0000 82B0     		sub	sp, sp, #8
+ 317 0002 0023     		movs	r3, #0
+ 318 0004 0193     		str	r3, [sp, #4]
+ 319              	.L38:
+ 320 0006 019B     		ldr	r3, [sp, #4]
+ 321 0008 0133     		adds	r3, r3, #1
+ 322 000a 0193     		str	r3, [sp, #4]
+ 323 000c 019B     		ldr	r3, [sp, #4]
+ 324 000e B3F1706F 		cmp	r3, #251658240
+ 325 0012 15D8     		bhi	.L40
+ 326 0014 0369     		ldr	r3, [r0, #16]
+ 327 0016 002B     		cmp	r3, #0
+ 328 0018 F5DA     		bge	.L38
+ 329 001a 0023     		movs	r3, #0
+ 330 001c 0193     		str	r3, [sp, #4]
+ 331 001e 8901     		lsls	r1, r1, #6
+ 332 0020 41F02001 		orr	r1, r1, #32
+ 333 0024 0161     		str	r1, [r0, #16]
+ 334              	.L39:
+ 335 0026 019B     		ldr	r3, [sp, #4]
+ 336 0028 0133     		adds	r3, r3, #1
+ 337 002a 0193     		str	r3, [sp, #4]
+ 338 002c 019B     		ldr	r3, [sp, #4]
+ 339 002e B3F1706F 		cmp	r3, #251658240
+ 340 0032 08D8     		bhi	.L41
+ 341 0034 0369     		ldr	r3, [r0, #16]
+ 342 0036 13F0200F 		tst	r3, #32
+ 343 003a F4D1     		bne	.L39
+ 344 003c 0020     		movs	r0, #0
+ 345 003e 00E0     		b	.L37
+ 346              	.L40:
+ 347 0040 0320     		movs	r0, #3
+ 348              	.L37:
+ 349 0042 02B0     		add	sp, sp, #8
+ 350              		@ sp needed
+ 351 0044 7047     		bx	lr
+ 352              	.L41:
+ 353 0046 0320     		movs	r0, #3
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 7
+
+
+ 354 0048 FBE7     		b	.L37
+ 356              		.section	.text.USB_FlushRxFifo,"ax",%progbits
+ 357              		.align	1
+ 358              		.global	USB_FlushRxFifo
+ 359              		.syntax unified
+ 360              		.thumb
+ 361              		.thumb_func
+ 363              	USB_FlushRxFifo:
+ 364              		@ args = 0, pretend = 0, frame = 8
+ 365              		@ frame_needed = 0, uses_anonymous_args = 0
+ 366              		@ link register save eliminated.
+ 367 0000 82B0     		sub	sp, sp, #8
+ 368 0002 0023     		movs	r3, #0
+ 369 0004 0193     		str	r3, [sp, #4]
+ 370              	.L45:
+ 371 0006 019B     		ldr	r3, [sp, #4]
+ 372 0008 0133     		adds	r3, r3, #1
+ 373 000a 0193     		str	r3, [sp, #4]
+ 374 000c 019B     		ldr	r3, [sp, #4]
+ 375 000e B3F1706F 		cmp	r3, #251658240
+ 376 0012 13D8     		bhi	.L47
+ 377 0014 0369     		ldr	r3, [r0, #16]
+ 378 0016 002B     		cmp	r3, #0
+ 379 0018 F5DA     		bge	.L45
+ 380 001a 0023     		movs	r3, #0
+ 381 001c 0193     		str	r3, [sp, #4]
+ 382 001e 1023     		movs	r3, #16
+ 383 0020 0361     		str	r3, [r0, #16]
+ 384              	.L46:
+ 385 0022 019B     		ldr	r3, [sp, #4]
+ 386 0024 0133     		adds	r3, r3, #1
+ 387 0026 0193     		str	r3, [sp, #4]
+ 388 0028 019B     		ldr	r3, [sp, #4]
+ 389 002a B3F1706F 		cmp	r3, #251658240
+ 390 002e 08D8     		bhi	.L48
+ 391 0030 0369     		ldr	r3, [r0, #16]
+ 392 0032 13F0100F 		tst	r3, #16
+ 393 0036 F4D1     		bne	.L46
+ 394 0038 0020     		movs	r0, #0
+ 395 003a 00E0     		b	.L44
+ 396              	.L47:
+ 397 003c 0320     		movs	r0, #3
+ 398              	.L44:
+ 399 003e 02B0     		add	sp, sp, #8
+ 400              		@ sp needed
+ 401 0040 7047     		bx	lr
+ 402              	.L48:
+ 403 0042 0320     		movs	r0, #3
+ 404 0044 FBE7     		b	.L44
+ 406              		.section	.text.USB_SetDevSpeed,"ax",%progbits
+ 407              		.align	1
+ 408              		.global	USB_SetDevSpeed
+ 409              		.syntax unified
+ 410              		.thumb
+ 411              		.thumb_func
+ 413              	USB_SetDevSpeed:
+ 414              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 8
+
+
+ 415              		@ frame_needed = 0, uses_anonymous_args = 0
+ 416              		@ link register save eliminated.
+ 417 0000 D0F80038 		ldr	r3, [r0, #2048]
+ 418 0004 1943     		orrs	r1, r1, r3
+ 419 0006 C0F80018 		str	r1, [r0, #2048]
+ 420 000a 0020     		movs	r0, #0
+ 421 000c 7047     		bx	lr
+ 423              		.section	.text.USB_DevInit,"ax",%progbits
+ 424              		.align	1
+ 425              		.global	USB_DevInit
+ 426              		.syntax unified
+ 427              		.thumb
+ 428              		.thumb_func
+ 430              	USB_DevInit:
+ 431              		@ args = 20, pretend = 16, frame = 0
+ 432              		@ frame_needed = 0, uses_anonymous_args = 0
+ 433 0000 84B0     		sub	sp, sp, #16
+ 434 0002 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 435 0004 0446     		mov	r4, r0
+ 436 0006 07A8     		add	r0, sp, #28
+ 437 0008 80E80E00 		stm	r0, {r1, r2, r3}
+ 438 000c 0023     		movs	r3, #0
+ 439 000e 06E0     		b	.L52
+ 440              	.L53:
+ 441 0010 03F14002 		add	r2, r3, #64
+ 442 0014 04EB8202 		add	r2, r4, r2, lsl #2
+ 443 0018 0021     		movs	r1, #0
+ 444 001a 5160     		str	r1, [r2, #4]
+ 445 001c 0133     		adds	r3, r3, #1
+ 446              	.L52:
+ 447 001e 0E2B     		cmp	r3, #14
+ 448 0020 F6D9     		bls	.L53
+ 449 0022 9DF82660 		ldrb	r6, [sp, #38]	@ zero_extendqisi2
+ 450 0026 06BB     		cbnz	r6, .L54
+ 451 0028 D4F80438 		ldr	r3, [r4, #2052]
+ 452 002c 43F00203 		orr	r3, r3, #2
+ 453 0030 C4F80438 		str	r3, [r4, #2052]
+ 454 0034 A36B     		ldr	r3, [r4, #56]
+ 455 0036 23F40013 		bic	r3, r3, #2097152
+ 456 003a A363     		str	r3, [r4, #56]
+ 457 003c 2368     		ldr	r3, [r4]
+ 458 003e 43F04003 		orr	r3, r3, #64
+ 459 0042 2360     		str	r3, [r4]
+ 460 0044 2368     		ldr	r3, [r4]
+ 461 0046 43F08003 		orr	r3, r3, #128
+ 462 004a 2360     		str	r3, [r4]
+ 463              	.L55:
+ 464 004c 0023     		movs	r3, #0
+ 465 004e C4F8003E 		str	r3, [r4, #3584]
+ 466 0052 9DF82130 		ldrb	r3, [sp, #33]	@ zero_extendqisi2
+ 467 0056 012B     		cmp	r3, #1
+ 468 0058 11D1     		bne	.L56
+ 469 005a 9DF81F30 		ldrb	r3, [sp, #31]	@ zero_extendqisi2
+ 470 005e 4BB9     		cbnz	r3, .L57
+ 471 0060 0021     		movs	r1, #0
+ 472 0062 2046     		mov	r0, r4
+ 473 0064 FFF7FEFF 		bl	USB_SetDevSpeed
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 9
+
+
+ 474 0068 0DE0     		b	.L58
+ 475              	.L54:
+ 476 006a A36B     		ldr	r3, [r4, #56]
+ 477 006c 43F40013 		orr	r3, r3, #2097152
+ 478 0070 A363     		str	r3, [r4, #56]
+ 479 0072 EBE7     		b	.L55
+ 480              	.L57:
+ 481 0074 0121     		movs	r1, #1
+ 482 0076 2046     		mov	r0, r4
+ 483 0078 FFF7FEFF 		bl	USB_SetDevSpeed
+ 484 007c 03E0     		b	.L58
+ 485              	.L56:
+ 486 007e 0321     		movs	r1, #3
+ 487 0080 2046     		mov	r0, r4
+ 488 0082 FFF7FEFF 		bl	USB_SetDevSpeed
+ 489              	.L58:
+ 490 0086 1021     		movs	r1, #16
+ 491 0088 2046     		mov	r0, r4
+ 492 008a FFF7FEFF 		bl	USB_FlushTxFifo
+ 493 008e 0546     		mov	r5, r0
+ 494 0090 00B1     		cbz	r0, .L59
+ 495 0092 0125     		movs	r5, #1
+ 496              	.L59:
+ 497 0094 2046     		mov	r0, r4
+ 498 0096 FFF7FEFF 		bl	USB_FlushRxFifo
+ 499 009a 00B1     		cbz	r0, .L60
+ 500 009c 0125     		movs	r5, #1
+ 501              	.L60:
+ 502 009e 04F5006C 		add	ip, r4, #2048
+ 503 00a2 0023     		movs	r3, #0
+ 504 00a4 CCF81030 		str	r3, [ip, #16]
+ 505 00a8 CCF81430 		str	r3, [ip, #20]
+ 506 00ac CCF81C30 		str	r3, [ip, #28]
+ 507 00b0 0DE0     		b	.L61
+ 508              	.L63:
+ 509 00b2 4FF09040 		mov	r0, #1207959552
+ 510 00b6 C2F80009 		str	r0, [r2, #2304]
+ 511 00ba 02E0     		b	.L64
+ 512              	.L62:
+ 513 00bc 0020     		movs	r0, #0
+ 514 00be C2F80009 		str	r0, [r2, #2304]
+ 515              	.L64:
+ 516 00c2 0022     		movs	r2, #0
+ 517 00c4 0A61     		str	r2, [r1, #16]
+ 518 00c6 4FF67F32 		movw	r2, #64383
+ 519 00ca 8A60     		str	r2, [r1, #8]
+ 520 00cc 0133     		adds	r3, r3, #1
+ 521              	.L61:
+ 522 00ce 9DF81C10 		ldrb	r1, [sp, #28]	@ zero_extendqisi2
+ 523 00d2 9942     		cmp	r1, r3
+ 524 00d4 0ED9     		bls	.L77
+ 525 00d6 04EB4312 		add	r2, r4, r3, lsl #5
+ 526 00da 02F51061 		add	r1, r2, #2304
+ 527 00de D2F80009 		ldr	r0, [r2, #2304]
+ 528 00e2 0028     		cmp	r0, #0
+ 529 00e4 EADA     		bge	.L62
+ 530 00e6 002B     		cmp	r3, #0
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 10
+
+
+ 531 00e8 E3D1     		bne	.L63
+ 532 00ea 4FF00060 		mov	r0, #134217728
+ 533 00ee C2F80009 		str	r0, [r2, #2304]
+ 534 00f2 E6E7     		b	.L64
+ 535              	.L77:
+ 536 00f4 0023     		movs	r3, #0
+ 537 00f6 0AE0     		b	.L66
+ 538              	.L80:
+ 539 00f8 BBB1     		cbz	r3, .L78
+ 540 00fa 4FF09047 		mov	r7, #1207959552
+ 541 00fe C2F8007B 		str	r7, [r2, #2816]
+ 542              	.L69:
+ 543 0102 0022     		movs	r2, #0
+ 544 0104 0261     		str	r2, [r0, #16]
+ 545 0106 4FF67F32 		movw	r2, #64383
+ 546 010a 8260     		str	r2, [r0, #8]
+ 547 010c 0133     		adds	r3, r3, #1
+ 548              	.L66:
+ 549 010e 9942     		cmp	r1, r3
+ 550 0110 10D9     		bls	.L79
+ 551 0112 04EB4312 		add	r2, r4, r3, lsl #5
+ 552 0116 02F53060 		add	r0, r2, #2816
+ 553 011a D2F8007B 		ldr	r7, [r2, #2816]
+ 554 011e 002F     		cmp	r7, #0
+ 555 0120 EADB     		blt	.L80
+ 556 0122 0027     		movs	r7, #0
+ 557 0124 C2F8007B 		str	r7, [r2, #2816]
+ 558 0128 EBE7     		b	.L69
+ 559              	.L78:
+ 560 012a 4FF00067 		mov	r7, #134217728
+ 561 012e C2F8007B 		str	r7, [r2, #2816]
+ 562 0132 E6E7     		b	.L69
+ 563              	.L79:
+ 564 0134 DCF81030 		ldr	r3, [ip, #16]
+ 565 0138 23F48073 		bic	r3, r3, #256
+ 566 013c CCF81030 		str	r3, [ip, #16]
+ 567 0140 0023     		movs	r3, #0
+ 568 0142 A361     		str	r3, [r4, #24]
+ 569 0144 6FF08043 		mvn	r3, #1073741824
+ 570 0148 6361     		str	r3, [r4, #20]
+ 571 014a 9DF81E30 		ldrb	r3, [sp, #30]	@ zero_extendqisi2
+ 572 014e 1BB9     		cbnz	r3, .L71
+ 573 0150 A369     		ldr	r3, [r4, #24]
+ 574 0152 43F01003 		orr	r3, r3, #16
+ 575 0156 A361     		str	r3, [r4, #24]
+ 576              	.L71:
+ 577 0158 A269     		ldr	r2, [r4, #24]
+ 578 015a 0B4B     		ldr	r3, .L82
+ 579 015c 1343     		orrs	r3, r3, r2
+ 580 015e A361     		str	r3, [r4, #24]
+ 581 0160 9DF82230 		ldrb	r3, [sp, #34]	@ zero_extendqisi2
+ 582 0164 1BB1     		cbz	r3, .L72
+ 583 0166 A369     		ldr	r3, [r4, #24]
+ 584 0168 43F00803 		orr	r3, r3, #8
+ 585 016c A361     		str	r3, [r4, #24]
+ 586              	.L72:
+ 587 016e 012E     		cmp	r6, #1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 11
+
+
+ 588 0170 04D0     		beq	.L81
+ 589              	.L73:
+ 590 0172 2846     		mov	r0, r5
+ 591 0174 BDE8F840 		pop	{r3, r4, r5, r6, r7, lr}
+ 592 0178 04B0     		add	sp, sp, #16
+ 593 017a 7047     		bx	lr
+ 594              	.L81:
+ 595 017c A269     		ldr	r2, [r4, #24]
+ 596 017e 034B     		ldr	r3, .L82+4
+ 597 0180 1343     		orrs	r3, r3, r2
+ 598 0182 A361     		str	r3, [r4, #24]
+ 599 0184 F5E7     		b	.L73
+ 600              	.L83:
+ 601 0186 00BF     		.align	2
+ 602              	.L82:
+ 603 0188 00383C80 		.word	-2143537152
+ 604 018c 04000040 		.word	1073741828
+ 606              		.section	.text.USB_GetDevSpeed,"ax",%progbits
+ 607              		.align	1
+ 608              		.global	USB_GetDevSpeed
+ 609              		.syntax unified
+ 610              		.thumb
+ 611              		.thumb_func
+ 613              	USB_GetDevSpeed:
+ 614              		@ args = 0, pretend = 0, frame = 0
+ 615              		@ frame_needed = 0, uses_anonymous_args = 0
+ 616              		@ link register save eliminated.
+ 617 0000 D0F80838 		ldr	r3, [r0, #2056]
+ 618 0004 03F00603 		and	r3, r3, #6
+ 619 0008 022B     		cmp	r3, #2
+ 620 000a 04D0     		beq	.L86
+ 621 000c 062B     		cmp	r3, #6
+ 622 000e 04D0     		beq	.L87
+ 623 0010 2BB9     		cbnz	r3, .L88
+ 624 0012 0020     		movs	r0, #0
+ 625 0014 7047     		bx	lr
+ 626              	.L86:
+ 627 0016 0220     		movs	r0, #2
+ 628 0018 7047     		bx	lr
+ 629              	.L87:
+ 630 001a 0220     		movs	r0, #2
+ 631 001c 7047     		bx	lr
+ 632              	.L88:
+ 633 001e 0F20     		movs	r0, #15
+ 634 0020 7047     		bx	lr
+ 636              		.section	.text.USB_ActivateEndpoint,"ax",%progbits
+ 637              		.align	1
+ 638              		.global	USB_ActivateEndpoint
+ 639              		.syntax unified
+ 640              		.thumb
+ 641              		.thumb_func
+ 643              	USB_ActivateEndpoint:
+ 644              		@ args = 0, pretend = 0, frame = 0
+ 645              		@ frame_needed = 0, uses_anonymous_args = 0
+ 646 0000 10B5     		push	{r4, lr}
+ 647 0002 91F800C0 		ldrb	ip, [r1]	@ zero_extendqisi2
+ 648 0006 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 12
+
+
+ 649 0008 012B     		cmp	r3, #1
+ 650 000a 21D0     		beq	.L93
+ 651 000c 00F5006E 		add	lr, r0, #2048
+ 652 0010 D0F81C38 		ldr	r3, [r0, #2076]
+ 653 0014 0CF00F04 		and	r4, ip, #15
+ 654 0018 0122     		movs	r2, #1
+ 655 001a A240     		lsls	r2, r2, r4
+ 656 001c 43EA0243 		orr	r3, r3, r2, lsl #16
+ 657 0020 C0F81C38 		str	r3, [r0, #2076]
+ 658 0024 00EB4C10 		add	r0, r0, ip, lsl #5
+ 659 0028 D0F8003B 		ldr	r3, [r0, #2816]
+ 660 002c 13F4004F 		tst	r3, #32768
+ 661 0030 0CD1     		bne	.L91
+ 662 0032 D0F8002B 		ldr	r2, [r0, #2816]
+ 663 0036 8B68     		ldr	r3, [r1, #8]
+ 664 0038 C3F30A03 		ubfx	r3, r3, #0, #11
+ 665 003c 0979     		ldrb	r1, [r1, #4]	@ zero_extendqisi2
+ 666 003e 43EA8143 		orr	r3, r3, r1, lsl #18
+ 667 0042 1A43     		orrs	r2, r2, r3
+ 668 0044 134B     		ldr	r3, .L94
+ 669 0046 1343     		orrs	r3, r3, r2
+ 670 0048 C0F8003B 		str	r3, [r0, #2816]
+ 671              	.L91:
+ 672 004c 0020     		movs	r0, #0
+ 673 004e 10BD     		pop	{r4, pc}
+ 674              	.L93:
+ 675 0050 D0F81C28 		ldr	r2, [r0, #2076]
+ 676 0054 0CF00F0E 		and	lr, ip, #15
+ 677 0058 03FA0EF3 		lsl	r3, r3, lr
+ 678 005c 9BB2     		uxth	r3, r3
+ 679 005e 1343     		orrs	r3, r3, r2
+ 680 0060 C0F81C38 		str	r3, [r0, #2076]
+ 681 0064 00EB4C10 		add	r0, r0, ip, lsl #5
+ 682 0068 D0F80039 		ldr	r3, [r0, #2304]
+ 683 006c 13F4004F 		tst	r3, #32768
+ 684 0070 ECD1     		bne	.L91
+ 685 0072 D0F80029 		ldr	r2, [r0, #2304]
+ 686 0076 8B68     		ldr	r3, [r1, #8]
+ 687 0078 C3F30A03 		ubfx	r3, r3, #0, #11
+ 688 007c 0979     		ldrb	r1, [r1, #4]	@ zero_extendqisi2
+ 689 007e 43EA8143 		orr	r3, r3, r1, lsl #18
+ 690 0082 43EA8C53 		orr	r3, r3, ip, lsl #22
+ 691 0086 1A43     		orrs	r2, r2, r3
+ 692 0088 024B     		ldr	r3, .L94
+ 693 008a 1343     		orrs	r3, r3, r2
+ 694 008c C0F80039 		str	r3, [r0, #2304]
+ 695 0090 DCE7     		b	.L91
+ 696              	.L95:
+ 697 0092 00BF     		.align	2
+ 698              	.L94:
+ 699 0094 00800010 		.word	268468224
+ 701              		.section	.text.USB_ActivateDedicatedEndpoint,"ax",%progbits
+ 702              		.align	1
+ 703              		.global	USB_ActivateDedicatedEndpoint
+ 704              		.syntax unified
+ 705              		.thumb
+ 706              		.thumb_func
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 13
+
+
+ 708              	USB_ActivateDedicatedEndpoint:
+ 709              		@ args = 0, pretend = 0, frame = 0
+ 710              		@ frame_needed = 0, uses_anonymous_args = 0
+ 711              		@ link register save eliminated.
+ 712 0000 30B4     		push	{r4, r5}
+ 713 0002 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 714 0004 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 715 0006 012B     		cmp	r3, #1
+ 716 0008 23D0     		beq	.L102
+ 717 000a 00EB421C 		add	ip, r0, r2, lsl #5
+ 718 000e DCF8003B 		ldr	r3, [ip, #2816]
+ 719 0012 13F4004F 		tst	r3, #32768
+ 720 0016 0ED1     		bne	.L100
+ 721 0018 DCF8004B 		ldr	r4, [ip, #2816]
+ 722 001c 8B68     		ldr	r3, [r1, #8]
+ 723 001e C3F30A03 		ubfx	r3, r3, #0, #11
+ 724 0022 0D79     		ldrb	r5, [r1, #4]	@ zero_extendqisi2
+ 725 0024 43EA8543 		orr	r3, r3, r5, lsl #18
+ 726 0028 43EA8253 		orr	r3, r3, r2, lsl #22
+ 727 002c 2343     		orrs	r3, r3, r4
+ 728 002e 43F40043 		orr	r3, r3, #32768
+ 729 0032 CCF8003B 		str	r3, [ip, #2816]
+ 730              	.L100:
+ 731 0036 D0F83C38 		ldr	r3, [r0, #2108]
+ 732 003a 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 733 003c 01F00F01 		and	r1, r1, #15
+ 734 0040 0122     		movs	r2, #1
+ 735 0042 8A40     		lsls	r2, r2, r1
+ 736 0044 43EA0243 		orr	r3, r3, r2, lsl #16
+ 737 0048 C0F83C38 		str	r3, [r0, #2108]
+ 738              	.L99:
+ 739 004c 0020     		movs	r0, #0
+ 740 004e 30BC     		pop	{r4, r5}
+ 741 0050 7047     		bx	lr
+ 742              	.L102:
+ 743 0052 00EB4214 		add	r4, r0, r2, lsl #5
+ 744 0056 D4F80039 		ldr	r3, [r4, #2304]
+ 745 005a 13F4004F 		tst	r3, #32768
+ 746 005e 10D1     		bne	.L98
+ 747 0060 D4F80059 		ldr	r5, [r4, #2304]
+ 748 0064 8B68     		ldr	r3, [r1, #8]
+ 749 0066 C3F30A03 		ubfx	r3, r3, #0, #11
+ 750 006a 91F804C0 		ldrb	ip, [r1, #4]	@ zero_extendqisi2
+ 751 006e 43EA8C43 		orr	r3, r3, ip, lsl #18
+ 752 0072 43EA8253 		orr	r3, r3, r2, lsl #22
+ 753 0076 45EA0302 		orr	r2, r5, r3
+ 754 007a 084B     		ldr	r3, .L103
+ 755 007c 1343     		orrs	r3, r3, r2
+ 756 007e C4F80039 		str	r3, [r4, #2304]
+ 757              	.L98:
+ 758 0082 D0F83C28 		ldr	r2, [r0, #2108]
+ 759 0086 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 760 0088 01F00F01 		and	r1, r1, #15
+ 761 008c 0123     		movs	r3, #1
+ 762 008e 8B40     		lsls	r3, r3, r1
+ 763 0090 9BB2     		uxth	r3, r3
+ 764 0092 1343     		orrs	r3, r3, r2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 14
+
+
+ 765 0094 C0F83C38 		str	r3, [r0, #2108]
+ 766 0098 D8E7     		b	.L99
+ 767              	.L104:
+ 768 009a 00BF     		.align	2
+ 769              	.L103:
+ 770 009c 00800010 		.word	268468224
+ 772              		.section	.text.USB_DeactivateEndpoint,"ax",%progbits
+ 773              		.align	1
+ 774              		.global	USB_DeactivateEndpoint
+ 775              		.syntax unified
+ 776              		.thumb
+ 777              		.thumb_func
+ 779              	USB_DeactivateEndpoint:
+ 780              		@ args = 0, pretend = 0, frame = 0
+ 781              		@ frame_needed = 0, uses_anonymous_args = 0
+ 782              		@ link register save eliminated.
+ 783 0000 30B4     		push	{r4, r5}
+ 784 0002 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 785 0004 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 786 0006 012A     		cmp	r2, #1
+ 787 0008 26D0     		beq	.L111
+ 788 000a 00EB4313 		add	r3, r0, r3, lsl #5
+ 789 000e D3F8002B 		ldr	r2, [r3, #2816]
+ 790 0012 002A     		cmp	r2, #0
+ 791 0014 52DB     		blt	.L112
+ 792              	.L109:
+ 793 0016 D0F83C48 		ldr	r4, [r0, #2108]
+ 794 001a 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 795 001c 02F00F02 		and	r2, r2, #15
+ 796 0020 4FF0010C 		mov	ip, #1
+ 797 0024 0CFA02F2 		lsl	r2, ip, r2
+ 798 0028 24EA0242 		bic	r2, r4, r2, lsl #16
+ 799 002c C0F83C28 		str	r2, [r0, #2108]
+ 800 0030 D0F81C28 		ldr	r2, [r0, #2076]
+ 801 0034 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 802 0036 01F00F01 		and	r1, r1, #15
+ 803 003a 0CFA01FC 		lsl	ip, ip, r1
+ 804 003e 22EA0C42 		bic	r2, r2, ip, lsl #16
+ 805 0042 C0F81C28 		str	r2, [r0, #2076]
+ 806 0046 D3F8001B 		ldr	r1, [r3, #2816]
+ 807 004a 234A     		ldr	r2, .L114
+ 808 004c 0A40     		ands	r2, r2, r1
+ 809 004e C3F8002B 		str	r2, [r3, #2816]
+ 810              	.L108:
+ 811 0052 0020     		movs	r0, #0
+ 812 0054 30BC     		pop	{r4, r5}
+ 813 0056 7047     		bx	lr
+ 814              	.L111:
+ 815 0058 00EB4313 		add	r3, r0, r3, lsl #5
+ 816 005c D3F80029 		ldr	r2, [r3, #2304]
+ 817 0060 002A     		cmp	r2, #0
+ 818 0062 1EDB     		blt	.L113
+ 819              	.L107:
+ 820 0064 D0F83C58 		ldr	r5, [r0, #2108]
+ 821 0068 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 822 006a 02F00F02 		and	r2, r2, #15
+ 823 006e 0124     		movs	r4, #1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 15
+
+
+ 824 0070 04FA02F2 		lsl	r2, r4, r2
+ 825 0074 92B2     		uxth	r2, r2
+ 826 0076 25EA0202 		bic	r2, r5, r2
+ 827 007a C0F83C28 		str	r2, [r0, #2108]
+ 828 007e D0F81C28 		ldr	r2, [r0, #2076]
+ 829 0082 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 830 0084 01F00F01 		and	r1, r1, #15
+ 831 0088 8C40     		lsls	r4, r4, r1
+ 832 008a A4B2     		uxth	r4, r4
+ 833 008c 22EA0402 		bic	r2, r2, r4
+ 834 0090 C0F81C28 		str	r2, [r0, #2076]
+ 835 0094 D3F80019 		ldr	r1, [r3, #2304]
+ 836 0098 104A     		ldr	r2, .L114+4
+ 837 009a 0A40     		ands	r2, r2, r1
+ 838 009c C3F80029 		str	r2, [r3, #2304]
+ 839 00a0 D7E7     		b	.L108
+ 840              	.L113:
+ 841 00a2 D3F80029 		ldr	r2, [r3, #2304]
+ 842 00a6 42F00062 		orr	r2, r2, #134217728
+ 843 00aa C3F80029 		str	r2, [r3, #2304]
+ 844 00ae D3F80029 		ldr	r2, [r3, #2304]
+ 845 00b2 42F08042 		orr	r2, r2, #1073741824
+ 846 00b6 C3F80029 		str	r2, [r3, #2304]
+ 847 00ba D3E7     		b	.L107
+ 848              	.L112:
+ 849 00bc D3F8002B 		ldr	r2, [r3, #2816]
+ 850 00c0 42F00062 		orr	r2, r2, #134217728
+ 851 00c4 C3F8002B 		str	r2, [r3, #2816]
+ 852 00c8 D3F8002B 		ldr	r2, [r3, #2816]
+ 853 00cc 42F08042 		orr	r2, r2, #1073741824
+ 854 00d0 C3F8002B 		str	r2, [r3, #2816]
+ 855 00d4 9FE7     		b	.L109
+ 856              	.L115:
+ 857 00d6 00BF     		.align	2
+ 858              	.L114:
+ 859 00d8 0078F3EF 		.word	-269256704
+ 860 00dc 007833EC 		.word	-332171264
+ 862              		.section	.text.USB_DeactivateDedicatedEndpoint,"ax",%progbits
+ 863              		.align	1
+ 864              		.global	USB_DeactivateDedicatedEndpoint
+ 865              		.syntax unified
+ 866              		.thumb
+ 867              		.thumb_func
+ 869              	USB_DeactivateDedicatedEndpoint:
+ 870              		@ args = 0, pretend = 0, frame = 0
+ 871              		@ frame_needed = 0, uses_anonymous_args = 0
+ 872              		@ link register save eliminated.
+ 873 0000 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 874 0002 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 875 0004 012A     		cmp	r2, #1
+ 876 0006 18D0     		beq	.L121
+ 877 0008 00EB4313 		add	r3, r0, r3, lsl #5
+ 878 000c D3F8002B 		ldr	r2, [r3, #2816]
+ 879 0010 002A     		cmp	r2, #0
+ 880 0012 38DB     		blt	.L122
+ 881              	.L120:
+ 882 0014 D3F8002B 		ldr	r2, [r3, #2816]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 16
+
+
+ 883 0018 22F40042 		bic	r2, r2, #32768
+ 884 001c C3F8002B 		str	r2, [r3, #2816]
+ 885 0020 D0F81C38 		ldr	r3, [r0, #2076]
+ 886 0024 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 887 0026 01F00F01 		and	r1, r1, #15
+ 888 002a 0122     		movs	r2, #1
+ 889 002c 8A40     		lsls	r2, r2, r1
+ 890 002e 23EA0243 		bic	r3, r3, r2, lsl #16
+ 891 0032 C0F81C38 		str	r3, [r0, #2076]
+ 892              	.L119:
+ 893 0036 0020     		movs	r0, #0
+ 894 0038 7047     		bx	lr
+ 895              	.L121:
+ 896 003a 00EB4313 		add	r3, r0, r3, lsl #5
+ 897 003e D3F80029 		ldr	r2, [r3, #2304]
+ 898 0042 002A     		cmp	r2, #0
+ 899 0044 12DB     		blt	.L123
+ 900              	.L118:
+ 901 0046 D3F80029 		ldr	r2, [r3, #2304]
+ 902 004a 22F40042 		bic	r2, r2, #32768
+ 903 004e C3F80029 		str	r2, [r3, #2304]
+ 904 0052 D0F81C28 		ldr	r2, [r0, #2076]
+ 905 0056 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 906 0058 01F00F01 		and	r1, r1, #15
+ 907 005c 0123     		movs	r3, #1
+ 908 005e 8B40     		lsls	r3, r3, r1
+ 909 0060 9BB2     		uxth	r3, r3
+ 910 0062 22EA0303 		bic	r3, r2, r3
+ 911 0066 C0F81C38 		str	r3, [r0, #2076]
+ 912 006a E4E7     		b	.L119
+ 913              	.L123:
+ 914 006c D3F80029 		ldr	r2, [r3, #2304]
+ 915 0070 42F00062 		orr	r2, r2, #134217728
+ 916 0074 C3F80029 		str	r2, [r3, #2304]
+ 917 0078 D3F80029 		ldr	r2, [r3, #2304]
+ 918 007c 42F08042 		orr	r2, r2, #1073741824
+ 919 0080 C3F80029 		str	r2, [r3, #2304]
+ 920 0084 DFE7     		b	.L118
+ 921              	.L122:
+ 922 0086 D3F8002B 		ldr	r2, [r3, #2816]
+ 923 008a 42F00062 		orr	r2, r2, #134217728
+ 924 008e C3F8002B 		str	r2, [r3, #2816]
+ 925 0092 D3F8002B 		ldr	r2, [r3, #2816]
+ 926 0096 42F08042 		orr	r2, r2, #1073741824
+ 927 009a C3F8002B 		str	r2, [r3, #2816]
+ 928 009e B9E7     		b	.L120
+ 930              		.section	.text.USB_EPStopXfer,"ax",%progbits
+ 931              		.align	1
+ 932              		.global	USB_EPStopXfer
+ 933              		.syntax unified
+ 934              		.thumb
+ 935              		.thumb_func
+ 937              	USB_EPStopXfer:
+ 938              		@ args = 0, pretend = 0, frame = 8
+ 939              		@ frame_needed = 0, uses_anonymous_args = 0
+ 940              		@ link register save eliminated.
+ 941 0000 10B4     		push	{r4}
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 17
+
+
+ 942 0002 83B0     		sub	sp, sp, #12
+ 943 0004 0246     		mov	r2, r0
+ 944 0006 0023     		movs	r3, #0
+ 945 0008 0193     		str	r3, [sp, #4]
+ 946 000a 4878     		ldrb	r0, [r1, #1]	@ zero_extendqisi2
+ 947 000c 0128     		cmp	r0, #1
+ 948 000e 0BD0     		beq	.L133
+ 949 0010 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 950 0012 02EB4313 		add	r3, r2, r3, lsl #5
+ 951 0016 D3F8000B 		ldr	r0, [r3, #2816]
+ 952 001a 0028     		cmp	r0, #0
+ 953 001c 2DDB     		blt	.L134
+ 954 001e 0020     		movs	r0, #0
+ 955              	.L126:
+ 956 0020 03B0     		add	sp, sp, #12
+ 957              		@ sp needed
+ 958 0022 5DF8044B 		ldr	r4, [sp], #4
+ 959 0026 7047     		bx	lr
+ 960              	.L133:
+ 961 0028 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 962 002a 02EB4313 		add	r3, r2, r3, lsl #5
+ 963 002e D3F80049 		ldr	r4, [r3, #2304]
+ 964 0032 002C     		cmp	r4, #0
+ 965 0034 01DB     		blt	.L135
+ 966 0036 0020     		movs	r0, #0
+ 967 0038 F2E7     		b	.L126
+ 968              	.L135:
+ 969 003a D3F80049 		ldr	r4, [r3, #2304]
+ 970 003e 44F00064 		orr	r4, r4, #134217728
+ 971 0042 C3F80049 		str	r4, [r3, #2304]
+ 972 0046 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 973 0048 02EB4313 		add	r3, r2, r3, lsl #5
+ 974 004c D3F80049 		ldr	r4, [r3, #2304]
+ 975 0050 44F08044 		orr	r4, r4, #1073741824
+ 976 0054 C3F80049 		str	r4, [r3, #2304]
+ 977              	.L127:
+ 978 0058 019B     		ldr	r3, [sp, #4]
+ 979 005a 0133     		adds	r3, r3, #1
+ 980 005c 0193     		str	r3, [sp, #4]
+ 981 005e 019C     		ldr	r4, [sp, #4]
+ 982 0060 42F21073 		movw	r3, #10000
+ 983 0064 9C42     		cmp	r4, r3
+ 984 0066 DBD8     		bhi	.L126
+ 985 0068 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 986 006a 02EB4313 		add	r3, r2, r3, lsl #5
+ 987 006e D3F80039 		ldr	r3, [r3, #2304]
+ 988 0072 002B     		cmp	r3, #0
+ 989 0074 F0DB     		blt	.L127
+ 990 0076 0020     		movs	r0, #0
+ 991 0078 D2E7     		b	.L126
+ 992              	.L134:
+ 993 007a D3F8000B 		ldr	r0, [r3, #2816]
+ 994 007e 40F00060 		orr	r0, r0, #134217728
+ 995 0082 C3F8000B 		str	r0, [r3, #2816]
+ 996 0086 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 997 0088 02EB4313 		add	r3, r2, r3, lsl #5
+ 998 008c D3F8000B 		ldr	r0, [r3, #2816]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 18
+
+
+ 999 0090 40F08040 		orr	r0, r0, #1073741824
+ 1000 0094 C3F8000B 		str	r0, [r3, #2816]
+ 1001              	.L128:
+ 1002 0098 019B     		ldr	r3, [sp, #4]
+ 1003 009a 0133     		adds	r3, r3, #1
+ 1004 009c 0193     		str	r3, [sp, #4]
+ 1005 009e 0198     		ldr	r0, [sp, #4]
+ 1006 00a0 42F21073 		movw	r3, #10000
+ 1007 00a4 9842     		cmp	r0, r3
+ 1008 00a6 08D8     		bhi	.L131
+ 1009 00a8 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1010 00aa 02EB4313 		add	r3, r2, r3, lsl #5
+ 1011 00ae D3F8003B 		ldr	r3, [r3, #2816]
+ 1012 00b2 002B     		cmp	r3, #0
+ 1013 00b4 F0DB     		blt	.L128
+ 1014 00b6 0020     		movs	r0, #0
+ 1015 00b8 B2E7     		b	.L126
+ 1016              	.L131:
+ 1017 00ba 0120     		movs	r0, #1
+ 1018 00bc B0E7     		b	.L126
+ 1020              		.section	.text.USB_WritePacket,"ax",%progbits
+ 1021              		.align	1
+ 1022              		.global	USB_WritePacket
+ 1023              		.syntax unified
+ 1024              		.thumb
+ 1025              		.thumb_func
+ 1027              	USB_WritePacket:
+ 1028              		@ args = 4, pretend = 0, frame = 0
+ 1029              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1030 0000 10B5     		push	{r4, lr}
+ 1031 0002 9DF80840 		ldrb	r4, [sp, #8]	@ zero_extendqisi2
+ 1032 0006 84B9     		cbnz	r4, .L137
+ 1033 0008 0333     		adds	r3, r3, #3
+ 1034 000a 4FEA930E 		lsr	lr, r3, #2
+ 1035 000e 4FF0000C 		mov	ip, #0
+ 1036 0012 08E0     		b	.L138
+ 1037              	.L139:
+ 1038 0014 00EB0233 		add	r3, r0, r2, lsl #12
+ 1039 0018 03F58053 		add	r3, r3, #4096
+ 1040 001c 51F8044B 		ldr	r4, [r1], #4	@ unaligned
+ 1041 0020 1C60     		str	r4, [r3]
+ 1042 0022 0CF1010C 		add	ip, ip, #1
+ 1043              	.L138:
+ 1044 0026 F445     		cmp	ip, lr
+ 1045 0028 F4D3     		bcc	.L139
+ 1046              	.L137:
+ 1047 002a 0020     		movs	r0, #0
+ 1048 002c 10BD     		pop	{r4, pc}
+ 1050              		.section	.text.USB_EPStartXfer,"ax",%progbits
+ 1051              		.align	1
+ 1052              		.global	USB_EPStartXfer
+ 1053              		.syntax unified
+ 1054              		.thumb
+ 1055              		.thumb_func
+ 1057              	USB_EPStartXfer:
+ 1058              		@ args = 0, pretend = 0, frame = 0
+ 1059              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 19
+
+
+ 1060 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1061 0002 83B0     		sub	sp, sp, #12
+ 1062 0004 0C78     		ldrb	r4, [r1]	@ zero_extendqisi2
+ 1063 0006 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 1064 0008 012B     		cmp	r3, #1
+ 1065 000a 2DD0     		beq	.L164
+ 1066 000c 00EB441C 		add	ip, r0, r4, lsl #5
+ 1067 0010 0CF53063 		add	r3, ip, #2816
+ 1068 0014 1D69     		ldr	r5, [r3, #16]
+ 1069 0016 6FF31205 		bfc	r5, #0, #19
+ 1070 001a 1D61     		str	r5, [r3, #16]
+ 1071 001c 1D69     		ldr	r5, [r3, #16]
+ 1072 001e 6FF3DC45 		bfc	r5, #19, #10
+ 1073 0022 1D61     		str	r5, [r3, #16]
+ 1074 0024 002C     		cmp	r4, #0
+ 1075 0026 40F0CE80 		bne	.L156
+ 1076 002a 0C69     		ldr	r4, [r1, #16]
+ 1077 002c 0CB1     		cbz	r4, .L157
+ 1078 002e 8C68     		ldr	r4, [r1, #8]
+ 1079 0030 0C61     		str	r4, [r1, #16]
+ 1080              	.L157:
+ 1081 0032 8C68     		ldr	r4, [r1, #8]
+ 1082 0034 0C62     		str	r4, [r1, #32]
+ 1083 0036 1D69     		ldr	r5, [r3, #16]
+ 1084 0038 C4F31204 		ubfx	r4, r4, #0, #19
+ 1085 003c 2C43     		orrs	r4, r4, r5
+ 1086 003e 1C61     		str	r4, [r3, #16]
+ 1087 0040 1C69     		ldr	r4, [r3, #16]
+ 1088 0042 44F40024 		orr	r4, r4, #524288
+ 1089 0046 1C61     		str	r4, [r3, #16]
+ 1090              	.L158:
+ 1091 0048 012A     		cmp	r2, #1
+ 1092 004a 00F0DF80 		beq	.L165
+ 1093              	.L160:
+ 1094 004e 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1095 0050 012B     		cmp	r3, #1
+ 1096 0052 00F0E180 		beq	.L166
+ 1097              	.L161:
+ 1098 0056 DCF8003B 		ldr	r3, [ip, #2816]
+ 1099 005a 43F00443 		orr	r3, r3, #-2080374784
+ 1100 005e CCF8003B 		str	r3, [ip, #2816]
+ 1101              	.L152:
+ 1102 0062 0020     		movs	r0, #0
+ 1103 0064 03B0     		add	sp, sp, #12
+ 1104              		@ sp needed
+ 1105 0066 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1106              	.L164:
+ 1107 0068 0B69     		ldr	r3, [r1, #16]
+ 1108 006a 73BB     		cbnz	r3, .L143
+ 1109 006c 00EB4413 		add	r3, r0, r4, lsl #5
+ 1110 0070 D3F81059 		ldr	r5, [r3, #2320]
+ 1111 0074 6FF3DC45 		bfc	r5, #19, #10
+ 1112 0078 C3F81059 		str	r5, [r3, #2320]
+ 1113 007c D3F81059 		ldr	r5, [r3, #2320]
+ 1114 0080 45F40025 		orr	r5, r5, #524288
+ 1115 0084 C3F81059 		str	r5, [r3, #2320]
+ 1116 0088 D3F81059 		ldr	r5, [r3, #2320]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 20
+
+
+ 1117 008c 6FF31205 		bfc	r5, #0, #19
+ 1118 0090 C3F81059 		str	r5, [r3, #2320]
+ 1119              	.L144:
+ 1120 0094 012A     		cmp	r2, #1
+ 1121 0096 54D0     		beq	.L167
+ 1122 0098 00EB4414 		add	r4, r0, r4, lsl #5
+ 1123 009c D4F80039 		ldr	r3, [r4, #2304]
+ 1124 00a0 43F00443 		orr	r3, r3, #-2080374784
+ 1125 00a4 C4F80039 		str	r3, [r4, #2304]
+ 1126 00a8 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1127 00aa 012B     		cmp	r3, #1
+ 1128 00ac 72D0     		beq	.L153
+ 1129 00ae 0B69     		ldr	r3, [r1, #16]
+ 1130 00b0 002B     		cmp	r3, #0
+ 1131 00b2 D6D0     		beq	.L152
+ 1132 00b4 D0F83438 		ldr	r3, [r0, #2100]
+ 1133 00b8 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 1134 00ba 01F00F01 		and	r1, r1, #15
+ 1135 00be 0122     		movs	r2, #1
+ 1136 00c0 8A40     		lsls	r2, r2, r1
+ 1137 00c2 1343     		orrs	r3, r3, r2
+ 1138 00c4 C0F83438 		str	r3, [r0, #2100]
+ 1139 00c8 CBE7     		b	.L152
+ 1140              	.L143:
+ 1141 00ca 00EB4413 		add	r3, r0, r4, lsl #5
+ 1142 00ce 03F51063 		add	r3, r3, #2304
+ 1143 00d2 1D69     		ldr	r5, [r3, #16]
+ 1144 00d4 6FF31205 		bfc	r5, #0, #19
+ 1145 00d8 1D61     		str	r5, [r3, #16]
+ 1146 00da 1D69     		ldr	r5, [r3, #16]
+ 1147 00dc 6FF3DC45 		bfc	r5, #19, #10
+ 1148 00e0 1D61     		str	r5, [r3, #16]
+ 1149 00e2 84B9     		cbnz	r4, .L145
+ 1150 00e4 0E69     		ldr	r6, [r1, #16]
+ 1151 00e6 8D68     		ldr	r5, [r1, #8]
+ 1152 00e8 AE42     		cmp	r6, r5
+ 1153 00ea 00D9     		bls	.L146
+ 1154 00ec 0D61     		str	r5, [r1, #16]
+ 1155              	.L146:
+ 1156 00ee 1D69     		ldr	r5, [r3, #16]
+ 1157 00f0 45F40025 		orr	r5, r5, #524288
+ 1158 00f4 1D61     		str	r5, [r3, #16]
+ 1159              	.L147:
+ 1160 00f6 1D69     		ldr	r5, [r3, #16]
+ 1161 00f8 0E69     		ldr	r6, [r1, #16]
+ 1162 00fa C6F3120C 		ubfx	ip, r6, #0, #19
+ 1163 00fe 45EA0C05 		orr	r5, r5, ip
+ 1164 0102 1D61     		str	r5, [r3, #16]
+ 1165 0104 C6E7     		b	.L144
+ 1166              	.L145:
+ 1167 0106 0D69     		ldr	r5, [r1, #16]
+ 1168 0108 8E68     		ldr	r6, [r1, #8]
+ 1169 010a 3544     		add	r5, r5, r6
+ 1170 010c 013D     		subs	r5, r5, #1
+ 1171 010e B5FBF6F5 		udiv	r5, r5, r6
+ 1172 0112 1E69     		ldr	r6, [r3, #16]
+ 1173 0114 1FFA85FC 		uxth	ip, r5
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 21
+
+
+ 1174 0118 494F     		ldr	r7, .L169
+ 1175 011a 07EAC545 		and	r5, r7, r5, lsl #19
+ 1176 011e 3543     		orrs	r5, r5, r6
+ 1177 0120 1D61     		str	r5, [r3, #16]
+ 1178 0122 0D79     		ldrb	r5, [r1, #4]	@ zero_extendqisi2
+ 1179 0124 012D     		cmp	r5, #1
+ 1180 0126 E6D1     		bne	.L147
+ 1181 0128 1D69     		ldr	r5, [r3, #16]
+ 1182 012a 25F0C045 		bic	r5, r5, #1610612736
+ 1183 012e 1D61     		str	r5, [r3, #16]
+ 1184 0130 1D69     		ldr	r5, [r3, #16]
+ 1185 0132 4FEA4C7C 		lsl	ip, ip, #29
+ 1186 0136 0CF0C04C 		and	ip, ip, #1610612736
+ 1187 013a 45EA0C05 		orr	r5, r5, ip
+ 1188 013e 1D61     		str	r5, [r3, #16]
+ 1189 0140 D9E7     		b	.L147
+ 1190              	.L167:
+ 1191 0142 CB69     		ldr	r3, [r1, #28]
+ 1192 0144 1BB1     		cbz	r3, .L149
+ 1193 0146 00EB4412 		add	r2, r0, r4, lsl #5
+ 1194 014a C2F81439 		str	r3, [r2, #2324]
+ 1195              	.L149:
+ 1196 014e 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1197 0150 012B     		cmp	r3, #1
+ 1198 0152 08D0     		beq	.L168
+ 1199              	.L150:
+ 1200 0154 00EB4414 		add	r4, r0, r4, lsl #5
+ 1201 0158 D4F80039 		ldr	r3, [r4, #2304]
+ 1202 015c 43F00443 		orr	r3, r3, #-2080374784
+ 1203 0160 C4F80039 		str	r3, [r4, #2304]
+ 1204 0164 7DE7     		b	.L152
+ 1205              	.L168:
+ 1206 0166 D0F80838 		ldr	r3, [r0, #2056]
+ 1207 016a 13F4807F 		tst	r3, #256
+ 1208 016e 08D1     		bne	.L151
+ 1209 0170 00EB4412 		add	r2, r0, r4, lsl #5
+ 1210 0174 D2F80039 		ldr	r3, [r2, #2304]
+ 1211 0178 43F00053 		orr	r3, r3, #536870912
+ 1212 017c C2F80039 		str	r3, [r2, #2304]
+ 1213 0180 E8E7     		b	.L150
+ 1214              	.L151:
+ 1215 0182 00EB4412 		add	r2, r0, r4, lsl #5
+ 1216 0186 D2F80039 		ldr	r3, [r2, #2304]
+ 1217 018a 43F08053 		orr	r3, r3, #268435456
+ 1218 018e C2F80039 		str	r3, [r2, #2304]
+ 1219 0192 DFE7     		b	.L150
+ 1220              	.L153:
+ 1221 0194 D0F80838 		ldr	r3, [r0, #2056]
+ 1222 0198 13F4807F 		tst	r3, #256
+ 1223 019c 0CD1     		bne	.L154
+ 1224 019e D4F80039 		ldr	r3, [r4, #2304]
+ 1225 01a2 43F00053 		orr	r3, r3, #536870912
+ 1226 01a6 C4F80039 		str	r3, [r4, #2304]
+ 1227              	.L155:
+ 1228 01aa 0092     		str	r2, [sp]
+ 1229 01ac 0B8A     		ldrh	r3, [r1, #16]
+ 1230 01ae 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 22
+
+
+ 1231 01b0 C968     		ldr	r1, [r1, #12]
+ 1232 01b2 FFF7FEFF 		bl	USB_WritePacket
+ 1233 01b6 54E7     		b	.L152
+ 1234              	.L154:
+ 1235 01b8 D4F80039 		ldr	r3, [r4, #2304]
+ 1236 01bc 43F08053 		orr	r3, r3, #268435456
+ 1237 01c0 C4F80039 		str	r3, [r4, #2304]
+ 1238 01c4 F1E7     		b	.L155
+ 1239              	.L156:
+ 1240 01c6 0C69     		ldr	r4, [r1, #16]
+ 1241 01c8 54B9     		cbnz	r4, .L159
+ 1242 01ca 1C69     		ldr	r4, [r3, #16]
+ 1243 01cc 8D68     		ldr	r5, [r1, #8]
+ 1244 01ce C5F31205 		ubfx	r5, r5, #0, #19
+ 1245 01d2 2C43     		orrs	r4, r4, r5
+ 1246 01d4 1C61     		str	r4, [r3, #16]
+ 1247 01d6 1C69     		ldr	r4, [r3, #16]
+ 1248 01d8 44F40024 		orr	r4, r4, #524288
+ 1249 01dc 1C61     		str	r4, [r3, #16]
+ 1250 01de 33E7     		b	.L158
+ 1251              	.L159:
+ 1252 01e0 8D68     		ldr	r5, [r1, #8]
+ 1253 01e2 2C44     		add	r4, r4, r5
+ 1254 01e4 013C     		subs	r4, r4, #1
+ 1255 01e6 B4FBF5F4 		udiv	r4, r4, r5
+ 1256 01ea A4B2     		uxth	r4, r4
+ 1257 01ec 04FB05F5 		mul	r5, r4, r5
+ 1258 01f0 0D62     		str	r5, [r1, #32]
+ 1259 01f2 1D69     		ldr	r5, [r3, #16]
+ 1260 01f4 124E     		ldr	r6, .L169
+ 1261 01f6 06EAC444 		and	r4, r6, r4, lsl #19
+ 1262 01fa 2C43     		orrs	r4, r4, r5
+ 1263 01fc 1C61     		str	r4, [r3, #16]
+ 1264 01fe 1C69     		ldr	r4, [r3, #16]
+ 1265 0200 0D6A     		ldr	r5, [r1, #32]
+ 1266 0202 C5F31205 		ubfx	r5, r5, #0, #19
+ 1267 0206 2C43     		orrs	r4, r4, r5
+ 1268 0208 1C61     		str	r4, [r3, #16]
+ 1269 020a 1DE7     		b	.L158
+ 1270              	.L165:
+ 1271 020c CA68     		ldr	r2, [r1, #12]
+ 1272 020e 002A     		cmp	r2, #0
+ 1273 0210 3FF41DAF 		beq	.L160
+ 1274 0214 5A61     		str	r2, [r3, #20]
+ 1275 0216 1AE7     		b	.L160
+ 1276              	.L166:
+ 1277 0218 D0F80838 		ldr	r3, [r0, #2056]
+ 1278 021c 13F4807F 		tst	r3, #256
+ 1279 0220 06D1     		bne	.L162
+ 1280 0222 DCF8003B 		ldr	r3, [ip, #2816]
+ 1281 0226 43F00053 		orr	r3, r3, #536870912
+ 1282 022a CCF8003B 		str	r3, [ip, #2816]
+ 1283 022e 12E7     		b	.L161
+ 1284              	.L162:
+ 1285 0230 DCF8003B 		ldr	r3, [ip, #2816]
+ 1286 0234 43F08053 		orr	r3, r3, #268435456
+ 1287 0238 CCF8003B 		str	r3, [ip, #2816]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 23
+
+
+ 1288 023c 0BE7     		b	.L161
+ 1289              	.L170:
+ 1290 023e 00BF     		.align	2
+ 1291              	.L169:
+ 1292 0240 0000F81F 		.word	536346624
+ 1294              		.section	.text.USB_ReadPacket,"ax",%progbits
+ 1295              		.align	1
+ 1296              		.global	USB_ReadPacket
+ 1297              		.syntax unified
+ 1298              		.thumb
+ 1299              		.thumb_func
+ 1301              	USB_ReadPacket:
+ 1302              		@ args = 0, pretend = 0, frame = 0
+ 1303              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1304 0000 10B5     		push	{r4, lr}
+ 1305 0002 8446     		mov	ip, r0
+ 1306 0004 0846     		mov	r0, r1
+ 1307 0006 4FEA920E 		lsr	lr, r2, #2
+ 1308 000a 02F00302 		and	r2, r2, #3
+ 1309 000e 0023     		movs	r3, #0
+ 1310 0010 05E0     		b	.L172
+ 1311              	.L173:
+ 1312 0012 0CF58051 		add	r1, ip, #4096
+ 1313 0016 0968     		ldr	r1, [r1]
+ 1314 0018 40F8041B 		str	r1, [r0], #4	@ unaligned
+ 1315 001c 0133     		adds	r3, r3, #1
+ 1316              	.L172:
+ 1317 001e 7345     		cmp	r3, lr
+ 1318 0020 F7D3     		bcc	.L173
+ 1319 0022 7AB1     		cbz	r2, .L174
+ 1320 0024 0CF5805C 		add	ip, ip, #4096
+ 1321 0028 DCF80040 		ldr	r4, [ip]
+ 1322 002c 0021     		movs	r1, #0
+ 1323              	.L175:
+ 1324 002e CBB2     		uxtb	r3, r1
+ 1325 0030 DB00     		lsls	r3, r3, #3
+ 1326 0032 24FA03F3 		lsr	r3, r4, r3
+ 1327 0036 00F8013B 		strb	r3, [r0], #1
+ 1328 003a 0131     		adds	r1, r1, #1
+ 1329 003c 013A     		subs	r2, r2, #1
+ 1330 003e 92B2     		uxth	r2, r2
+ 1331 0040 002A     		cmp	r2, #0
+ 1332 0042 F4D1     		bne	.L175
+ 1333              	.L174:
+ 1334 0044 10BD     		pop	{r4, pc}
+ 1336              		.section	.text.USB_EPSetStall,"ax",%progbits
+ 1337              		.align	1
+ 1338              		.global	USB_EPSetStall
+ 1339              		.syntax unified
+ 1340              		.thumb
+ 1341              		.thumb_func
+ 1343              	USB_EPSetStall:
+ 1344              		@ args = 0, pretend = 0, frame = 0
+ 1345              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1346              		@ link register save eliminated.
+ 1347 0000 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1348 0002 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 24
+
+
+ 1349 0004 012A     		cmp	r2, #1
+ 1350 0006 14D0     		beq	.L182
+ 1351 0008 00EB4310 		add	r0, r0, r3, lsl #5
+ 1352 000c D0F8002B 		ldr	r2, [r0, #2816]
+ 1353 0010 002A     		cmp	r2, #0
+ 1354 0012 06DB     		blt	.L181
+ 1355 0014 2BB1     		cbz	r3, .L181
+ 1356 0016 D0F8003B 		ldr	r3, [r0, #2816]
+ 1357 001a 23F08043 		bic	r3, r3, #1073741824
+ 1358 001e C0F8003B 		str	r3, [r0, #2816]
+ 1359              	.L181:
+ 1360 0022 D0F8003B 		ldr	r3, [r0, #2816]
+ 1361 0026 43F40013 		orr	r3, r3, #2097152
+ 1362 002a C0F8003B 		str	r3, [r0, #2816]
+ 1363              	.L180:
+ 1364 002e 0020     		movs	r0, #0
+ 1365 0030 7047     		bx	lr
+ 1366              	.L182:
+ 1367 0032 00EB4310 		add	r0, r0, r3, lsl #5
+ 1368 0036 D0F80029 		ldr	r2, [r0, #2304]
+ 1369 003a 002A     		cmp	r2, #0
+ 1370 003c 06DB     		blt	.L179
+ 1371 003e 2BB1     		cbz	r3, .L179
+ 1372 0040 D0F80039 		ldr	r3, [r0, #2304]
+ 1373 0044 23F08043 		bic	r3, r3, #1073741824
+ 1374 0048 C0F80039 		str	r3, [r0, #2304]
+ 1375              	.L179:
+ 1376 004c D0F80039 		ldr	r3, [r0, #2304]
+ 1377 0050 43F40013 		orr	r3, r3, #2097152
+ 1378 0054 C0F80039 		str	r3, [r0, #2304]
+ 1379 0058 E9E7     		b	.L180
+ 1381              		.section	.text.USB_EPClearStall,"ax",%progbits
+ 1382              		.align	1
+ 1383              		.global	USB_EPClearStall
+ 1384              		.syntax unified
+ 1385              		.thumb
+ 1386              		.thumb_func
+ 1388              	USB_EPClearStall:
+ 1389              		@ args = 0, pretend = 0, frame = 0
+ 1390              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1391              		@ link register save eliminated.
+ 1392 0000 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1393 0002 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 1394 0004 012A     		cmp	r2, #1
+ 1395 0006 0ED0     		beq	.L186
+ 1396 0008 00EB4310 		add	r0, r0, r3, lsl #5
+ 1397 000c D0F8003B 		ldr	r3, [r0, #2816]
+ 1398 0010 23F40013 		bic	r3, r3, #2097152
+ 1399 0014 C0F8003B 		str	r3, [r0, #2816]
+ 1400 0018 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1401 001a 023B     		subs	r3, r3, #2
+ 1402 001c DBB2     		uxtb	r3, r3
+ 1403 001e 012B     		cmp	r3, #1
+ 1404 0020 15D9     		bls	.L187
+ 1405              	.L185:
+ 1406 0022 0020     		movs	r0, #0
+ 1407 0024 7047     		bx	lr
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 25
+
+
+ 1408              	.L186:
+ 1409 0026 00EB4310 		add	r0, r0, r3, lsl #5
+ 1410 002a D0F80039 		ldr	r3, [r0, #2304]
+ 1411 002e 23F40013 		bic	r3, r3, #2097152
+ 1412 0032 C0F80039 		str	r3, [r0, #2304]
+ 1413 0036 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1414 0038 023B     		subs	r3, r3, #2
+ 1415 003a DBB2     		uxtb	r3, r3
+ 1416 003c 012B     		cmp	r3, #1
+ 1417 003e F0D8     		bhi	.L185
+ 1418 0040 D0F80039 		ldr	r3, [r0, #2304]
+ 1419 0044 43F08053 		orr	r3, r3, #268435456
+ 1420 0048 C0F80039 		str	r3, [r0, #2304]
+ 1421 004c E9E7     		b	.L185
+ 1422              	.L187:
+ 1423 004e D0F8003B 		ldr	r3, [r0, #2816]
+ 1424 0052 43F08053 		orr	r3, r3, #268435456
+ 1425 0056 C0F8003B 		str	r3, [r0, #2816]
+ 1426 005a E2E7     		b	.L185
+ 1428              		.section	.text.USB_StopDevice,"ax",%progbits
+ 1429              		.align	1
+ 1430              		.global	USB_StopDevice
+ 1431              		.syntax unified
+ 1432              		.thumb
+ 1433              		.thumb_func
+ 1435              	USB_StopDevice:
+ 1436              		@ args = 0, pretend = 0, frame = 0
+ 1437              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1438 0000 10B5     		push	{r4, lr}
+ 1439 0002 0446     		mov	r4, r0
+ 1440 0004 0022     		movs	r2, #0
+ 1441 0006 08E0     		b	.L189
+ 1442              	.L190:
+ 1443 0008 04EB4213 		add	r3, r4, r2, lsl #5
+ 1444 000c 4FF67F31 		movw	r1, #64383
+ 1445 0010 C3F80819 		str	r1, [r3, #2312]
+ 1446 0014 C3F8081B 		str	r1, [r3, #2824]
+ 1447 0018 0132     		adds	r2, r2, #1
+ 1448              	.L189:
+ 1449 001a 0E2A     		cmp	r2, #14
+ 1450 001c F4D9     		bls	.L190
+ 1451 001e 0022     		movs	r2, #0
+ 1452 0020 C4F81028 		str	r2, [r4, #2064]
+ 1453 0024 C4F81428 		str	r2, [r4, #2068]
+ 1454 0028 C4F81C28 		str	r2, [r4, #2076]
+ 1455 002c 2046     		mov	r0, r4
+ 1456 002e FFF7FEFF 		bl	USB_FlushRxFifo
+ 1457 0032 00B1     		cbz	r0, .L193
+ 1458              	.L191:
+ 1459 0034 10BD     		pop	{r4, pc}
+ 1460              	.L193:
+ 1461 0036 1021     		movs	r1, #16
+ 1462 0038 2046     		mov	r0, r4
+ 1463 003a FFF7FEFF 		bl	USB_FlushTxFifo
+ 1464 003e F9E7     		b	.L191
+ 1466              		.section	.text.USB_SetDevAddress,"ax",%progbits
+ 1467              		.align	1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 26
+
+
+ 1468              		.global	USB_SetDevAddress
+ 1469              		.syntax unified
+ 1470              		.thumb
+ 1471              		.thumb_func
+ 1473              	USB_SetDevAddress:
+ 1474              		@ args = 0, pretend = 0, frame = 0
+ 1475              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1476              		@ link register save eliminated.
+ 1477 0000 D0F80038 		ldr	r3, [r0, #2048]
+ 1478 0004 23F4FE63 		bic	r3, r3, #2032
+ 1479 0008 C0F80038 		str	r3, [r0, #2048]
+ 1480 000c D0F80038 		ldr	r3, [r0, #2048]
+ 1481 0010 0901     		lsls	r1, r1, #4
+ 1482 0012 01F4FE61 		and	r1, r1, #2032
+ 1483 0016 0B43     		orrs	r3, r3, r1
+ 1484 0018 C0F80038 		str	r3, [r0, #2048]
+ 1485 001c 0020     		movs	r0, #0
+ 1486 001e 7047     		bx	lr
+ 1488              		.section	.text.USB_DevConnect,"ax",%progbits
+ 1489              		.align	1
+ 1490              		.global	USB_DevConnect
+ 1491              		.syntax unified
+ 1492              		.thumb
+ 1493              		.thumb_func
+ 1495              	USB_DevConnect:
+ 1496              		@ args = 0, pretend = 0, frame = 0
+ 1497              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1498              		@ link register save eliminated.
+ 1499 0000 D0F8003E 		ldr	r3, [r0, #3584]
+ 1500 0004 23F00303 		bic	r3, r3, #3
+ 1501 0008 C0F8003E 		str	r3, [r0, #3584]
+ 1502 000c D0F80438 		ldr	r3, [r0, #2052]
+ 1503 0010 23F00203 		bic	r3, r3, #2
+ 1504 0014 C0F80438 		str	r3, [r0, #2052]
+ 1505 0018 0020     		movs	r0, #0
+ 1506 001a 7047     		bx	lr
+ 1508              		.section	.text.USB_DevDisconnect,"ax",%progbits
+ 1509              		.align	1
+ 1510              		.global	USB_DevDisconnect
+ 1511              		.syntax unified
+ 1512              		.thumb
+ 1513              		.thumb_func
+ 1515              	USB_DevDisconnect:
+ 1516              		@ args = 0, pretend = 0, frame = 0
+ 1517              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1518              		@ link register save eliminated.
+ 1519 0000 D0F8003E 		ldr	r3, [r0, #3584]
+ 1520 0004 23F00303 		bic	r3, r3, #3
+ 1521 0008 C0F8003E 		str	r3, [r0, #3584]
+ 1522 000c D0F80438 		ldr	r3, [r0, #2052]
+ 1523 0010 43F00203 		orr	r3, r3, #2
+ 1524 0014 C0F80438 		str	r3, [r0, #2052]
+ 1525 0018 0020     		movs	r0, #0
+ 1526 001a 7047     		bx	lr
+ 1528              		.section	.text.USB_ReadInterrupts,"ax",%progbits
+ 1529              		.align	1
+ 1530              		.global	USB_ReadInterrupts
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 27
+
+
+ 1531              		.syntax unified
+ 1532              		.thumb
+ 1533              		.thumb_func
+ 1535              	USB_ReadInterrupts:
+ 1536              		@ args = 0, pretend = 0, frame = 0
+ 1537              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1538              		@ link register save eliminated.
+ 1539 0000 4269     		ldr	r2, [r0, #20]
+ 1540 0002 8069     		ldr	r0, [r0, #24]
+ 1541 0004 1040     		ands	r0, r0, r2
+ 1542 0006 7047     		bx	lr
+ 1544              		.section	.text.USB_ReadChInterrupts,"ax",%progbits
+ 1545              		.align	1
+ 1546              		.global	USB_ReadChInterrupts
+ 1547              		.syntax unified
+ 1548              		.thumb
+ 1549              		.thumb_func
+ 1551              	USB_ReadChInterrupts:
+ 1552              		@ args = 0, pretend = 0, frame = 0
+ 1553              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1554              		@ link register save eliminated.
+ 1555 0000 00EB4110 		add	r0, r0, r1, lsl #5
+ 1556 0004 00F5A063 		add	r3, r0, #1280
+ 1557 0008 D0F80805 		ldr	r0, [r0, #1288]
+ 1558 000c DB68     		ldr	r3, [r3, #12]
+ 1559 000e 1840     		ands	r0, r0, r3
+ 1560 0010 7047     		bx	lr
+ 1562              		.section	.text.USB_ReadDevAllOutEpInterrupt,"ax",%progbits
+ 1563              		.align	1
+ 1564              		.global	USB_ReadDevAllOutEpInterrupt
+ 1565              		.syntax unified
+ 1566              		.thumb
+ 1567              		.thumb_func
+ 1569              	USB_ReadDevAllOutEpInterrupt:
+ 1570              		@ args = 0, pretend = 0, frame = 0
+ 1571              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1572              		@ link register save eliminated.
+ 1573 0000 D0F81838 		ldr	r3, [r0, #2072]
+ 1574 0004 00F50060 		add	r0, r0, #2048
+ 1575 0008 C069     		ldr	r0, [r0, #28]
+ 1576 000a 1840     		ands	r0, r0, r3
+ 1577 000c 000C     		lsrs	r0, r0, #16
+ 1578 000e 7047     		bx	lr
+ 1580              		.section	.text.USB_ReadDevAllInEpInterrupt,"ax",%progbits
+ 1581              		.align	1
+ 1582              		.global	USB_ReadDevAllInEpInterrupt
+ 1583              		.syntax unified
+ 1584              		.thumb
+ 1585              		.thumb_func
+ 1587              	USB_ReadDevAllInEpInterrupt:
+ 1588              		@ args = 0, pretend = 0, frame = 0
+ 1589              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1590              		@ link register save eliminated.
+ 1591 0000 D0F81838 		ldr	r3, [r0, #2072]
+ 1592 0004 00F50060 		add	r0, r0, #2048
+ 1593 0008 C069     		ldr	r0, [r0, #28]
+ 1594 000a 1840     		ands	r0, r0, r3
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 28
+
+
+ 1595 000c 80B2     		uxth	r0, r0
+ 1596 000e 7047     		bx	lr
+ 1598              		.section	.text.USB_ReadDevOutEPInterrupt,"ax",%progbits
+ 1599              		.align	1
+ 1600              		.global	USB_ReadDevOutEPInterrupt
+ 1601              		.syntax unified
+ 1602              		.thumb
+ 1603              		.thumb_func
+ 1605              	USB_ReadDevOutEPInterrupt:
+ 1606              		@ args = 0, pretend = 0, frame = 0
+ 1607              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1608              		@ link register save eliminated.
+ 1609 0000 00EB4111 		add	r1, r0, r1, lsl #5
+ 1610 0004 D1F8082B 		ldr	r2, [r1, #2824]
+ 1611 0008 00F50060 		add	r0, r0, #2048
+ 1612 000c 4069     		ldr	r0, [r0, #20]
+ 1613 000e 1040     		ands	r0, r0, r2
+ 1614 0010 7047     		bx	lr
+ 1616              		.section	.text.USB_ReadDevInEPInterrupt,"ax",%progbits
+ 1617              		.align	1
+ 1618              		.global	USB_ReadDevInEPInterrupt
+ 1619              		.syntax unified
+ 1620              		.thumb
+ 1621              		.thumb_func
+ 1623              	USB_ReadDevInEPInterrupt:
+ 1624              		@ args = 0, pretend = 0, frame = 0
+ 1625              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1626              		@ link register save eliminated.
+ 1627 0000 D0F81028 		ldr	r2, [r0, #2064]
+ 1628 0004 D0F83438 		ldr	r3, [r0, #2100]
+ 1629 0008 01F00F0C 		and	ip, r1, #15
+ 1630 000c 23FA0CF3 		lsr	r3, r3, ip
+ 1631 0010 DB01     		lsls	r3, r3, #7
+ 1632 0012 DBB2     		uxtb	r3, r3
+ 1633 0014 1343     		orrs	r3, r3, r2
+ 1634 0016 00EB4110 		add	r0, r0, r1, lsl #5
+ 1635 001a 00F51060 		add	r0, r0, #2304
+ 1636 001e 8068     		ldr	r0, [r0, #8]
+ 1637 0020 1840     		ands	r0, r0, r3
+ 1638 0022 7047     		bx	lr
+ 1640              		.section	.text.USB_ClearInterrupts,"ax",%progbits
+ 1641              		.align	1
+ 1642              		.global	USB_ClearInterrupts
+ 1643              		.syntax unified
+ 1644              		.thumb
+ 1645              		.thumb_func
+ 1647              	USB_ClearInterrupts:
+ 1648              		@ args = 0, pretend = 0, frame = 0
+ 1649              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1650              		@ link register save eliminated.
+ 1651 0000 4369     		ldr	r3, [r0, #20]
+ 1652 0002 0B40     		ands	r3, r3, r1
+ 1653 0004 4361     		str	r3, [r0, #20]
+ 1654 0006 7047     		bx	lr
+ 1656              		.section	.text.USB_GetMode,"ax",%progbits
+ 1657              		.align	1
+ 1658              		.global	USB_GetMode
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 29
+
+
+ 1659              		.syntax unified
+ 1660              		.thumb
+ 1661              		.thumb_func
+ 1663              	USB_GetMode:
+ 1664              		@ args = 0, pretend = 0, frame = 0
+ 1665              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1666              		@ link register save eliminated.
+ 1667 0000 4069     		ldr	r0, [r0, #20]
+ 1668 0002 00F00100 		and	r0, r0, #1
+ 1669 0006 7047     		bx	lr
+ 1671              		.section	.text.USB_SetCurrentMode,"ax",%progbits
+ 1672              		.align	1
+ 1673              		.global	USB_SetCurrentMode
+ 1674              		.syntax unified
+ 1675              		.thumb
+ 1676              		.thumb_func
+ 1678              	USB_SetCurrentMode:
+ 1679              		@ args = 0, pretend = 0, frame = 0
+ 1680              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1681 0000 38B5     		push	{r3, r4, r5, lr}
+ 1682 0002 0546     		mov	r5, r0
+ 1683 0004 C368     		ldr	r3, [r0, #12]
+ 1684 0006 23F0C043 		bic	r3, r3, #1610612736
+ 1685 000a C360     		str	r3, [r0, #12]
+ 1686 000c 0129     		cmp	r1, #1
+ 1687 000e 13D0     		beq	.L214
+ 1688 0010 19BB     		cbnz	r1, .L211
+ 1689 0012 C368     		ldr	r3, [r0, #12]
+ 1690 0014 43F08043 		orr	r3, r3, #1073741824
+ 1691 0018 C360     		str	r3, [r0, #12]
+ 1692 001a 0024     		movs	r4, #0
+ 1693              	.L210:
+ 1694 001c 0A20     		movs	r0, #10
+ 1695 001e FFF7FEFF 		bl	HAL_Delay
+ 1696 0022 0A34     		adds	r4, r4, #10
+ 1697 0024 2846     		mov	r0, r5
+ 1698 0026 FFF7FEFF 		bl	USB_GetMode
+ 1699 002a 08B1     		cbz	r0, .L207
+ 1700 002c C72C     		cmp	r4, #199
+ 1701 002e F5D9     		bls	.L210
+ 1702              	.L207:
+ 1703 0030 C82C     		cmp	r4, #200
+ 1704 0032 14D0     		beq	.L212
+ 1705 0034 0020     		movs	r0, #0
+ 1706              	.L209:
+ 1707 0036 38BD     		pop	{r3, r4, r5, pc}
+ 1708              	.L214:
+ 1709 0038 C368     		ldr	r3, [r0, #12]
+ 1710 003a 43F00053 		orr	r3, r3, #536870912
+ 1711 003e C360     		str	r3, [r0, #12]
+ 1712 0040 0024     		movs	r4, #0
+ 1713              	.L208:
+ 1714 0042 0A20     		movs	r0, #10
+ 1715 0044 FFF7FEFF 		bl	HAL_Delay
+ 1716 0048 0A34     		adds	r4, r4, #10
+ 1717 004a 2846     		mov	r0, r5
+ 1718 004c FFF7FEFF 		bl	USB_GetMode
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 30
+
+
+ 1719 0050 0128     		cmp	r0, #1
+ 1720 0052 EDD0     		beq	.L207
+ 1721 0054 C72C     		cmp	r4, #199
+ 1722 0056 F4D9     		bls	.L208
+ 1723 0058 EAE7     		b	.L207
+ 1724              	.L211:
+ 1725 005a 0120     		movs	r0, #1
+ 1726 005c EBE7     		b	.L209
+ 1727              	.L212:
+ 1728 005e 0120     		movs	r0, #1
+ 1729 0060 E9E7     		b	.L209
+ 1731              		.section	.text.USB_ActivateSetup,"ax",%progbits
+ 1732              		.align	1
+ 1733              		.global	USB_ActivateSetup
+ 1734              		.syntax unified
+ 1735              		.thumb
+ 1736              		.thumb_func
+ 1738              	USB_ActivateSetup:
+ 1739              		@ args = 0, pretend = 0, frame = 0
+ 1740              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1741              		@ link register save eliminated.
+ 1742 0000 D0F80039 		ldr	r3, [r0, #2304]
+ 1743 0004 6FF30A03 		bfc	r3, #0, #11
+ 1744 0008 C0F80039 		str	r3, [r0, #2304]
+ 1745 000c D0F80438 		ldr	r3, [r0, #2052]
+ 1746 0010 43F48073 		orr	r3, r3, #256
+ 1747 0014 C0F80438 		str	r3, [r0, #2052]
+ 1748 0018 0020     		movs	r0, #0
+ 1749 001a 7047     		bx	lr
+ 1751              		.section	.text.USB_EP0_OutStart,"ax",%progbits
+ 1752              		.align	1
+ 1753              		.global	USB_EP0_OutStart
+ 1754              		.syntax unified
+ 1755              		.thumb
+ 1756              		.thumb_func
+ 1758              	USB_EP0_OutStart:
+ 1759              		@ args = 0, pretend = 0, frame = 0
+ 1760              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1761              		@ link register save eliminated.
+ 1762 0000 10B4     		push	{r4}
+ 1763 0002 046C     		ldr	r4, [r0, #64]
+ 1764 0004 154B     		ldr	r3, .L221
+ 1765 0006 9C42     		cmp	r4, r3
+ 1766 0008 03D9     		bls	.L217
+ 1767 000a D0F8003B 		ldr	r3, [r0, #2816]
+ 1768 000e 002B     		cmp	r3, #0
+ 1769 0010 16DB     		blt	.L218
+ 1770              	.L217:
+ 1771 0012 0024     		movs	r4, #0
+ 1772 0014 C0F8104B 		str	r4, [r0, #2832]
+ 1773 0018 D0F8104B 		ldr	r4, [r0, #2832]
+ 1774 001c 44F40024 		orr	r4, r4, #524288
+ 1775 0020 C0F8104B 		str	r4, [r0, #2832]
+ 1776 0024 D0F8104B 		ldr	r4, [r0, #2832]
+ 1777 0028 44F01804 		orr	r4, r4, #24
+ 1778 002c C0F8104B 		str	r4, [r0, #2832]
+ 1779 0030 D0F8104B 		ldr	r4, [r0, #2832]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 31
+
+
+ 1780 0034 44F0C044 		orr	r4, r4, #1610612736
+ 1781 0038 C0F8104B 		str	r4, [r0, #2832]
+ 1782 003c 0129     		cmp	r1, #1
+ 1783 003e 03D0     		beq	.L220
+ 1784              	.L218:
+ 1785 0040 0020     		movs	r0, #0
+ 1786 0042 5DF8044B 		ldr	r4, [sp], #4
+ 1787 0046 7047     		bx	lr
+ 1788              	.L220:
+ 1789 0048 C0F8142B 		str	r2, [r0, #2836]
+ 1790 004c D0F8003B 		ldr	r3, [r0, #2816]
+ 1791 0050 43F08023 		orr	r3, r3, #-2147450880
+ 1792 0054 C0F8003B 		str	r3, [r0, #2816]
+ 1793 0058 F2E7     		b	.L218
+ 1794              	.L222:
+ 1795 005a 00BF     		.align	2
+ 1796              	.L221:
+ 1797 005c 0A30544F 		.word	1330917386
+ 1799              		.section	.text.USB_HostInit,"ax",%progbits
+ 1800              		.align	1
+ 1801              		.global	USB_HostInit
+ 1802              		.syntax unified
+ 1803              		.thumb
+ 1804              		.thumb_func
+ 1806              	USB_HostInit:
+ 1807              		@ args = 20, pretend = 16, frame = 0
+ 1808              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1809 0000 84B0     		sub	sp, sp, #16
+ 1810 0002 38B5     		push	{r3, r4, r5, lr}
+ 1811 0004 0446     		mov	r4, r0
+ 1812 0006 05A8     		add	r0, sp, #20
+ 1813 0008 80E80E00 		stm	r0, {r1, r2, r3}
+ 1814 000c 0023     		movs	r3, #0
+ 1815 000e C4F8003E 		str	r3, [r4, #3584]
+ 1816 0012 A36B     		ldr	r3, [r4, #56]
+ 1817 0014 23F40013 		bic	r3, r3, #2097152
+ 1818 0018 A363     		str	r3, [r4, #56]
+ 1819 001a A36B     		ldr	r3, [r4, #56]
+ 1820 001c 23F40033 		bic	r3, r3, #131072
+ 1821 0020 A363     		str	r3, [r4, #56]
+ 1822 0022 E368     		ldr	r3, [r4, #12]
+ 1823 0024 13F0400F 		tst	r3, #64
+ 1824 0028 11D1     		bne	.L224
+ 1825 002a 9DF81730 		ldrb	r3, [sp, #23]	@ zero_extendqisi2
+ 1826 002e 012B     		cmp	r3, #1
+ 1827 0030 06D0     		beq	.L235
+ 1828 0032 D4F80034 		ldr	r3, [r4, #1024]
+ 1829 0036 23F00403 		bic	r3, r3, #4
+ 1830 003a C4F80034 		str	r3, [r4, #1024]
+ 1831 003e 0CE0     		b	.L226
+ 1832              	.L235:
+ 1833 0040 D4F80034 		ldr	r3, [r4, #1024]
+ 1834 0044 43F00403 		orr	r3, r3, #4
+ 1835 0048 C4F80034 		str	r3, [r4, #1024]
+ 1836 004c 05E0     		b	.L226
+ 1837              	.L224:
+ 1838 004e D4F80034 		ldr	r3, [r4, #1024]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 32
+
+
+ 1839 0052 23F00403 		bic	r3, r3, #4
+ 1840 0056 C4F80034 		str	r3, [r4, #1024]
+ 1841              	.L226:
+ 1842 005a 1021     		movs	r1, #16
+ 1843 005c 2046     		mov	r0, r4
+ 1844 005e FFF7FEFF 		bl	USB_FlushTxFifo
+ 1845 0062 0546     		mov	r5, r0
+ 1846 0064 00B1     		cbz	r0, .L227
+ 1847 0066 0125     		movs	r5, #1
+ 1848              	.L227:
+ 1849 0068 2046     		mov	r0, r4
+ 1850 006a FFF7FEFF 		bl	USB_FlushRxFifo
+ 1851 006e 00B1     		cbz	r0, .L228
+ 1852 0070 0125     		movs	r5, #1
+ 1853              	.L228:
+ 1854 0072 0022     		movs	r2, #0
+ 1855 0074 09E0     		b	.L229
+ 1856              	.L230:
+ 1857 0076 04EB4213 		add	r3, r4, r2, lsl #5
+ 1858 007a 4FF0FF31 		mov	r1, #-1
+ 1859 007e C3F80815 		str	r1, [r3, #1288]
+ 1860 0082 0021     		movs	r1, #0
+ 1861 0084 C3F80C15 		str	r1, [r3, #1292]
+ 1862 0088 0132     		adds	r2, r2, #1
+ 1863              	.L229:
+ 1864 008a 9DF81530 		ldrb	r3, [sp, #21]	@ zero_extendqisi2
+ 1865 008e 9342     		cmp	r3, r2
+ 1866 0090 F1D8     		bhi	.L230
+ 1867 0092 0023     		movs	r3, #0
+ 1868 0094 A361     		str	r3, [r4, #24]
+ 1869 0096 4FF0FF33 		mov	r3, #-1
+ 1870 009a 6361     		str	r3, [r4, #20]
+ 1871 009c 4FF40073 		mov	r3, #512
+ 1872 00a0 6362     		str	r3, [r4, #36]
+ 1873 00a2 03F18073 		add	r3, r3, #16777216
+ 1874 00a6 A362     		str	r3, [r4, #40]
+ 1875 00a8 094B     		ldr	r3, .L236
+ 1876 00aa C4F80031 		str	r3, [r4, #256]
+ 1877 00ae 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 1878 00b2 1BB9     		cbnz	r3, .L231
+ 1879 00b4 A369     		ldr	r3, [r4, #24]
+ 1880 00b6 43F01003 		orr	r3, r3, #16
+ 1881 00ba A361     		str	r3, [r4, #24]
+ 1882              	.L231:
+ 1883 00bc A269     		ldr	r2, [r4, #24]
+ 1884 00be 054B     		ldr	r3, .L236+4
+ 1885 00c0 1343     		orrs	r3, r3, r2
+ 1886 00c2 A361     		str	r3, [r4, #24]
+ 1887 00c4 2846     		mov	r0, r5
+ 1888 00c6 BDE83840 		pop	{r3, r4, r5, lr}
+ 1889 00ca 04B0     		add	sp, sp, #16
+ 1890 00cc 7047     		bx	lr
+ 1891              	.L237:
+ 1892 00ce 00BF     		.align	2
+ 1893              	.L236:
+ 1894 00d0 0003E000 		.word	14680832
+ 1895 00d4 080020A3 		.word	-1558183928
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 33
+
+
+ 1897              		.section	.text.USB_InitFSLSPClkSel,"ax",%progbits
+ 1898              		.align	1
+ 1899              		.global	USB_InitFSLSPClkSel
+ 1900              		.syntax unified
+ 1901              		.thumb
+ 1902              		.thumb_func
+ 1904              	USB_InitFSLSPClkSel:
+ 1905              		@ args = 0, pretend = 0, frame = 0
+ 1906              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1907              		@ link register save eliminated.
+ 1908 0000 00F5806C 		add	ip, r0, #1024
+ 1909 0004 D0F80034 		ldr	r3, [r0, #1024]
+ 1910 0008 23F00303 		bic	r3, r3, #3
+ 1911 000c C0F80034 		str	r3, [r0, #1024]
+ 1912 0010 D0F80034 		ldr	r3, [r0, #1024]
+ 1913 0014 01F00302 		and	r2, r1, #3
+ 1914 0018 1343     		orrs	r3, r3, r2
+ 1915 001a C0F80034 		str	r3, [r0, #1024]
+ 1916 001e 0129     		cmp	r1, #1
+ 1917 0020 07D0     		beq	.L242
+ 1918 0022 0229     		cmp	r1, #2
+ 1919 0024 0BD1     		bne	.L241
+ 1920 0026 41F27073 		movw	r3, #6000
+ 1921 002a CCF80430 		str	r3, [ip, #4]
+ 1922 002e 0020     		movs	r0, #0
+ 1923 0030 7047     		bx	lr
+ 1924              	.L242:
+ 1925 0032 4BF68033 		movw	r3, #48000
+ 1926 0036 CCF80430 		str	r3, [ip, #4]
+ 1927 003a 0020     		movs	r0, #0
+ 1928 003c 7047     		bx	lr
+ 1929              	.L241:
+ 1930 003e 0120     		movs	r0, #1
+ 1931 0040 7047     		bx	lr
+ 1933              		.section	.text.USB_ResetPort,"ax",%progbits
+ 1934              		.align	1
+ 1935              		.global	USB_ResetPort
+ 1936              		.syntax unified
+ 1937              		.thumb
+ 1938              		.thumb_func
+ 1940              	USB_ResetPort:
+ 1941              		@ args = 0, pretend = 0, frame = 8
+ 1942              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1943 0000 30B5     		push	{r4, r5, lr}
+ 1944 0002 83B0     		sub	sp, sp, #12
+ 1945 0004 0446     		mov	r4, r0
+ 1946 0006 0025     		movs	r5, #0
+ 1947 0008 0195     		str	r5, [sp, #4]
+ 1948 000a D0F84034 		ldr	r3, [r0, #1088]
+ 1949 000e 0193     		str	r3, [sp, #4]
+ 1950 0010 019B     		ldr	r3, [sp, #4]
+ 1951 0012 23F02E03 		bic	r3, r3, #46
+ 1952 0016 0193     		str	r3, [sp, #4]
+ 1953 0018 019B     		ldr	r3, [sp, #4]
+ 1954 001a 43F48073 		orr	r3, r3, #256
+ 1955 001e C0F84034 		str	r3, [r0, #1088]
+ 1956 0022 6420     		movs	r0, #100
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 34
+
+
+ 1957 0024 FFF7FEFF 		bl	HAL_Delay
+ 1958 0028 019B     		ldr	r3, [sp, #4]
+ 1959 002a 23F48073 		bic	r3, r3, #256
+ 1960 002e C4F84034 		str	r3, [r4, #1088]
+ 1961 0032 0A20     		movs	r0, #10
+ 1962 0034 FFF7FEFF 		bl	HAL_Delay
+ 1963 0038 2846     		mov	r0, r5
+ 1964 003a 03B0     		add	sp, sp, #12
+ 1965              		@ sp needed
+ 1966 003c 30BD     		pop	{r4, r5, pc}
+ 1968              		.section	.text.USB_DriveVbus,"ax",%progbits
+ 1969              		.align	1
+ 1970              		.global	USB_DriveVbus
+ 1971              		.syntax unified
+ 1972              		.thumb
+ 1973              		.thumb_func
+ 1975              	USB_DriveVbus:
+ 1976              		@ args = 0, pretend = 0, frame = 8
+ 1977              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1978              		@ link register save eliminated.
+ 1979 0000 82B0     		sub	sp, sp, #8
+ 1980 0002 0023     		movs	r3, #0
+ 1981 0004 0193     		str	r3, [sp, #4]
+ 1982 0006 D0F84034 		ldr	r3, [r0, #1088]
+ 1983 000a 0193     		str	r3, [sp, #4]
+ 1984 000c 019B     		ldr	r3, [sp, #4]
+ 1985 000e 23F02E03 		bic	r3, r3, #46
+ 1986 0012 0193     		str	r3, [sp, #4]
+ 1987 0014 019B     		ldr	r3, [sp, #4]
+ 1988 0016 13F4805F 		tst	r3, #4096
+ 1989 001a 01D1     		bne	.L246
+ 1990 001c 0129     		cmp	r1, #1
+ 1991 001e 0CD0     		beq	.L249
+ 1992              	.L246:
+ 1993 0020 019B     		ldr	r3, [sp, #4]
+ 1994 0022 13F4805F 		tst	r3, #4096
+ 1995 0026 05D0     		beq	.L247
+ 1996 0028 21B9     		cbnz	r1, .L247
+ 1997 002a 019B     		ldr	r3, [sp, #4]
+ 1998 002c 23F48053 		bic	r3, r3, #4096
+ 1999 0030 C0F84034 		str	r3, [r0, #1088]
+ 2000              	.L247:
+ 2001 0034 0020     		movs	r0, #0
+ 2002 0036 02B0     		add	sp, sp, #8
+ 2003              		@ sp needed
+ 2004 0038 7047     		bx	lr
+ 2005              	.L249:
+ 2006 003a 019B     		ldr	r3, [sp, #4]
+ 2007 003c 43F48053 		orr	r3, r3, #4096
+ 2008 0040 C0F84034 		str	r3, [r0, #1088]
+ 2009 0044 ECE7     		b	.L246
+ 2011              		.section	.text.USB_GetHostSpeed,"ax",%progbits
+ 2012              		.align	1
+ 2013              		.global	USB_GetHostSpeed
+ 2014              		.syntax unified
+ 2015              		.thumb
+ 2016              		.thumb_func
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 35
+
+
+ 2018              	USB_GetHostSpeed:
+ 2019              		@ args = 0, pretend = 0, frame = 8
+ 2020              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2021              		@ link register save eliminated.
+ 2022 0000 82B0     		sub	sp, sp, #8
+ 2023 0002 0023     		movs	r3, #0
+ 2024 0004 0193     		str	r3, [sp, #4]
+ 2025 0006 D0F84034 		ldr	r3, [r0, #1088]
+ 2026 000a 0193     		str	r3, [sp, #4]
+ 2027 000c 0198     		ldr	r0, [sp, #4]
+ 2028 000e C0F34140 		ubfx	r0, r0, #17, #2
+ 2029 0012 02B0     		add	sp, sp, #8
+ 2030              		@ sp needed
+ 2031 0014 7047     		bx	lr
+ 2033              		.section	.text.USB_GetCurrentFrame,"ax",%progbits
+ 2034              		.align	1
+ 2035              		.global	USB_GetCurrentFrame
+ 2036              		.syntax unified
+ 2037              		.thumb
+ 2038              		.thumb_func
+ 2040              	USB_GetCurrentFrame:
+ 2041              		@ args = 0, pretend = 0, frame = 0
+ 2042              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2043              		@ link register save eliminated.
+ 2044 0000 00F58060 		add	r0, r0, #1024
+ 2045 0004 8068     		ldr	r0, [r0, #8]
+ 2046 0006 80B2     		uxth	r0, r0
+ 2047 0008 7047     		bx	lr
+ 2049              		.section	.text.USB_HC_Init,"ax",%progbits
+ 2050              		.align	1
+ 2051              		.global	USB_HC_Init
+ 2052              		.syntax unified
+ 2053              		.thumb
+ 2054              		.thumb_func
+ 2056              	USB_HC_Init:
+ 2057              		@ args = 12, pretend = 0, frame = 0
+ 2058              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2059 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 2060 0004 9146     		mov	r9, r2
+ 2061 0006 1C46     		mov	r4, r3
+ 2062 0008 9DF82450 		ldrb	r5, [sp, #36]	@ zero_extendqisi2
+ 2063 000c 00EB4116 		add	r6, r0, r1, lsl #5
+ 2064 0010 06F5A063 		add	r3, r6, #1280
+ 2065 0014 4FF0FF32 		mov	r2, #-1
+ 2066 0018 9A60     		str	r2, [r3, #8]
+ 2067 001a 032D     		cmp	r5, #3
+ 2068 001c 7DD8     		bhi	.L263
+ 2069 001e DFE805F0 		tbb	[pc, r5]
+ 2070              	.L256:
+ 2071 0022 02       		.byte	(.L257-.L256)/2
+ 2072 0023 6E       		.byte	(.L258-.L256)/2
+ 2073 0024 02       		.byte	(.L257-.L256)/2
+ 2074 0025 60       		.byte	(.L255-.L256)/2
+ 2075              		.p2align 1
+ 2076              	.L257:
+ 2077 0026 40F29D42 		movw	r2, #1181
+ 2078 002a DA60     		str	r2, [r3, #12]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 36
+
+
+ 2079 002c 19F0800F 		tst	r9, #128
+ 2080 0030 51D1     		bne	.L269
+ 2081 0032 DA68     		ldr	r2, [r3, #12]
+ 2082 0034 42F06002 		orr	r2, r2, #96
+ 2083 0038 DA60     		str	r2, [r3, #12]
+ 2084 003a 0027     		movs	r7, #0
+ 2085              	.L254:
+ 2086 003c 0022     		movs	r2, #0
+ 2087 003e 5A60     		str	r2, [r3, #4]
+ 2088 0040 DA68     		ldr	r2, [r3, #12]
+ 2089 0042 42F00202 		orr	r2, r2, #2
+ 2090 0046 DA60     		str	r2, [r3, #12]
+ 2091 0048 D0F81834 		ldr	r3, [r0, #1048]
+ 2092 004c 01F00F01 		and	r1, r1, #15
+ 2093 0050 0122     		movs	r2, #1
+ 2094 0052 8A40     		lsls	r2, r2, r1
+ 2095 0054 1343     		orrs	r3, r3, r2
+ 2096 0056 C0F81834 		str	r3, [r0, #1048]
+ 2097 005a 8369     		ldr	r3, [r0, #24]
+ 2098 005c 43F00073 		orr	r3, r3, #33554432
+ 2099 0060 8361     		str	r3, [r0, #24]
+ 2100 0062 19F0800F 		tst	r9, #128
+ 2101 0066 5AD1     		bne	.L270
+ 2102 0068 4FF00008 		mov	r8, #0
+ 2103              	.L260:
+ 2104 006c FFF7FEFF 		bl	USB_GetHostSpeed
+ 2105 0070 9DF82030 		ldrb	r3, [sp, #32]	@ zero_extendqisi2
+ 2106 0074 022B     		cmp	r3, #2
+ 2107 0076 14BF     		ite	ne
+ 2108 0078 0023     		movne	r3, #0
+ 2109 007a 0123     		moveq	r3, #1
+ 2110 007c 0228     		cmp	r0, #2
+ 2111 007e 08BF     		it	eq
+ 2112 0080 0023     		moveq	r3, #0
+ 2113 0082 002B     		cmp	r3, #0
+ 2114 0084 4ED0     		beq	.L267
+ 2115 0086 4FF40032 		mov	r2, #131072
+ 2116              	.L261:
+ 2117 008a A305     		lsls	r3, r4, #22
+ 2118 008c 03F0FE53 		and	r3, r3, #532676608
+ 2119 0090 4FEAC929 		lsl	r9, r9, #11
+ 2120 0094 09F4F049 		and	r9, r9, #30720
+ 2121 0098 43EA0903 		orr	r3, r3, r9
+ 2122 009c A904     		lsls	r1, r5, #18
+ 2123 009e 01F44021 		and	r1, r1, #786432
+ 2124 00a2 0B43     		orrs	r3, r3, r1
+ 2125 00a4 BDF82810 		ldrh	r1, [sp, #40]
+ 2126 00a8 C1F30A01 		ubfx	r1, r1, #0, #11
+ 2127 00ac 0B43     		orrs	r3, r3, r1
+ 2128 00ae 43EA0803 		orr	r3, r3, r8
+ 2129 00b2 1343     		orrs	r3, r3, r2
+ 2130 00b4 43F48013 		orr	r3, r3, #1048576
+ 2131 00b8 C6F80035 		str	r3, [r6, #1280]
+ 2132 00bc 012D     		cmp	r5, #1
+ 2133 00be 18BF     		it	ne
+ 2134 00c0 032D     		cmpne	r5, #3
+ 2135 00c2 05D1     		bne	.L262
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 37
+
+
+ 2136 00c4 D6F80035 		ldr	r3, [r6, #1280]
+ 2137 00c8 43F00053 		orr	r3, r3, #536870912
+ 2138 00cc C6F80035 		str	r3, [r6, #1280]
+ 2139              	.L262:
+ 2140 00d0 3846     		mov	r0, r7
+ 2141 00d2 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 2142              	.L269:
+ 2143 00d6 DA68     		ldr	r2, [r3, #12]
+ 2144 00d8 42F48072 		orr	r2, r2, #256
+ 2145 00dc DA60     		str	r2, [r3, #12]
+ 2146 00de 0027     		movs	r7, #0
+ 2147 00e0 ACE7     		b	.L254
+ 2148              	.L255:
+ 2149 00e2 40F29D62 		movw	r2, #1693
+ 2150 00e6 DA60     		str	r2, [r3, #12]
+ 2151 00e8 19F0800F 		tst	r9, #128
+ 2152 00ec 01D1     		bne	.L271
+ 2153 00ee 0027     		movs	r7, #0
+ 2154 00f0 A4E7     		b	.L254
+ 2155              	.L271:
+ 2156 00f2 DA68     		ldr	r2, [r3, #12]
+ 2157 00f4 42F48072 		orr	r2, r2, #256
+ 2158 00f8 DA60     		str	r2, [r3, #12]
+ 2159 00fa 0027     		movs	r7, #0
+ 2160 00fc 9EE7     		b	.L254
+ 2161              	.L258:
+ 2162 00fe 40F22522 		movw	r2, #549
+ 2163 0102 DA60     		str	r2, [r3, #12]
+ 2164 0104 19F0800F 		tst	r9, #128
+ 2165 0108 01D1     		bne	.L272
+ 2166 010a 0027     		movs	r7, #0
+ 2167 010c 96E7     		b	.L254
+ 2168              	.L272:
+ 2169 010e DA68     		ldr	r2, [r3, #12]
+ 2170 0110 42F4C072 		orr	r2, r2, #384
+ 2171 0114 DA60     		str	r2, [r3, #12]
+ 2172 0116 0027     		movs	r7, #0
+ 2173 0118 90E7     		b	.L254
+ 2174              	.L263:
+ 2175 011a 0127     		movs	r7, #1
+ 2176 011c 8EE7     		b	.L254
+ 2177              	.L270:
+ 2178 011e 4FF40048 		mov	r8, #32768
+ 2179 0122 A3E7     		b	.L260
+ 2180              	.L267:
+ 2181 0124 0022     		movs	r2, #0
+ 2182 0126 B0E7     		b	.L261
+ 2184              		.section	.text.USB_HC_ReadInterrupt,"ax",%progbits
+ 2185              		.align	1
+ 2186              		.global	USB_HC_ReadInterrupt
+ 2187              		.syntax unified
+ 2188              		.thumb
+ 2189              		.thumb_func
+ 2191              	USB_HC_ReadInterrupt:
+ 2192              		@ args = 0, pretend = 0, frame = 0
+ 2193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2194              		@ link register save eliminated.
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 38
+
+
+ 2195 0000 00F58060 		add	r0, r0, #1024
+ 2196 0004 4069     		ldr	r0, [r0, #20]
+ 2197 0006 80B2     		uxth	r0, r0
+ 2198 0008 7047     		bx	lr
+ 2200              		.section	.text.USB_HC_Halt,"ax",%progbits
+ 2201              		.align	1
+ 2202              		.global	USB_HC_Halt
+ 2203              		.syntax unified
+ 2204              		.thumb
+ 2205              		.thumb_func
+ 2207              	USB_HC_Halt:
+ 2208              		@ args = 0, pretend = 0, frame = 8
+ 2209              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2210              		@ link register save eliminated.
+ 2211 0000 70B4     		push	{r4, r5, r6}
+ 2212 0002 83B0     		sub	sp, sp, #12
+ 2213 0004 0023     		movs	r3, #0
+ 2214 0006 0193     		str	r3, [sp, #4]
+ 2215 0008 00EB4111 		add	r1, r0, r1, lsl #5
+ 2216 000c 01F5A062 		add	r2, r1, #1280
+ 2217 0010 D1F80035 		ldr	r3, [r1, #1280]
+ 2218 0014 C3F38143 		ubfx	r3, r3, #18, #2
+ 2219 0018 D1F80055 		ldr	r5, [r1, #1280]
+ 2220 001c 5468     		ldr	r4, [r2, #4]
+ 2221 001e 8668     		ldr	r6, [r0, #8]
+ 2222 0020 16F0200F 		tst	r6, #32
+ 2223 0024 07D0     		beq	.L275
+ 2224 0026 ED0F     		lsrs	r5, r5, #31
+ 2225 0028 E40F     		lsrs	r4, r4, #31
+ 2226 002a 24B9     		cbnz	r4, .L275
+ 2227 002c CDB3     		cbz	r5, .L276
+ 2228 002e 032B     		cmp	r3, #3
+ 2229 0030 18BF     		it	ne
+ 2230 0032 012B     		cmpne	r3, #1
+ 2231 0034 35D0     		beq	.L276
+ 2232              	.L275:
+ 2233 0036 022B     		cmp	r3, #2
+ 2234 0038 18BF     		it	ne
+ 2235 003a 002B     		cmpne	r3, #0
+ 2236 003c 35D1     		bne	.L277
+ 2237 003e D1F80035 		ldr	r3, [r1, #1280]
+ 2238 0042 43F08043 		orr	r3, r3, #1073741824
+ 2239 0046 C1F80035 		str	r3, [r1, #1280]
+ 2240 004a 8368     		ldr	r3, [r0, #8]
+ 2241 004c 13F0200F 		tst	r3, #32
+ 2242 0050 21D1     		bne	.L278
+ 2243 0052 C36A     		ldr	r3, [r0, #44]
+ 2244 0054 13F47F0F 		tst	r3, #16711680
+ 2245 0058 16D1     		bne	.L279
+ 2246 005a D1F80035 		ldr	r3, [r1, #1280]
+ 2247 005e 23F00043 		bic	r3, r3, #-2147483648
+ 2248 0062 C1F80035 		str	r3, [r1, #1280]
+ 2249 0066 D1F80035 		ldr	r3, [r1, #1280]
+ 2250 006a 43F00043 		orr	r3, r3, #-2147483648
+ 2251 006e C1F80035 		str	r3, [r1, #1280]
+ 2252              	.L280:
+ 2253 0072 019B     		ldr	r3, [sp, #4]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 39
+
+
+ 2254 0074 0133     		adds	r3, r3, #1
+ 2255 0076 0193     		str	r3, [sp, #4]
+ 2256 0078 019B     		ldr	r3, [sp, #4]
+ 2257 007a B3F57A7F 		cmp	r3, #1000
+ 2258 007e 10D8     		bhi	.L276
+ 2259 0080 1368     		ldr	r3, [r2]
+ 2260 0082 002B     		cmp	r3, #0
+ 2261 0084 F5DB     		blt	.L280
+ 2262 0086 0CE0     		b	.L276
+ 2263              	.L279:
+ 2264 0088 D1F80035 		ldr	r3, [r1, #1280]
+ 2265 008c 43F00043 		orr	r3, r3, #-2147483648
+ 2266 0090 C1F80035 		str	r3, [r1, #1280]
+ 2267 0094 05E0     		b	.L276
+ 2268              	.L278:
+ 2269 0096 D1F80035 		ldr	r3, [r1, #1280]
+ 2270 009a 43F00043 		orr	r3, r3, #-2147483648
+ 2271 009e C1F80035 		str	r3, [r1, #1280]
+ 2272              	.L276:
+ 2273 00a2 0020     		movs	r0, #0
+ 2274 00a4 03B0     		add	sp, sp, #12
+ 2275              		@ sp needed
+ 2276 00a6 70BC     		pop	{r4, r5, r6}
+ 2277 00a8 7047     		bx	lr
+ 2278              	.L277:
+ 2279 00aa D1F80035 		ldr	r3, [r1, #1280]
+ 2280 00ae 43F08043 		orr	r3, r3, #1073741824
+ 2281 00b2 C1F80035 		str	r3, [r1, #1280]
+ 2282 00b6 D0F81034 		ldr	r3, [r0, #1040]
+ 2283 00ba 13F47F0F 		tst	r3, #16711680
+ 2284 00be 16D1     		bne	.L281
+ 2285 00c0 D1F80035 		ldr	r3, [r1, #1280]
+ 2286 00c4 23F00043 		bic	r3, r3, #-2147483648
+ 2287 00c8 C1F80035 		str	r3, [r1, #1280]
+ 2288 00cc D1F80035 		ldr	r3, [r1, #1280]
+ 2289 00d0 43F00043 		orr	r3, r3, #-2147483648
+ 2290 00d4 C1F80035 		str	r3, [r1, #1280]
+ 2291              	.L282:
+ 2292 00d8 019B     		ldr	r3, [sp, #4]
+ 2293 00da 0133     		adds	r3, r3, #1
+ 2294 00dc 0193     		str	r3, [sp, #4]
+ 2295 00de 019B     		ldr	r3, [sp, #4]
+ 2296 00e0 B3F57A7F 		cmp	r3, #1000
+ 2297 00e4 DDD8     		bhi	.L276
+ 2298 00e6 1368     		ldr	r3, [r2]
+ 2299 00e8 002B     		cmp	r3, #0
+ 2300 00ea F5DB     		blt	.L282
+ 2301 00ec D9E7     		b	.L276
+ 2302              	.L281:
+ 2303 00ee D1F80035 		ldr	r3, [r1, #1280]
+ 2304 00f2 43F00043 		orr	r3, r3, #-2147483648
+ 2305 00f6 C1F80035 		str	r3, [r1, #1280]
+ 2306 00fa D2E7     		b	.L276
+ 2308              		.section	.text.USB_DoPing,"ax",%progbits
+ 2309              		.align	1
+ 2310              		.global	USB_DoPing
+ 2311              		.syntax unified
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 40
+
+
+ 2312              		.thumb
+ 2313              		.thumb_func
+ 2315              	USB_DoPing:
+ 2316              		@ args = 0, pretend = 0, frame = 0
+ 2317              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2318              		@ link register save eliminated.
+ 2319 0000 00EB4110 		add	r0, r0, r1, lsl #5
+ 2320 0004 064A     		ldr	r2, .L285
+ 2321 0006 C0F81025 		str	r2, [r0, #1296]
+ 2322 000a D0F80035 		ldr	r3, [r0, #1280]
+ 2323 000e 23F08043 		bic	r3, r3, #1073741824
+ 2324 0012 43F00043 		orr	r3, r3, #-2147483648
+ 2325 0016 C0F80035 		str	r3, [r0, #1280]
+ 2326 001a 0020     		movs	r0, #0
+ 2327 001c 7047     		bx	lr
+ 2328              	.L286:
+ 2329 001e 00BF     		.align	2
+ 2330              	.L285:
+ 2331 0020 00000880 		.word	-2146959360
+ 2333              		.section	.text.USB_HC_StartXfer,"ax",%progbits
+ 2334              		.align	1
+ 2335              		.global	USB_HC_StartXfer
+ 2336              		.syntax unified
+ 2337              		.thumb
+ 2338              		.thumb_func
+ 2340              	USB_HC_StartXfer:
+ 2341              		@ args = 0, pretend = 0, frame = 8
+ 2342              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2343 0000 70B5     		push	{r4, r5, r6, lr}
+ 2344 0002 84B0     		sub	sp, sp, #16
+ 2345 0004 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 2346 0006 012A     		cmp	r2, #1
+ 2347 0008 1AD0     		beq	.L321
+ 2348 000a 8C88     		ldrh	r4, [r1, #4]
+ 2349 000c B4F5807F 		cmp	r4, #256
+ 2350 0010 24D0     		beq	.L322
+ 2351              	.L289:
+ 2352 0012 8C79     		ldrb	r4, [r1, #6]	@ zero_extendqisi2
+ 2353 0014 012C     		cmp	r4, #1
+ 2354 0016 27D0     		beq	.L323
+ 2355 0018 0C6A     		ldr	r4, [r1, #32]
+ 2356 001a 002C     		cmp	r4, #0
+ 2357 001c 5FD0     		beq	.L317
+ 2358 001e 8D8A     		ldrh	r5, [r1, #20]
+ 2359 0020 04EB050C 		add	ip, r4, r5
+ 2360 0024 0CF1FF3C 		add	ip, ip, #-1
+ 2361 0028 BCFBF5FC 		udiv	ip, ip, r5
+ 2362 002c 1FFA8CFC 		uxth	ip, ip
+ 2363 0030 BCF5807F 		cmp	ip, #256
+ 2364 0034 55D9     		bls	.L299
+ 2365 0036 2D02     		lsls	r5, r5, #8
+ 2366 0038 CD61     		str	r5, [r1, #28]
+ 2367 003a 4FF4807C 		mov	ip, #256
+ 2368 003e 50E0     		b	.L299
+ 2369              	.L321:
+ 2370 0040 8C7C     		ldrb	r4, [r1, #18]	@ zero_extendqisi2
+ 2371 0042 022C     		cmp	r4, #2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 41
+
+
+ 2372 0044 18BF     		it	ne
+ 2373 0046 002C     		cmpne	r4, #0
+ 2374 0048 E3D1     		bne	.L289
+ 2375 004a 00EB4314 		add	r4, r0, r3, lsl #5
+ 2376 004e D4F80C55 		ldr	r5, [r4, #1292]
+ 2377 0052 25F07005 		bic	r5, r5, #112
+ 2378 0056 C4F80C55 		str	r5, [r4, #1292]
+ 2379 005a DAE7     		b	.L289
+ 2380              	.L322:
+ 2381 005c 1946     		mov	r1, r3
+ 2382 005e FFF7FEFF 		bl	USB_DoPing
+ 2383              	.L290:
+ 2384 0062 0020     		movs	r0, #0
+ 2385 0064 04B0     		add	sp, sp, #16
+ 2386              		@ sp needed
+ 2387 0066 70BD     		pop	{r4, r5, r6, pc}
+ 2388              	.L323:
+ 2389 0068 CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2390 006a 24B1     		cbz	r4, .L292
+ 2391 006c 8C8A     		ldrh	r4, [r1, #20]
+ 2392 006e CC61     		str	r4, [r1, #28]
+ 2393 0070 4FF0010C 		mov	ip, #1
+ 2394 0074 3CE0     		b	.L293
+ 2395              	.L292:
+ 2396 0076 8C7C     		ldrb	r4, [r1, #18]	@ zero_extendqisi2
+ 2397 0078 012C     		cmp	r4, #1
+ 2398 007a 06D0     		beq	.L324
+ 2399 007c 012A     		cmp	r2, #1
+ 2400 007e 26D0     		beq	.L325
+ 2401              	.L298:
+ 2402 0080 0C6A     		ldr	r4, [r1, #32]
+ 2403 0082 CC61     		str	r4, [r1, #28]
+ 2404 0084 4FF0010C 		mov	ip, #1
+ 2405 0088 32E0     		b	.L293
+ 2406              	.L324:
+ 2407 008a 0C6A     		ldr	r4, [r1, #32]
+ 2408 008c BC2C     		cmp	r4, #188
+ 2409 008e 0FD9     		bls	.L295
+ 2410 0090 8C8A     		ldrh	r4, [r1, #20]
+ 2411 0092 CC61     		str	r4, [r1, #28]
+ 2412 0094 0C62     		str	r4, [r1, #32]
+ 2413 0096 CC68     		ldr	r4, [r1, #12]
+ 2414 0098 013C     		subs	r4, r4, #1
+ 2415 009a 012C     		cmp	r4, #1
+ 2416 009c 03D9     		bls	.L326
+ 2417 009e 0124     		movs	r4, #1
+ 2418 00a0 CC60     		str	r4, [r1, #12]
+ 2419 00a2 A446     		mov	ip, r4
+ 2420 00a4 24E0     		b	.L293
+ 2421              	.L326:
+ 2422 00a6 0224     		movs	r4, #2
+ 2423 00a8 CC60     		str	r4, [r1, #12]
+ 2424 00aa 4FF0010C 		mov	ip, #1
+ 2425 00ae 1FE0     		b	.L293
+ 2426              	.L295:
+ 2427 00b0 CC61     		str	r4, [r1, #28]
+ 2428 00b2 CC68     		ldr	r4, [r1, #12]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 42
+
+
+ 2429 00b4 013C     		subs	r4, r4, #1
+ 2430 00b6 012C     		cmp	r4, #1
+ 2431 00b8 04D9     		bls	.L297
+ 2432 00ba 0424     		movs	r4, #4
+ 2433 00bc CC60     		str	r4, [r1, #12]
+ 2434 00be 4FF0010C 		mov	ip, #1
+ 2435 00c2 15E0     		b	.L293
+ 2436              	.L297:
+ 2437 00c4 0324     		movs	r4, #3
+ 2438 00c6 CC60     		str	r4, [r1, #12]
+ 2439 00c8 4FF0010C 		mov	ip, #1
+ 2440 00cc 10E0     		b	.L293
+ 2441              	.L325:
+ 2442 00ce 0D6A     		ldr	r5, [r1, #32]
+ 2443 00d0 8C8A     		ldrh	r4, [r1, #20]
+ 2444 00d2 A542     		cmp	r5, r4
+ 2445 00d4 D4D9     		bls	.L298
+ 2446 00d6 CC61     		str	r4, [r1, #28]
+ 2447 00d8 4FF0010C 		mov	ip, #1
+ 2448 00dc 08E0     		b	.L293
+ 2449              	.L317:
+ 2450 00de 4FF0010C 		mov	ip, #1
+ 2451              	.L299:
+ 2452 00e2 CD78     		ldrb	r5, [r1, #3]	@ zero_extendqisi2
+ 2453 00e4 002D     		cmp	r5, #0
+ 2454 00e6 62D0     		beq	.L300
+ 2455 00e8 8C8A     		ldrh	r4, [r1, #20]
+ 2456 00ea 04FB0CF4 		mul	r4, r4, ip
+ 2457 00ee CC61     		str	r4, [r1, #28]
+ 2458              	.L293:
+ 2459 00f0 CC69     		ldr	r4, [r1, #28]
+ 2460 00f2 C4F31204 		ubfx	r4, r4, #0, #19
+ 2461 00f6 6F4D     		ldr	r5, .L330
+ 2462 00f8 05EACC45 		and	r5, r5, ip, lsl #19
+ 2463 00fc 2C43     		orrs	r4, r4, r5
+ 2464 00fe 91F816C0 		ldrb	ip, [r1, #22]	@ zero_extendqisi2
+ 2465 0102 4FEA4C7C 		lsl	ip, ip, #29
+ 2466 0106 0CF0C04C 		and	ip, ip, #1610612736
+ 2467 010a 00EB4313 		add	r3, r0, r3, lsl #5
+ 2468 010e 03F5A06E 		add	lr, r3, #1280
+ 2469 0112 44EA0C04 		orr	r4, r4, ip
+ 2470 0116 CEF81040 		str	r4, [lr, #16]
+ 2471 011a 12B1     		cbz	r2, .L301
+ 2472 011c 8C69     		ldr	r4, [r1, #24]
+ 2473 011e CEF81440 		str	r4, [lr, #20]
+ 2474              	.L301:
+ 2475 0122 00F58065 		add	r5, r0, #1024
+ 2476 0126 AC68     		ldr	r4, [r5, #8]
+ 2477 0128 D3F80065 		ldr	r6, [r3, #1280]
+ 2478 012c 26F00056 		bic	r6, r6, #536870912
+ 2479 0130 C3F80065 		str	r6, [r3, #1280]
+ 2480 0134 D3F80065 		ldr	r6, [r3, #1280]
+ 2481 0138 6FEA040C 		mvn	ip, r4
+ 2482 013c 4FEA4C7C 		lsl	ip, ip, #29
+ 2483 0140 0CF0005C 		and	ip, ip, #536870912
+ 2484 0144 46EA0C06 		orr	r6, r6, ip
+ 2485 0148 C3F80065 		str	r6, [r3, #1280]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 43
+
+
+ 2486 014c 8C79     		ldrb	r4, [r1, #6]	@ zero_extendqisi2
+ 2487 014e 012C     		cmp	r4, #1
+ 2488 0150 2FD0     		beq	.L327
+ 2489 0152 0024     		movs	r4, #0
+ 2490 0154 CEF80440 		str	r4, [lr, #4]
+ 2491              	.L305:
+ 2492 0158 D3F80045 		ldr	r4, [r3, #1280]
+ 2493 015c 0394     		str	r4, [sp, #12]
+ 2494 015e 039C     		ldr	r4, [sp, #12]
+ 2495 0160 24F08044 		bic	r4, r4, #1073741824
+ 2496 0164 0394     		str	r4, [sp, #12]
+ 2497 0166 CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2498 0168 002C     		cmp	r4, #0
+ 2499 016a 7FD0     		beq	.L311
+ 2500 016c 039C     		ldr	r4, [sp, #12]
+ 2501 016e 44F40044 		orr	r4, r4, #32768
+ 2502 0172 0394     		str	r4, [sp, #12]
+ 2503              	.L312:
+ 2504 0174 039C     		ldr	r4, [sp, #12]
+ 2505 0176 44F00044 		orr	r4, r4, #-2147483648
+ 2506 017a 0394     		str	r4, [sp, #12]
+ 2507 017c 039C     		ldr	r4, [sp, #12]
+ 2508 017e C3F80045 		str	r4, [r3, #1280]
+ 2509 0182 002A     		cmp	r2, #0
+ 2510 0184 7FF46DAF 		bne	.L290
+ 2511 0188 CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 2512 018a 002B     		cmp	r3, #0
+ 2513 018c 7FF469AF 		bne	.L290
+ 2514 0190 0B6A     		ldr	r3, [r1, #32]
+ 2515 0192 002B     		cmp	r3, #0
+ 2516 0194 3FF465AF 		beq	.L290
+ 2517 0198 CA79     		ldrb	r2, [r1, #7]	@ zero_extendqisi2
+ 2518 019a 002A     		cmp	r2, #0
+ 2519 019c 7FF461AF 		bne	.L290
+ 2520 01a0 8A7C     		ldrb	r2, [r1, #18]	@ zero_extendqisi2
+ 2521 01a2 032A     		cmp	r2, #3
+ 2522 01a4 72D8     		bhi	.L313
+ 2523 01a6 DFE802F0 		tbb	[pc, r2]
+ 2524              	.L315:
+ 2525 01aa 66       		.byte	(.L316-.L315)/2
+ 2526 01ab 79       		.byte	(.L314-.L315)/2
+ 2527 01ac 66       		.byte	(.L316-.L315)/2
+ 2528 01ad 79       		.byte	(.L314-.L315)/2
+ 2529              		.p2align 1
+ 2530              	.L300:
+ 2531 01ae CC61     		str	r4, [r1, #28]
+ 2532 01b0 9EE7     		b	.L293
+ 2533              	.L327:
+ 2534 01b2 4E7C     		ldrb	r6, [r1, #17]	@ zero_extendqisi2
+ 2535 01b4 0C7C     		ldrb	r4, [r1, #16]	@ zero_extendqisi2
+ 2536 01b6 44EAC614 		orr	r4, r4, r6, lsl #7
+ 2537 01ba 44F00044 		orr	r4, r4, #-2147483648
+ 2538 01be CEF80440 		str	r4, [lr, #4]
+ 2539 01c2 DEF80C40 		ldr	r4, [lr, #12]
+ 2540 01c6 44F06004 		orr	r4, r4, #96
+ 2541 01ca CEF80C40 		str	r4, [lr, #12]
+ 2542 01ce CC79     		ldrb	r4, [r1, #7]	@ zero_extendqisi2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 44
+
+
+ 2543 01d0 012C     		cmp	r4, #1
+ 2544 01d2 15D0     		beq	.L328
+ 2545              	.L303:
+ 2546 01d4 8C7C     		ldrb	r4, [r1, #18]	@ zero_extendqisi2
+ 2547 01d6 032C     		cmp	r4, #3
+ 2548 01d8 18BF     		it	ne
+ 2549 01da 012C     		cmpne	r4, #1
+ 2550 01dc 02D1     		bne	.L304
+ 2551 01de CC79     		ldrb	r4, [r1, #7]	@ zero_extendqisi2
+ 2552 01e0 012C     		cmp	r4, #1
+ 2553 01e2 1DD0     		beq	.L329
+ 2554              	.L304:
+ 2555 01e4 8C7C     		ldrb	r4, [r1, #18]	@ zero_extendqisi2
+ 2556 01e6 012C     		cmp	r4, #1
+ 2557 01e8 B6D1     		bne	.L305
+ 2558 01ea CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2559 01ec 002C     		cmp	r4, #0
+ 2560 01ee B3D1     		bne	.L305
+ 2561 01f0 CC68     		ldr	r4, [r1, #12]
+ 2562 01f2 013C     		subs	r4, r4, #1
+ 2563 01f4 032C     		cmp	r4, #3
+ 2564 01f6 AFD8     		bhi	.L305
+ 2565 01f8 DFE804F0 		tbb	[pc, r4]
+ 2566              	.L307:
+ 2567 01fc 1C       		.byte	(.L310-.L307)/2
+ 2568 01fd 23       		.byte	(.L309-.L307)/2
+ 2569 01fe 2A       		.byte	(.L308-.L307)/2
+ 2570 01ff 31       		.byte	(.L306-.L307)/2
+ 2571              		.p2align 1
+ 2572              	.L328:
+ 2573 0200 CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2574 0202 002C     		cmp	r4, #0
+ 2575 0204 E6D1     		bne	.L303
+ 2576 0206 DEF80440 		ldr	r4, [lr, #4]
+ 2577 020a 44F48034 		orr	r4, r4, #65536
+ 2578 020e CEF80440 		str	r4, [lr, #4]
+ 2579 0212 DEF80C40 		ldr	r4, [lr, #12]
+ 2580 0216 44F04004 		orr	r4, r4, #64
+ 2581 021a CEF80C40 		str	r4, [lr, #12]
+ 2582 021e D9E7     		b	.L303
+ 2583              	.L329:
+ 2584 0220 CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2585 0222 012C     		cmp	r4, #1
+ 2586 0224 DED1     		bne	.L304
+ 2587 0226 DEF80440 		ldr	r4, [lr, #4]
+ 2588 022a 44F48034 		orr	r4, r4, #65536
+ 2589 022e CEF80440 		str	r4, [lr, #4]
+ 2590 0232 D7E7     		b	.L304
+ 2591              	.L310:
+ 2592 0234 DEF80440 		ldr	r4, [lr, #4]
+ 2593 0238 44F40044 		orr	r4, r4, #32768
+ 2594 023c CEF80440 		str	r4, [lr, #4]
+ 2595 0240 8AE7     		b	.L305
+ 2596              	.L309:
+ 2597 0242 DEF80440 		ldr	r4, [lr, #4]
+ 2598 0246 44F00E04 		orr	r4, r4, #14
+ 2599 024a CEF80440 		str	r4, [lr, #4]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 45
+
+
+ 2600 024e 83E7     		b	.L305
+ 2601              	.L308:
+ 2602 0250 DEF80440 		ldr	r4, [lr, #4]
+ 2603 0254 44F48044 		orr	r4, r4, #16384
+ 2604 0258 CEF80440 		str	r4, [lr, #4]
+ 2605 025c 7CE7     		b	.L305
+ 2606              	.L306:
+ 2607 025e DEF80440 		ldr	r4, [lr, #4]
+ 2608 0262 44F44044 		orr	r4, r4, #49152
+ 2609 0266 CEF80440 		str	r4, [lr, #4]
+ 2610 026a 75E7     		b	.L305
+ 2611              	.L311:
+ 2612 026c 039C     		ldr	r4, [sp, #12]
+ 2613 026e 24F40044 		bic	r4, r4, #32768
+ 2614 0272 0394     		str	r4, [sp, #12]
+ 2615 0274 7EE7     		b	.L312
+ 2616              	.L316:
+ 2617 0276 0333     		adds	r3, r3, #3
+ 2618 0278 C26A     		ldr	r2, [r0, #44]
+ 2619 027a 92B2     		uxth	r2, r2
+ 2620 027c C3F38F03 		ubfx	r3, r3, #2, #16
+ 2621 0280 9A42     		cmp	r2, r3
+ 2622 0282 03D2     		bcs	.L313
+ 2623 0284 8369     		ldr	r3, [r0, #24]
+ 2624 0286 43F02003 		orr	r3, r3, #32
+ 2625 028a 8361     		str	r3, [r0, #24]
+ 2626              	.L313:
+ 2627 028c 0023     		movs	r3, #0
+ 2628 028e 0093     		str	r3, [sp]
+ 2629 0290 0B8C     		ldrh	r3, [r1, #32]
+ 2630 0292 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 2631 0294 8969     		ldr	r1, [r1, #24]
+ 2632 0296 FFF7FEFF 		bl	USB_WritePacket
+ 2633 029a E2E6     		b	.L290
+ 2634              	.L314:
+ 2635 029c 0333     		adds	r3, r3, #3
+ 2636 029e 2A69     		ldr	r2, [r5, #16]
+ 2637 02a0 92B2     		uxth	r2, r2
+ 2638 02a2 C3F38F03 		ubfx	r3, r3, #2, #16
+ 2639 02a6 9A42     		cmp	r2, r3
+ 2640 02a8 F0D2     		bcs	.L313
+ 2641 02aa 8369     		ldr	r3, [r0, #24]
+ 2642 02ac 43F08063 		orr	r3, r3, #67108864
+ 2643 02b0 8361     		str	r3, [r0, #24]
+ 2644 02b2 EBE7     		b	.L313
+ 2645              	.L331:
+ 2646              		.align	2
+ 2647              	.L330:
+ 2648 02b4 0000F81F 		.word	536346624
+ 2650              		.section	.text.USB_StopHost,"ax",%progbits
+ 2651              		.align	1
+ 2652              		.global	USB_StopHost
+ 2653              		.syntax unified
+ 2654              		.thumb
+ 2655              		.thumb_func
+ 2657              	USB_StopHost:
+ 2658              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 46
+
+
+ 2659              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2660 0000 30B5     		push	{r4, r5, lr}
+ 2661 0002 83B0     		sub	sp, sp, #12
+ 2662 0004 0446     		mov	r4, r0
+ 2663 0006 0023     		movs	r3, #0
+ 2664 0008 0193     		str	r3, [sp, #4]
+ 2665 000a FFF7FEFF 		bl	USB_DisableGlobalInt
+ 2666 000e 1021     		movs	r1, #16
+ 2667 0010 2046     		mov	r0, r4
+ 2668 0012 FFF7FEFF 		bl	USB_FlushTxFifo
+ 2669 0016 0546     		mov	r5, r0
+ 2670 0018 00B1     		cbz	r0, .L333
+ 2671 001a 0125     		movs	r5, #1
+ 2672              	.L333:
+ 2673 001c 2046     		mov	r0, r4
+ 2674 001e FFF7FEFF 		bl	USB_FlushRxFifo
+ 2675 0022 00B1     		cbz	r0, .L334
+ 2676 0024 0125     		movs	r5, #1
+ 2677              	.L334:
+ 2678 0026 0022     		movs	r2, #0
+ 2679 0028 0AE0     		b	.L335
+ 2680              	.L336:
+ 2681 002a 04EB4211 		add	r1, r4, r2, lsl #5
+ 2682 002e D1F80035 		ldr	r3, [r1, #1280]
+ 2683 0032 23F08023 		bic	r3, r3, #-2147450880
+ 2684 0036 43F08043 		orr	r3, r3, #1073741824
+ 2685 003a C1F80035 		str	r3, [r1, #1280]
+ 2686 003e 0132     		adds	r2, r2, #1
+ 2687              	.L335:
+ 2688 0040 0F2A     		cmp	r2, #15
+ 2689 0042 F2D9     		bls	.L336
+ 2690 0044 0021     		movs	r1, #0
+ 2691 0046 00E0     		b	.L337
+ 2692              	.L338:
+ 2693 0048 0131     		adds	r1, r1, #1
+ 2694              	.L337:
+ 2695 004a 0F29     		cmp	r1, #15
+ 2696 004c 16D8     		bhi	.L344
+ 2697 004e 04EB4110 		add	r0, r4, r1, lsl #5
+ 2698 0052 00F5A062 		add	r2, r0, #1280
+ 2699 0056 D0F80035 		ldr	r3, [r0, #1280]
+ 2700 005a 23F40043 		bic	r3, r3, #32768
+ 2701 005e 43F04043 		orr	r3, r3, #-1073741824
+ 2702 0062 C0F80035 		str	r3, [r0, #1280]
+ 2703              	.L339:
+ 2704 0066 019B     		ldr	r3, [sp, #4]
+ 2705 0068 0133     		adds	r3, r3, #1
+ 2706 006a 0193     		str	r3, [sp, #4]
+ 2707 006c 019B     		ldr	r3, [sp, #4]
+ 2708 006e B3F57A7F 		cmp	r3, #1000
+ 2709 0072 E9D8     		bhi	.L338
+ 2710 0074 1368     		ldr	r3, [r2]
+ 2711 0076 002B     		cmp	r3, #0
+ 2712 0078 F5DB     		blt	.L339
+ 2713 007a E5E7     		b	.L338
+ 2714              	.L344:
+ 2715 007c 4FF0FF33 		mov	r3, #-1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 47
+
+
+ 2716 0080 C4F81434 		str	r3, [r4, #1044]
+ 2717 0084 6361     		str	r3, [r4, #20]
+ 2718 0086 2046     		mov	r0, r4
+ 2719 0088 FFF7FEFF 		bl	USB_EnableGlobalInt
+ 2720 008c 2846     		mov	r0, r5
+ 2721 008e 03B0     		add	sp, sp, #12
+ 2722              		@ sp needed
+ 2723 0090 30BD     		pop	{r4, r5, pc}
+ 2725              		.section	.text.USB_ActivateRemoteWakeup,"ax",%progbits
+ 2726              		.align	1
+ 2727              		.global	USB_ActivateRemoteWakeup
+ 2728              		.syntax unified
+ 2729              		.thumb
+ 2730              		.thumb_func
+ 2732              	USB_ActivateRemoteWakeup:
+ 2733              		@ args = 0, pretend = 0, frame = 0
+ 2734              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2735              		@ link register save eliminated.
+ 2736 0000 D0F80838 		ldr	r3, [r0, #2056]
+ 2737 0004 00F50060 		add	r0, r0, #2048
+ 2738 0008 13F0010F 		tst	r3, #1
+ 2739 000c 03D0     		beq	.L346
+ 2740 000e 4368     		ldr	r3, [r0, #4]
+ 2741 0010 43F00103 		orr	r3, r3, #1
+ 2742 0014 4360     		str	r3, [r0, #4]
+ 2743              	.L346:
+ 2744 0016 0020     		movs	r0, #0
+ 2745 0018 7047     		bx	lr
+ 2747              		.section	.text.USB_DeActivateRemoteWakeup,"ax",%progbits
+ 2748              		.align	1
+ 2749              		.global	USB_DeActivateRemoteWakeup
+ 2750              		.syntax unified
+ 2751              		.thumb
+ 2752              		.thumb_func
+ 2754              	USB_DeActivateRemoteWakeup:
+ 2755              		@ args = 0, pretend = 0, frame = 0
+ 2756              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2757              		@ link register save eliminated.
+ 2758 0000 D0F80438 		ldr	r3, [r0, #2052]
+ 2759 0004 23F00103 		bic	r3, r3, #1
+ 2760 0008 C0F80438 		str	r3, [r0, #2052]
+ 2761 000c 0020     		movs	r0, #0
+ 2762 000e 7047     		bx	lr
+ 2764              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 48
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32h7xx_ll_usb.c
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:17     .text.USB_CoreReset:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:22     .text.USB_CoreReset:00000000 USB_CoreReset
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:67     .text.USB_CoreInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:73     .text.USB_CoreInit:00000000 USB_CoreInit
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:148    .text.USB_CoreInit:0000009c $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:152    .text.USB_SetTurnaroundTime:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:158    .text.USB_SetTurnaroundTime:00000000 USB_SetTurnaroundTime
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:252    .text.USB_SetTurnaroundTime:0000009c $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:272    .text.USB_EnableGlobalInt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:278    .text.USB_EnableGlobalInt:00000000 USB_EnableGlobalInt
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:289    .text.USB_DisableGlobalInt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:295    .text.USB_DisableGlobalInt:00000000 USB_DisableGlobalInt
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:306    .text.USB_FlushTxFifo:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:312    .text.USB_FlushTxFifo:00000000 USB_FlushTxFifo
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:357    .text.USB_FlushRxFifo:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:363    .text.USB_FlushRxFifo:00000000 USB_FlushRxFifo
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:407    .text.USB_SetDevSpeed:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:413    .text.USB_SetDevSpeed:00000000 USB_SetDevSpeed
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:424    .text.USB_DevInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:430    .text.USB_DevInit:00000000 USB_DevInit
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:603    .text.USB_DevInit:00000188 $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:607    .text.USB_GetDevSpeed:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:613    .text.USB_GetDevSpeed:00000000 USB_GetDevSpeed
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:637    .text.USB_ActivateEndpoint:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:643    .text.USB_ActivateEndpoint:00000000 USB_ActivateEndpoint
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:699    .text.USB_ActivateEndpoint:00000094 $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:702    .text.USB_ActivateDedicatedEndpoint:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:708    .text.USB_ActivateDedicatedEndpoint:00000000 USB_ActivateDedicatedEndpoint
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:770    .text.USB_ActivateDedicatedEndpoint:0000009c $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:773    .text.USB_DeactivateEndpoint:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:779    .text.USB_DeactivateEndpoint:00000000 USB_DeactivateEndpoint
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:859    .text.USB_DeactivateEndpoint:000000d8 $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:863    .text.USB_DeactivateDedicatedEndpoint:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:869    .text.USB_DeactivateDedicatedEndpoint:00000000 USB_DeactivateDedicatedEndpoint
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:931    .text.USB_EPStopXfer:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:937    .text.USB_EPStopXfer:00000000 USB_EPStopXfer
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1021   .text.USB_WritePacket:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1027   .text.USB_WritePacket:00000000 USB_WritePacket
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1051   .text.USB_EPStartXfer:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1057   .text.USB_EPStartXfer:00000000 USB_EPStartXfer
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1292   .text.USB_EPStartXfer:00000240 $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1295   .text.USB_ReadPacket:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1301   .text.USB_ReadPacket:00000000 USB_ReadPacket
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1337   .text.USB_EPSetStall:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1343   .text.USB_EPSetStall:00000000 USB_EPSetStall
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1382   .text.USB_EPClearStall:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1388   .text.USB_EPClearStall:00000000 USB_EPClearStall
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1429   .text.USB_StopDevice:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1435   .text.USB_StopDevice:00000000 USB_StopDevice
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1467   .text.USB_SetDevAddress:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1473   .text.USB_SetDevAddress:00000000 USB_SetDevAddress
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1489   .text.USB_DevConnect:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1495   .text.USB_DevConnect:00000000 USB_DevConnect
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1509   .text.USB_DevDisconnect:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1515   .text.USB_DevDisconnect:00000000 USB_DevDisconnect
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 49
+
+
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1529   .text.USB_ReadInterrupts:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1535   .text.USB_ReadInterrupts:00000000 USB_ReadInterrupts
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1545   .text.USB_ReadChInterrupts:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1551   .text.USB_ReadChInterrupts:00000000 USB_ReadChInterrupts
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1563   .text.USB_ReadDevAllOutEpInterrupt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1569   .text.USB_ReadDevAllOutEpInterrupt:00000000 USB_ReadDevAllOutEpInterrupt
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1581   .text.USB_ReadDevAllInEpInterrupt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1587   .text.USB_ReadDevAllInEpInterrupt:00000000 USB_ReadDevAllInEpInterrupt
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1599   .text.USB_ReadDevOutEPInterrupt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1605   .text.USB_ReadDevOutEPInterrupt:00000000 USB_ReadDevOutEPInterrupt
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1617   .text.USB_ReadDevInEPInterrupt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1623   .text.USB_ReadDevInEPInterrupt:00000000 USB_ReadDevInEPInterrupt
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1641   .text.USB_ClearInterrupts:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1647   .text.USB_ClearInterrupts:00000000 USB_ClearInterrupts
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1657   .text.USB_GetMode:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1663   .text.USB_GetMode:00000000 USB_GetMode
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1672   .text.USB_SetCurrentMode:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1678   .text.USB_SetCurrentMode:00000000 USB_SetCurrentMode
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1732   .text.USB_ActivateSetup:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1738   .text.USB_ActivateSetup:00000000 USB_ActivateSetup
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1752   .text.USB_EP0_OutStart:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1758   .text.USB_EP0_OutStart:00000000 USB_EP0_OutStart
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1797   .text.USB_EP0_OutStart:0000005c $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1800   .text.USB_HostInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1806   .text.USB_HostInit:00000000 USB_HostInit
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1894   .text.USB_HostInit:000000d0 $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1898   .text.USB_InitFSLSPClkSel:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1904   .text.USB_InitFSLSPClkSel:00000000 USB_InitFSLSPClkSel
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1934   .text.USB_ResetPort:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1940   .text.USB_ResetPort:00000000 USB_ResetPort
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1969   .text.USB_DriveVbus:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:1975   .text.USB_DriveVbus:00000000 USB_DriveVbus
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2012   .text.USB_GetHostSpeed:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2018   .text.USB_GetHostSpeed:00000000 USB_GetHostSpeed
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2034   .text.USB_GetCurrentFrame:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2040   .text.USB_GetCurrentFrame:00000000 USB_GetCurrentFrame
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2050   .text.USB_HC_Init:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2056   .text.USB_HC_Init:00000000 USB_HC_Init
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2071   .text.USB_HC_Init:00000022 $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2075   .text.USB_HC_Init:00000026 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2185   .text.USB_HC_ReadInterrupt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2191   .text.USB_HC_ReadInterrupt:00000000 USB_HC_ReadInterrupt
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2201   .text.USB_HC_Halt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2207   .text.USB_HC_Halt:00000000 USB_HC_Halt
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2309   .text.USB_DoPing:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2315   .text.USB_DoPing:00000000 USB_DoPing
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2331   .text.USB_DoPing:00000020 $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2334   .text.USB_HC_StartXfer:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2340   .text.USB_HC_StartXfer:00000000 USB_HC_StartXfer
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2525   .text.USB_HC_StartXfer:000001aa $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2529   .text.USB_HC_StartXfer:000001ae $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2567   .text.USB_HC_StartXfer:000001fc $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2571   .text.USB_HC_StartXfer:00000200 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2648   .text.USB_HC_StartXfer:000002b4 $d
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2651   .text.USB_StopHost:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2657   .text.USB_StopHost:00000000 USB_StopHost
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2726   .text.USB_ActivateRemoteWakeup:00000000 $t
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s 			page 50
+
+
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2732   .text.USB_ActivateRemoteWakeup:00000000 USB_ActivateRemoteWakeup
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2748   .text.USB_DeActivateRemoteWakeup:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cctLXNvo.s:2754   .text.USB_DeActivateRemoteWakeup:00000000 USB_DeActivateRemoteWakeup
+
+UNDEFINED SYMBOLS
+HAL_Delay

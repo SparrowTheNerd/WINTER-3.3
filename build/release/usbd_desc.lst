@@ -1,0 +1,385 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccllzywW.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"usbd_desc.c"
+  15              		.text
+  16              		.section	.text.USBD_HS_DeviceDescriptor,"ax",%progbits
+  17              		.align	1
+  18              		.global	USBD_HS_DeviceDescriptor
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	USBD_HS_DeviceDescriptor:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 1223     		movs	r3, #18
+  28 0002 0B80     		strh	r3, [r1]	@ movhi
+  29 0004 0048     		ldr	r0, .L2
+  30 0006 7047     		bx	lr
+  31              	.L3:
+  32              		.align	2
+  33              	.L2:
+  34 0008 00000000 		.word	USBD_HS_DeviceDesc
+  36              		.section	.text.USBD_HS_LangIDStrDescriptor,"ax",%progbits
+  37              		.align	1
+  38              		.global	USBD_HS_LangIDStrDescriptor
+  39              		.syntax unified
+  40              		.thumb
+  41              		.thumb_func
+  43              	USBD_HS_LangIDStrDescriptor:
+  44              		@ args = 0, pretend = 0, frame = 0
+  45              		@ frame_needed = 0, uses_anonymous_args = 0
+  46              		@ link register save eliminated.
+  47 0000 0423     		movs	r3, #4
+  48 0002 0B80     		strh	r3, [r1]	@ movhi
+  49 0004 0048     		ldr	r0, .L5
+  50 0006 7047     		bx	lr
+  51              	.L6:
+  52              		.align	2
+  53              	.L5:
+  54 0008 00000000 		.word	USBD_LangIDDesc
+  56              		.section	.text.IntToUnicode,"ax",%progbits
+  57              		.align	1
+  58              		.syntax unified
+  59              		.thumb
+  60              		.thumb_func
+  62              	IntToUnicode:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccllzywW.s 			page 2
+
+
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65 0000 0023     		movs	r3, #0
+  66 0002 9342     		cmp	r3, r2
+  67 0004 1ED2     		bcs	.L15
+  68 0006 00B5     		push	{lr}
+  69 0008 10E0     		b	.L11
+  70              	.L9:
+  71 000a 0CF1370C 		add	ip, ip, #55
+  72 000e 01F813C0 		strb	ip, [r1, r3, lsl #1]
+  73              	.L10:
+  74 0012 0001     		lsls	r0, r0, #4
+  75 0014 4FEA430C 		lsl	ip, r3, #1
+  76 0018 0CF1010C 		add	ip, ip, #1
+  77 001c 4FF0000E 		mov	lr, #0
+  78 0020 01F80CE0 		strb	lr, [r1, ip]
+  79 0024 0133     		adds	r3, r3, #1
+  80 0026 DBB2     		uxtb	r3, r3
+  81 0028 9342     		cmp	r3, r2
+  82 002a 09D2     		bcs	.L16
+  83              	.L11:
+  84 002c 4FEA107C 		lsr	ip, r0, #28
+  85 0030 B0F1204F 		cmp	r0, #-1610612736
+  86 0034 E9D2     		bcs	.L9
+  87 0036 0CF1300C 		add	ip, ip, #48
+  88 003a 01F813C0 		strb	ip, [r1, r3, lsl #1]
+  89 003e E8E7     		b	.L10
+  90              	.L16:
+  91 0040 5DF804FB 		ldr	pc, [sp], #4
+  92              	.L15:
+  93 0044 7047     		bx	lr
+  95              		.section	.text.Get_SerialNum,"ax",%progbits
+  96              		.align	1
+  97              		.syntax unified
+  98              		.thumb
+  99              		.thumb_func
+ 101              	Get_SerialNum:
+ 102              		@ args = 0, pretend = 0, frame = 0
+ 103              		@ frame_needed = 0, uses_anonymous_args = 0
+ 104 0000 38B5     		push	{r3, r4, r5, lr}
+ 105 0002 0B4B     		ldr	r3, .L21
+ 106 0004 D3F80008 		ldr	r0, [r3, #2048]
+ 107 0008 D3F80448 		ldr	r4, [r3, #2052]
+ 108 000c D3F80838 		ldr	r3, [r3, #2056]
+ 109 0010 C018     		adds	r0, r0, r3
+ 110 0012 00D1     		bne	.L20
+ 111              	.L17:
+ 112 0014 38BD     		pop	{r3, r4, r5, pc}
+ 113              	.L20:
+ 114 0016 074D     		ldr	r5, .L21+4
+ 115 0018 0822     		movs	r2, #8
+ 116 001a 2946     		mov	r1, r5
+ 117 001c FFF7FEFF 		bl	IntToUnicode
+ 118 0020 0422     		movs	r2, #4
+ 119 0022 05F11001 		add	r1, r5, #16
+ 120 0026 2046     		mov	r0, r4
+ 121 0028 FFF7FEFF 		bl	IntToUnicode
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccllzywW.s 			page 3
+
+
+ 122 002c F2E7     		b	.L17
+ 123              	.L22:
+ 124 002e 00BF     		.align	2
+ 125              	.L21:
+ 126 0030 00E0F11F 		.word	535945216
+ 127 0034 02000000 		.word	USBD_StringSerial+2
+ 129              		.section	.text.USBD_HS_SerialStrDescriptor,"ax",%progbits
+ 130              		.align	1
+ 131              		.global	USBD_HS_SerialStrDescriptor
+ 132              		.syntax unified
+ 133              		.thumb
+ 134              		.thumb_func
+ 136              	USBD_HS_SerialStrDescriptor:
+ 137              		@ args = 0, pretend = 0, frame = 0
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139 0000 08B5     		push	{r3, lr}
+ 140 0002 1A23     		movs	r3, #26
+ 141 0004 0B80     		strh	r3, [r1]	@ movhi
+ 142 0006 FFF7FEFF 		bl	Get_SerialNum
+ 143 000a 0148     		ldr	r0, .L25
+ 144 000c 08BD     		pop	{r3, pc}
+ 145              	.L26:
+ 146 000e 00BF     		.align	2
+ 147              	.L25:
+ 148 0010 00000000 		.word	USBD_StringSerial
+ 150              		.section	.rodata.USBD_HS_ProductStrDescriptor.str1.4,"aMS",%progbits,1
+ 151              		.align	2
+ 152              	.LC0:
+ 153 0000 53544D33 		.ascii	"STM32 Virtual ComPort\000"
+ 153      32205669 
+ 153      72747561 
+ 153      6C20436F 
+ 153      6D506F72 
+ 154              		.section	.text.USBD_HS_ProductStrDescriptor,"ax",%progbits
+ 155              		.align	1
+ 156              		.global	USBD_HS_ProductStrDescriptor
+ 157              		.syntax unified
+ 158              		.thumb
+ 159              		.thumb_func
+ 161              	USBD_HS_ProductStrDescriptor:
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164 0000 08B5     		push	{r3, lr}
+ 165 0002 0A46     		mov	r2, r1
+ 166 0004 28B9     		cbnz	r0, .L28
+ 167 0006 0549     		ldr	r1, .L31
+ 168 0008 0548     		ldr	r0, .L31+4
+ 169 000a FFF7FEFF 		bl	USBD_GetString
+ 170              	.L29:
+ 171 000e 0348     		ldr	r0, .L31
+ 172 0010 08BD     		pop	{r3, pc}
+ 173              	.L28:
+ 174 0012 0249     		ldr	r1, .L31
+ 175 0014 0248     		ldr	r0, .L31+4
+ 176 0016 FFF7FEFF 		bl	USBD_GetString
+ 177 001a F8E7     		b	.L29
+ 178              	.L32:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccllzywW.s 			page 4
+
+
+ 179              		.align	2
+ 180              	.L31:
+ 181 001c 00000000 		.word	USBD_StrDesc
+ 182 0020 00000000 		.word	.LC0
+ 184              		.section	.rodata.USBD_HS_ManufacturerStrDescriptor.str1.4,"aMS",%progbits,1
+ 185              		.align	2
+ 186              	.LC1:
+ 187 0000 53544D69 		.ascii	"STMicroelectronics\000"
+ 187      63726F65 
+ 187      6C656374 
+ 187      726F6E69 
+ 187      637300
+ 188              		.section	.text.USBD_HS_ManufacturerStrDescriptor,"ax",%progbits
+ 189              		.align	1
+ 190              		.global	USBD_HS_ManufacturerStrDescriptor
+ 191              		.syntax unified
+ 192              		.thumb
+ 193              		.thumb_func
+ 195              	USBD_HS_ManufacturerStrDescriptor:
+ 196              		@ args = 0, pretend = 0, frame = 0
+ 197              		@ frame_needed = 0, uses_anonymous_args = 0
+ 198 0000 10B5     		push	{r4, lr}
+ 199 0002 0A46     		mov	r2, r1
+ 200 0004 034C     		ldr	r4, .L35
+ 201 0006 2146     		mov	r1, r4
+ 202 0008 0348     		ldr	r0, .L35+4
+ 203 000a FFF7FEFF 		bl	USBD_GetString
+ 204 000e 2046     		mov	r0, r4
+ 205 0010 10BD     		pop	{r4, pc}
+ 206              	.L36:
+ 207 0012 00BF     		.align	2
+ 208              	.L35:
+ 209 0014 00000000 		.word	USBD_StrDesc
+ 210 0018 00000000 		.word	.LC1
+ 212              		.section	.rodata.USBD_HS_ConfigStrDescriptor.str1.4,"aMS",%progbits,1
+ 213              		.align	2
+ 214              	.LC2:
+ 215 0000 43444320 		.ascii	"CDC Config\000"
+ 215      436F6E66 
+ 215      696700
+ 216              		.section	.text.USBD_HS_ConfigStrDescriptor,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	USBD_HS_ConfigStrDescriptor
+ 219              		.syntax unified
+ 220              		.thumb
+ 221              		.thumb_func
+ 223              	USBD_HS_ConfigStrDescriptor:
+ 224              		@ args = 0, pretend = 0, frame = 0
+ 225              		@ frame_needed = 0, uses_anonymous_args = 0
+ 226 0000 08B5     		push	{r3, lr}
+ 227 0002 0A46     		mov	r2, r1
+ 228 0004 28B9     		cbnz	r0, .L38
+ 229 0006 0549     		ldr	r1, .L41
+ 230 0008 0548     		ldr	r0, .L41+4
+ 231 000a FFF7FEFF 		bl	USBD_GetString
+ 232              	.L39:
+ 233 000e 0348     		ldr	r0, .L41
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccllzywW.s 			page 5
+
+
+ 234 0010 08BD     		pop	{r3, pc}
+ 235              	.L38:
+ 236 0012 0249     		ldr	r1, .L41
+ 237 0014 0248     		ldr	r0, .L41+4
+ 238 0016 FFF7FEFF 		bl	USBD_GetString
+ 239 001a F8E7     		b	.L39
+ 240              	.L42:
+ 241              		.align	2
+ 242              	.L41:
+ 243 001c 00000000 		.word	USBD_StrDesc
+ 244 0020 00000000 		.word	.LC2
+ 246              		.section	.rodata.USBD_HS_InterfaceStrDescriptor.str1.4,"aMS",%progbits,1
+ 247              		.align	2
+ 248              	.LC3:
+ 249 0000 43444320 		.ascii	"CDC Interface\000"
+ 249      496E7465 
+ 249      72666163 
+ 249      6500
+ 250              		.section	.text.USBD_HS_InterfaceStrDescriptor,"ax",%progbits
+ 251              		.align	1
+ 252              		.global	USBD_HS_InterfaceStrDescriptor
+ 253              		.syntax unified
+ 254              		.thumb
+ 255              		.thumb_func
+ 257              	USBD_HS_InterfaceStrDescriptor:
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260 0000 08B5     		push	{r3, lr}
+ 261 0002 0A46     		mov	r2, r1
+ 262 0004 28B9     		cbnz	r0, .L44
+ 263 0006 0549     		ldr	r1, .L47
+ 264 0008 0548     		ldr	r0, .L47+4
+ 265 000a FFF7FEFF 		bl	USBD_GetString
+ 266              	.L45:
+ 267 000e 0348     		ldr	r0, .L47
+ 268 0010 08BD     		pop	{r3, pc}
+ 269              	.L44:
+ 270 0012 0249     		ldr	r1, .L47
+ 271 0014 0248     		ldr	r0, .L47+4
+ 272 0016 FFF7FEFF 		bl	USBD_GetString
+ 273 001a F8E7     		b	.L45
+ 274              	.L48:
+ 275              		.align	2
+ 276              	.L47:
+ 277 001c 00000000 		.word	USBD_StrDesc
+ 278 0020 00000000 		.word	.LC3
+ 280              		.global	USBD_StringSerial
+ 281              		.section	.data.USBD_StringSerial,"aw"
+ 282              		.align	2
+ 285              	USBD_StringSerial:
+ 286 0000 1A0300   		.ascii	"\032\003\000"
+ 287 0003 00000000 		.space	23
+ 287      00000000 
+ 287      00000000 
+ 287      00000000 
+ 287      00000000 
+ 288              		.global	USBD_StrDesc
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccllzywW.s 			page 6
+
+
+ 289              		.section	.bss.USBD_StrDesc,"aw",%nobits
+ 290              		.align	2
+ 293              	USBD_StrDesc:
+ 294 0000 00000000 		.space	512
+ 294      00000000 
+ 294      00000000 
+ 294      00000000 
+ 294      00000000 
+ 295              		.global	USBD_LangIDDesc
+ 296              		.section	.data.USBD_LangIDDesc,"aw"
+ 297              		.align	2
+ 300              	USBD_LangIDDesc:
+ 301 0000 04030904 		.ascii	"\004\003\011\004"
+ 302              		.global	USBD_HS_DeviceDesc
+ 303              		.section	.data.USBD_HS_DeviceDesc,"aw"
+ 304              		.align	2
+ 307              	USBD_HS_DeviceDesc:
+ 308 0000 12010002 		.ascii	"\022\001\000\002\002\002\000@\203\004@W\000\002\001"
+ 308      02020040 
+ 308      83044057 
+ 308      000201
+ 309 000f 020301   		.ascii	"\002\003\001"
+ 310              		.global	HS_Desc
+ 311              		.section	.data.HS_Desc,"aw"
+ 312              		.align	2
+ 315              	HS_Desc:
+ 316 0000 00000000 		.word	USBD_HS_DeviceDescriptor
+ 317 0004 00000000 		.word	USBD_HS_LangIDStrDescriptor
+ 318 0008 00000000 		.word	USBD_HS_ManufacturerStrDescriptor
+ 319 000c 00000000 		.word	USBD_HS_ProductStrDescriptor
+ 320 0010 00000000 		.word	USBD_HS_SerialStrDescriptor
+ 321 0014 00000000 		.word	USBD_HS_ConfigStrDescriptor
+ 322 0018 00000000 		.word	USBD_HS_InterfaceStrDescriptor
+ 323              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccllzywW.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usbd_desc.c
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:17     .text.USBD_HS_DeviceDescriptor:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:23     .text.USBD_HS_DeviceDescriptor:00000000 USBD_HS_DeviceDescriptor
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:34     .text.USBD_HS_DeviceDescriptor:00000008 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:307    .data.USBD_HS_DeviceDesc:00000000 USBD_HS_DeviceDesc
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:37     .text.USBD_HS_LangIDStrDescriptor:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:43     .text.USBD_HS_LangIDStrDescriptor:00000000 USBD_HS_LangIDStrDescriptor
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:54     .text.USBD_HS_LangIDStrDescriptor:00000008 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:300    .data.USBD_LangIDDesc:00000000 USBD_LangIDDesc
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:57     .text.IntToUnicode:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:62     .text.IntToUnicode:00000000 IntToUnicode
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:96     .text.Get_SerialNum:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:101    .text.Get_SerialNum:00000000 Get_SerialNum
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:126    .text.Get_SerialNum:00000030 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:285    .data.USBD_StringSerial:00000000 USBD_StringSerial
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:130    .text.USBD_HS_SerialStrDescriptor:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:136    .text.USBD_HS_SerialStrDescriptor:00000000 USBD_HS_SerialStrDescriptor
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:148    .text.USBD_HS_SerialStrDescriptor:00000010 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:151    .rodata.USBD_HS_ProductStrDescriptor.str1.4:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:155    .text.USBD_HS_ProductStrDescriptor:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:161    .text.USBD_HS_ProductStrDescriptor:00000000 USBD_HS_ProductStrDescriptor
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:181    .text.USBD_HS_ProductStrDescriptor:0000001c $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:293    .bss.USBD_StrDesc:00000000 USBD_StrDesc
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:185    .rodata.USBD_HS_ManufacturerStrDescriptor.str1.4:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:189    .text.USBD_HS_ManufacturerStrDescriptor:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:195    .text.USBD_HS_ManufacturerStrDescriptor:00000000 USBD_HS_ManufacturerStrDescriptor
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:209    .text.USBD_HS_ManufacturerStrDescriptor:00000014 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:213    .rodata.USBD_HS_ConfigStrDescriptor.str1.4:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:217    .text.USBD_HS_ConfigStrDescriptor:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:223    .text.USBD_HS_ConfigStrDescriptor:00000000 USBD_HS_ConfigStrDescriptor
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:243    .text.USBD_HS_ConfigStrDescriptor:0000001c $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:247    .rodata.USBD_HS_InterfaceStrDescriptor.str1.4:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:251    .text.USBD_HS_InterfaceStrDescriptor:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:257    .text.USBD_HS_InterfaceStrDescriptor:00000000 USBD_HS_InterfaceStrDescriptor
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:277    .text.USBD_HS_InterfaceStrDescriptor:0000001c $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:282    .data.USBD_StringSerial:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:290    .bss.USBD_StrDesc:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:297    .data.USBD_LangIDDesc:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:304    .data.USBD_HS_DeviceDesc:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:315    .data.HS_Desc:00000000 HS_Desc
+C:\Users\thewo\AppData\Local\Temp\ccllzywW.s:312    .data.HS_Desc:00000000 $d
+
+UNDEFINED SYMBOLS
+USBD_GetString

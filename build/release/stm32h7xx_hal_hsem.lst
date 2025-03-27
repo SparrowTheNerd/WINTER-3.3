@@ -1,0 +1,385 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32h7xx_hal_hsem.c"
+  15              		.text
+  16              		.section	.rodata.HAL_HSEM_Take.str1.4,"aMS",%progbits,1
+  17              		.align	2
+  18              	.LC0:
+  19 0000 44726976 		.ascii	"Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem"
+  19      6572732F 
+  19      53544D33 
+  19      32483778 
+  19      785F4841 
+  20 0033 2E6300   		.ascii	".c\000"
+  21              		.section	.text.HAL_HSEM_Take,"ax",%progbits
+  22              		.align	1
+  23              		.global	HAL_HSEM_Take
+  24              		.syntax unified
+  25              		.thumb
+  26              		.thumb_func
+  28              	HAL_HSEM_Take:
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 38B5     		push	{r3, r4, r5, lr}
+  32 0002 0446     		mov	r4, r0
+  33 0004 0D46     		mov	r5, r1
+  34 0006 1F28     		cmp	r0, #31
+  35 0008 0CD8     		bhi	.L7
+  36              	.L2:
+  37 000a FF2D     		cmp	r5, #255
+  38 000c 0FD8     		bhi	.L8
+  39              	.L3:
+  40 000e 0B4B     		ldr	r3, .L9
+  41 0010 2B43     		orrs	r3, r3, r5
+  42 0012 0B4A     		ldr	r2, .L9+4
+  43 0014 42F82430 		str	r3, [r2, r4, lsl #2]
+  44 0018 52F82420 		ldr	r2, [r2, r4, lsl #2]
+  45 001c 9342     		cmp	r3, r2
+  46 001e 0BD0     		beq	.L5
+  47 0020 0120     		movs	r0, #1
+  48              	.L4:
+  49 0022 38BD     		pop	{r3, r4, r5, pc}
+  50              	.L7:
+  51 0024 A221     		movs	r1, #162
+  52 0026 0748     		ldr	r0, .L9+8
+  53 0028 FFF7FEFF 		bl	assert_failed
+  54 002c EDE7     		b	.L2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s 			page 2
+
+
+  55              	.L8:
+  56 002e A321     		movs	r1, #163
+  57 0030 0448     		ldr	r0, .L9+8
+  58 0032 FFF7FEFF 		bl	assert_failed
+  59 0036 EAE7     		b	.L3
+  60              	.L5:
+  61 0038 0020     		movs	r0, #0
+  62 003a F2E7     		b	.L4
+  63              	.L10:
+  64              		.align	2
+  65              	.L9:
+  66 003c 00030080 		.word	-2147482880
+  67 0040 00640258 		.word	1476551680
+  68 0044 00000000 		.word	.LC0
+  70              		.section	.text.HAL_HSEM_FastTake,"ax",%progbits
+  71              		.align	1
+  72              		.global	HAL_HSEM_FastTake
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  77              	HAL_HSEM_FastTake:
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80 0000 10B5     		push	{r4, lr}
+  81 0002 0446     		mov	r4, r0
+  82 0004 1F28     		cmp	r0, #31
+  83 0006 08D8     		bhi	.L16
+  84              	.L12:
+  85 0008 2034     		adds	r4, r4, #32
+  86 000a 074B     		ldr	r3, .L17
+  87 000c 53F82420 		ldr	r2, [r3, r4, lsl #2]
+  88 0010 064B     		ldr	r3, .L17+4
+  89 0012 9A42     		cmp	r2, r3
+  90 0014 06D0     		beq	.L14
+  91 0016 0120     		movs	r0, #1
+  92              	.L13:
+  93 0018 10BD     		pop	{r4, pc}
+  94              	.L16:
+  95 001a C721     		movs	r1, #199
+  96 001c 0448     		ldr	r0, .L17+8
+  97 001e FFF7FEFF 		bl	assert_failed
+  98 0022 F1E7     		b	.L12
+  99              	.L14:
+ 100 0024 0020     		movs	r0, #0
+ 101 0026 F7E7     		b	.L13
+ 102              	.L18:
+ 103              		.align	2
+ 104              	.L17:
+ 105 0028 00640258 		.word	1476551680
+ 106 002c 00030080 		.word	-2147482880
+ 107 0030 00000000 		.word	.LC0
+ 109              		.section	.text.HAL_HSEM_IsSemTaken,"ax",%progbits
+ 110              		.align	1
+ 111              		.global	HAL_HSEM_IsSemTaken
+ 112              		.syntax unified
+ 113              		.thumb
+ 114              		.thumb_func
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s 			page 3
+
+
+ 116              	HAL_HSEM_IsSemTaken:
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		@ link register save eliminated.
+ 120 0000 044B     		ldr	r3, .L23
+ 121 0002 53F82030 		ldr	r3, [r3, r0, lsl #2]
+ 122 0006 002B     		cmp	r3, #0
+ 123 0008 01DB     		blt	.L22
+ 124 000a 0020     		movs	r0, #0
+ 125 000c 7047     		bx	lr
+ 126              	.L22:
+ 127 000e 0120     		movs	r0, #1
+ 128 0010 7047     		bx	lr
+ 129              	.L24:
+ 130 0012 00BF     		.align	2
+ 131              	.L23:
+ 132 0014 00640258 		.word	1476551680
+ 134              		.section	.text.HAL_HSEM_Release,"ax",%progbits
+ 135              		.align	1
+ 136              		.global	HAL_HSEM_Release
+ 137              		.syntax unified
+ 138              		.thumb
+ 139              		.thumb_func
+ 141              	HAL_HSEM_Release:
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144 0000 38B5     		push	{r3, r4, r5, lr}
+ 145 0002 0546     		mov	r5, r0
+ 146 0004 0C46     		mov	r4, r1
+ 147 0006 1F28     		cmp	r0, #31
+ 148 0008 07D8     		bhi	.L29
+ 149              	.L26:
+ 150 000a FF2C     		cmp	r4, #255
+ 151 000c 0AD8     		bhi	.L30
+ 152              	.L27:
+ 153 000e 44F44074 		orr	r4, r4, #768
+ 154 0012 074B     		ldr	r3, .L31
+ 155 0014 43F82540 		str	r4, [r3, r5, lsl #2]
+ 156 0018 38BD     		pop	{r3, r4, r5, pc}
+ 157              	.L29:
+ 158 001a F021     		movs	r1, #240
+ 159 001c 0548     		ldr	r0, .L31+4
+ 160 001e FFF7FEFF 		bl	assert_failed
+ 161 0022 F2E7     		b	.L26
+ 162              	.L30:
+ 163 0024 F121     		movs	r1, #241
+ 164 0026 0348     		ldr	r0, .L31+4
+ 165 0028 FFF7FEFF 		bl	assert_failed
+ 166 002c EFE7     		b	.L27
+ 167              	.L32:
+ 168 002e 00BF     		.align	2
+ 169              	.L31:
+ 170 0030 00640258 		.word	1476551680
+ 171 0034 00000000 		.word	.LC0
+ 173              		.section	.text.HAL_HSEM_ReleaseAll,"ax",%progbits
+ 174              		.align	1
+ 175              		.global	HAL_HSEM_ReleaseAll
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s 			page 4
+
+
+ 176              		.syntax unified
+ 177              		.thumb
+ 178              		.thumb_func
+ 180              	HAL_HSEM_ReleaseAll:
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183 0000 38B5     		push	{r3, r4, r5, lr}
+ 184 0002 0546     		mov	r5, r0
+ 185 0004 0C46     		mov	r4, r1
+ 186 0006 B0F5803F 		cmp	r0, #65536
+ 187 000a 08D2     		bcs	.L37
+ 188              	.L34:
+ 189 000c 032C     		cmp	r4, #3
+ 190 000e 0CD1     		bne	.L38
+ 191              	.L35:
+ 192 0010 2402     		lsls	r4, r4, #8
+ 193 0012 44EA0544 		orr	r4, r4, r5, lsl #16
+ 194 0016 084B     		ldr	r3, .L39
+ 195 0018 C3F84041 		str	r4, [r3, #320]
+ 196 001c 38BD     		pop	{r3, r4, r5, pc}
+ 197              	.L37:
+ 198 001e 4FF48271 		mov	r1, #260
+ 199 0022 0648     		ldr	r0, .L39+4
+ 200 0024 FFF7FEFF 		bl	assert_failed
+ 201 0028 F0E7     		b	.L34
+ 202              	.L38:
+ 203 002a 40F20511 		movw	r1, #261
+ 204 002e 0348     		ldr	r0, .L39+4
+ 205 0030 FFF7FEFF 		bl	assert_failed
+ 206 0034 ECE7     		b	.L35
+ 207              	.L40:
+ 208 0036 00BF     		.align	2
+ 209              	.L39:
+ 210 0038 00640258 		.word	1476551680
+ 211 003c 00000000 		.word	.LC0
+ 213              		.section	.text.HAL_HSEM_SetClearKey,"ax",%progbits
+ 214              		.align	1
+ 215              		.global	HAL_HSEM_SetClearKey
+ 216              		.syntax unified
+ 217              		.thumb
+ 218              		.thumb_func
+ 220              	HAL_HSEM_SetClearKey:
+ 221              		@ args = 0, pretend = 0, frame = 0
+ 222              		@ frame_needed = 0, uses_anonymous_args = 0
+ 223 0000 10B5     		push	{r4, lr}
+ 224 0002 0446     		mov	r4, r0
+ 225 0004 B0F5803F 		cmp	r0, #65536
+ 226 0008 08D2     		bcs	.L44
+ 227              	.L42:
+ 228 000a 074A     		ldr	r2, .L45
+ 229 000c D2F84431 		ldr	r3, [r2, #324]
+ 230 0010 9BB2     		uxth	r3, r3
+ 231 0012 43EA0443 		orr	r3, r3, r4, lsl #16
+ 232 0016 C2F84431 		str	r3, [r2, #324]
+ 233 001a 10BD     		pop	{r4, pc}
+ 234              	.L44:
+ 235 001c 4FF49271 		mov	r1, #292
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s 			page 5
+
+
+ 236 0020 0248     		ldr	r0, .L45+4
+ 237 0022 FFF7FEFF 		bl	assert_failed
+ 238 0026 F0E7     		b	.L42
+ 239              	.L46:
+ 240              		.align	2
+ 241              	.L45:
+ 242 0028 00640258 		.word	1476551680
+ 243 002c 00000000 		.word	.LC0
+ 245              		.section	.text.HAL_HSEM_GetClearKey,"ax",%progbits
+ 246              		.align	1
+ 247              		.global	HAL_HSEM_GetClearKey
+ 248              		.syntax unified
+ 249              		.thumb
+ 250              		.thumb_func
+ 252              	HAL_HSEM_GetClearKey:
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255              		@ link register save eliminated.
+ 256 0000 024B     		ldr	r3, .L48
+ 257 0002 D3F84401 		ldr	r0, [r3, #324]
+ 258 0006 000C     		lsrs	r0, r0, #16
+ 259 0008 7047     		bx	lr
+ 260              	.L49:
+ 261 000a 00BF     		.align	2
+ 262              	.L48:
+ 263 000c 00640258 		.word	1476551680
+ 265              		.section	.text.HAL_HSEM_ActivateNotification,"ax",%progbits
+ 266              		.align	1
+ 267              		.global	HAL_HSEM_ActivateNotification
+ 268              		.syntax unified
+ 269              		.thumb
+ 270              		.thumb_func
+ 272              	HAL_HSEM_ActivateNotification:
+ 273              		@ args = 0, pretend = 0, frame = 0
+ 274              		@ frame_needed = 0, uses_anonymous_args = 0
+ 275              		@ link register save eliminated.
+ 276 0000 024A     		ldr	r2, .L51
+ 277 0002 1368     		ldr	r3, [r2]
+ 278 0004 0343     		orrs	r3, r3, r0
+ 279 0006 1360     		str	r3, [r2]
+ 280 0008 7047     		bx	lr
+ 281              	.L52:
+ 282 000a 00BF     		.align	2
+ 283              	.L51:
+ 284 000c 00650258 		.word	1476551936
+ 286              		.section	.text.HAL_HSEM_DeactivateNotification,"ax",%progbits
+ 287              		.align	1
+ 288              		.global	HAL_HSEM_DeactivateNotification
+ 289              		.syntax unified
+ 290              		.thumb
+ 291              		.thumb_func
+ 293              	HAL_HSEM_DeactivateNotification:
+ 294              		@ args = 0, pretend = 0, frame = 0
+ 295              		@ frame_needed = 0, uses_anonymous_args = 0
+ 296              		@ link register save eliminated.
+ 297 0000 024A     		ldr	r2, .L54
+ 298 0002 1368     		ldr	r3, [r2]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s 			page 6
+
+
+ 299 0004 23EA0003 		bic	r3, r3, r0
+ 300 0008 1360     		str	r3, [r2]
+ 301 000a 7047     		bx	lr
+ 302              	.L55:
+ 303              		.align	2
+ 304              	.L54:
+ 305 000c 00650258 		.word	1476551936
+ 307              		.section	.text.HAL_HSEM_FreeCallback,"ax",%progbits
+ 308              		.align	1
+ 309              		.weak	HAL_HSEM_FreeCallback
+ 310              		.syntax unified
+ 311              		.thumb
+ 312              		.thumb_func
+ 314              	HAL_HSEM_FreeCallback:
+ 315              		@ args = 0, pretend = 0, frame = 0
+ 316              		@ frame_needed = 0, uses_anonymous_args = 0
+ 317              		@ link register save eliminated.
+ 318 0000 7047     		bx	lr
+ 320              		.section	.text.HAL_HSEM_IRQHandler,"ax",%progbits
+ 321              		.align	1
+ 322              		.global	HAL_HSEM_IRQHandler
+ 323              		.syntax unified
+ 324              		.thumb
+ 325              		.thumb_func
+ 327              	HAL_HSEM_IRQHandler:
+ 328              		@ args = 0, pretend = 0, frame = 0
+ 329              		@ frame_needed = 0, uses_anonymous_args = 0
+ 330 0000 08B5     		push	{r3, lr}
+ 331 0002 054B     		ldr	r3, .L59
+ 332 0004 D868     		ldr	r0, [r3, #12]
+ 333 0006 1A68     		ldr	r2, [r3]
+ 334 0008 22EA0002 		bic	r2, r2, r0
+ 335 000c 1A60     		str	r2, [r3]
+ 336 000e 5860     		str	r0, [r3, #4]
+ 337 0010 FFF7FEFF 		bl	HAL_HSEM_FreeCallback
+ 338 0014 08BD     		pop	{r3, pc}
+ 339              	.L60:
+ 340 0016 00BF     		.align	2
+ 341              	.L59:
+ 342 0018 00650258 		.word	1476551936
+ 344              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32h7xx_hal_hsem.c
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:17     .rodata.HAL_HSEM_Take.str1.4:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:22     .text.HAL_HSEM_Take:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:28     .text.HAL_HSEM_Take:00000000 HAL_HSEM_Take
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:66     .text.HAL_HSEM_Take:0000003c $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:71     .text.HAL_HSEM_FastTake:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:77     .text.HAL_HSEM_FastTake:00000000 HAL_HSEM_FastTake
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:105    .text.HAL_HSEM_FastTake:00000028 $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:110    .text.HAL_HSEM_IsSemTaken:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:116    .text.HAL_HSEM_IsSemTaken:00000000 HAL_HSEM_IsSemTaken
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:132    .text.HAL_HSEM_IsSemTaken:00000014 $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:135    .text.HAL_HSEM_Release:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:141    .text.HAL_HSEM_Release:00000000 HAL_HSEM_Release
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:170    .text.HAL_HSEM_Release:00000030 $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:174    .text.HAL_HSEM_ReleaseAll:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:180    .text.HAL_HSEM_ReleaseAll:00000000 HAL_HSEM_ReleaseAll
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:210    .text.HAL_HSEM_ReleaseAll:00000038 $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:214    .text.HAL_HSEM_SetClearKey:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:220    .text.HAL_HSEM_SetClearKey:00000000 HAL_HSEM_SetClearKey
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:242    .text.HAL_HSEM_SetClearKey:00000028 $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:246    .text.HAL_HSEM_GetClearKey:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:252    .text.HAL_HSEM_GetClearKey:00000000 HAL_HSEM_GetClearKey
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:263    .text.HAL_HSEM_GetClearKey:0000000c $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:266    .text.HAL_HSEM_ActivateNotification:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:272    .text.HAL_HSEM_ActivateNotification:00000000 HAL_HSEM_ActivateNotification
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:284    .text.HAL_HSEM_ActivateNotification:0000000c $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:287    .text.HAL_HSEM_DeactivateNotification:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:293    .text.HAL_HSEM_DeactivateNotification:00000000 HAL_HSEM_DeactivateNotification
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:305    .text.HAL_HSEM_DeactivateNotification:0000000c $d
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:308    .text.HAL_HSEM_FreeCallback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:314    .text.HAL_HSEM_FreeCallback:00000000 HAL_HSEM_FreeCallback
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:321    .text.HAL_HSEM_IRQHandler:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:327    .text.HAL_HSEM_IRQHandler:00000000 HAL_HSEM_IRQHandler
+C:\Users\thewo\AppData\Local\Temp\ccgfaI6M.s:342    .text.HAL_HSEM_IRQHandler:00000018 $d
+
+UNDEFINED SYMBOLS
+assert_failed

@@ -1,0 +1,309 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"spi.c"
+  15              		.text
+  16              		.section	.text.MX_SPI1_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_SPI1_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_SPI1_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27 0002 1348     		ldr	r0, .L5
+  28 0004 134B     		ldr	r3, .L5+4
+  29 0006 0360     		str	r3, [r0]
+  30 0008 4FF48003 		mov	r3, #4194304
+  31 000c 4360     		str	r3, [r0, #4]
+  32 000e 0023     		movs	r3, #0
+  33 0010 8360     		str	r3, [r0, #8]
+  34 0012 0322     		movs	r2, #3
+  35 0014 C260     		str	r2, [r0, #12]
+  36 0016 0361     		str	r3, [r0, #16]
+  37 0018 4361     		str	r3, [r0, #20]
+  38 001a 4FF08062 		mov	r2, #67108864
+  39 001e 8261     		str	r2, [r0, #24]
+  40 0020 C361     		str	r3, [r0, #28]
+  41 0022 0362     		str	r3, [r0, #32]
+  42 0024 4362     		str	r3, [r0, #36]
+  43 0026 8362     		str	r3, [r0, #40]
+  44 0028 C362     		str	r3, [r0, #44]
+  45 002a 4FF08042 		mov	r2, #1073741824
+  46 002e 4263     		str	r2, [r0, #52]
+  47 0030 8363     		str	r3, [r0, #56]
+  48 0032 C363     		str	r3, [r0, #60]
+  49 0034 0364     		str	r3, [r0, #64]
+  50 0036 4364     		str	r3, [r0, #68]
+  51 0038 8364     		str	r3, [r0, #72]
+  52 003a C364     		str	r3, [r0, #76]
+  53 003c 0365     		str	r3, [r0, #80]
+  54 003e 4365     		str	r3, [r0, #84]
+  55 0040 8365     		str	r3, [r0, #88]
+  56 0042 FFF7FEFF 		bl	HAL_SPI_Init
+  57 0046 00B9     		cbnz	r0, .L4
+  58              	.L1:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s 			page 2
+
+
+  59 0048 08BD     		pop	{r3, pc}
+  60              	.L4:
+  61 004a FFF7FEFF 		bl	Error_Handler
+  62 004e FBE7     		b	.L1
+  63              	.L6:
+  64              		.align	2
+  65              	.L5:
+  66 0050 00000000 		.word	hspi1
+  67 0054 00300140 		.word	1073819648
+  69              		.section	.text.MX_SPI2_Init,"ax",%progbits
+  70              		.align	1
+  71              		.global	MX_SPI2_Init
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  76              	MX_SPI2_Init:
+  77              		@ args = 0, pretend = 0, frame = 0
+  78              		@ frame_needed = 0, uses_anonymous_args = 0
+  79 0000 08B5     		push	{r3, lr}
+  80 0002 1348     		ldr	r0, .L11
+  81 0004 134B     		ldr	r3, .L11+4
+  82 0006 0360     		str	r3, [r0]
+  83 0008 4FF48003 		mov	r3, #4194304
+  84 000c 4360     		str	r3, [r0, #4]
+  85 000e 0023     		movs	r3, #0
+  86 0010 8360     		str	r3, [r0, #8]
+  87 0012 0322     		movs	r2, #3
+  88 0014 C260     		str	r2, [r0, #12]
+  89 0016 0361     		str	r3, [r0, #16]
+  90 0018 4361     		str	r3, [r0, #20]
+  91 001a 4FF08062 		mov	r2, #67108864
+  92 001e 8261     		str	r2, [r0, #24]
+  93 0020 C361     		str	r3, [r0, #28]
+  94 0022 0362     		str	r3, [r0, #32]
+  95 0024 4362     		str	r3, [r0, #36]
+  96 0026 8362     		str	r3, [r0, #40]
+  97 0028 C362     		str	r3, [r0, #44]
+  98 002a 4FF08042 		mov	r2, #1073741824
+  99 002e 4263     		str	r2, [r0, #52]
+ 100 0030 8363     		str	r3, [r0, #56]
+ 101 0032 C363     		str	r3, [r0, #60]
+ 102 0034 0364     		str	r3, [r0, #64]
+ 103 0036 4364     		str	r3, [r0, #68]
+ 104 0038 8364     		str	r3, [r0, #72]
+ 105 003a C364     		str	r3, [r0, #76]
+ 106 003c 0365     		str	r3, [r0, #80]
+ 107 003e 4365     		str	r3, [r0, #84]
+ 108 0040 8365     		str	r3, [r0, #88]
+ 109 0042 FFF7FEFF 		bl	HAL_SPI_Init
+ 110 0046 00B9     		cbnz	r0, .L10
+ 111              	.L7:
+ 112 0048 08BD     		pop	{r3, pc}
+ 113              	.L10:
+ 114 004a FFF7FEFF 		bl	Error_Handler
+ 115 004e FBE7     		b	.L7
+ 116              	.L12:
+ 117              		.align	2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s 			page 3
+
+
+ 118              	.L11:
+ 119 0050 00000000 		.word	hspi2
+ 120 0054 00380040 		.word	1073756160
+ 122              		.section	.text.HAL_SPI_MspInit,"ax",%progbits
+ 123              		.align	1
+ 124              		.global	HAL_SPI_MspInit
+ 125              		.syntax unified
+ 126              		.thumb
+ 127              		.thumb_func
+ 129              	HAL_SPI_MspInit:
+ 130              		@ args = 0, pretend = 0, frame = 40
+ 131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132 0000 00B5     		push	{lr}
+ 133 0002 8BB0     		sub	sp, sp, #44
+ 134 0004 0023     		movs	r3, #0
+ 135 0006 0593     		str	r3, [sp, #20]
+ 136 0008 0693     		str	r3, [sp, #24]
+ 137 000a 0793     		str	r3, [sp, #28]
+ 138 000c 0893     		str	r3, [sp, #32]
+ 139 000e 0993     		str	r3, [sp, #36]
+ 140 0010 0368     		ldr	r3, [r0]
+ 141 0012 294A     		ldr	r2, .L19
+ 142 0014 9342     		cmp	r3, r2
+ 143 0016 05D0     		beq	.L17
+ 144 0018 284A     		ldr	r2, .L19+4
+ 145 001a 9342     		cmp	r3, r2
+ 146 001c 26D0     		beq	.L18
+ 147              	.L13:
+ 148 001e 0BB0     		add	sp, sp, #44
+ 149              		@ sp needed
+ 150 0020 5DF804FB 		ldr	pc, [sp], #4
+ 151              	.L17:
+ 152 0024 264B     		ldr	r3, .L19+8
+ 153 0026 D3F8F020 		ldr	r2, [r3, #240]
+ 154 002a 42F48052 		orr	r2, r2, #4096
+ 155 002e C3F8F020 		str	r2, [r3, #240]
+ 156 0032 D3F8F020 		ldr	r2, [r3, #240]
+ 157 0036 02F48052 		and	r2, r2, #4096
+ 158 003a 0192     		str	r2, [sp, #4]
+ 159 003c 019A     		ldr	r2, [sp, #4]
+ 160 003e D3F8E020 		ldr	r2, [r3, #224]
+ 161 0042 42F00202 		orr	r2, r2, #2
+ 162 0046 C3F8E020 		str	r2, [r3, #224]
+ 163 004a D3F8E030 		ldr	r3, [r3, #224]
+ 164 004e 03F00203 		and	r3, r3, #2
+ 165 0052 0293     		str	r3, [sp, #8]
+ 166 0054 029B     		ldr	r3, [sp, #8]
+ 167 0056 3823     		movs	r3, #56
+ 168 0058 0593     		str	r3, [sp, #20]
+ 169 005a 0223     		movs	r3, #2
+ 170 005c 0693     		str	r3, [sp, #24]
+ 171 005e 0523     		movs	r3, #5
+ 172 0060 0993     		str	r3, [sp, #36]
+ 173 0062 05A9     		add	r1, sp, #20
+ 174 0064 1748     		ldr	r0, .L19+12
+ 175 0066 FFF7FEFF 		bl	HAL_GPIO_Init
+ 176 006a D8E7     		b	.L13
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s 			page 4
+
+
+ 177              	.L18:
+ 178 006c 144B     		ldr	r3, .L19+8
+ 179 006e D3F8E820 		ldr	r2, [r3, #232]
+ 180 0072 42F48042 		orr	r2, r2, #16384
+ 181 0076 C3F8E820 		str	r2, [r3, #232]
+ 182 007a D3F8E820 		ldr	r2, [r3, #232]
+ 183 007e 02F48042 		and	r2, r2, #16384
+ 184 0082 0392     		str	r2, [sp, #12]
+ 185 0084 039A     		ldr	r2, [sp, #12]
+ 186 0086 D3F8E020 		ldr	r2, [r3, #224]
+ 187 008a 42F00202 		orr	r2, r2, #2
+ 188 008e C3F8E020 		str	r2, [r3, #224]
+ 189 0092 D3F8E030 		ldr	r3, [r3, #224]
+ 190 0096 03F00203 		and	r3, r3, #2
+ 191 009a 0493     		str	r3, [sp, #16]
+ 192 009c 049B     		ldr	r3, [sp, #16]
+ 193 009e 4FF46043 		mov	r3, #57344
+ 194 00a2 0593     		str	r3, [sp, #20]
+ 195 00a4 0223     		movs	r3, #2
+ 196 00a6 0693     		str	r3, [sp, #24]
+ 197 00a8 0523     		movs	r3, #5
+ 198 00aa 0993     		str	r3, [sp, #36]
+ 199 00ac 05A9     		add	r1, sp, #20
+ 200 00ae 0548     		ldr	r0, .L19+12
+ 201 00b0 FFF7FEFF 		bl	HAL_GPIO_Init
+ 202 00b4 B3E7     		b	.L13
+ 203              	.L20:
+ 204 00b6 00BF     		.align	2
+ 205              	.L19:
+ 206 00b8 00300140 		.word	1073819648
+ 207 00bc 00380040 		.word	1073756160
+ 208 00c0 00440258 		.word	1476543488
+ 209 00c4 00040258 		.word	1476527104
+ 211              		.section	.text.HAL_SPI_MspDeInit,"ax",%progbits
+ 212              		.align	1
+ 213              		.global	HAL_SPI_MspDeInit
+ 214              		.syntax unified
+ 215              		.thumb
+ 216              		.thumb_func
+ 218              	HAL_SPI_MspDeInit:
+ 219              		@ args = 0, pretend = 0, frame = 0
+ 220              		@ frame_needed = 0, uses_anonymous_args = 0
+ 221 0000 08B5     		push	{r3, lr}
+ 222 0002 0368     		ldr	r3, [r0]
+ 223 0004 0F4A     		ldr	r2, .L27
+ 224 0006 9342     		cmp	r3, r2
+ 225 0008 03D0     		beq	.L25
+ 226 000a 0F4A     		ldr	r2, .L27+4
+ 227 000c 9342     		cmp	r3, r2
+ 228 000e 0CD0     		beq	.L26
+ 229              	.L21:
+ 230 0010 08BD     		pop	{r3, pc}
+ 231              	.L25:
+ 232 0012 0E4A     		ldr	r2, .L27+8
+ 233 0014 D2F8F030 		ldr	r3, [r2, #240]
+ 234 0018 23F48053 		bic	r3, r3, #4096
+ 235 001c C2F8F030 		str	r3, [r2, #240]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s 			page 5
+
+
+ 236 0020 3821     		movs	r1, #56
+ 237 0022 0B48     		ldr	r0, .L27+12
+ 238 0024 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 239 0028 F2E7     		b	.L21
+ 240              	.L26:
+ 241 002a 084A     		ldr	r2, .L27+8
+ 242 002c D2F8E830 		ldr	r3, [r2, #232]
+ 243 0030 23F48043 		bic	r3, r3, #16384
+ 244 0034 C2F8E830 		str	r3, [r2, #232]
+ 245 0038 4FF46041 		mov	r1, #57344
+ 246 003c 0448     		ldr	r0, .L27+12
+ 247 003e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 248 0042 E5E7     		b	.L21
+ 249              	.L28:
+ 250              		.align	2
+ 251              	.L27:
+ 252 0044 00300140 		.word	1073819648
+ 253 0048 00380040 		.word	1073756160
+ 254 004c 00440258 		.word	1476543488
+ 255 0050 00040258 		.word	1476527104
+ 257              		.global	hspi2
+ 258              		.section	.bss.hspi2,"aw",%nobits
+ 259              		.align	2
+ 262              	hspi2:
+ 263 0000 00000000 		.space	136
+ 263      00000000 
+ 263      00000000 
+ 263      00000000 
+ 263      00000000 
+ 264              		.global	hspi1
+ 265              		.section	.bss.hspi1,"aw",%nobits
+ 266              		.align	2
+ 269              	hspi1:
+ 270 0000 00000000 		.space	136
+ 270      00000000 
+ 270      00000000 
+ 270      00000000 
+ 270      00000000 
+ 271              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 spi.c
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:17     .text.MX_SPI1_Init:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:23     .text.MX_SPI1_Init:00000000 MX_SPI1_Init
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:66     .text.MX_SPI1_Init:00000050 $d
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:269    .bss.hspi1:00000000 hspi1
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:70     .text.MX_SPI2_Init:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:76     .text.MX_SPI2_Init:00000000 MX_SPI2_Init
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:119    .text.MX_SPI2_Init:00000050 $d
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:262    .bss.hspi2:00000000 hspi2
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:123    .text.HAL_SPI_MspInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:129    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:206    .text.HAL_SPI_MspInit:000000b8 $d
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:212    .text.HAL_SPI_MspDeInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:218    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:252    .text.HAL_SPI_MspDeInit:00000044 $d
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:259    .bss.hspi2:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\cchY1jh8.s:266    .bss.hspi1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_SPI_Init
+Error_Handler
+HAL_GPIO_Init
+HAL_GPIO_DeInit

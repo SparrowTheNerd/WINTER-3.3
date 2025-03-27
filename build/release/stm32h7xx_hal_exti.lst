@@ -1,0 +1,977 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32h7xx_hal_exti.c"
+  15              		.text
+  16              		.section	.rodata.HAL_EXTI_SetConfigLine.str1.4,"aMS",%progbits,1
+  17              		.align	2
+  18              	.LC0:
+  19 0000 44726976 		.ascii	"Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti"
+  19      6572732F 
+  19      53544D33 
+  19      32483778 
+  19      785F4841 
+  20 0033 2E6300   		.ascii	".c\000"
+  21              		.section	.text.HAL_EXTI_SetConfigLine,"ax",%progbits
+  22              		.align	1
+  23              		.global	HAL_EXTI_SetConfigLine
+  24              		.syntax unified
+  25              		.thumb
+  26              		.thumb_func
+  28              	HAL_EXTI_SetConfigLine:
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 0029     		cmp	r1, #0
+  32 0002 18BF     		it	ne
+  33 0004 0028     		cmpne	r0, #0
+  34 0006 00F0EB80 		beq	.L24
+  35 000a 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+  36 000e 0546     		mov	r5, r0
+  37 0010 0C46     		mov	r4, r1
+  38 0012 0A68     		ldr	r2, [r1]
+  39 0014 734B     		ldr	r3, .L38
+  40 0016 1340     		ands	r3, r3, r2
+  41 0018 53B9     		cbnz	r3, .L3
+  42 001a 02F0E063 		and	r3, r2, #117440512
+  43 001e B3F1807F 		cmp	r3, #16777216
+  44 0022 18BF     		it	ne
+  45 0024 B3F1007F 		cmpne	r3, #33554432
+  46 0028 54D0     		beq	.L4
+  47 002a B3F1C06F 		cmp	r3, #100663296
+  48 002e 51D0     		beq	.L4
+  49              	.L3:
+  50 0030 BA21     		movs	r1, #186
+  51 0032 6D48     		ldr	r0, .L38+4
+  52 0034 FFF7FEFF 		bl	assert_failed
+  53              	.L5:
+  54 0038 6368     		ldr	r3, [r4, #4]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 2
+
+
+  55 003a 032B     		cmp	r3, #3
+  56 003c 58D8     		bhi	.L30
+  57              	.L6:
+  58 003e 2668     		ldr	r6, [r4]
+  59 0040 2E60     		str	r6, [r5]
+  60 0042 C6F30148 		ubfx	r8, r6, #16, #2
+  61 0046 06F01F09 		and	r9, r6, #31
+  62 004a 0125     		movs	r5, #1
+  63 004c 05FA09F5 		lsl	r5, r5, r9
+  64 0050 16F0007F 		tst	r6, #33554432
+  65 0054 1BD0     		beq	.L7
+  66 0056 A368     		ldr	r3, [r4, #8]
+  67 0058 032B     		cmp	r3, #3
+  68 005a 4ED8     		bhi	.L31
+  69              	.L8:
+  70 005c 4FEA4813 		lsl	r3, r8, #5
+  71 0060 03F1B041 		add	r1, r3, #1476395008
+  72 0064 0A68     		ldr	r2, [r1]
+  73 0066 A068     		ldr	r0, [r4, #8]
+  74 0068 10F0010F 		tst	r0, #1
+  75 006c 4AD0     		beq	.L9
+  76 006e 2A43     		orrs	r2, r2, r5
+  77              	.L10:
+  78 0070 0A60     		str	r2, [r1]
+  79 0072 5E49     		ldr	r1, .L38+8
+  80 0074 5A58     		ldr	r2, [r3, r1]
+  81 0076 A068     		ldr	r0, [r4, #8]
+  82 0078 10F0020F 		tst	r0, #2
+  83 007c 45D0     		beq	.L11
+  84 007e 2A43     		orrs	r2, r2, r5
+  85              	.L12:
+  86 0080 5A50     		str	r2, [r3, r1]
+  87 0082 2368     		ldr	r3, [r4]
+  88 0084 03F0C063 		and	r3, r3, #100663296
+  89 0088 B3F1C06F 		cmp	r3, #100663296
+  90 008c 40D0     		beq	.L32
+  91              	.L7:
+  92 008e 4FEA0817 		lsl	r7, r8, #4
+  93 0092 574A     		ldr	r2, .L38+12
+  94 0094 BB58     		ldr	r3, [r7, r2]
+  95 0096 6168     		ldr	r1, [r4, #4]
+  96 0098 11F0010F 		tst	r1, #1
+  97 009c 5FD0     		beq	.L15
+  98 009e 2B43     		orrs	r3, r3, r5
+  99              	.L16:
+ 100 00a0 BB50     		str	r3, [r7, r2]
+ 101 00a2 2368     		ldr	r3, [r4]
+ 102 00a4 13F0805F 		tst	r3, #268435456
+ 103 00a8 03D1     		bne	.L17
+ 104 00aa 6368     		ldr	r3, [r4, #4]
+ 105 00ac 13F0020F 		tst	r3, #2
+ 106 00b0 58D1     		bne	.L33
+ 107              	.L17:
+ 108 00b2 504A     		ldr	r2, .L38+16
+ 109 00b4 BB58     		ldr	r3, [r7, r2]
+ 110 00b6 6168     		ldr	r1, [r4, #4]
+ 111 00b8 11F0020F 		tst	r1, #2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 3
+
+
+ 112 00bc 58D0     		beq	.L18
+ 113 00be 2B43     		orrs	r3, r3, r5
+ 114              	.L19:
+ 115 00c0 BB50     		str	r3, [r7, r2]
+ 116 00c2 2368     		ldr	r3, [r4]
+ 117 00c4 03F44013 		and	r3, r3, #3145728
+ 118 00c8 B3F5401F 		cmp	r3, #3145728
+ 119 00cc 53D0     		beq	.L34
+ 120 00ce 0020     		movs	r0, #0
+ 121              	.L2:
+ 122 00d0 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 123              	.L4:
+ 124 00d4 02F44013 		and	r3, r2, #3145728
+ 125 00d8 B3F5001F 		cmp	r3, #2097152
+ 126 00dc 18BF     		it	ne
+ 127 00de B3F5401F 		cmpne	r3, #3145728
+ 128 00e2 A5D1     		bne	.L3
+ 129 00e4 444B     		ldr	r3, .L38+20
+ 130 00e6 1340     		ands	r3, r3, r2
+ 131 00e8 444A     		ldr	r2, .L38+24
+ 132 00ea 9342     		cmp	r3, r2
+ 133 00ec A4D9     		bls	.L5
+ 134 00ee 9FE7     		b	.L3
+ 135              	.L30:
+ 136 00f0 BB21     		movs	r1, #187
+ 137 00f2 3D48     		ldr	r0, .L38+4
+ 138 00f4 FFF7FEFF 		bl	assert_failed
+ 139 00f8 A1E7     		b	.L6
+ 140              	.L31:
+ 141 00fa C821     		movs	r1, #200
+ 142 00fc 3A48     		ldr	r0, .L38+4
+ 143 00fe FFF7FEFF 		bl	assert_failed
+ 144 0102 ABE7     		b	.L8
+ 145              	.L9:
+ 146 0104 22EA0502 		bic	r2, r2, r5
+ 147 0108 B2E7     		b	.L10
+ 148              	.L11:
+ 149 010a 22EA0502 		bic	r2, r2, r5
+ 150 010e B7E7     		b	.L12
+ 151              	.L32:
+ 152 0110 E368     		ldr	r3, [r4, #12]
+ 153 0112 092B     		cmp	r3, #9
+ 154 0114 18BF     		it	ne
+ 155 0116 072B     		cmpne	r3, #7
+ 156 0118 01D9     		bls	.L13
+ 157 011a 0A2B     		cmp	r3, #10
+ 158 011c 15D1     		bne	.L35
+ 159              	.L13:
+ 160 011e 16F0100F 		tst	r6, #16
+ 161 0122 17D1     		bne	.L36
+ 162              	.L14:
+ 163 0124 C9F38103 		ubfx	r3, r9, #2, #2
+ 164 0128 354F     		ldr	r7, .L38+28
+ 165 012a 0233     		adds	r3, r3, #2
+ 166 012c 57F82300 		ldr	r0, [r7, r3, lsl #2]
+ 167 0130 06F00301 		and	r1, r6, #3
+ 168 0134 8900     		lsls	r1, r1, #2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 4
+
+
+ 169 0136 0F22     		movs	r2, #15
+ 170 0138 8A40     		lsls	r2, r2, r1
+ 171 013a 20EA0200 		bic	r0, r0, r2
+ 172 013e E268     		ldr	r2, [r4, #12]
+ 173 0140 8A40     		lsls	r2, r2, r1
+ 174 0142 0243     		orrs	r2, r2, r0
+ 175 0144 47F82320 		str	r2, [r7, r3, lsl #2]
+ 176 0148 A1E7     		b	.L7
+ 177              	.L35:
+ 178 014a EF21     		movs	r1, #239
+ 179 014c 2648     		ldr	r0, .L38+4
+ 180 014e FFF7FEFF 		bl	assert_failed
+ 181 0152 E4E7     		b	.L13
+ 182              	.L36:
+ 183 0154 F021     		movs	r1, #240
+ 184 0156 2448     		ldr	r0, .L38+4
+ 185 0158 FFF7FEFF 		bl	assert_failed
+ 186 015c E2E7     		b	.L14
+ 187              	.L15:
+ 188 015e 23EA0503 		bic	r3, r3, r5
+ 189 0162 9DE7     		b	.L16
+ 190              	.L33:
+ 191 0164 40F20B11 		movw	r1, #267
+ 192 0168 1F48     		ldr	r0, .L38+4
+ 193 016a FFF7FEFF 		bl	assert_failed
+ 194 016e A0E7     		b	.L17
+ 195              	.L18:
+ 196 0170 23EA0503 		bic	r3, r3, r5
+ 197 0174 A4E7     		b	.L19
+ 198              	.L34:
+ 199 0176 2369     		ldr	r3, [r4, #16]
+ 200 0178 042B     		cmp	r3, #4
+ 201 017a 0CD8     		bhi	.L37
+ 202              	.L20:
+ 203 017c 4FEA4818 		lsl	r8, r8, #5
+ 204 0180 204A     		ldr	r2, .L38+32
+ 205 0182 58F80230 		ldr	r3, [r8, r2]
+ 206 0186 2169     		ldr	r1, [r4, #16]
+ 207 0188 59B9     		cbnz	r1, .L21
+ 208 018a 23EA0503 		bic	r3, r3, r5
+ 209 018e 48F80230 		str	r3, [r8, r2]
+ 210 0192 0020     		movs	r0, #0
+ 211 0194 9CE7     		b	.L2
+ 212              	.L37:
+ 213 0196 4FF4A471 		mov	r1, #328
+ 214 019a 1348     		ldr	r0, .L38+4
+ 215 019c FFF7FEFF 		bl	assert_failed
+ 216 01a0 ECE7     		b	.L20
+ 217              	.L21:
+ 218 01a2 2B43     		orrs	r3, r3, r5
+ 219 01a4 48F80230 		str	r3, [r8, r2]
+ 220 01a8 16F0100F 		tst	r6, #16
+ 221 01ac 10D1     		bne	.L22
+ 222 01ae 164A     		ldr	r2, .L38+36
+ 223 01b0 4244     		add	r2, r2, r8
+ 224              	.L23:
+ 225 01b2 1368     		ldr	r3, [r2]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 5
+
+
+ 226 01b4 05FB05F5 		mul	r5, r5, r5
+ 227 01b8 05EB4501 		add	r1, r5, r5, lsl #1
+ 228 01bc 23EA0103 		bic	r3, r3, r1
+ 229 01c0 2169     		ldr	r1, [r4, #16]
+ 230 01c2 0139     		subs	r1, r1, #1
+ 231 01c4 01FB05F5 		mul	r5, r1, r5
+ 232 01c8 2B43     		orrs	r3, r3, r5
+ 233 01ca 1360     		str	r3, [r2]
+ 234 01cc 0020     		movs	r0, #0
+ 235 01ce 7FE7     		b	.L2
+ 236              	.L22:
+ 237 01d0 0E4A     		ldr	r2, .L38+40
+ 238 01d2 4244     		add	r2, r2, r8
+ 239 01d4 A9F11009 		sub	r9, r9, #16
+ 240 01d8 0125     		movs	r5, #1
+ 241 01da 05FA09F5 		lsl	r5, r5, r9
+ 242 01de E8E7     		b	.L23
+ 243              	.L24:
+ 244 01e0 0120     		movs	r0, #1
+ 245 01e2 7047     		bx	lr
+ 246              	.L39:
+ 247              		.align	2
+ 248              	.L38:
+ 249 01e4 E0FFCCE8 		.word	-389218336
+ 250 01e8 00000000 		.word	.LC0
+ 251 01ec 04000058 		.word	1476395012
+ 252 01f0 80000058 		.word	1476395136
+ 253 01f4 84000058 		.word	1476395140
+ 254 01f8 1F000300 		.word	196639
+ 255 01fc 1B000200 		.word	131099
+ 256 0200 00040058 		.word	1476396032
+ 257 0204 0C000058 		.word	1476395020
+ 258 0208 10000058 		.word	1476395024
+ 259 020c 14000058 		.word	1476395028
+ 261              		.section	.text.HAL_EXTI_GetConfigLine,"ax",%progbits
+ 262              		.align	1
+ 263              		.global	HAL_EXTI_GetConfigLine
+ 264              		.syntax unified
+ 265              		.thumb
+ 266              		.thumb_func
+ 268              	HAL_EXTI_GetConfigLine:
+ 269              		@ args = 0, pretend = 0, frame = 0
+ 270              		@ frame_needed = 0, uses_anonymous_args = 0
+ 271 0000 0029     		cmp	r1, #0
+ 272 0002 18BF     		it	ne
+ 273 0004 0028     		cmpne	r0, #0
+ 274 0006 00F09C80 		beq	.L53
+ 275 000a 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 276 000e 0546     		mov	r5, r0
+ 277 0010 0C46     		mov	r4, r1
+ 278 0012 0268     		ldr	r2, [r0]
+ 279 0014 4D4B     		ldr	r3, .L63
+ 280 0016 1340     		ands	r3, r3, r2
+ 281 0018 53B9     		cbnz	r3, .L42
+ 282 001a 02F0E063 		and	r3, r2, #117440512
+ 283 001e B3F1807F 		cmp	r3, #16777216
+ 284 0022 18BF     		it	ne
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 6
+
+
+ 285 0024 B3F1007F 		cmpne	r3, #33554432
+ 286 0028 47D0     		beq	.L43
+ 287 002a B3F1C06F 		cmp	r3, #100663296
+ 288 002e 44D0     		beq	.L43
+ 289              	.L42:
+ 290 0030 4FF4C371 		mov	r1, #390
+ 291 0034 4648     		ldr	r0, .L63+4
+ 292 0036 FFF7FEFF 		bl	assert_failed
+ 293              	.L44:
+ 294 003a 2E68     		ldr	r6, [r5]
+ 295 003c 2660     		str	r6, [r4]
+ 296 003e C6F30147 		ubfx	r7, r6, #16, #2
+ 297 0042 06F01F08 		and	r8, r6, #31
+ 298 0046 0123     		movs	r3, #1
+ 299 0048 03FA08F5 		lsl	r5, r3, r8
+ 300 004c 3B01     		lsls	r3, r7, #4
+ 301 004e 414A     		ldr	r2, .L63+8
+ 302 0050 9A58     		ldr	r2, [r3, r2]
+ 303 0052 0021     		movs	r1, #0
+ 304 0054 6160     		str	r1, [r4, #4]
+ 305 0056 1542     		tst	r5, r2
+ 306 0058 01D0     		beq	.L45
+ 307 005a 0122     		movs	r2, #1
+ 308 005c 6260     		str	r2, [r4, #4]
+ 309              	.L45:
+ 310 005e 3E4A     		ldr	r2, .L63+12
+ 311 0060 9B58     		ldr	r3, [r3, r2]
+ 312 0062 1D42     		tst	r5, r3
+ 313 0064 03D0     		beq	.L46
+ 314 0066 6368     		ldr	r3, [r4, #4]
+ 315 0068 43F00203 		orr	r3, r3, #2
+ 316 006c 6360     		str	r3, [r4, #4]
+ 317              	.L46:
+ 318 006e 0023     		movs	r3, #0
+ 319 0070 A360     		str	r3, [r4, #8]
+ 320 0072 E360     		str	r3, [r4, #12]
+ 321 0074 16F0007F 		tst	r6, #33554432
+ 322 0078 14D0     		beq	.L47
+ 323 007a 7B01     		lsls	r3, r7, #5
+ 324 007c 03F1B042 		add	r2, r3, #1476395008
+ 325 0080 1268     		ldr	r2, [r2]
+ 326 0082 1542     		tst	r5, r2
+ 327 0084 01D0     		beq	.L48
+ 328 0086 0122     		movs	r2, #1
+ 329 0088 A260     		str	r2, [r4, #8]
+ 330              	.L48:
+ 331 008a 344A     		ldr	r2, .L63+16
+ 332 008c 9B58     		ldr	r3, [r3, r2]
+ 333 008e 1D42     		tst	r5, r3
+ 334 0090 03D0     		beq	.L49
+ 335 0092 A368     		ldr	r3, [r4, #8]
+ 336 0094 43F00203 		orr	r3, r3, #2
+ 337 0098 A360     		str	r3, [r4, #8]
+ 338              	.L49:
+ 339 009a 06F0C063 		and	r3, r6, #100663296
+ 340 009e B3F1C06F 		cmp	r3, #100663296
+ 341 00a2 18D0     		beq	.L60
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 7
+
+
+ 342              	.L47:
+ 343 00a4 0023     		movs	r3, #0
+ 344 00a6 2361     		str	r3, [r4, #16]
+ 345 00a8 2368     		ldr	r3, [r4]
+ 346 00aa 03F44013 		and	r3, r3, #3145728
+ 347 00ae B3F5401F 		cmp	r3, #3145728
+ 348 00b2 27D0     		beq	.L61
+ 349 00b4 0020     		movs	r0, #0
+ 350              	.L41:
+ 351 00b6 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 352              	.L43:
+ 353 00ba 02F44013 		and	r3, r2, #3145728
+ 354 00be B3F5001F 		cmp	r3, #2097152
+ 355 00c2 18BF     		it	ne
+ 356 00c4 B3F5401F 		cmpne	r3, #3145728
+ 357 00c8 B2D1     		bne	.L42
+ 358 00ca 254B     		ldr	r3, .L63+20
+ 359 00cc 1340     		ands	r3, r3, r2
+ 360 00ce 254A     		ldr	r2, .L63+24
+ 361 00d0 9342     		cmp	r3, r2
+ 362 00d2 B2D9     		bls	.L44
+ 363 00d4 ACE7     		b	.L42
+ 364              	.L60:
+ 365 00d6 16F0100F 		tst	r6, #16
+ 366 00da 0DD1     		bne	.L62
+ 367              	.L50:
+ 368 00dc C8F38103 		ubfx	r3, r8, #2, #2
+ 369 00e0 0233     		adds	r3, r3, #2
+ 370 00e2 214A     		ldr	r2, .L63+28
+ 371 00e4 52F82330 		ldr	r3, [r2, r3, lsl #2]
+ 372 00e8 06F00302 		and	r2, r6, #3
+ 373 00ec 9200     		lsls	r2, r2, #2
+ 374 00ee D340     		lsrs	r3, r3, r2
+ 375 00f0 03F00F03 		and	r3, r3, #15
+ 376 00f4 E360     		str	r3, [r4, #12]
+ 377 00f6 D5E7     		b	.L47
+ 378              	.L62:
+ 379 00f8 40F2D711 		movw	r1, #471
+ 380 00fc 1448     		ldr	r0, .L63+4
+ 381 00fe FFF7FEFF 		bl	assert_failed
+ 382 0102 EBE7     		b	.L50
+ 383              	.L61:
+ 384 0104 7B01     		lsls	r3, r7, #5
+ 385 0106 194A     		ldr	r2, .L63+32
+ 386 0108 9A58     		ldr	r2, [r3, r2]
+ 387 010a 12EA080F 		tst	r2, r8
+ 388 010e 1AD0     		beq	.L55
+ 389 0110 16F0100F 		tst	r6, #16
+ 390 0114 0DD1     		bne	.L51
+ 391 0116 164A     		ldr	r2, .L63+36
+ 392 0118 1A44     		add	r2, r2, r3
+ 393              	.L52:
+ 394 011a 1268     		ldr	r2, [r2]
+ 395 011c 05FB05F3 		mul	r3, r5, r5
+ 396 0120 03EB4301 		add	r1, r3, r3, lsl #1
+ 397 0124 0A40     		ands	r2, r2, r1
+ 398 0126 B2FBF3F3 		udiv	r3, r2, r3
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 8
+
+
+ 399 012a 0133     		adds	r3, r3, #1
+ 400 012c 2361     		str	r3, [r4, #16]
+ 401 012e 0020     		movs	r0, #0
+ 402 0130 C1E7     		b	.L41
+ 403              	.L51:
+ 404 0132 104A     		ldr	r2, .L63+40
+ 405 0134 1A44     		add	r2, r2, r3
+ 406 0136 A8F11008 		sub	r8, r8, #16
+ 407 013a 0123     		movs	r3, #1
+ 408 013c 03FA08F5 		lsl	r5, r3, r8
+ 409 0140 EBE7     		b	.L52
+ 410              	.L53:
+ 411 0142 0120     		movs	r0, #1
+ 412 0144 7047     		bx	lr
+ 413              	.L55:
+ 414 0146 0020     		movs	r0, #0
+ 415 0148 B5E7     		b	.L41
+ 416              	.L64:
+ 417 014a 00BF     		.align	2
+ 418              	.L63:
+ 419 014c E0FFCCE8 		.word	-389218336
+ 420 0150 00000000 		.word	.LC0
+ 421 0154 80000058 		.word	1476395136
+ 422 0158 84000058 		.word	1476395140
+ 423 015c 04000058 		.word	1476395012
+ 424 0160 1F000300 		.word	196639
+ 425 0164 1B000200 		.word	131099
+ 426 0168 00040058 		.word	1476396032
+ 427 016c 0C000058 		.word	1476395020
+ 428 0170 10000058 		.word	1476395024
+ 429 0174 14000058 		.word	1476395028
+ 431              		.section	.text.HAL_EXTI_ClearConfigLine,"ax",%progbits
+ 432              		.align	1
+ 433              		.global	HAL_EXTI_ClearConfigLine
+ 434              		.syntax unified
+ 435              		.thumb
+ 436              		.thumb_func
+ 438              	HAL_EXTI_ClearConfigLine:
+ 439              		@ args = 0, pretend = 0, frame = 0
+ 440              		@ frame_needed = 0, uses_anonymous_args = 0
+ 441 0000 0028     		cmp	r0, #0
+ 442 0002 00F09180 		beq	.L74
+ 443 0006 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 444 000a 0546     		mov	r5, r0
+ 445 000c 0268     		ldr	r2, [r0]
+ 446 000e 474B     		ldr	r3, .L83
+ 447 0010 1340     		ands	r3, r3, r2
+ 448 0012 53B9     		cbnz	r3, .L67
+ 449 0014 02F0E063 		and	r3, r2, #117440512
+ 450 0018 B3F1807F 		cmp	r3, #16777216
+ 451 001c 18BF     		it	ne
+ 452 001e B3F1007F 		cmpne	r3, #33554432
+ 453 0022 3BD0     		beq	.L68
+ 454 0024 B3F1C06F 		cmp	r3, #100663296
+ 455 0028 38D0     		beq	.L68
+ 456              	.L67:
+ 457 002a 4FF40471 		mov	r1, #528
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 9
+
+
+ 458 002e 4048     		ldr	r0, .L83+4
+ 459 0030 FFF7FEFF 		bl	assert_failed
+ 460              	.L69:
+ 461 0034 2F68     		ldr	r7, [r5]
+ 462 0036 C7F30146 		ubfx	r6, r7, #16, #2
+ 463 003a 07F01F09 		and	r9, r7, #31
+ 464 003e 0124     		movs	r4, #1
+ 465 0040 04FA09F4 		lsl	r4, r4, r9
+ 466 0044 3301     		lsls	r3, r6, #4
+ 467 0046 3B49     		ldr	r1, .L83+8
+ 468 0048 5A58     		ldr	r2, [r3, r1]
+ 469 004a 6FEA0408 		mvn	r8, r4
+ 470 004e 22EA0402 		bic	r2, r2, r4
+ 471 0052 5A50     		str	r2, [r3, r1]
+ 472 0054 0431     		adds	r1, r1, #4
+ 473 0056 5A58     		ldr	r2, [r3, r1]
+ 474 0058 22EA0402 		bic	r2, r2, r4
+ 475 005c 5A50     		str	r2, [r3, r1]
+ 476 005e 2B68     		ldr	r3, [r5]
+ 477 0060 13F0007F 		tst	r3, #33554432
+ 478 0064 11D0     		beq	.L70
+ 479 0066 7301     		lsls	r3, r6, #5
+ 480 0068 03F1B041 		add	r1, r3, #1476395008
+ 481 006c 0A68     		ldr	r2, [r1]
+ 482 006e 08EA0202 		and	r2, r8, r2
+ 483 0072 0A60     		str	r2, [r1]
+ 484 0074 3049     		ldr	r1, .L83+12
+ 485 0076 5A58     		ldr	r2, [r3, r1]
+ 486 0078 08EA0202 		and	r2, r8, r2
+ 487 007c 5A50     		str	r2, [r3, r1]
+ 488 007e 2B68     		ldr	r3, [r5]
+ 489 0080 03F0C063 		and	r3, r3, #100663296
+ 490 0084 B3F1C06F 		cmp	r3, #100663296
+ 491 0088 16D0     		beq	.L80
+ 492              	.L70:
+ 493 008a 2B68     		ldr	r3, [r5]
+ 494 008c 03F44013 		and	r3, r3, #3145728
+ 495 0090 B3F5401F 		cmp	r3, #3145728
+ 496 0094 2BD0     		beq	.L81
+ 497 0096 0020     		movs	r0, #0
+ 498              	.L66:
+ 499 0098 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 500              	.L68:
+ 501 009c 02F44013 		and	r3, r2, #3145728
+ 502 00a0 B3F5001F 		cmp	r3, #2097152
+ 503 00a4 18BF     		it	ne
+ 504 00a6 B3F5401F 		cmpne	r3, #3145728
+ 505 00aa BED1     		bne	.L67
+ 506 00ac 234B     		ldr	r3, .L83+16
+ 507 00ae 1340     		ands	r3, r3, r2
+ 508 00b0 234A     		ldr	r2, .L83+20
+ 509 00b2 9342     		cmp	r3, r2
+ 510 00b4 BED9     		bls	.L69
+ 511 00b6 B8E7     		b	.L67
+ 512              	.L80:
+ 513 00b8 17F0100F 		tst	r7, #16
+ 514 00bc 11D1     		bne	.L82
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 10
+
+
+ 515              	.L71:
+ 516 00be C9F38103 		ubfx	r3, r9, #2, #2
+ 517 00c2 2048     		ldr	r0, .L83+24
+ 518 00c4 0233     		adds	r3, r3, #2
+ 519 00c6 50F82320 		ldr	r2, [r0, r3, lsl #2]
+ 520 00ca 07F0030C 		and	ip, r7, #3
+ 521 00ce 4FEA8C0C 		lsl	ip, ip, #2
+ 522 00d2 0F21     		movs	r1, #15
+ 523 00d4 01FA0CF1 		lsl	r1, r1, ip
+ 524 00d8 22EA0102 		bic	r2, r2, r1
+ 525 00dc 40F82320 		str	r2, [r0, r3, lsl #2]
+ 526 00e0 D3E7     		b	.L70
+ 527              	.L82:
+ 528 00e2 40F23B21 		movw	r1, #571
+ 529 00e6 1248     		ldr	r0, .L83+4
+ 530 00e8 FFF7FEFF 		bl	assert_failed
+ 531 00ec E7E7     		b	.L71
+ 532              	.L81:
+ 533 00ee 7601     		lsls	r6, r6, #5
+ 534 00f0 154A     		ldr	r2, .L83+28
+ 535 00f2 B358     		ldr	r3, [r6, r2]
+ 536 00f4 08EA0303 		and	r3, r8, r3
+ 537 00f8 B350     		str	r3, [r6, r2]
+ 538 00fa 17F0100F 		tst	r7, #16
+ 539 00fe 0BD1     		bne	.L72
+ 540 0100 124B     		ldr	r3, .L83+32
+ 541 0102 3344     		add	r3, r3, r6
+ 542              	.L73:
+ 543 0104 1A68     		ldr	r2, [r3]
+ 544 0106 04FB04F4 		mul	r4, r4, r4
+ 545 010a 04EB4404 		add	r4, r4, r4, lsl #1
+ 546 010e 22EA0402 		bic	r2, r2, r4
+ 547 0112 1A60     		str	r2, [r3]
+ 548 0114 0020     		movs	r0, #0
+ 549 0116 BFE7     		b	.L66
+ 550              	.L72:
+ 551 0118 0D4B     		ldr	r3, .L83+36
+ 552 011a 3344     		add	r3, r3, r6
+ 553 011c A9F11009 		sub	r9, r9, #16
+ 554 0120 0124     		movs	r4, #1
+ 555 0122 04FA09F4 		lsl	r4, r4, r9
+ 556 0126 EDE7     		b	.L73
+ 557              	.L74:
+ 558 0128 0120     		movs	r0, #1
+ 559 012a 7047     		bx	lr
+ 560              	.L84:
+ 561              		.align	2
+ 562              	.L83:
+ 563 012c E0FFCCE8 		.word	-389218336
+ 564 0130 00000000 		.word	.LC0
+ 565 0134 80000058 		.word	1476395136
+ 566 0138 04000058 		.word	1476395012
+ 567 013c 1F000300 		.word	196639
+ 568 0140 1B000200 		.word	131099
+ 569 0144 00040058 		.word	1476396032
+ 570 0148 0C000058 		.word	1476395020
+ 571 014c 10000058 		.word	1476395024
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 11
+
+
+ 572 0150 14000058 		.word	1476395028
+ 574              		.section	.text.HAL_EXTI_RegisterCallback,"ax",%progbits
+ 575              		.align	1
+ 576              		.global	HAL_EXTI_RegisterCallback
+ 577              		.syntax unified
+ 578              		.thumb
+ 579              		.thumb_func
+ 581              	HAL_EXTI_RegisterCallback:
+ 582              		@ args = 0, pretend = 0, frame = 0
+ 583              		@ frame_needed = 0, uses_anonymous_args = 0
+ 584              		@ link register save eliminated.
+ 585 0000 18B1     		cbz	r0, .L87
+ 586 0002 21B9     		cbnz	r1, .L88
+ 587 0004 4260     		str	r2, [r0, #4]
+ 588 0006 0846     		mov	r0, r1
+ 589 0008 7047     		bx	lr
+ 590              	.L87:
+ 591 000a 0120     		movs	r0, #1
+ 592 000c 7047     		bx	lr
+ 593              	.L88:
+ 594 000e 0120     		movs	r0, #1
+ 595 0010 7047     		bx	lr
+ 597              		.section	.text.HAL_EXTI_GetHandle,"ax",%progbits
+ 598              		.align	1
+ 599              		.global	HAL_EXTI_GetHandle
+ 600              		.syntax unified
+ 601              		.thumb
+ 602              		.thumb_func
+ 604              	HAL_EXTI_GetHandle:
+ 605              		@ args = 0, pretend = 0, frame = 0
+ 606              		@ frame_needed = 0, uses_anonymous_args = 0
+ 607 0000 38B5     		push	{r3, r4, r5, lr}
+ 608 0002 0546     		mov	r5, r0
+ 609 0004 0C46     		mov	r4, r1
+ 610 0006 134B     		ldr	r3, .L96
+ 611 0008 0B40     		ands	r3, r3, r1
+ 612 000a 53B9     		cbnz	r3, .L90
+ 613 000c 01F0E063 		and	r3, r1, #117440512
+ 614 0010 B3F1807F 		cmp	r3, #16777216
+ 615 0014 18BF     		it	ne
+ 616 0016 B3F1007F 		cmpne	r3, #33554432
+ 617 001a 0BD0     		beq	.L91
+ 618 001c B3F1C06F 		cmp	r3, #100663296
+ 619 0020 08D0     		beq	.L91
+ 620              	.L90:
+ 621 0022 40F28721 		movw	r1, #647
+ 622 0026 0C48     		ldr	r0, .L96+4
+ 623 0028 FFF7FEFF 		bl	assert_failed
+ 624              	.L92:
+ 625 002c 85B1     		cbz	r5, .L94
+ 626 002e 2C60     		str	r4, [r5]
+ 627 0030 0020     		movs	r0, #0
+ 628              	.L93:
+ 629 0032 38BD     		pop	{r3, r4, r5, pc}
+ 630              	.L91:
+ 631 0034 04F44013 		and	r3, r4, #3145728
+ 632 0038 B3F5001F 		cmp	r3, #2097152
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 12
+
+
+ 633 003c 18BF     		it	ne
+ 634 003e B3F5401F 		cmpne	r3, #3145728
+ 635 0042 EED1     		bne	.L90
+ 636 0044 054B     		ldr	r3, .L96+8
+ 637 0046 2340     		ands	r3, r3, r4
+ 638 0048 054A     		ldr	r2, .L96+12
+ 639 004a 9342     		cmp	r3, r2
+ 640 004c EED9     		bls	.L92
+ 641 004e E8E7     		b	.L90
+ 642              	.L94:
+ 643 0050 0120     		movs	r0, #1
+ 644 0052 EEE7     		b	.L93
+ 645              	.L97:
+ 646              		.align	2
+ 647              	.L96:
+ 648 0054 E0FFCCE8 		.word	-389218336
+ 649 0058 00000000 		.word	.LC0
+ 650 005c 1F000300 		.word	196639
+ 651 0060 1B000200 		.word	131099
+ 653              		.section	.text.HAL_EXTI_IRQHandler,"ax",%progbits
+ 654              		.align	1
+ 655              		.global	HAL_EXTI_IRQHandler
+ 656              		.syntax unified
+ 657              		.thumb
+ 658              		.thumb_func
+ 660              	HAL_EXTI_IRQHandler:
+ 661              		@ args = 0, pretend = 0, frame = 0
+ 662              		@ frame_needed = 0, uses_anonymous_args = 0
+ 663 0000 10B5     		push	{r4, lr}
+ 664 0002 0368     		ldr	r3, [r0]
+ 665 0004 C3F30142 		ubfx	r2, r3, #16, #2
+ 666 0008 03F01F03 		and	r3, r3, #31
+ 667 000c 0121     		movs	r1, #1
+ 668 000e 9940     		lsls	r1, r1, r3
+ 669 0010 1301     		lsls	r3, r2, #4
+ 670 0012 044A     		ldr	r2, .L101
+ 671 0014 9C58     		ldr	r4, [r3, r2]
+ 672 0016 0C42     		tst	r4, r1
+ 673 0018 03D0     		beq	.L98
+ 674 001a 9950     		str	r1, [r3, r2]
+ 675 001c 4368     		ldr	r3, [r0, #4]
+ 676 001e 03B1     		cbz	r3, .L98
+ 677 0020 9847     		blx	r3
+ 678              	.L98:
+ 679 0022 10BD     		pop	{r4, pc}
+ 680              	.L102:
+ 681              		.align	2
+ 682              	.L101:
+ 683 0024 88000058 		.word	1476395144
+ 685              		.section	.text.HAL_EXTI_GetPending,"ax",%progbits
+ 686              		.align	1
+ 687              		.global	HAL_EXTI_GetPending
+ 688              		.syntax unified
+ 689              		.thumb
+ 690              		.thumb_func
+ 692              	HAL_EXTI_GetPending:
+ 693              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 13
+
+
+ 694              		@ frame_needed = 0, uses_anonymous_args = 0
+ 695 0000 38B5     		push	{r3, r4, r5, lr}
+ 696 0002 0446     		mov	r4, r0
+ 697 0004 0D46     		mov	r5, r1
+ 698 0006 0268     		ldr	r2, [r0]
+ 699 0008 204B     		ldr	r3, .L112
+ 700 000a 1340     		ands	r3, r3, r2
+ 701 000c 53B9     		cbnz	r3, .L104
+ 702 000e 02F0E063 		and	r3, r2, #117440512
+ 703 0012 B3F1807F 		cmp	r3, #16777216
+ 704 0016 18BF     		it	ne
+ 705 0018 B3F1007F 		cmpne	r3, #33554432
+ 706 001c 1BD0     		beq	.L105
+ 707 001e B3F1C06F 		cmp	r3, #100663296
+ 708 0022 18D0     		beq	.L105
+ 709              	.L104:
+ 710 0024 40F2ED21 		movw	r1, #749
+ 711 0028 1948     		ldr	r0, .L112+4
+ 712 002a FFF7FEFF 		bl	assert_failed
+ 713              	.L106:
+ 714 002e 2368     		ldr	r3, [r4]
+ 715 0030 13F0007F 		tst	r3, #33554432
+ 716 0034 1DD0     		beq	.L110
+ 717              	.L107:
+ 718 0036 013D     		subs	r5, r5, #1
+ 719 0038 022D     		cmp	r5, #2
+ 720 003a 20D8     		bhi	.L111
+ 721              	.L108:
+ 722 003c 2368     		ldr	r3, [r4]
+ 723 003e C3F30141 		ubfx	r1, r3, #16, #2
+ 724 0042 03F01F03 		and	r3, r3, #31
+ 725 0046 0122     		movs	r2, #1
+ 726 0048 9A40     		lsls	r2, r2, r3
+ 727 004a 0901     		lsls	r1, r1, #4
+ 728 004c 1148     		ldr	r0, .L112+8
+ 729 004e 0858     		ldr	r0, [r1, r0]
+ 730 0050 1040     		ands	r0, r0, r2
+ 731 0052 D840     		lsrs	r0, r0, r3
+ 732 0054 38BD     		pop	{r3, r4, r5, pc}
+ 733              	.L105:
+ 734 0056 02F44013 		and	r3, r2, #3145728
+ 735 005a B3F5001F 		cmp	r3, #2097152
+ 736 005e 18BF     		it	ne
+ 737 0060 B3F5401F 		cmpne	r3, #3145728
+ 738 0064 DED1     		bne	.L104
+ 739 0066 0C4B     		ldr	r3, .L112+12
+ 740 0068 1340     		ands	r3, r3, r2
+ 741 006a 0C4A     		ldr	r2, .L112+16
+ 742 006c 9342     		cmp	r3, r2
+ 743 006e DED9     		bls	.L106
+ 744 0070 D8E7     		b	.L104
+ 745              	.L110:
+ 746 0072 40F2EE21 		movw	r1, #750
+ 747 0076 0648     		ldr	r0, .L112+4
+ 748 0078 FFF7FEFF 		bl	assert_failed
+ 749 007c DBE7     		b	.L107
+ 750              	.L111:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 14
+
+
+ 751 007e 40F2EF21 		movw	r1, #751
+ 752 0082 0348     		ldr	r0, .L112+4
+ 753 0084 FFF7FEFF 		bl	assert_failed
+ 754 0088 D8E7     		b	.L108
+ 755              	.L113:
+ 756 008a 00BF     		.align	2
+ 757              	.L112:
+ 758 008c E0FFCCE8 		.word	-389218336
+ 759 0090 00000000 		.word	.LC0
+ 760 0094 88000058 		.word	1476395144
+ 761 0098 1F000300 		.word	196639
+ 762 009c 1B000200 		.word	131099
+ 764              		.section	.text.HAL_EXTI_ClearPending,"ax",%progbits
+ 765              		.align	1
+ 766              		.global	HAL_EXTI_ClearPending
+ 767              		.syntax unified
+ 768              		.thumb
+ 769              		.thumb_func
+ 771              	HAL_EXTI_ClearPending:
+ 772              		@ args = 0, pretend = 0, frame = 0
+ 773              		@ frame_needed = 0, uses_anonymous_args = 0
+ 774 0000 38B5     		push	{r3, r4, r5, lr}
+ 775 0002 0446     		mov	r4, r0
+ 776 0004 0D46     		mov	r5, r1
+ 777 0006 0268     		ldr	r2, [r0]
+ 778 0008 1F4B     		ldr	r3, .L123
+ 779 000a 1340     		ands	r3, r3, r2
+ 780 000c 53B9     		cbnz	r3, .L115
+ 781 000e 02F0E063 		and	r3, r2, #117440512
+ 782 0012 B3F1807F 		cmp	r3, #16777216
+ 783 0016 18BF     		it	ne
+ 784 0018 B3F1007F 		cmpne	r3, #33554432
+ 785 001c 19D0     		beq	.L116
+ 786 001e B3F1C06F 		cmp	r3, #100663296
+ 787 0022 16D0     		beq	.L116
+ 788              	.L115:
+ 789 0024 40F21E31 		movw	r1, #798
+ 790 0028 1848     		ldr	r0, .L123+4
+ 791 002a FFF7FEFF 		bl	assert_failed
+ 792              	.L117:
+ 793 002e 2368     		ldr	r3, [r4]
+ 794 0030 13F0007F 		tst	r3, #33554432
+ 795 0034 1BD0     		beq	.L121
+ 796              	.L118:
+ 797 0036 013D     		subs	r5, r5, #1
+ 798 0038 022D     		cmp	r5, #2
+ 799 003a 1ED8     		bhi	.L122
+ 800              	.L119:
+ 801 003c 2368     		ldr	r3, [r4]
+ 802 003e C3F30142 		ubfx	r2, r3, #16, #2
+ 803 0042 03F01F03 		and	r3, r3, #31
+ 804 0046 0121     		movs	r1, #1
+ 805 0048 9940     		lsls	r1, r1, r3
+ 806 004a 1301     		lsls	r3, r2, #4
+ 807 004c 104A     		ldr	r2, .L123+8
+ 808 004e 9950     		str	r1, [r3, r2]
+ 809 0050 38BD     		pop	{r3, r4, r5, pc}
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 15
+
+
+ 810              	.L116:
+ 811 0052 02F44013 		and	r3, r2, #3145728
+ 812 0056 B3F5001F 		cmp	r3, #2097152
+ 813 005a 18BF     		it	ne
+ 814 005c B3F5401F 		cmpne	r3, #3145728
+ 815 0060 E0D1     		bne	.L115
+ 816 0062 0C4B     		ldr	r3, .L123+12
+ 817 0064 1340     		ands	r3, r3, r2
+ 818 0066 0C4A     		ldr	r2, .L123+16
+ 819 0068 9342     		cmp	r3, r2
+ 820 006a E0D9     		bls	.L117
+ 821 006c DAE7     		b	.L115
+ 822              	.L121:
+ 823 006e 40F21F31 		movw	r1, #799
+ 824 0072 0648     		ldr	r0, .L123+4
+ 825 0074 FFF7FEFF 		bl	assert_failed
+ 826 0078 DDE7     		b	.L118
+ 827              	.L122:
+ 828 007a 4FF44871 		mov	r1, #800
+ 829 007e 0348     		ldr	r0, .L123+4
+ 830 0080 FFF7FEFF 		bl	assert_failed
+ 831 0084 DAE7     		b	.L119
+ 832              	.L124:
+ 833 0086 00BF     		.align	2
+ 834              	.L123:
+ 835 0088 E0FFCCE8 		.word	-389218336
+ 836 008c 00000000 		.word	.LC0
+ 837 0090 88000058 		.word	1476395144
+ 838 0094 1F000300 		.word	196639
+ 839 0098 1B000200 		.word	131099
+ 841              		.section	.text.HAL_EXTI_GenerateSWI,"ax",%progbits
+ 842              		.align	1
+ 843              		.global	HAL_EXTI_GenerateSWI
+ 844              		.syntax unified
+ 845              		.thumb
+ 846              		.thumb_func
+ 848              	HAL_EXTI_GenerateSWI:
+ 849              		@ args = 0, pretend = 0, frame = 0
+ 850              		@ frame_needed = 0, uses_anonymous_args = 0
+ 851 0000 10B5     		push	{r4, lr}
+ 852 0002 0446     		mov	r4, r0
+ 853 0004 0268     		ldr	r2, [r0]
+ 854 0006 1B4B     		ldr	r3, .L132
+ 855 0008 1340     		ands	r3, r3, r2
+ 856 000a 53B9     		cbnz	r3, .L126
+ 857 000c 02F0E063 		and	r3, r2, #117440512
+ 858 0010 B3F1807F 		cmp	r3, #16777216
+ 859 0014 18BF     		it	ne
+ 860 0016 B3F1007F 		cmpne	r3, #33554432
+ 861 001a 16D0     		beq	.L127
+ 862 001c B3F1C06F 		cmp	r3, #100663296
+ 863 0020 13D0     		beq	.L127
+ 864              	.L126:
+ 865 0022 40F24531 		movw	r1, #837
+ 866 0026 1448     		ldr	r0, .L132+4
+ 867 0028 FFF7FEFF 		bl	assert_failed
+ 868              	.L128:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 16
+
+
+ 869 002c 2368     		ldr	r3, [r4]
+ 870 002e 13F0007F 		tst	r3, #33554432
+ 871 0032 18D0     		beq	.L131
+ 872              	.L129:
+ 873 0034 2368     		ldr	r3, [r4]
+ 874 0036 C3F30142 		ubfx	r2, r3, #16, #2
+ 875 003a 03F01F03 		and	r3, r3, #31
+ 876 003e 0121     		movs	r1, #1
+ 877 0040 9940     		lsls	r1, r1, r3
+ 878 0042 5301     		lsls	r3, r2, #5
+ 879 0044 0D4A     		ldr	r2, .L132+8
+ 880 0046 9950     		str	r1, [r3, r2]
+ 881 0048 10BD     		pop	{r4, pc}
+ 882              	.L127:
+ 883 004a 02F44013 		and	r3, r2, #3145728
+ 884 004e B3F5001F 		cmp	r3, #2097152
+ 885 0052 18BF     		it	ne
+ 886 0054 B3F5401F 		cmpne	r3, #3145728
+ 887 0058 E3D1     		bne	.L126
+ 888 005a 094B     		ldr	r3, .L132+12
+ 889 005c 1340     		ands	r3, r3, r2
+ 890 005e 094A     		ldr	r2, .L132+16
+ 891 0060 9342     		cmp	r3, r2
+ 892 0062 E3D9     		bls	.L128
+ 893 0064 DDE7     		b	.L126
+ 894              	.L131:
+ 895 0066 40F24631 		movw	r1, #838
+ 896 006a 0348     		ldr	r0, .L132+4
+ 897 006c FFF7FEFF 		bl	assert_failed
+ 898 0070 E0E7     		b	.L129
+ 899              	.L133:
+ 900 0072 00BF     		.align	2
+ 901              	.L132:
+ 902 0074 E0FFCCE8 		.word	-389218336
+ 903 0078 00000000 		.word	.LC0
+ 904 007c 08000058 		.word	1476395016
+ 905 0080 1F000300 		.word	196639
+ 906 0084 1B000200 		.word	131099
+ 908              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\ccachykt.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32h7xx_hal_exti.c
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:17     .rodata.HAL_EXTI_SetConfigLine.str1.4:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:22     .text.HAL_EXTI_SetConfigLine:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:28     .text.HAL_EXTI_SetConfigLine:00000000 HAL_EXTI_SetConfigLine
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:249    .text.HAL_EXTI_SetConfigLine:000001e4 $d
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:262    .text.HAL_EXTI_GetConfigLine:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:268    .text.HAL_EXTI_GetConfigLine:00000000 HAL_EXTI_GetConfigLine
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:419    .text.HAL_EXTI_GetConfigLine:0000014c $d
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:432    .text.HAL_EXTI_ClearConfigLine:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:438    .text.HAL_EXTI_ClearConfigLine:00000000 HAL_EXTI_ClearConfigLine
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:563    .text.HAL_EXTI_ClearConfigLine:0000012c $d
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:575    .text.HAL_EXTI_RegisterCallback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:581    .text.HAL_EXTI_RegisterCallback:00000000 HAL_EXTI_RegisterCallback
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:598    .text.HAL_EXTI_GetHandle:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:604    .text.HAL_EXTI_GetHandle:00000000 HAL_EXTI_GetHandle
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:648    .text.HAL_EXTI_GetHandle:00000054 $d
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:654    .text.HAL_EXTI_IRQHandler:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:660    .text.HAL_EXTI_IRQHandler:00000000 HAL_EXTI_IRQHandler
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:683    .text.HAL_EXTI_IRQHandler:00000024 $d
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:686    .text.HAL_EXTI_GetPending:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:692    .text.HAL_EXTI_GetPending:00000000 HAL_EXTI_GetPending
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:758    .text.HAL_EXTI_GetPending:0000008c $d
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:765    .text.HAL_EXTI_ClearPending:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:771    .text.HAL_EXTI_ClearPending:00000000 HAL_EXTI_ClearPending
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:835    .text.HAL_EXTI_ClearPending:00000088 $d
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:842    .text.HAL_EXTI_GenerateSWI:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:848    .text.HAL_EXTI_GenerateSWI:00000000 HAL_EXTI_GenerateSWI
+C:\Users\thewo\AppData\Local\Temp\ccachykt.s:902    .text.HAL_EXTI_GenerateSWI:00000074 $d
+
+UNDEFINED SYMBOLS
+assert_failed

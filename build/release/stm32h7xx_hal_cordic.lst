@@ -1,0 +1,1004 @@
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32h7xx_hal_cordic.c"
+  15              		.text
+  16              		.section	.text.CORDIC_WriteInDataIncrementPtr,"ax",%progbits
+  17              		.align	1
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	CORDIC_WriteInDataIncrementPtr:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 0B68     		ldr	r3, [r1]
+  27 0002 1A68     		ldr	r2, [r3]
+  28 0004 0368     		ldr	r3, [r0]
+  29 0006 5A60     		str	r2, [r3, #4]
+  30 0008 0A68     		ldr	r2, [r1]
+  31 000a 131D     		adds	r3, r2, #4
+  32 000c 0B60     		str	r3, [r1]
+  33 000e 0368     		ldr	r3, [r0]
+  34 0010 1868     		ldr	r0, [r3]
+  35 0012 10F4801F 		tst	r0, #1048576
+  36 0016 04D0     		beq	.L1
+  37 0018 5268     		ldr	r2, [r2, #4]
+  38 001a 5A60     		str	r2, [r3, #4]
+  39 001c 0B68     		ldr	r3, [r1]
+  40 001e 0433     		adds	r3, r3, #4
+  41 0020 0B60     		str	r3, [r1]
+  42              	.L1:
+  43 0022 7047     		bx	lr
+  45              		.section	.text.CORDIC_ReadOutDataIncrementPtr,"ax",%progbits
+  46              		.align	1
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  51              	CORDIC_ReadOutDataIncrementPtr:
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  54              		@ link register save eliminated.
+  55 0000 0368     		ldr	r3, [r0]
+  56 0002 9A68     		ldr	r2, [r3, #8]
+  57 0004 0B68     		ldr	r3, [r1]
+  58 0006 1A60     		str	r2, [r3]
+  59 0008 0B68     		ldr	r3, [r1]
+  60 000a 1A1D     		adds	r2, r3, #4
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 2
+
+
+  61 000c 0A60     		str	r2, [r1]
+  62 000e 0268     		ldr	r2, [r0]
+  63 0010 1068     		ldr	r0, [r2]
+  64 0012 10F4002F 		tst	r0, #524288
+  65 0016 04D0     		beq	.L3
+  66 0018 9268     		ldr	r2, [r2, #8]
+  67 001a 5A60     		str	r2, [r3, #4]
+  68 001c 0B68     		ldr	r3, [r1]
+  69 001e 0433     		adds	r3, r3, #4
+  70 0020 0B60     		str	r3, [r1]
+  71              	.L3:
+  72 0022 7047     		bx	lr
+  74              		.section	.text.HAL_CORDIC_MspInit,"ax",%progbits
+  75              		.align	1
+  76              		.weak	HAL_CORDIC_MspInit
+  77              		.syntax unified
+  78              		.thumb
+  79              		.thumb_func
+  81              	HAL_CORDIC_MspInit:
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84              		@ link register save eliminated.
+  85 0000 7047     		bx	lr
+  87              		.section	.rodata.HAL_CORDIC_Init.str1.4,"aMS",%progbits,1
+  88              		.align	2
+  89              	.LC0:
+  90 0000 44726976 		.ascii	"Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cord"
+  90      6572732F 
+  90      53544D33 
+  90      32483778 
+  90      785F4841 
+  91 0033 69632E63 		.ascii	"ic.c\000"
+  91      00
+  92              		.section	.text.HAL_CORDIC_Init,"ax",%progbits
+  93              		.align	1
+  94              		.global	HAL_CORDIC_Init
+  95              		.syntax unified
+  96              		.thumb
+  97              		.thumb_func
+  99              	HAL_CORDIC_Init:
+ 100              		@ args = 0, pretend = 0, frame = 0
+ 101              		@ frame_needed = 0, uses_anonymous_args = 0
+ 102 0000 E8B1     		cbz	r0, .L10
+ 103 0002 10B5     		push	{r4, lr}
+ 104 0004 0446     		mov	r4, r0
+ 105 0006 0268     		ldr	r2, [r0]
+ 106 0008 0E4B     		ldr	r3, .L16
+ 107 000a 9A42     		cmp	r2, r3
+ 108 000c 03D0     		beq	.L8
+ 109 000e D321     		movs	r1, #211
+ 110 0010 0D48     		ldr	r0, .L16+4
+ 111 0012 FFF7FEFF 		bl	assert_failed
+ 112              	.L8:
+ 113 0016 94F82130 		ldrb	r3, [r4, #33]	@ zero_extendqisi2
+ 114 001a 53B1     		cbz	r3, .L15
+ 115              	.L9:
+ 116 001c 0020     		movs	r0, #0
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 3
+
+
+ 117 001e 6062     		str	r0, [r4, #36]
+ 118 0020 6060     		str	r0, [r4, #4]
+ 119 0022 A060     		str	r0, [r4, #8]
+ 120 0024 E060     		str	r0, [r4, #12]
+ 121 0026 2061     		str	r0, [r4, #16]
+ 122 0028 6061     		str	r0, [r4, #20]
+ 123 002a 0123     		movs	r3, #1
+ 124 002c 84F82130 		strb	r3, [r4, #33]
+ 125 0030 10BD     		pop	{r4, pc}
+ 126              	.L15:
+ 127 0032 84F82030 		strb	r3, [r4, #32]
+ 128 0036 2046     		mov	r0, r4
+ 129 0038 FFF7FEFF 		bl	HAL_CORDIC_MspInit
+ 130 003c EEE7     		b	.L9
+ 131              	.L10:
+ 132 003e 0120     		movs	r0, #1
+ 133 0040 7047     		bx	lr
+ 134              	.L17:
+ 135 0042 00BF     		.align	2
+ 136              	.L16:
+ 137 0044 00440248 		.word	1208108032
+ 138 0048 00000000 		.word	.LC0
+ 140              		.section	.text.HAL_CORDIC_MspDeInit,"ax",%progbits
+ 141              		.align	1
+ 142              		.weak	HAL_CORDIC_MspDeInit
+ 143              		.syntax unified
+ 144              		.thumb
+ 145              		.thumb_func
+ 147              	HAL_CORDIC_MspDeInit:
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+ 150              		@ link register save eliminated.
+ 151 0000 7047     		bx	lr
+ 153              		.section	.text.HAL_CORDIC_DeInit,"ax",%progbits
+ 154              		.align	1
+ 155              		.global	HAL_CORDIC_DeInit
+ 156              		.syntax unified
+ 157              		.thumb
+ 158              		.thumb_func
+ 160              	HAL_CORDIC_DeInit:
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163 0000 E0B1     		cbz	r0, .L22
+ 164 0002 10B5     		push	{r4, lr}
+ 165 0004 0446     		mov	r4, r0
+ 166 0006 0268     		ldr	r2, [r0]
+ 167 0008 0D4B     		ldr	r3, .L27
+ 168 000a 9A42     		cmp	r2, r3
+ 169 000c 04D0     		beq	.L21
+ 170 000e 4FF48B71 		mov	r1, #278
+ 171 0012 0C48     		ldr	r0, .L27+4
+ 172 0014 FFF7FEFF 		bl	assert_failed
+ 173              	.L21:
+ 174 0018 0223     		movs	r3, #2
+ 175 001a 84F82130 		strb	r3, [r4, #33]
+ 176 001e 2046     		mov	r0, r4
+ 177 0020 FFF7FEFF 		bl	HAL_CORDIC_MspDeInit
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 4
+
+
+ 178 0024 0020     		movs	r0, #0
+ 179 0026 6062     		str	r0, [r4, #36]
+ 180 0028 6060     		str	r0, [r4, #4]
+ 181 002a A060     		str	r0, [r4, #8]
+ 182 002c E060     		str	r0, [r4, #12]
+ 183 002e 2061     		str	r0, [r4, #16]
+ 184 0030 6061     		str	r0, [r4, #20]
+ 185 0032 84F82100 		strb	r0, [r4, #33]
+ 186 0036 84F82000 		strb	r0, [r4, #32]
+ 187 003a 10BD     		pop	{r4, pc}
+ 188              	.L22:
+ 189 003c 0120     		movs	r0, #1
+ 190 003e 7047     		bx	lr
+ 191              	.L28:
+ 192              		.align	2
+ 193              	.L27:
+ 194 0040 00440248 		.word	1208108032
+ 195 0044 00000000 		.word	.LC0
+ 197              		.section	.text.HAL_CORDIC_Configure,"ax",%progbits
+ 198              		.align	1
+ 199              		.global	HAL_CORDIC_Configure
+ 200              		.syntax unified
+ 201              		.thumb
+ 202              		.thumb_func
+ 204              	HAL_CORDIC_Configure:
+ 205              		@ args = 0, pretend = 0, frame = 0
+ 206              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207 0000 38B5     		push	{r3, r4, r5, lr}
+ 208 0002 0546     		mov	r5, r0
+ 209 0004 0C46     		mov	r4, r1
+ 210 0006 0B68     		ldr	r3, [r1]
+ 211 0008 092B     		cmp	r3, #9
+ 212 000a 11D8     		bhi	.L44
+ 213              	.L30:
+ 214 000c A369     		ldr	r3, [r4, #24]
+ 215 000e 102B     		cmp	r3, #16
+ 216 0010 18BF     		it	ne
+ 217 0012 202B     		cmpne	r3, #32
+ 218 0014 1BD0     		beq	.L31
+ 219 0016 902B     		cmp	r3, #144
+ 220 0018 19D0     		beq	.L31
+ 221 001a 52D8     		bhi	.L32
+ 222 001c 602B     		cmp	r3, #96
+ 223 001e 16D0     		beq	.L31
+ 224 0020 0CD8     		bhi	.L33
+ 225 0022 402B     		cmp	r3, #64
+ 226 0024 13D0     		beq	.L31
+ 227 0026 502B     		cmp	r3, #80
+ 228 0028 11D0     		beq	.L31
+ 229 002a 302B     		cmp	r3, #48
+ 230 002c 0AD1     		bne	.L34
+ 231 002e 0EE0     		b	.L31
+ 232              	.L44:
+ 233 0030 40F23321 		movw	r1, #563
+ 234 0034 4448     		ldr	r0, .L51
+ 235 0036 FFF7FEFF 		bl	assert_failed
+ 236 003a E7E7     		b	.L30
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 5
+
+
+ 237              	.L33:
+ 238 003c 702B     		cmp	r3, #112
+ 239 003e 06D0     		beq	.L31
+ 240 0040 802B     		cmp	r3, #128
+ 241 0042 04D0     		beq	.L31
+ 242              	.L34:
+ 243 0044 4FF40D71 		mov	r1, #564
+ 244 0048 3F48     		ldr	r0, .L51
+ 245 004a FFF7FEFF 		bl	assert_failed
+ 246              	.L31:
+ 247 004e 6368     		ldr	r3, [r4, #4]
+ 248 0050 002B     		cmp	r3, #0
+ 249 0052 18BF     		it	ne
+ 250 0054 B3F5807F 		cmpne	r3, #256
+ 251 0058 11D0     		beq	.L36
+ 252 005a B3F5007F 		cmp	r3, #512
+ 253 005e 0ED0     		beq	.L36
+ 254 0060 B3F5407F 		cmp	r3, #768
+ 255 0064 0BD0     		beq	.L36
+ 256 0066 B3F5806F 		cmp	r3, #1024
+ 257 006a 08D0     		beq	.L36
+ 258 006c B3F5A06F 		cmp	r3, #1280
+ 259 0070 05D0     		beq	.L36
+ 260 0072 B3F5C06F 		cmp	r3, #1536
+ 261 0076 02D0     		beq	.L36
+ 262 0078 B3F5E06F 		cmp	r3, #1792
+ 263 007c 30D1     		bne	.L45
+ 264              	.L36:
+ 265 007e 2369     		ldr	r3, [r4, #16]
+ 266 0080 002B     		cmp	r3, #0
+ 267 0082 18BF     		it	ne
+ 268 0084 B3F5801F 		cmpne	r3, #1048576
+ 269 0088 30D1     		bne	.L46
+ 270              	.L37:
+ 271 008a 6369     		ldr	r3, [r4, #20]
+ 272 008c 002B     		cmp	r3, #0
+ 273 008e 18BF     		it	ne
+ 274 0090 B3F5002F 		cmpne	r3, #524288
+ 275 0094 30D1     		bne	.L47
+ 276              	.L38:
+ 277 0096 A368     		ldr	r3, [r4, #8]
+ 278 0098 002B     		cmp	r3, #0
+ 279 009a 18BF     		it	ne
+ 280 009c B3F5800F 		cmpne	r3, #4194304
+ 281 00a0 30D1     		bne	.L48
+ 282              	.L39:
+ 283 00a2 E368     		ldr	r3, [r4, #12]
+ 284 00a4 002B     		cmp	r3, #0
+ 285 00a6 18BF     		it	ne
+ 286 00a8 B3F5001F 		cmpne	r3, #2097152
+ 287 00ac 30D1     		bne	.L49
+ 288              	.L40:
+ 289 00ae 95F82130 		ldrb	r3, [r5, #33]	@ zero_extendqisi2
+ 290 00b2 012B     		cmp	r3, #1
+ 291 00b4 32D0     		beq	.L50
+ 292 00b6 6B6A     		ldr	r3, [r5, #36]
+ 293 00b8 43F00203 		orr	r3, r3, #2
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 6
+
+
+ 294 00bc 6B62     		str	r3, [r5, #36]
+ 295 00be 0120     		movs	r0, #1
+ 296              	.L42:
+ 297 00c0 38BD     		pop	{r3, r4, r5, pc}
+ 298              	.L32:
+ 299 00c2 D02B     		cmp	r3, #208
+ 300 00c4 C3D0     		beq	.L31
+ 301 00c6 06D8     		bhi	.L35
+ 302 00c8 B02B     		cmp	r3, #176
+ 303 00ca C0D0     		beq	.L31
+ 304 00cc C02B     		cmp	r3, #192
+ 305 00ce BED0     		beq	.L31
+ 306 00d0 A02B     		cmp	r3, #160
+ 307 00d2 B7D1     		bne	.L34
+ 308 00d4 BBE7     		b	.L31
+ 309              	.L35:
+ 310 00d6 E02B     		cmp	r3, #224
+ 311 00d8 B9D0     		beq	.L31
+ 312 00da F02B     		cmp	r3, #240
+ 313 00dc B2D1     		bne	.L34
+ 314 00de B6E7     		b	.L31
+ 315              	.L45:
+ 316 00e0 40F23521 		movw	r1, #565
+ 317 00e4 1848     		ldr	r0, .L51
+ 318 00e6 FFF7FEFF 		bl	assert_failed
+ 319 00ea C8E7     		b	.L36
+ 320              	.L46:
+ 321 00ec 40F23621 		movw	r1, #566
+ 322 00f0 1548     		ldr	r0, .L51
+ 323 00f2 FFF7FEFF 		bl	assert_failed
+ 324 00f6 C8E7     		b	.L37
+ 325              	.L47:
+ 326 00f8 40F23721 		movw	r1, #567
+ 327 00fc 1248     		ldr	r0, .L51
+ 328 00fe FFF7FEFF 		bl	assert_failed
+ 329 0102 C8E7     		b	.L38
+ 330              	.L48:
+ 331 0104 4FF40E71 		mov	r1, #568
+ 332 0108 0F48     		ldr	r0, .L51
+ 333 010a FFF7FEFF 		bl	assert_failed
+ 334 010e C8E7     		b	.L39
+ 335              	.L49:
+ 336 0110 40F23921 		movw	r1, #569
+ 337 0114 0C48     		ldr	r0, .L51
+ 338 0116 FFF7FEFF 		bl	assert_failed
+ 339 011a C8E7     		b	.L40
+ 340              	.L50:
+ 341 011c 2968     		ldr	r1, [r5]
+ 342 011e 0B68     		ldr	r3, [r1]
+ 343 0120 0A4A     		ldr	r2, .L51+4
+ 344 0122 1A40     		ands	r2, r2, r3
+ 345 0124 2368     		ldr	r3, [r4]
+ 346 0126 A069     		ldr	r0, [r4, #24]
+ 347 0128 0343     		orrs	r3, r3, r0
+ 348 012a 6068     		ldr	r0, [r4, #4]
+ 349 012c 0343     		orrs	r3, r3, r0
+ 350 012e 2069     		ldr	r0, [r4, #16]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 7
+
+
+ 351 0130 0343     		orrs	r3, r3, r0
+ 352 0132 6069     		ldr	r0, [r4, #20]
+ 353 0134 0343     		orrs	r3, r3, r0
+ 354 0136 A068     		ldr	r0, [r4, #8]
+ 355 0138 0343     		orrs	r3, r3, r0
+ 356 013a E068     		ldr	r0, [r4, #12]
+ 357 013c 0343     		orrs	r3, r3, r0
+ 358 013e 1A43     		orrs	r2, r2, r3
+ 359 0140 0A60     		str	r2, [r1]
+ 360 0142 0020     		movs	r0, #0
+ 361 0144 BCE7     		b	.L42
+ 362              	.L52:
+ 363 0146 00BF     		.align	2
+ 364              	.L51:
+ 365 0148 00000000 		.word	.LC0
+ 366 014c 00F887FF 		.word	-7866368
+ 368              		.section	.text.HAL_CORDIC_Calculate,"ax",%progbits
+ 369              		.align	1
+ 370              		.global	HAL_CORDIC_Calculate
+ 371              		.syntax unified
+ 372              		.thumb
+ 373              		.thumb_func
+ 375              	HAL_CORDIC_Calculate:
+ 376              		@ args = 4, pretend = 0, frame = 8
+ 377              		@ frame_needed = 0, uses_anonymous_args = 0
+ 378 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 379 0004 82B0     		sub	sp, sp, #8
+ 380 0006 0446     		mov	r4, r0
+ 381 0008 089D     		ldr	r5, [sp, #32]
+ 382 000a 0191     		str	r1, [sp, #4]
+ 383 000c 0092     		str	r2, [sp]
+ 384 000e 002A     		cmp	r2, #0
+ 385 0010 18BF     		it	ne
+ 386 0012 0029     		cmpne	r1, #0
+ 387 0014 0ED0     		beq	.L54
+ 388 0016 1E46     		mov	r6, r3
+ 389 0018 63B1     		cbz	r3, .L54
+ 390 001a 90F82130 		ldrb	r3, [r0, #33]	@ zero_extendqisi2
+ 391 001e 5FFA83F8 		uxtb	r8, r3
+ 392 0022 012B     		cmp	r3, #1
+ 393 0024 10D0     		beq	.L63
+ 394 0026 436A     		ldr	r3, [r0, #36]
+ 395 0028 43F00203 		orr	r3, r3, #2
+ 396 002c 4362     		str	r3, [r0, #36]
+ 397 002e 4FF00108 		mov	r8, #1
+ 398 0032 05E0     		b	.L56
+ 399              	.L54:
+ 400 0034 636A     		ldr	r3, [r4, #36]
+ 401 0036 43F00103 		orr	r3, r3, #1
+ 402 003a 6362     		str	r3, [r4, #36]
+ 403 003c 4FF00108 		mov	r8, #1
+ 404              	.L56:
+ 405 0040 4046     		mov	r0, r8
+ 406 0042 02B0     		add	sp, sp, #8
+ 407              		@ sp needed
+ 408 0044 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 409              	.L63:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 8
+
+
+ 410 0048 0023     		movs	r3, #0
+ 411 004a 4362     		str	r3, [r0, #36]
+ 412 004c 0223     		movs	r3, #2
+ 413 004e 80F82130 		strb	r3, [r0, #33]
+ 414 0052 FFF7FEFF 		bl	HAL_GetTick
+ 415 0056 0746     		mov	r7, r0
+ 416 0058 01A9     		add	r1, sp, #4
+ 417 005a 2046     		mov	r0, r4
+ 418 005c FFF7FEFF 		bl	CORDIC_WriteInDataIncrementPtr
+ 419 0060 013E     		subs	r6, r6, #1
+ 420 0062 16E0     		b	.L58
+ 421              	.L59:
+ 422 0064 2368     		ldr	r3, [r4]
+ 423 0066 1A68     		ldr	r2, [r3]
+ 424 0068 002A     		cmp	r2, #0
+ 425 006a 0DDB     		blt	.L64
+ 426              	.L60:
+ 427 006c B5F1FF3F 		cmp	r5, #-1
+ 428 0070 F8D0     		beq	.L59
+ 429 0072 FFF7FEFF 		bl	HAL_GetTick
+ 430 0076 C01B     		subs	r0, r0, r7
+ 431 0078 A842     		cmp	r0, r5
+ 432 007a F3D9     		bls	.L59
+ 433 007c 0423     		movs	r3, #4
+ 434 007e 6362     		str	r3, [r4, #36]
+ 435 0080 0123     		movs	r3, #1
+ 436 0082 84F82130 		strb	r3, [r4, #33]
+ 437 0086 DBE7     		b	.L56
+ 438              	.L64:
+ 439 0088 6946     		mov	r1, sp
+ 440 008a 2046     		mov	r0, r4
+ 441 008c FFF7FEFF 		bl	CORDIC_ReadOutDataIncrementPtr
+ 442 0090 013E     		subs	r6, r6, #1
+ 443              	.L58:
+ 444 0092 26B1     		cbz	r6, .L65
+ 445 0094 01A9     		add	r1, sp, #4
+ 446 0096 2046     		mov	r0, r4
+ 447 0098 FFF7FEFF 		bl	CORDIC_WriteInDataIncrementPtr
+ 448 009c E6E7     		b	.L60
+ 449              	.L65:
+ 450 009e 6946     		mov	r1, sp
+ 451 00a0 2046     		mov	r0, r4
+ 452 00a2 FFF7FEFF 		bl	CORDIC_ReadOutDataIncrementPtr
+ 453 00a6 0123     		movs	r3, #1
+ 454 00a8 84F82130 		strb	r3, [r4, #33]
+ 455 00ac 4FF00008 		mov	r8, #0
+ 456 00b0 C6E7     		b	.L56
+ 458              		.section	.text.HAL_CORDIC_CalculateZO,"ax",%progbits
+ 459              		.align	1
+ 460              		.global	HAL_CORDIC_CalculateZO
+ 461              		.syntax unified
+ 462              		.thumb
+ 463              		.thumb_func
+ 465              	HAL_CORDIC_CalculateZO:
+ 466              		@ args = 4, pretend = 0, frame = 8
+ 467              		@ frame_needed = 0, uses_anonymous_args = 0
+ 468 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 9
+
+
+ 469 0004 82B0     		sub	sp, sp, #8
+ 470 0006 0446     		mov	r4, r0
+ 471 0008 089E     		ldr	r6, [sp, #32]
+ 472 000a 0191     		str	r1, [sp, #4]
+ 473 000c 0092     		str	r2, [sp]
+ 474 000e 002A     		cmp	r2, #0
+ 475 0010 18BF     		it	ne
+ 476 0012 0029     		cmpne	r1, #0
+ 477 0014 0CD0     		beq	.L67
+ 478 0016 1D46     		mov	r5, r3
+ 479 0018 53B1     		cbz	r3, .L67
+ 480 001a 90F82130 		ldrb	r3, [r0, #33]	@ zero_extendqisi2
+ 481 001e DFB2     		uxtb	r7, r3
+ 482 0020 012B     		cmp	r3, #1
+ 483 0022 0ED0     		beq	.L75
+ 484 0024 436A     		ldr	r3, [r0, #36]
+ 485 0026 43F00203 		orr	r3, r3, #2
+ 486 002a 4362     		str	r3, [r0, #36]
+ 487 002c 0127     		movs	r7, #1
+ 488 002e 04E0     		b	.L69
+ 489              	.L67:
+ 490 0030 636A     		ldr	r3, [r4, #36]
+ 491 0032 43F00103 		orr	r3, r3, #1
+ 492 0036 6362     		str	r3, [r4, #36]
+ 493 0038 0127     		movs	r7, #1
+ 494              	.L69:
+ 495 003a 3846     		mov	r0, r7
+ 496 003c 02B0     		add	sp, sp, #8
+ 497              		@ sp needed
+ 498 003e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 499              	.L75:
+ 500 0042 0023     		movs	r3, #0
+ 501 0044 4362     		str	r3, [r0, #36]
+ 502 0046 0223     		movs	r3, #2
+ 503 0048 80F82130 		strb	r3, [r0, #33]
+ 504 004c FFF7FEFF 		bl	HAL_GetTick
+ 505 0050 8046     		mov	r8, r0
+ 506 0052 01A9     		add	r1, sp, #4
+ 507 0054 2046     		mov	r0, r4
+ 508 0056 FFF7FEFF 		bl	CORDIC_WriteInDataIncrementPtr
+ 509 005a 013D     		subs	r5, r5, #1
+ 510 005c 00E0     		b	.L71
+ 511              	.L72:
+ 512 005e 013D     		subs	r5, r5, #1
+ 513              	.L71:
+ 514 0060 B5B1     		cbz	r5, .L76
+ 515 0062 01A9     		add	r1, sp, #4
+ 516 0064 2046     		mov	r0, r4
+ 517 0066 FFF7FEFF 		bl	CORDIC_WriteInDataIncrementPtr
+ 518 006a 6946     		mov	r1, sp
+ 519 006c 2046     		mov	r0, r4
+ 520 006e FFF7FEFF 		bl	CORDIC_ReadOutDataIncrementPtr
+ 521 0072 B6F1FF3F 		cmp	r6, #-1
+ 522 0076 F2D0     		beq	.L72
+ 523 0078 FFF7FEFF 		bl	HAL_GetTick
+ 524 007c A0EB0800 		sub	r0, r0, r8
+ 525 0080 B042     		cmp	r0, r6
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 10
+
+
+ 526 0082 ECD9     		bls	.L72
+ 527 0084 0423     		movs	r3, #4
+ 528 0086 6362     		str	r3, [r4, #36]
+ 529 0088 0123     		movs	r3, #1
+ 530 008a 84F82130 		strb	r3, [r4, #33]
+ 531 008e D4E7     		b	.L69
+ 532              	.L76:
+ 533 0090 6946     		mov	r1, sp
+ 534 0092 2046     		mov	r0, r4
+ 535 0094 FFF7FEFF 		bl	CORDIC_ReadOutDataIncrementPtr
+ 536 0098 0123     		movs	r3, #1
+ 537 009a 84F82130 		strb	r3, [r4, #33]
+ 538 009e 0027     		movs	r7, #0
+ 539 00a0 CBE7     		b	.L69
+ 541              		.section	.text.HAL_CORDIC_Calculate_IT,"ax",%progbits
+ 542              		.align	1
+ 543              		.global	HAL_CORDIC_Calculate_IT
+ 544              		.syntax unified
+ 545              		.thumb
+ 546              		.thumb_func
+ 548              	HAL_CORDIC_Calculate_IT:
+ 549              		@ args = 0, pretend = 0, frame = 0
+ 550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 551              		@ link register save eliminated.
+ 552 0000 002A     		cmp	r2, #0
+ 553 0002 18BF     		it	ne
+ 554 0004 0029     		cmpne	r1, #0
+ 555 0006 0BD0     		beq	.L78
+ 556 0008 53B1     		cbz	r3, .L78
+ 557 000a 90F821C0 		ldrb	ip, [r0, #33]	@ zero_extendqisi2
+ 558 000e BCF1010F 		cmp	ip, #1
+ 559 0012 0BD0     		beq	.L89
+ 560 0014 436A     		ldr	r3, [r0, #36]
+ 561 0016 43F00203 		orr	r3, r3, #2
+ 562 001a 4362     		str	r3, [r0, #36]
+ 563 001c 0120     		movs	r0, #1
+ 564 001e 7047     		bx	lr
+ 565              	.L78:
+ 566 0020 436A     		ldr	r3, [r0, #36]
+ 567 0022 43F00103 		orr	r3, r3, #1
+ 568 0026 4362     		str	r3, [r0, #36]
+ 569 0028 0120     		movs	r0, #1
+ 570 002a 7047     		bx	lr
+ 571              	.L89:
+ 572 002c 30B4     		push	{r4, r5}
+ 573 002e 0024     		movs	r4, #0
+ 574 0030 4462     		str	r4, [r0, #36]
+ 575 0032 0224     		movs	r4, #2
+ 576 0034 80F82140 		strb	r4, [r0, #33]
+ 577 0038 0468     		ldr	r4, [r0]
+ 578 003a 2568     		ldr	r5, [r4]
+ 579 003c 15F4801F 		tst	r5, #1048576
+ 580 0040 17D0     		beq	.L82
+ 581 0042 01F10805 		add	r5, r1, #8
+ 582              	.L83:
+ 583 0046 4560     		str	r5, [r0, #4]
+ 584 0048 8260     		str	r2, [r0, #8]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 11
+
+
+ 585 004a 5A1E     		subs	r2, r3, #1
+ 586 004c C260     		str	r2, [r0, #12]
+ 587 004e 0361     		str	r3, [r0, #16]
+ 588 0050 2368     		ldr	r3, [r4]
+ 589 0052 43F48033 		orr	r3, r3, #65536
+ 590 0056 2360     		str	r3, [r4]
+ 591 0058 0A68     		ldr	r2, [r1]
+ 592 005a 0368     		ldr	r3, [r0]
+ 593 005c 5A60     		str	r2, [r3, #4]
+ 594 005e 0368     		ldr	r3, [r0]
+ 595 0060 1A68     		ldr	r2, [r3]
+ 596 0062 12F4801F 		tst	r2, #1048576
+ 597 0066 01D0     		beq	.L84
+ 598 0068 4A68     		ldr	r2, [r1, #4]
+ 599 006a 5A60     		str	r2, [r3, #4]
+ 600              	.L84:
+ 601 006c 0020     		movs	r0, #0
+ 602 006e 30BC     		pop	{r4, r5}
+ 603 0070 7047     		bx	lr
+ 604              	.L82:
+ 605 0072 0D1D     		adds	r5, r1, #4
+ 606 0074 E7E7     		b	.L83
+ 608              		.section	.text.HAL_CORDIC_Calculate_DMA,"ax",%progbits
+ 609              		.align	1
+ 610              		.global	HAL_CORDIC_Calculate_DMA
+ 611              		.syntax unified
+ 612              		.thumb
+ 613              		.thumb_func
+ 615              	HAL_CORDIC_Calculate_DMA:
+ 616              		@ args = 4, pretend = 0, frame = 0
+ 617              		@ frame_needed = 0, uses_anonymous_args = 0
+ 618 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 619 0004 0446     		mov	r4, r0
+ 620 0006 8846     		mov	r8, r1
+ 621 0008 9146     		mov	r9, r2
+ 622 000a 1E46     		mov	r6, r3
+ 623 000c 089D     		ldr	r5, [sp, #32]
+ 624 000e 6B1E     		subs	r3, r5, #1
+ 625 0010 022B     		cmp	r3, #2
+ 626 0012 39D8     		bhi	.L105
+ 627              	.L91:
+ 628 0014 002E     		cmp	r6, #0
+ 629 0016 3DD0     		beq	.L106
+ 630 0018 AA1E     		subs	r2, r5, #2
+ 631 001a 012A     		cmp	r2, #1
+ 632 001c 42D9     		bls	.L107
+ 633              	.L94:
+ 634 001e 032D     		cmp	r5, #3
+ 635 0020 18BF     		it	ne
+ 636 0022 012D     		cmpne	r5, #1
+ 637 0024 0CBF     		ite	eq
+ 638 0026 4FF0010A 		moveq	r10, #1
+ 639 002a 4FF0000A 		movne	r10, #0
+ 640 002e 02D1     		bne	.L95
+ 641 0030 B8F1000F 		cmp	r8, #0
+ 642 0034 3FD0     		beq	.L108
+ 643              	.L95:
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 12
+
+
+ 644 0036 94F82130 		ldrb	r3, [r4, #33]	@ zero_extendqisi2
+ 645 003a DFB2     		uxtb	r7, r3
+ 646 003c 012B     		cmp	r3, #1
+ 647 003e 66D1     		bne	.L96
+ 648 0040 0023     		movs	r3, #0
+ 649 0042 6362     		str	r3, [r4, #36]
+ 650 0044 0223     		movs	r3, #2
+ 651 0046 84F82130 		strb	r3, [r4, #33]
+ 652 004a 6561     		str	r5, [r4, #20]
+ 653 004c 012A     		cmp	r2, #1
+ 654 004e 38D9     		bls	.L109
+ 655              	.L97:
+ 656 0050 BAF1000F 		cmp	r10, #0
+ 657 0054 59D0     		beq	.L100
+ 658 0056 A369     		ldr	r3, [r4, #24]
+ 659 0058 304A     		ldr	r2, .L111
+ 660 005a DA63     		str	r2, [r3, #60]
+ 661 005c A369     		ldr	r3, [r4, #24]
+ 662 005e 304A     		ldr	r2, .L111+4
+ 663 0060 DA64     		str	r2, [r3, #76]
+ 664 0062 2268     		ldr	r2, [r4]
+ 665 0064 1368     		ldr	r3, [r2]
+ 666 0066 13F4801F 		tst	r3, #1048576
+ 667 006a 00D0     		beq	.L101
+ 668 006c 7600     		lsls	r6, r6, #1
+ 669              	.L101:
+ 670 006e 3346     		mov	r3, r6
+ 671 0070 0432     		adds	r2, r2, #4
+ 672 0072 4146     		mov	r1, r8
+ 673 0074 A069     		ldr	r0, [r4, #24]
+ 674 0076 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 675 007a 0028     		cmp	r0, #0
+ 676 007c 40D0     		beq	.L102
+ 677 007e 636A     		ldr	r3, [r4, #36]
+ 678 0080 43F00803 		orr	r3, r3, #8
+ 679 0084 6362     		str	r3, [r4, #36]
+ 680 0086 0AE0     		b	.L93
+ 681              	.L105:
+ 682 0088 40F27B31 		movw	r1, #891
+ 683 008c 2548     		ldr	r0, .L111+8
+ 684 008e FFF7FEFF 		bl	assert_failed
+ 685 0092 BFE7     		b	.L91
+ 686              	.L106:
+ 687 0094 636A     		ldr	r3, [r4, #36]
+ 688 0096 43F00103 		orr	r3, r3, #1
+ 689 009a 6362     		str	r3, [r4, #36]
+ 690 009c 0127     		movs	r7, #1
+ 691              	.L93:
+ 692 009e 3846     		mov	r0, r7
+ 693 00a0 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 694              	.L107:
+ 695 00a4 B9F1000F 		cmp	r9, #0
+ 696 00a8 B9D1     		bne	.L94
+ 697 00aa 636A     		ldr	r3, [r4, #36]
+ 698 00ac 43F00103 		orr	r3, r3, #1
+ 699 00b0 6362     		str	r3, [r4, #36]
+ 700 00b2 0127     		movs	r7, #1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 13
+
+
+ 701 00b4 F3E7     		b	.L93
+ 702              	.L108:
+ 703 00b6 636A     		ldr	r3, [r4, #36]
+ 704 00b8 43F00103 		orr	r3, r3, #1
+ 705 00bc 6362     		str	r3, [r4, #36]
+ 706 00be 0127     		movs	r7, #1
+ 707 00c0 EDE7     		b	.L93
+ 708              	.L109:
+ 709 00c2 E369     		ldr	r3, [r4, #28]
+ 710 00c4 184A     		ldr	r2, .L111+12
+ 711 00c6 DA63     		str	r2, [r3, #60]
+ 712 00c8 E369     		ldr	r3, [r4, #28]
+ 713 00ca 154A     		ldr	r2, .L111+4
+ 714 00cc DA64     		str	r2, [r3, #76]
+ 715 00ce 2168     		ldr	r1, [r4]
+ 716 00d0 0B68     		ldr	r3, [r1]
+ 717 00d2 13F4002F 		tst	r3, #524288
+ 718 00d6 0CD0     		beq	.L103
+ 719 00d8 7300     		lsls	r3, r6, #1
+ 720              	.L98:
+ 721 00da 4A46     		mov	r2, r9
+ 722 00dc 0831     		adds	r1, r1, #8
+ 723 00de E069     		ldr	r0, [r4, #28]
+ 724 00e0 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 725 00e4 38B9     		cbnz	r0, .L110
+ 726 00e6 2268     		ldr	r2, [r4]
+ 727 00e8 1368     		ldr	r3, [r2]
+ 728 00ea 43F40033 		orr	r3, r3, #131072
+ 729 00ee 1360     		str	r3, [r2]
+ 730 00f0 AEE7     		b	.L97
+ 731              	.L103:
+ 732 00f2 3346     		mov	r3, r6
+ 733 00f4 F1E7     		b	.L98
+ 734              	.L110:
+ 735 00f6 636A     		ldr	r3, [r4, #36]
+ 736 00f8 43F00803 		orr	r3, r3, #8
+ 737 00fc 6362     		str	r3, [r4, #36]
+ 738 00fe CEE7     		b	.L93
+ 739              	.L102:
+ 740 0100 2268     		ldr	r2, [r4]
+ 741 0102 1368     		ldr	r3, [r2]
+ 742 0104 43F48023 		orr	r3, r3, #262144
+ 743 0108 1360     		str	r3, [r2]
+ 744              	.L100:
+ 745 010a 0027     		movs	r7, #0
+ 746 010c C7E7     		b	.L93
+ 747              	.L96:
+ 748 010e 636A     		ldr	r3, [r4, #36]
+ 749 0110 43F00203 		orr	r3, r3, #2
+ 750 0114 6362     		str	r3, [r4, #36]
+ 751 0116 0127     		movs	r7, #1
+ 752 0118 C1E7     		b	.L93
+ 753              	.L112:
+ 754 011a 00BF     		.align	2
+ 755              	.L111:
+ 756 011c 00000000 		.word	CORDIC_DMAInCplt
+ 757 0120 00000000 		.word	CORDIC_DMAError
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 14
+
+
+ 758 0124 00000000 		.word	.LC0
+ 759 0128 00000000 		.word	CORDIC_DMAOutCplt
+ 761              		.section	.text.HAL_CORDIC_ErrorCallback,"ax",%progbits
+ 762              		.align	1
+ 763              		.weak	HAL_CORDIC_ErrorCallback
+ 764              		.syntax unified
+ 765              		.thumb
+ 766              		.thumb_func
+ 768              	HAL_CORDIC_ErrorCallback:
+ 769              		@ args = 0, pretend = 0, frame = 0
+ 770              		@ frame_needed = 0, uses_anonymous_args = 0
+ 771              		@ link register save eliminated.
+ 772 0000 7047     		bx	lr
+ 774              		.section	.text.CORDIC_DMAError,"ax",%progbits
+ 775              		.align	1
+ 776              		.syntax unified
+ 777              		.thumb
+ 778              		.thumb_func
+ 780              	CORDIC_DMAError:
+ 781              		@ args = 0, pretend = 0, frame = 0
+ 782              		@ frame_needed = 0, uses_anonymous_args = 0
+ 783 0000 08B5     		push	{r3, lr}
+ 784 0002 806B     		ldr	r0, [r0, #56]
+ 785 0004 0123     		movs	r3, #1
+ 786 0006 80F82130 		strb	r3, [r0, #33]
+ 787 000a 436A     		ldr	r3, [r0, #36]
+ 788 000c 43F00803 		orr	r3, r3, #8
+ 789 0010 4362     		str	r3, [r0, #36]
+ 790 0012 FFF7FEFF 		bl	HAL_CORDIC_ErrorCallback
+ 791 0016 08BD     		pop	{r3, pc}
+ 793              		.section	.text.HAL_CORDIC_CalculateCpltCallback,"ax",%progbits
+ 794              		.align	1
+ 795              		.weak	HAL_CORDIC_CalculateCpltCallback
+ 796              		.syntax unified
+ 797              		.thumb
+ 798              		.thumb_func
+ 800              	HAL_CORDIC_CalculateCpltCallback:
+ 801              		@ args = 0, pretend = 0, frame = 0
+ 802              		@ frame_needed = 0, uses_anonymous_args = 0
+ 803              		@ link register save eliminated.
+ 804 0000 7047     		bx	lr
+ 806              		.section	.text.CORDIC_DMAInCplt,"ax",%progbits
+ 807              		.align	1
+ 808              		.syntax unified
+ 809              		.thumb
+ 810              		.thumb_func
+ 812              	CORDIC_DMAInCplt:
+ 813              		@ args = 0, pretend = 0, frame = 0
+ 814              		@ frame_needed = 0, uses_anonymous_args = 0
+ 815 0000 08B5     		push	{r3, lr}
+ 816 0002 806B     		ldr	r0, [r0, #56]
+ 817 0004 0268     		ldr	r2, [r0]
+ 818 0006 1368     		ldr	r3, [r2]
+ 819 0008 23F48023 		bic	r3, r3, #262144
+ 820 000c 1360     		str	r3, [r2]
+ 821 000e 4369     		ldr	r3, [r0, #20]
+ 822 0010 012B     		cmp	r3, #1
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 15
+
+
+ 823 0012 00D0     		beq	.L120
+ 824              	.L117:
+ 825 0014 08BD     		pop	{r3, pc}
+ 826              	.L120:
+ 827 0016 0023     		movs	r3, #0
+ 828 0018 4361     		str	r3, [r0, #20]
+ 829 001a 0123     		movs	r3, #1
+ 830 001c 80F82130 		strb	r3, [r0, #33]
+ 831 0020 FFF7FEFF 		bl	HAL_CORDIC_CalculateCpltCallback
+ 832 0024 F6E7     		b	.L117
+ 834              		.section	.text.CORDIC_DMAOutCplt,"ax",%progbits
+ 835              		.align	1
+ 836              		.syntax unified
+ 837              		.thumb
+ 838              		.thumb_func
+ 840              	CORDIC_DMAOutCplt:
+ 841              		@ args = 0, pretend = 0, frame = 0
+ 842              		@ frame_needed = 0, uses_anonymous_args = 0
+ 843 0000 08B5     		push	{r3, lr}
+ 844 0002 806B     		ldr	r0, [r0, #56]
+ 845 0004 0268     		ldr	r2, [r0]
+ 846 0006 1368     		ldr	r3, [r2]
+ 847 0008 23F40033 		bic	r3, r3, #131072
+ 848 000c 1360     		str	r3, [r2]
+ 849 000e 0023     		movs	r3, #0
+ 850 0010 4361     		str	r3, [r0, #20]
+ 851 0012 0123     		movs	r3, #1
+ 852 0014 80F82130 		strb	r3, [r0, #33]
+ 853 0018 FFF7FEFF 		bl	HAL_CORDIC_CalculateCpltCallback
+ 854 001c 08BD     		pop	{r3, pc}
+ 856              		.section	.text.HAL_CORDIC_IRQHandler,"ax",%progbits
+ 857              		.align	1
+ 858              		.global	HAL_CORDIC_IRQHandler
+ 859              		.syntax unified
+ 860              		.thumb
+ 861              		.thumb_func
+ 863              	HAL_CORDIC_IRQHandler:
+ 864              		@ args = 0, pretend = 0, frame = 0
+ 865              		@ frame_needed = 0, uses_anonymous_args = 0
+ 866 0000 0368     		ldr	r3, [r0]
+ 867 0002 1A68     		ldr	r2, [r3]
+ 868 0004 12F4803F 		tst	r2, #65536
+ 869 0008 24D0     		beq	.L127
+ 870 000a 10B5     		push	{r4, lr}
+ 871 000c 0446     		mov	r4, r0
+ 872 000e 1B68     		ldr	r3, [r3]
+ 873 0010 002B     		cmp	r3, #0
+ 874 0012 00DB     		blt	.L130
+ 875              	.L123:
+ 876 0014 10BD     		pop	{r4, pc}
+ 877              	.L130:
+ 878 0016 0369     		ldr	r3, [r0, #16]
+ 879 0018 013B     		subs	r3, r3, #1
+ 880 001a 0361     		str	r3, [r0, #16]
+ 881 001c 00F10801 		add	r1, r0, #8
+ 882 0020 FFF7FEFF 		bl	CORDIC_ReadOutDataIncrementPtr
+ 883 0024 E368     		ldr	r3, [r4, #12]
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 16
+
+
+ 884 0026 73B9     		cbnz	r3, .L131
+ 885              	.L125:
+ 886 0028 2369     		ldr	r3, [r4, #16]
+ 887 002a 002B     		cmp	r3, #0
+ 888 002c F2D1     		bne	.L123
+ 889 002e 2268     		ldr	r2, [r4]
+ 890 0030 1368     		ldr	r3, [r2]
+ 891 0032 23F48033 		bic	r3, r3, #65536
+ 892 0036 1360     		str	r3, [r2]
+ 893 0038 0123     		movs	r3, #1
+ 894 003a 84F82130 		strb	r3, [r4, #33]
+ 895 003e 2046     		mov	r0, r4
+ 896 0040 FFF7FEFF 		bl	HAL_CORDIC_CalculateCpltCallback
+ 897 0044 E6E7     		b	.L123
+ 898              	.L131:
+ 899 0046 013B     		subs	r3, r3, #1
+ 900 0048 E360     		str	r3, [r4, #12]
+ 901 004a 211D     		adds	r1, r4, #4
+ 902 004c 2046     		mov	r0, r4
+ 903 004e FFF7FEFF 		bl	CORDIC_WriteInDataIncrementPtr
+ 904 0052 E9E7     		b	.L125
+ 905              	.L127:
+ 906 0054 7047     		bx	lr
+ 908              		.section	.text.HAL_CORDIC_GetState,"ax",%progbits
+ 909              		.align	1
+ 910              		.global	HAL_CORDIC_GetState
+ 911              		.syntax unified
+ 912              		.thumb
+ 913              		.thumb_func
+ 915              	HAL_CORDIC_GetState:
+ 916              		@ args = 0, pretend = 0, frame = 0
+ 917              		@ frame_needed = 0, uses_anonymous_args = 0
+ 918              		@ link register save eliminated.
+ 919 0000 90F82100 		ldrb	r0, [r0, #33]	@ zero_extendqisi2
+ 920 0004 7047     		bx	lr
+ 922              		.section	.text.HAL_CORDIC_GetError,"ax",%progbits
+ 923              		.align	1
+ 924              		.global	HAL_CORDIC_GetError
+ 925              		.syntax unified
+ 926              		.thumb
+ 927              		.thumb_func
+ 929              	HAL_CORDIC_GetError:
+ 930              		@ args = 0, pretend = 0, frame = 0
+ 931              		@ frame_needed = 0, uses_anonymous_args = 0
+ 932              		@ link register save eliminated.
+ 933 0000 406A     		ldr	r0, [r0, #36]
+ 934 0002 7047     		bx	lr
+ 936              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 14.2.1 20241119"
+ARM GAS  C:\Users\thewo\AppData\Local\Temp\cckHniHc.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32h7xx_hal_cordic.c
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:17     .text.CORDIC_WriteInDataIncrementPtr:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:22     .text.CORDIC_WriteInDataIncrementPtr:00000000 CORDIC_WriteInDataIncrementPtr
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:46     .text.CORDIC_ReadOutDataIncrementPtr:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:51     .text.CORDIC_ReadOutDataIncrementPtr:00000000 CORDIC_ReadOutDataIncrementPtr
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:75     .text.HAL_CORDIC_MspInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:81     .text.HAL_CORDIC_MspInit:00000000 HAL_CORDIC_MspInit
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:88     .rodata.HAL_CORDIC_Init.str1.4:00000000 $d
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:93     .text.HAL_CORDIC_Init:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:99     .text.HAL_CORDIC_Init:00000000 HAL_CORDIC_Init
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:137    .text.HAL_CORDIC_Init:00000044 $d
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:141    .text.HAL_CORDIC_MspDeInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:147    .text.HAL_CORDIC_MspDeInit:00000000 HAL_CORDIC_MspDeInit
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:154    .text.HAL_CORDIC_DeInit:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:160    .text.HAL_CORDIC_DeInit:00000000 HAL_CORDIC_DeInit
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:194    .text.HAL_CORDIC_DeInit:00000040 $d
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:198    .text.HAL_CORDIC_Configure:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:204    .text.HAL_CORDIC_Configure:00000000 HAL_CORDIC_Configure
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:365    .text.HAL_CORDIC_Configure:00000148 $d
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:369    .text.HAL_CORDIC_Calculate:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:375    .text.HAL_CORDIC_Calculate:00000000 HAL_CORDIC_Calculate
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:459    .text.HAL_CORDIC_CalculateZO:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:465    .text.HAL_CORDIC_CalculateZO:00000000 HAL_CORDIC_CalculateZO
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:542    .text.HAL_CORDIC_Calculate_IT:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:548    .text.HAL_CORDIC_Calculate_IT:00000000 HAL_CORDIC_Calculate_IT
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:609    .text.HAL_CORDIC_Calculate_DMA:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:615    .text.HAL_CORDIC_Calculate_DMA:00000000 HAL_CORDIC_Calculate_DMA
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:756    .text.HAL_CORDIC_Calculate_DMA:0000011c $d
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:812    .text.CORDIC_DMAInCplt:00000000 CORDIC_DMAInCplt
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:780    .text.CORDIC_DMAError:00000000 CORDIC_DMAError
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:840    .text.CORDIC_DMAOutCplt:00000000 CORDIC_DMAOutCplt
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:762    .text.HAL_CORDIC_ErrorCallback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:768    .text.HAL_CORDIC_ErrorCallback:00000000 HAL_CORDIC_ErrorCallback
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:775    .text.CORDIC_DMAError:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:794    .text.HAL_CORDIC_CalculateCpltCallback:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:800    .text.HAL_CORDIC_CalculateCpltCallback:00000000 HAL_CORDIC_CalculateCpltCallback
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:807    .text.CORDIC_DMAInCplt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:835    .text.CORDIC_DMAOutCplt:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:857    .text.HAL_CORDIC_IRQHandler:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:863    .text.HAL_CORDIC_IRQHandler:00000000 HAL_CORDIC_IRQHandler
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:909    .text.HAL_CORDIC_GetState:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:915    .text.HAL_CORDIC_GetState:00000000 HAL_CORDIC_GetState
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:923    .text.HAL_CORDIC_GetError:00000000 $t
+C:\Users\thewo\AppData\Local\Temp\cckHniHc.s:929    .text.HAL_CORDIC_GetError:00000000 HAL_CORDIC_GetError
+
+UNDEFINED SYMBOLS
+assert_failed
+HAL_GetTick
+HAL_DMA_Start_IT
