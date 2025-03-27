@@ -31,6 +31,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
+#include "print.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -118,10 +119,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    usbTxBufLen = snprintf((char *) usbTxBuf, USBBUF_MAXLEN, "Hello World!\r\n");
-    uint8_t * ptr = &usbTxBuf[0];
-
-    CDC_Transmit_HS(usbTxBuf, usbTxBufLen);
+    SerialPrintln("Hello World!");
 
     HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
