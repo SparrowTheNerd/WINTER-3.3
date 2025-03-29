@@ -31,7 +31,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
-#include "print.h"
+#include "abstract.h"
+#include "ADXL375.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,8 +54,9 @@
 
 /* USER CODE BEGIN PV */
 uint8_t usbTxBuf[USBBUF_MAXLEN];
+uint8_t i2cBuf;
 uint16_t usbTxBufLen;
-
+ADXL375 highG;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -110,18 +112,42 @@ int main(void)
   MX_TIM4_Init();
   MX_ADC1_Init();
   MX_USB_DEVICE_Init();
+
   /* USER CODE BEGIN 2 */
 
+  HAL_Delay(100);
+  int8_t offset[3] = {0,0,0};
+  ADXL375_Init(&highG,&hi2c3,9,offset);
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-    SerialPrintln("Hello World!");
+    uint8_t retval = HAL_I2C_Mem_Read(&hi2c3, ADDR_MAG<<1, 0x2F, I2C_MEMADD_SIZE_8BIT, &i2cBuf, 1, 1000);
+    if(retval == HAL_OK) {
+      snprintf((char *) usbTxBuf,USBBUF_MAXLEN,"Mag ID: %2x", i2cBuf);
+      SerialPrintln(usbTxBuf);
+    } else {
+      snprintf((char *) usbTxBuf,USBBUF_MAXLEN,"Error code: %d", retval);
+      SerialPrintln(usbTxBuf);
+    }
+    HAL_Delay(5000);
+    // for (uint8_t i = 0; i < 128; i++) {
 
-    HAL_Delay(1000);
+    //   if (HAL_I2C_IsDeviceReady(&hi2c3, (uint16_t)(i<<1), 3, 5) == HAL_OK) {
+    //     // We got an ack
+    //     snprintf((char *) usbTxBuf,USBBUF_MAXLEN,"Device found at %2x", i);
+    //     SerialPrintln(usbTxBuf);
+    //   } else {}  
+    // }
+  
+    // SerialPrintln("\n");
+
+    // HAL_Delay(5000);
+    /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

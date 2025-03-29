@@ -33,6 +33,7 @@
 		},
 		{
 			"label": "Flash STM",
+			"dependsOn": "Build STM",
 			"type": "process",
 			"command": "STM32_Programmer_CLI",
             "args": [
@@ -50,6 +51,7 @@
 		},
 		{
 			"label": "Flash DFU",
+			"dependsOn": "Build STM",
 			"type": "process",
 			"command": "STM32_Programmer_CLI",
 			"args": [

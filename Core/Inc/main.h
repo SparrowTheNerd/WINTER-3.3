@@ -125,7 +125,11 @@ void Error_Handler(void);
 #define SERVO1_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
-
+#define ADDR_MAG 0x30
+#define ADDR_HIGHG 0x53
+#define ADDR_IMU 0x68
+#define ADDR_BARO 0x76
+#define ADDR_GPS 0x42
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
