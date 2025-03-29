@@ -13,14 +13,14 @@
  * @note   ODR param can be 0 thru 15; see ADXL375 datasheet Table 6 for details
  * @retval HAL Status
  */
-HAL_StatusTypeDef ADXL375_Init(ADXL375 *adxl, I2C_HandleTypeDef *hi2c, uint8_t ODR, int8_t ofst[3]) {
+HAL_StatusTypeDef ADXL375_Init(ADXL375 *adxl, I2C_HandleTypeDef *hi2c, uint8_t ODR, int8_t ofset[3]) {
     adxl->hi2c = hi2c;
     
     adxl->accel_ms2[0] = 0.0f;
     adxl->accel_ms2[1] = 0.0f;
     adxl->accel_ms2[2] = 0.0f;
 
-    uint8_t regDat;
+    uint8_t regDat = 0;
 
     // Sanity check device ID
     HAL_StatusTypeDef status = ADXL375_ReadReg(adxl, ADXL375_REG_DEVID, &regDat, 1);
@@ -32,7 +32,7 @@ HAL_StatusTypeDef ADXL375_Init(ADXL375 *adxl, I2C_HandleTypeDef *hi2c, uint8_t O
     }
 
     // Set the ODR
-    if(ODR > 15) { ODR = 9; } // Ensure ODR is within bounds
+    if(ODR > 15) { ODR = 10; } // Ensure ODR is within bounds
     regDat = ODR & 0x0F; // Mask to set ODR
     status = ADXL375_WriteReg(adxl,ADXL375_REG_BW_RATE,&regDat);
     if (status != HAL_OK) { return status; }
@@ -40,9 +40,13 @@ HAL_StatusTypeDef ADXL375_Init(ADXL375 *adxl, I2C_HandleTypeDef *hi2c, uint8_t O
     // Set up offsets
     float scaleFac = 1.f/(9.80665f * 0.196f); // Offset register has scale of 0.196 g/LSB of register
     for(int i=0; i<3; i++) {
-        adxl->ofst[i] = (int8_t)(ofst[i] * scaleFac);
+        adxl->ofst[i] = (int8_t)(ofset[i] * scaleFac);
     }
 
+    // Power on the device
+    regDat = 0x08; // Set the device to measure mode
+    status = ADXL375_WriteReg(adxl, ADXL375_REG_POWER_CTL, &regDat);
+    if (status != HAL_OK) { return status; }
 
     return HAL_OK;
 }

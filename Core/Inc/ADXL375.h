@@ -38,8 +38,8 @@
 #define ADXL375_REG_FIFO_CTL            0x38 // FIFO control register
 #define ADXL375_REG_FIFO_STATUS         0x39 // FIFO status register
 
-#define ADXL375_SENSITIVITY             49   // mg/LSB from datasheet, replace w calibrated data if desired
-#define ADXL375_CONVERT ADXL375_SENSITIVITY*1000*9.80665 // conversion factor using sensitivity
+#define ADXL375_SENSITIVITY             20.5   // g/LSB from datasheet, replace w calibrated data if desired
+#define ADXL375_CONVERT 9.80665f / ADXL375_SENSITIVITY // conversion factor using sensitivity
 
 typedef struct {
     I2C_HandleTypeDef *hi2c; // I2C handle

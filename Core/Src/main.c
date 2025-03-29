@@ -116,36 +116,38 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   HAL_Delay(100);
-  int8_t offset[3] = {0,0,0};
-  ADXL375_Init(&highG,&hi2c3,9,offset);
-  
+  int8_t ofst[3] = {0,0,0};
+  HAL_StatusTypeDef status = ADXL375_Init(&highG,&hi2c3,10,ofst);
+  if (status != HAL_OK) {
+      SerialPrintln((uint8_t*)"ADXL375 Init Failed!");
+      while(1){
+        SerialPrintln((uint8_t*)"ADXL375 Init Failed!");
+        HAL_Delay(1000);
+      }
+  } else {
+      SerialPrintln((uint8_t*)"ADXL375 Init Success!");
+      // for(int i=0; i<5; i++) {
+      //     SerialPrintln("ADXL375 Init Success!");
+      //     HAL_Delay(1000);
+      // }
+  }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    uint8_t retval = HAL_I2C_Mem_Read(&hi2c3, ADDR_MAG<<1, 0x2F, I2C_MEMADD_SIZE_8BIT, &i2cBuf, 1, 1000);
-    if(retval == HAL_OK) {
-      snprintf((char *) usbTxBuf,USBBUF_MAXLEN,"Mag ID: %2x", i2cBuf);
-      SerialPrintln(usbTxBuf);
-    } else {
-      snprintf((char *) usbTxBuf,USBBUF_MAXLEN,"Error code: %d", retval);
+    status = ADXL375_ReadAccel(&highG);
+    if (status != HAL_OK) {
+        SerialPrintln((uint8_t*)"ADXL375 Read Failed!");
+    }
+    else {
+      snprintf((char*)usbTxBuf, USBBUF_MAXLEN, "X: %.3f \tY: %.3f \tZ: %.3f", highG.accel_ms2[0], highG.accel_ms2[1], highG.accel_ms2[2]);
       SerialPrintln(usbTxBuf);
     }
-    HAL_Delay(5000);
-    // for (uint8_t i = 0; i < 128; i++) {
+    HAL_Delay(100);
 
-    //   if (HAL_I2C_IsDeviceReady(&hi2c3, (uint16_t)(i<<1), 3, 5) == HAL_OK) {
-    //     // We got an ack
-    //     snprintf((char *) usbTxBuf,USBBUF_MAXLEN,"Device found at %2x", i);
-    //     SerialPrintln(usbTxBuf);
-    //   } else {}  
-    // }
-  
-    // SerialPrintln("\n");
-
-    // HAL_Delay(5000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

@@ -34,9 +34,9 @@ uint8_t SerialPrintln(uint8_t txBuf[]) {
   * @retval HAL Status
   */
 uint8_t i2cRead(uint8_t addr, uint8_t reg, uint8_t *data, uint8_t len) {
-    return HAL_I2C_Mem_Read(&hi2c3, addr<<1, reg, I2C_MEMADD_SIZE_8BIT, data, len, 1000);
+    return HAL_I2C_Mem_Read(&hi2c3, addr, reg, I2C_MEMADD_SIZE_8BIT, data, len, 1000);
 }
 
 uint8_t i2cWrite(uint8_t addr, uint8_t reg, uint8_t *data, uint8_t len) {
-    return HAL_I2C_Mem_Write(&hi2c3, addr<<1, reg, I2C_MEMADD_SIZE_8BIT, data, len, 1000);
+    return HAL_I2C_Mem_Write(&hi2c3, addr, reg, I2C_MEMADD_SIZE_8BIT, data, len, 1000);
 }
