@@ -76,6 +76,7 @@ endif
 # C sources
 C_SOURCES =  \
 Core/Src/ADXL375.c \
+Core/Src/MS5607.c \
 Core/Src/abstract.c \
 Core/Src/adc.c \
 Core/Src/cordic.c \

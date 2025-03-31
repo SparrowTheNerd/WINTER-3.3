@@ -33,6 +33,7 @@
 #include "usbd_cdc_if.h"
 #include "abstract.h"
 #include "ADXL375.h"
+#include "MS5607.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,7 +43,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define USBBUF_MAXLEN 128
+#define USBBUF_MAXLEN 256
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -57,6 +58,7 @@ uint8_t usbTxBuf[USBBUF_MAXLEN];
 uint8_t i2cBuf;
 uint16_t usbTxBufLen;
 ADXL375 highG;
+MS5607 baro;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -116,36 +118,42 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   HAL_Delay(100);
-  int8_t ofst[3] = {0,0,0};
-  HAL_StatusTypeDef status = ADXL375_Init(&highG,&hi2c3,10,ofst);
+  // int8_t ofst[3] = {0,0,0};
+  // HAL_StatusTypeDef status = ADXL375_Init(&highG,&hi2c3,10,ofst);
+  // if (status != HAL_OK) {
+  //     SerialPrintln((uint8_t*)"ADXL375 Init Failed!");
+  //     while(1){
+  //       SerialPrintln((uint8_t*)"ADXL375 Init Failed!");
+  //       HAL_Delay(1000);
+  //     }
+  // } else {
+  //     SerialPrintln((uint8_t*)"ADXL375 Init Success!");
+  // }
+
+  HAL_StatusTypeDef status = MS5607_Init(&baro,&hi2c3,4); // 4096 OSR
   if (status != HAL_OK) {
-      SerialPrintln((uint8_t*)"ADXL375 Init Failed!");
+      SerialPrintln((uint8_t*)"MS5607 Init Failed!");
       while(1){
-        SerialPrintln((uint8_t*)"ADXL375 Init Failed!");
+        SerialPrintln((uint8_t*)"MS5607 Init Failed!");
         HAL_Delay(1000);
       }
   } else {
-      SerialPrintln((uint8_t*)"ADXL375 Init Success!");
-      // for(int i=0; i<5; i++) {
-      //     SerialPrintln("ADXL375 Init Success!");
-      //     HAL_Delay(1000);
-      // }
+      SerialPrintln((uint8_t*)"MS5607 Init Success!");
   }
-
   /* USER CODE END 2 */
-
+  MS5607 prevbaro;
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    status = ADXL375_ReadAccel(&highG);
-    if (status != HAL_OK) {
-        SerialPrintln((uint8_t*)"ADXL375 Read Failed!");
+    prevbaro = baro;
+    for(int i=0; i<3; i++) {
+      MS5607_GetData(&baro);
+      HAL_Delay(10);
     }
-    else {
-      snprintf((char*)usbTxBuf, USBBUF_MAXLEN, "X: %.3f \tY: %.3f \tZ: %.3f", highG.accel_ms2[0], highG.accel_ms2[1], highG.accel_ms2[2]);
-      SerialPrintln(usbTxBuf);
-    }
+    snprintf(usbTxBuf, USBBUF_MAXLEN, ">H:%.3f\r\n>T:%.2f", baro.alt, baro.temp);
+    SerialPrintln(usbTxBuf);
+
     HAL_Delay(100);
 
     /* USER CODE END WHILE */
