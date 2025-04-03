@@ -6,6 +6,33 @@
 #define ADXL375_ADDR 0x53<<1 // ADXL375 I2C address
 #define ADXL375_DEVID 0xE5 // ADXL375 device ID
 
+#define ADXL375_SENSITIVITY             20.5   // g/LSB from datasheet, replace w calibrated data if desired
+#define ADXL375_CONVERT 9.80665f / ADXL375_SENSITIVITY // conversion factor using sensitivity
+
+typedef struct {
+    I2C_HandleTypeDef *hi2c; // I2C handle
+
+    float accel_ms2[3]; // Acceleration [X,Y,Z] in m/s^2
+    float ofst[3]; // Offset values for each axis
+} ADXL375;
+
+/*
+* INITIALIZATION
+*/
+HAL_StatusTypeDef ADXL375_Init(ADXL375 *adxl, I2C_HandleTypeDef *hi2c, uint8_t ODR, int8_t ofst[3]);
+
+/*
+* DATA ACQUISITION
+*/
+HAL_StatusTypeDef ADXL375_ReadAccel(ADXL375 *adxl);
+
+/*
+* LOW LEVEL FUNCTIONS
+*/
+HAL_StatusTypeDef ADXL375_ReadReg(ADXL375 *adxl, uint8_t reg, uint8_t *data, uint8_t len);
+
+HAL_StatusTypeDef ADXL375_WriteReg(ADXL375 *adxl, uint8_t reg, uint8_t *data);
+
 /*
 * REGISTERS
 */
@@ -37,32 +64,5 @@
 #define ADXL375_REG_DATAZ1              0x37 // Z-axis data register (MSB)
 #define ADXL375_REG_FIFO_CTL            0x38 // FIFO control register
 #define ADXL375_REG_FIFO_STATUS         0x39 // FIFO status register
-
-#define ADXL375_SENSITIVITY             20.5   // g/LSB from datasheet, replace w calibrated data if desired
-#define ADXL375_CONVERT 9.80665f / ADXL375_SENSITIVITY // conversion factor using sensitivity
-
-typedef struct {
-    I2C_HandleTypeDef *hi2c; // I2C handle
-
-    float accel_ms2[3]; // Acceleration [X,Y,Z] in m/s^2
-    float ofst[3]; // Offset values for each axis
-} ADXL375;
-
-/*
-* INITIALIZATION
-*/
-HAL_StatusTypeDef ADXL375_Init(ADXL375 *adxl, I2C_HandleTypeDef *hi2c, uint8_t ODR, int8_t ofst[3]);
-
-/*
-* DATA ACQUISITION
-*/
-HAL_StatusTypeDef ADXL375_ReadAccel(ADXL375 *adxl);
-
-/*
-* LOW LEVEL FUNCTIONS
-*/
-HAL_StatusTypeDef ADXL375_ReadReg(ADXL375 *adxl, uint8_t reg, uint8_t *data, uint8_t len);
-
-HAL_StatusTypeDef ADXL375_WriteReg(ADXL375 *adxl, uint8_t reg, uint8_t *data);
 
 #endif /* ADXL375_H */

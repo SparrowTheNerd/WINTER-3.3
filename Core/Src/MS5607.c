@@ -1,5 +1,13 @@
 #include "MS5607.h"
 
+/**
+ * @brief  Initializes the MS5607
+ * @param  *dev: Pointer to the MS5607 structure
+ * @param  *hi2c: Pointer to the I2C handle
+ * @param  OSR: Oversample rate (0-4 -> 256-4096)
+ * @note   OSR param can be 0 thru 4; see MS5607 datasheet
+ * @retval HAL Status
+ */
 HAL_StatusTypeDef MS5607_Init(MS5607 *dev, I2C_HandleTypeDef *hi2c, uint8_t OSR) {
     dev->hi2c = hi2c;
     dev->OSR = OSR;
@@ -29,11 +37,24 @@ HAL_StatusTypeDef MS5607_Init(MS5607 *dev, I2C_HandleTypeDef *hi2c, uint8_t OSR)
     return HAL_OK;
 }
 
+/**
+  * @brief  Reads Register(s) from the MS5607
+  * @param  *dev: Pointer to the MS5607 structure
+  * @param  reg: Register to read from
+  * @param  *data: Pointer to the data buffer
+  * @param  len: Number of bytes to read
+  * @retval HAL Status
+  */
 HAL_StatusTypeDef MS5607_ReadRegs(MS5607 *dev, uint8_t reg, uint8_t *data, uint16_t len) {
     return HAL_I2C_Mem_Read(dev->hi2c, MS5607_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, len, HAL_MAX_DELAY);
 }
 
 uint8_t baroStep = 0;
+/**
+ * @brief  Reads data from the MS5607
+ * @param  *dev: Pointer to the MS5607 structure
+ * @retval HAL Status
+ */
 HAL_StatusTypeDef MS5607_GetData(MS5607 *dev) {
     // Read digital pressure value D1
     HAL_StatusTypeDef status;
@@ -82,6 +103,11 @@ HAL_StatusTypeDef MS5607_GetData(MS5607 *dev) {
     return status;
 }
 
+/**
+ * @brief  Converts raw data to pressure and temperature
+ * @param  *dev: Pointer to the MS5607 structure
+ * @retval None
+ */
 void MS5607_Convert(MS5607 *dev) {
     dev->raw.dT = dev->raw.D2 - ((uint32_t)dev->raw.C[4] << 8);
     dev->raw.TEMP = 2000 + ((int32_t)dev->raw.dT * (int32_t)dev->raw.C[5] >> 23);

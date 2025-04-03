@@ -76,6 +76,7 @@ endif
 # C sources
 C_SOURCES =  \
 Core/Src/ADXL375.c \
+Core/Src/ICM42688.c \
 Core/Src/MS5607.c \
 Core/Src/abstract.c \
 Core/Src/adc.c \
@@ -130,6 +131,7 @@ USB_DEVICE/Target/usbd_conf.c
 
 
 CXX_SOURCES = \
+Core/Src/cpp_main.cpp
 
 
 # ASM sources
@@ -338,7 +340,7 @@ $(RELEASE_DIRECTORY)/%.o: %.sx STM32Make.make | $(RELEASE_DIRECTORY)
 
 $(RELEASE_DIRECTORY)/$(TARGET).elf: $(OBJECTS) STM32Make.make | $(RELEASE_DIRECTORY)
 	@echo $(OBJECTS) > $@.in
-	$(CC) @$@.in $(LDFLAGS) -o $@
+	$(CXX) @$@.in $(LDFLAGS) -o $@
 	$(SZ) $@
 
 $(RELEASE_DIRECTORY)/%.hex: $(RELEASE_DIRECTORY)/%.elf | $(RELEASE_DIRECTORY)

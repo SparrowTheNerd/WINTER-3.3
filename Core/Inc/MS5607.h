@@ -19,12 +19,12 @@ typedef struct {
     int64_t OFF; // Offset at actual temperature
     int64_t SENS; // Sensitivity at actual temperature
     int32_t P; // Actual pressure
-} rawDat;
+} MS5607_rawDat;
 
 typedef struct {
     I2C_HandleTypeDef *hi2c; // I2C handle
     uint8_t OSR; // Oversampling rate (0-4 -> 256-4096)
-    rawDat raw;
+    MS5607_rawDat raw;
     float temp; // Temperature in Celsius
     int32_t pres; // Pressure in Pa
     float alt; // Altitude in meters

@@ -1,0 +1,49 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"VsCodeTaskButtons.showCounter": true,
+		"VsCodeTaskButtons.tasks": [
+			{
+				"label": "$(notebook-state-success)",
+				"task": "Build STM",
+				"tooltip": "Build"
+			},
+			{
+				"label": "$(arrow-right)",
+				"tasks": [
+					{
+						"label": "Upload via ST-Link",
+						"task": "Flash STM",
+						"description": "Uploads to STM32 Using ST-Link Debugger"
+					},
+					{
+						"label": "Upload via DFU",
+						"task": "Flash DFU",
+						"description": "Uploads to STM32 via DFU Mode"
+					}
+				],
+				"tooltip": "Upload"
+			},
+			{
+				"label": "$(notebook-delete-cell)",
+				"task": "Build Clean STM",
+				"tooltip": "Clean Build"
+			},
+			{
+				"label": "$(breakpoints-view-icon)",
+				"task": "Debug",
+				"tooltip": "Run Debugger"
+			}
+		],
+		"cortex-debug.variableUseNaturalFormat": true,
+		"files.associations": {
+			"abstract.h": "c",
+			"stm32h7xx_hal.h": "c",
+			"i2c.h": "c"
+		}
+	}
+}
