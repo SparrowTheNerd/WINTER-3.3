@@ -14,12 +14,12 @@ HAL_StatusTypeDef ICM42688_Init(ICM42688 *icm, I2C_HandleTypeDef *hi2c, float a_
     HAL_StatusTypeDef status = ICM42688_WriteReg(icm, ICM42688_REG_BANK_SEL, &regDat); // Select Bank 1
     uint8_t reg = ICM42688_REG_B1_INTF_CONFIG6;
     regDat = 0x5C;
-    status |= ICM42688_WriteReg(icm, reg, &regDat);
+    status = ICM42688_WriteReg(icm, reg, &regDat);
     regDat = 0x00;
-    status |= ICM42688_WriteReg(icm, ICM42688_REG_BANK_SEL, &regDat); // Select Bank 0
+    status = ICM42688_WriteReg(icm, ICM42688_REG_BANK_SEL, &regDat); // Select Bank 0
     reg = ICM42688_REG_B0_DRIVE_CONFIG;
     regDat = 0x09;
-    status |= ICM42688_WriteReg(icm, reg, &regDat); // Set drive config to 0x09 (default)    
+    status = ICM42688_WriteReg(icm, reg, &regDat); // Set drive config to 0x09 (default)    
     if (status != HAL_OK) {
         return status;
     }

@@ -75,10 +75,6 @@ endif
 ######################################
 # C sources
 C_SOURCES =  \
-Core/Src/ADXL375.c \
-Core/Src/ICM42688.c \
-Core/Src/MS5607.c \
-Core/Src/abstract.c \
 Core/Src/adc.c \
 Core/Src/cordic.c \
 Core/Src/fmac.c \
@@ -131,6 +127,10 @@ USB_DEVICE/Target/usbd_conf.c
 
 
 CXX_SOURCES = \
+Core/Src/ADXL375.cpp \
+Core/Src/ICM42688.cpp \
+Core/Src/MS5607.cpp \
+Core/Src/abstract.cpp \
 Core/Src/cpp_main.cpp
 
 

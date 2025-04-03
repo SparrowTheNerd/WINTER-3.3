@@ -58,9 +58,10 @@ uint8_t baroStep = 0;
 HAL_StatusTypeDef MS5607_GetData(MS5607 *dev) {
     // Read digital pressure value D1
     HAL_StatusTypeDef status;
+    uint8_t cmd;
     switch(baroStep) {
         case 0:
-            uint8_t cmd = MS5607_REG_CONVERT_D1 + (dev->OSR * 2);
+            cmd = MS5607_REG_CONVERT_D1 + (dev->OSR * 2);
             status = HAL_I2C_Master_Transmit(dev->hi2c, MS5607_ADDR, &cmd, 1, HAL_MAX_DELAY);   // Start conversion for pressure
             if(status != HAL_OK) {
                 return status;

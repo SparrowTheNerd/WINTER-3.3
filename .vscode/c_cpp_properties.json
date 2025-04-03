@@ -18,7 +18,7 @@
         "USE_HAL_DRIVER",
         "USE_PWR_DIRECT_SMPS_SUPPLY"
       ],
-      "compilerPath": "c:\\Users\\thewo\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\14.2.1-1.1.1\\.content\\bin\\arm-none-eabi-g++.EXE",
+      "compilerPath": "/usr/bin/arm-none-eabi-g++",
       "configurationProvider": "ms-vscode.makefile-tools"
     }
   ],
