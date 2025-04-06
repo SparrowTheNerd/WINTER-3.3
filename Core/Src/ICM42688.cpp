@@ -1,34 +1,35 @@
 #include "ICM42688.h"
 
-HAL_StatusTypeDef ICM42688_Init(ICM42688 *icm, I2C_HandleTypeDef *hi2c, float a_ofst[3], float g_ofst[3], uint8_t g_fs, uint8_t g_odr, uint8_t a_fs, uint8_t a_odr) {
-    icm->hi2c = hi2c;
-    icm->accel_ofst[0] = a_ofst[0];
-    icm->accel_ofst[1] = a_ofst[1];
-    icm->accel_ofst[2] = a_ofst[2];
-    icm->gyro_ofst[0] = g_ofst[0];
-    icm->gyro_ofst[1] = g_ofst[1];
-    icm->gyro_ofst[2] = g_ofst[2];
+ICM42688::ICM42688(I2C_HandleTypeDef *hi2c, float a_ofst[3], float g_ofst[3], uint8_t g_fs, uint8_t g_odr, uint8_t a_fs, uint8_t a_odr) {
+    this->hi2c = hi2c;
+    this->accel_ofst[0] = a_ofst[0];
+    this->accel_ofst[1] = a_ofst[1];
+    this->accel_ofst[2] = a_ofst[2];
+    this->gyro_ofst[0] = g_ofst[0];
+    this->gyro_ofst[1] = g_ofst[1];
+    this->gyro_ofst[2] = g_ofst[2];
+}
 
+HAL_StatusTypeDef ICM42688::Init() {
     // configure for i2c
     uint8_t regDat = 0x01;
-    HAL_StatusTypeDef status = ICM42688_WriteReg(icm, ICM42688_REG_BANK_SEL, &regDat); // Select Bank 1
+    uint8_t status = WriteReg(ICM42688_REG_BANK_SEL, &regDat); // Select Bank 1
     uint8_t reg = ICM42688_REG_B1_INTF_CONFIG6;
     regDat = 0x5C;
-    status = ICM42688_WriteReg(icm, reg, &regDat);
+    status |= WriteReg(reg, &regDat);
     regDat = 0x00;
-    status = ICM42688_WriteReg(icm, ICM42688_REG_BANK_SEL, &regDat); // Select Bank 0
+    status |= WriteReg(ICM42688_REG_BANK_SEL, &regDat); // Select Bank 0
     reg = ICM42688_REG_B0_DRIVE_CONFIG;
     regDat = 0x09;
-    status = ICM42688_WriteReg(icm, reg, &regDat); // Set drive config to 0x09 (default)    
+    status |= WriteReg(reg, &regDat); // Set drive config to 0x09 (default)    
     if (status != HAL_OK) {
-        return status;
+        return (HAL_StatusTypeDef)status;
     }
 
-
     reg = ICM42688_REG_B0_WHO_AM_I;
-    status = ICM42688_ReadRegs(icm, reg, &regDat, 1);
+    status = ReadRegs(reg, &regDat, 1);
     if (status != HAL_OK) {
-        return status;
+        return (HAL_StatusTypeDef)status;
     }
     if (regDat != ICM42688_DEVID) {
         return HAL_ERROR; // Device ID mismatch
@@ -39,9 +40,6 @@ HAL_StatusTypeDef ICM42688_Init(ICM42688 *icm, I2C_HandleTypeDef *hi2c, float a_
     return HAL_OK;
 }
 
-
-
-
 /**
   * @brief  Reads Register(s) from the ICM42688
   * @param  *icm: Pointer to the ICM42688 structure
@@ -50,8 +48,8 @@ HAL_StatusTypeDef ICM42688_Init(ICM42688 *icm, I2C_HandleTypeDef *hi2c, float a_
   * @param  len: Number of bytes to read
   * @retval HAL Status
   */
- HAL_StatusTypeDef ICM42688_ReadRegs(ICM42688 *icm, uint8_t reg, uint8_t *data, uint8_t len) {
-    return HAL_I2C_Mem_Read(icm->hi2c, ICM42688_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, len, HAL_MAX_DELAY);
+ HAL_StatusTypeDef ICM42688::ReadRegs(uint8_t reg, uint8_t *data, uint8_t len) {
+    return HAL_I2C_Mem_Read(hi2c, ICM42688_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, len, HAL_MAX_DELAY);
 }
 
 /**
@@ -61,8 +59,8 @@ HAL_StatusTypeDef ICM42688_Init(ICM42688 *icm, I2C_HandleTypeDef *hi2c, float a_
   * @param  *data: Pointer to the data buffer
   * @retval HAL Status
   */
-HAL_StatusTypeDef ICM42688_WriteReg(ICM42688 *icm, uint8_t reg, uint8_t *data) {
-    return HAL_I2C_Mem_Write(icm->hi2c, ICM42688_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, 1, HAL_MAX_DELAY);
+HAL_StatusTypeDef ICM42688::WriteReg(uint8_t reg, uint8_t *data) {
+    return HAL_I2C_Mem_Write(hi2c, ICM42688_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, 1, HAL_MAX_DELAY);
 }
 
 /**
@@ -73,8 +71,8 @@ HAL_StatusTypeDef ICM42688_WriteReg(ICM42688 *icm, uint8_t reg, uint8_t *data) {
   * @param  len: Number of bytes to write
   * @retval HAL Status
   */
- HAL_StatusTypeDef ICM42688_WriteRegs(ICM42688 *icm, uint8_t reg, uint8_t *data, uint8_t len) {
-    return HAL_I2C_Mem_Write(icm->hi2c, ICM42688_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, len, HAL_MAX_DELAY);
+ HAL_StatusTypeDef ICM42688::WriteRegs(uint8_t reg, uint8_t *data, uint8_t len) {
+    return HAL_I2C_Mem_Write(hi2c, ICM42688_ADDR, reg, I2C_MEMADD_SIZE_8BIT, data, len, HAL_MAX_DELAY);
 }
 
 /**
@@ -83,17 +81,17 @@ HAL_StatusTypeDef ICM42688_WriteReg(ICM42688 *icm, uint8_t reg, uint8_t *data) {
   * @param  *ofst: Pointer to the raw offset array (9 bytes)
   * @retval None
   */
-void convertOfst(ICM42688 *icm, int8_t ofst[9]) {
+void ICM42688::convertOfst(int8_t ofst[9]) {
     int16_t gyro_raw[3], accel_raw[3];
 
     // Convert gyro offsets to raw register values
     for (int i = 0; i < 3; i++) {
-        gyro_raw[i] = (int16_t)(icm->gyro_ofst[i] * 32.f); // 32 LSB/dps
+        gyro_raw[i] = (int16_t)(gyro_ofst[i] * 32.f); // 32 LSB/dps
     }
 
     // Convert accel offsets to raw register values
     for (int i = 0; i < 3; i++) {
-        accel_raw[i] = (int16_t)(icm->accel_ofst[i] * 2000.f); // 2000 LSB/g
+        accel_raw[i] = (int16_t)(accel_ofst[i] * 2000.f); // 2000 LSB/g
     }
 
     // Pack into register bytes (matching the register layout in sections 18.18 thru 18.26)
