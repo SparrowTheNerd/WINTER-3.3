@@ -2,7 +2,6 @@
 
 /**
  * @brief  Initializes the MS5607
- * @param  *dev: Pointer to the MS5607 structure
  * @param  *hi2c: Pointer to the I2C handle
  * @param  OSR: Oversample rate (0-4 -> 256-4096)
  * @note   OSR param can be 0 thru 4; see MS5607 datasheet

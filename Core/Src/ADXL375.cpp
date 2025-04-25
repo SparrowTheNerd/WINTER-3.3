@@ -3,6 +3,15 @@
 /*
 * INITIALIZATION
 */
+
+/**
+ * @brief  Initializes the ADXL375
+ * @param  *hi2c: Pointer to the I2C handle
+ * @param  ODR: Output data rate
+ * @param ofst[3]: [X,Y,Z] offsets (m/s^2)
+ * @note   ODR param can be 0 thru 15; see ADXL375 datasheet Table 6 for details
+ * @retval HAL Status
+ */
 ADXL375::ADXL375(I2C_HandleTypeDef *hi2c, uint8_t ODR, int8_t ofset[3]) {
     this->hi2c = hi2c;
     this->ODR = ODR;
@@ -15,15 +24,7 @@ ADXL375::ADXL375(I2C_HandleTypeDef *hi2c, uint8_t ODR, int8_t ofset[3]) {
     this->accel_ms2[2] = 0.0f;
 }
 
-/**
- * @brief  Initializes the ADXL375
- * @param  *adxl: Pointer to the ADXL375 structure
- * @param  *hi2c: Pointer to the I2C handle
- * @param  ODR: Output data rate
- * @param ofst[3]: [X,Y,Z] offsets (m/s^2)
- * @note   ODR param can be 0 thru 15; see ADXL375 datasheet Table 6 for details
- * @retval HAL Status
- */
+
 HAL_StatusTypeDef ADXL375::Init() {
     uint8_t regDat = 0;
 
