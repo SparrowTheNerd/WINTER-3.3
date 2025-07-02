@@ -43,7 +43,11 @@
 		"files.associations": {
 			"abstract.h": "c",
 			"stm32h7xx_hal.h": "c",
-			"i2c.h": "c"
+			"i2c.h": "c",
+			"fatfs.h": "c",
+			"user_diskio_spi.h": "c",
+			"ff_gen_drv.h": "c",
+			"diskio.h": "c"
 		},
 		"cortex-debug.armToolchainPath": "/usr/bin",
 		"cortex-debug.openocdPath": "/usr/bin/openocd"

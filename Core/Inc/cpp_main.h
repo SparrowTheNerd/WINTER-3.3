@@ -2,7 +2,6 @@
 #define CPP_MAIN_H_
 
 #define ADDR_MAG 0x30
-#define ADDR_IMU 0x68
 #define ADDR_GPS 0x42
 
 #ifdef __cplusplus
