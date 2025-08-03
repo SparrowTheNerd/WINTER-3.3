@@ -43,7 +43,18 @@
 /* Private variables ---------------------------------------------------------*/
 /* Disk status */
 static volatile DSTATUS Stat = STA_NOINIT;
-
+DRESULT USER_DMA_Write (
+  const BYTE *buff,	/* Pointer to the data to write */
+  BYTE *rxBuff,	/* Pointer to the data to receive (can be NULL) */
+  uint16_t size,		/* Size of data to write (must be 512) */
+  DWORD sector,		/* Start sector number (LBA) */
+  UINT count			/* Number of sectors to write (1..128) */
+)
+{
+  /* USER CODE BEGIN DMA_WRITE */
+    return USER_SPI_DMA_write(buff, rxBuff, size, sector, count);
+  /* USER CODE END DMA_WRITE */
+}
 /* USER CODE END DECL */
 
 /* Private function prototypes -----------------------------------------------*/

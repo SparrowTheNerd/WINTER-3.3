@@ -40,3 +40,12 @@ uint8_t i2cRead(uint8_t addr, uint8_t reg, uint8_t *data, uint8_t len) {
 uint8_t i2cWrite(uint8_t addr, uint8_t reg, uint8_t *data, uint8_t len) {
     return HAL_I2C_Mem_Write(&hi2c3, addr, reg, I2C_MEMADD_SIZE_8BIT, data, len, 1000);
 }
+
+void delay_us(uint16_t us) {
+    uint32_t start = DWT->CYCCNT; // Get current cycle count
+    uint32_t cycles = (HAL_RCC_GetHCLKFreq() / 1000000) * us; // Calculate cycles for the delay
+
+    while ((DWT->CYCCNT - start) < cycles) {
+        // Wait until the specified number of cycles has passed
+    }
+}

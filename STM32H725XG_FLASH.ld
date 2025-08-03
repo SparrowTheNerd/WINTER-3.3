@@ -206,6 +206,13 @@ SECTIONS
     libgcc.a ( * )
   }
 
+  /* RAM MODIFICATION */
+  .nocache(NOLOAD) :
+  {
+    . = ALIGN(32);
+    *(.nocache)
+  } > RAM_D3
+
 }
 
 

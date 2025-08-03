@@ -33,6 +33,7 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 extern Diskio_drvTypeDef  USER_Driver;
+extern DSTATUS USER_DMA_Write(const BYTE *buff, BYTE *rxBuff, uint16_t size, DWORD sector, UINT count);
 
 /* USER CODE END 0 */
 

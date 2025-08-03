@@ -33,12 +33,15 @@
             "tooltip": "Run Debugger"
         }
     ],
-    "cortex-debug.variableUseNaturalFormat": true,
+    "cortex-debug.variableUseNaturalFormat": false,
     "files.associations": {
         "abstract.h": "c",
         "stm32h7xx_hal.h": "c",
-        "i2c.h": "c"
+        "i2c.h": "c",
+        "spi.h": "c",
+        "tim.h": "c"
     },
     "cortex-debug.armToolchainPath": "/usr/bin",
-    "cortex-debug.openocdPath": "/usr/bin/openocd"
+    "cortex-debug.openocdPath": "/usr/bin/openocd",
+    "stm32-for-vscode.openOCDPath": "/usr/bin/openocd"
 }

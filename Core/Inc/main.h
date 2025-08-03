@@ -126,6 +126,9 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN Private defines */
 #define SD_SPI_HANDLE hspi1
+#define SD_SPI_DMA_TX hdma_spi1_tx
+#define SD_SPI_DMA_RX hdma_spi1_rx
+#define EXTRA_BYTES 3
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
