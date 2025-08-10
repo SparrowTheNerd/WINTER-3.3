@@ -1,0 +1,3 @@
+[submodule "SparkFun-UBlox-STM32"]
+	path = SparkFun-UBlox-STM32
+	url = https://github.com/SparrowTheNerd/SparkFun-UBlox-STM32

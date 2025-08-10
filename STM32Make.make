@@ -140,7 +140,9 @@ Core/Src/ADXL375.cpp \
 Core/Src/ICM42688.cpp \
 Core/Src/MS5607.cpp \
 Core/Src/abstract.cpp \
-Core/Src/cpp_main.cpp
+Core/Src/cpp_main.cpp \
+SparkFun-UBlox-STM32/src/sfe_bus.cpp \
+SparkFun-UBlox-STM32/src/u-blox_GNSS.cpp
 
 
 # ASM sources

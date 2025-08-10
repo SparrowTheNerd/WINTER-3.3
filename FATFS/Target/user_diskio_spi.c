@@ -310,13 +310,11 @@ int xmit_datablock_DMA (	/* 1:OK, 0:Failed */
 	BYTE token			/* Token */
 )
 {
-	BYTE resp;
-
 	// if (!wait_ready_us(5)) return 0;		/* Wait for card ready */
 	dma_tx_done = 0;		/* Reset DMA transfer done flag */
 	HAL_SPI_TransmitReceive_DMA(&SD_SPI_HANDLE, buff, rxBuff, size);		/* Data */
 	while(!dma_tx_done);	/* Wait for DMA transfer to complete */
-	resp = xchg_spi(0xFF);				/* Receive data resp */
+	xchg_spi(0xFF);				/* Receive data resp */
 	// if ((resp & 0x1F) != 0x05) return 0;	/* Function fails if the data packet was not accepted */
 	
 	return 1;

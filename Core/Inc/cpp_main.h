@@ -1,8 +1,9 @@
-#ifndef CPP_MAIN_H_
-#define CPP_MAIN_H_
+#pragma once
 
 #define ADDR_MAG 0x30
 #define ADDR_GPS 0x42
+#define USBBUF_MAXLEN 256
+
 
 #ifdef __cplusplus
 extern "C"
@@ -15,6 +16,4 @@ int cpp_main();
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif
