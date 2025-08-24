@@ -40,7 +40,8 @@
         "i2c.h": "c",
         "spi.h": "c",
         "tim.h": "c",
-        "ff_gen_drv.h": "c"
+        "ff_gen_drv.h": "c",
+        "cstdio": "cpp"
     },
     "cortex-debug.armToolchainPath": "/usr/bin",
     "cortex-debug.openocdPath": "/usr/bin/openocd",

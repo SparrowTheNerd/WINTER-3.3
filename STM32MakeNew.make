@@ -244,7 +244,6 @@ C_INCLUDES =  \
 -IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc \
 -IMiddlewares/ST/STM32_USB_Device_Library/Core/Inc \
 -IMiddlewares/Third_Party/FatFs/src \
--ISparkFun-UBlox-STM32/src \
 -IUSB_DEVICE/App \
 -IUSB_DEVICE/Target
 

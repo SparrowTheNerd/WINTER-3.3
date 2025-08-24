@@ -81,7 +81,7 @@ includeDirectories:
   - Src/**
   - Core/Src/**
   - Core/Lib/**
-  - ../SparkFun-UBlox-STM32/src/**
+  - SparkFun-UBlox-STM32/src/**
 
 # Files that should be included in the compilation.
 # If a CubeMX makefile is present it will automatically include the  c and cpp/cxx files from that makefile.
