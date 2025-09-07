@@ -39,30 +39,14 @@ SFE_UBLOX_GNSS myGNSS;
 
 int cpp_main()
 {   
-    SX1262_Get_st()->Busy_Pin = LoRa_BUSY_Pin;
-	SX1262_Get_st()->Busy_Port= LoRa_BUSY_GPIO_Port;
-	SX1262_Get_st()->NSS_Pin = LoRa_CS_Pin;
-	SX1262_Get_st()->NSS_Port = LoRa_CS_GPIO_Port;
-	SX1262_Get_st()->Reset_Pin = LoRa_RST_Pin;
-	SX1262_Get_st()->Reset_Port = LoRa_RST_GPIO_Port;
-    SX1262_Get_st()->SPI = LoRa_SPI_HANDLE;
-	
-	uint8_t cmd[2] = {SX1262_CMD_SET_DIO3_AS_TCXO_CTRL, SX1262_DIO3_OUTPUT_3_3};
-	HAL_GPIO_WritePin(LoRa_CS_GPIO_Port, LoRa_CS_Pin, GPIO_PIN_RESET);
-	HAL_SPI_Transmit(&LoRa_SPI_HANDLE,cmd,2,HAL_MAX_DELAY);
-	HAL_GPIO_WritePin(LoRa_CS_GPIO_Port, LoRa_CS_Pin, GPIO_PIN_SET);
-	SX1262_Init();
-    SX1262_SetFrequency(915e6);
 
+	HAL_Delay(30000); //wait 30 seconds to clear the area
+
+	HAL_GPIO_WritePin(PY1_GPIO_Port, PY1_Pin, GPIO_PIN_SET); //Trigger pyro channel 1
+	HAL_Delay(50);
+	HAL_GPIO_WritePin(PY1_GPIO_Port, PY1_Pin, GPIO_PIN_RESET);
 	while (1)
 	{   
-		HAL_GPIO_WritePin(LoRa_PA_EN_GPIO_Port, LoRa_PA_EN_Pin, GPIO_PIN_SET);
-		// HAL_Delay(100);
-        SX1262_Transmit((uint8_t *)"Hello World!", 12);
-		// HAL_Delay(100);
-		HAL_GPIO_WritePin(LoRa_PA_EN_GPIO_Port, LoRa_PA_EN_Pin, GPIO_PIN_RESET);
-        SerialPrintln((uint8_t *)"Transmitted!");
-        HAL_Delay(1000);
-		
+		HAL_Delay(1000);
 	}
 }
