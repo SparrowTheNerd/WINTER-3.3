@@ -41,7 +41,8 @@
         "spi.h": "c",
         "tim.h": "c",
         "ff_gen_drv.h": "c",
-        "cstdio": "cpp"
+        "cstdio": "cpp",
+        "sx1262_definitions.h": "c"
     },
     "cortex-debug.armToolchainPath": "/usr/bin",
     "cortex-debug.openocdPath": "/usr/bin/openocd",

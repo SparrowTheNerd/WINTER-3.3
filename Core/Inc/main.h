@@ -85,6 +85,8 @@ void Error_Handler(void);
 #define SENS1_GPIO_Port GPIOB
 #define LoRa_BUSY_Pin GPIO_PIN_10
 #define LoRa_BUSY_GPIO_Port GPIOB
+#define LoRa_INT_Pin GPIO_PIN_12
+#define LoRa_INT_GPIO_Port GPIOB
 #define LoRa_SCK_Pin GPIO_PIN_13
 #define LoRa_SCK_GPIO_Port GPIOB
 #define LoRa_MISO_Pin GPIO_PIN_14
@@ -126,6 +128,7 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN Private defines */
 #define SD_SPI_HANDLE hspi1
+#define LoRa_SPI_HANDLE hspi2
 #define SD_SPI_DMA_TX hdma_spi1_tx
 #define SD_SPI_DMA_RX hdma_spi1_rx
 #define EXTRA_BYTES 3

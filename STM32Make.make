@@ -75,6 +75,7 @@ endif
 ######################################
 # C sources
 C_SOURCES =  \
+Core/Src/SX1262.c \
 Core/Src/adc.c \
 Core/Src/cordic.c \
 Core/Src/dma.c \
@@ -139,6 +140,7 @@ CXX_SOURCES = \
 Core/Src/ADXL375.cpp \
 Core/Src/ICM42688.cpp \
 Core/Src/MS5607.cpp \
+Core/Src/SX1262-new.cpp \
 Core/Src/abstract.cpp \
 Core/Src/cpp_main.cpp \
 SparkFun-UBlox-STM32/src/sfe_bus.cpp \
