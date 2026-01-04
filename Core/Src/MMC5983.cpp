@@ -39,7 +39,7 @@ HAL_StatusTypeDef MMC5983::ReadMag() {
     // Convert raw data to float
     mag_gauss[0] = (((int32_t)(rawDat[0] << 10 | rawDat[1] << 2 | rawDat[7] >> 6))-131071.5f)*magConv;
     mag_gauss[1] = (((int32_t)(rawDat[2] << 10 | rawDat[3] << 2 | rawDat[7] >> 4))-131071.5f)*magConv;
-    mag_gauss[2] = (((int32_t)(rawDat[4] << 10 | rawDat[5] << 2 | rawDat[7] >> 2))-131071.5f)*magConv;
+    mag_gauss[2] = -(((int32_t)(rawDat[4] << 10 | rawDat[5] << 2 | rawDat[7] >> 2))-131071.5f)*magConv;
 
     return status;
 }

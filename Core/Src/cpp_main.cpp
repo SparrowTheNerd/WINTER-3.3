@@ -38,7 +38,7 @@ float imuOfst[3] = {0,0,0};
 SFE_UBLOX_GNSS myGNSS;
 ICM42688 IMU(&hi2c3, imuOfst, imuOfst, ICM_g_FS::_2000dps, ICM_ODR::_500Hz, ICM_a_FS::_16g, ICM_ODR::_500Hz);
 ADXL375 HighG(&hi2c3, 12, highGOfst);
-MMC5983 Mag(&hi2c3, MMC_BW::_100hz, MMC_CMODR::_50h, MMC_PRDSET::_250);
+MMC5983 Mag(&hi2c3, MMC_BW::_100hz, MMC_CMODR::_100h, MMC_PRDSET::_250);
 
 
 int cpp_main()
@@ -58,6 +58,6 @@ int cpp_main()
         sprintf((char*)usbTxBuf, ">mX: %.6f\n>mY: %.6f\n>mZ: %.6f\n", Mag.mag_gauss[0], Mag.mag_gauss[1], Mag.mag_gauss[2]);
         SerialPrintln(usbTxBuf);
 		
-		HAL_Delay(50);
+		HAL_Delay(10);
 	}
 }
