@@ -47,9 +47,15 @@
 			"fatfs.h": "c",
 			"user_diskio_spi.h": "c",
 			"ff_gen_drv.h": "c",
-			"diskio.h": "c"
+			"diskio.h": "c",
+			"stm32h7xx_hal_conf.h": "c",
+			"usbd_cdc_if.h": "c",
+			"usbd_cdc.h": "c",
+			"usbd_ioreq.h": "c",
+			"usbd_def.h": "c",
+			"usbd_conf.h": "c"
 		},
-		"cortex-debug.armToolchainPath": "/usr/bin",
-		"cortex-debug.openocdPath": "/usr/bin/openocd"
+		"cortex-debug.armToolchainPath": "C:\\Program Files\\Arm\\GNU Toolchain mingw-w64-x86_64-arm-none-eabi\\bin",
+		"cortex-debug.openocdPath": "C:\\tools\\xpack-openocd-0.12.0-7\\bin\\openocd.EXE"
 	}
 }

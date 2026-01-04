@@ -103,12 +103,17 @@ void Error_Handler(void);
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
 #define SWCLK_GPIO_Port GPIOA
+#define BUZZ_Pin GPIO_PIN_15
+#define BUZZ_GPIO_Port GPIOA
 #define IMU_INT_Pin GPIO_PIN_10
 #define IMU_INT_GPIO_Port GPIOC
+#define IMU_INT_EXTI_IRQn EXTI15_10_IRQn
 #define HIGHG_INT_Pin GPIO_PIN_11
 #define HIGHG_INT_GPIO_Port GPIOC
+#define HIGHG_INT_EXTI_IRQn EXTI15_10_IRQn
 #define MAG_INT_Pin GPIO_PIN_12
 #define MAG_INT_GPIO_Port GPIOC
+#define MAG_INT_EXTI_IRQn EXTI15_10_IRQn
 #define SD_CS_Pin GPIO_PIN_2
 #define SD_CS_GPIO_Port GPIOD
 #define SD_SCK_Pin GPIO_PIN_3

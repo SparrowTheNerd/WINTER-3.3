@@ -35,10 +35,10 @@
 			"label": "Flash STM",
 			"dependsOn": "Build STM",
 			"type": "process",
-			"command": "/home/sparrow/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer_CLI",
+			"command": "STM32_Programmer_CLI.exe",
             "args": [
                 "-c", "port=SWD",
-                "-d", "${workspaceFolder}/build/debug/WINTER3-3.bin", "0x08000000",
+                "-d", "${workspaceFolder}\\build\\debug\\WINTER3-3.bin", "0x08000000",
                 "-rst"
             ],
 			"group": {
@@ -53,10 +53,10 @@
 			"label": "Flash DFU",
 			"dependsOn": "Build STM",
 			"type": "process",
-			"command": "/home/sparrow/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer_CLI",
+			"command": "STM32_Programmer_CLI.exe",
 			"args": [
 				"-c", "port=USB1",
-				"-d", "${workspaceFolder}/build/debug/WINTER3-3.bin", "0x08000000",
+				"-d", "${workspaceFolder}\\build\\debug\\WINTER3-3.bin", "0x08000000",
 				"-rst"
 			],
 			"group": {

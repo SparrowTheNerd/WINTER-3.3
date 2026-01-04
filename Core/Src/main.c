@@ -24,7 +24,6 @@
 #include "fatfs.h"
 #include "fmac.h"
 #include "i2c.h"
-#include "memorymap.h"
 #include "spi.h"
 #include "tim.h"
 #include "usb_device.h"
@@ -277,8 +276,7 @@ void Error_Handler(void)
   }
   /* USER CODE END Error_Handler_Debug */
 }
-
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.

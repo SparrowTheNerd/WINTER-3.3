@@ -22,8 +22,8 @@
         "USE_HAL_DRIVER",
         "USE_PWR_DIRECT_SMPS_SUPPLY"
       ],
-      "compilerPath": "/usr/bin/arm-none-eabi-g++",
-      "configurationProvider": "ms-vscode.makefile-tools"
+      "configurationProvider": "ms-vscode.makefile-tools",
+      "compilerPath": "C:\\Program Files\\Arm\\GNU Toolchain mingw-w64-x86_64-arm-none-eabi\\bin\\arm-none-eabi-g++.EXE"
     }
   ],
   "version": 4

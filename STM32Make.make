@@ -83,7 +83,6 @@ Core/Src/fmac.c \
 Core/Src/gpio.c \
 Core/Src/i2c.c \
 Core/Src/main.c \
-Core/Src/memorymap.c \
 Core/Src/spi.c \
 Core/Src/stm32h7xx_hal_msp.c \
 Core/Src/stm32h7xx_it.c \
@@ -139,6 +138,7 @@ USB_DEVICE/Target/usbd_conf.c
 CXX_SOURCES = \
 Core/Src/ADXL375.cpp \
 Core/Src/ICM42688.cpp \
+Core/Src/MMC5983.cpp \
 Core/Src/MS5607.cpp \
 Core/Src/SX1262-new.cpp \
 Core/Src/abstract.cpp \

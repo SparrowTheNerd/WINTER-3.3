@@ -57,7 +57,7 @@ class ICM42688 {
 
 };
 
-enum g_FS {
+enum ICM_g_FS {
     _2000dps = (0 << 5),
     _1000dps = (1 << 5),
     _500dps = (2 << 5),
@@ -68,14 +68,14 @@ enum g_FS {
     _15_625dps = (7 << 5)
 };
 
-enum a_FS {
+enum ICM_a_FS {
     _16g = (0 << 5),
     _8g = (1 << 5),
     _4g = (2 << 5),
     _2g = (3 << 5)
 };
 
-enum ODR {
+enum ICM_ODR {
     _32kHz = 1,   // 32kHz (LN mode)
     _16kHz = 2,   // 16kHz (LN mode)
     _8kHz = 3,    // 8kHz (LN mode)
