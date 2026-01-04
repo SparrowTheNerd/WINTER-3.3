@@ -15,7 +15,8 @@
         "Middlewares/Third_Party/FatFs/src",
         "SparkFun-UBlox-STM32/src",
         "USB_DEVICE/App",
-        "USB_DEVICE/Target"
+        "USB_DEVICE/Target",
+        "eigen-5.0.0/"
       ],
       "defines": [
         "STM32H725xx",

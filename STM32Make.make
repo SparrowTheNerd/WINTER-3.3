@@ -248,7 +248,8 @@ C_INCLUDES =  \
 -IMiddlewares/Third_Party/FatFs/src \
 -ISparkFun-UBlox-STM32/src \
 -IUSB_DEVICE/App \
--IUSB_DEVICE/Target
+-IUSB_DEVICE/Target \
+-Ieigen-5.0.0/
 
 
 

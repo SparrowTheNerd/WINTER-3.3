@@ -3,7 +3,6 @@
 #include "cordic.h"
 #include "fmac.h"
 #include "i2c.h"
-// #include "memorymap.h"
 #include "spi.h"
 #include "tim.h"
 #include "usb_device.h"
@@ -13,46 +12,48 @@
 #include "usbd_cdc_if.h"
 #include "abstract.h"
 
-#include "ADXL375.h"
-#include "MS5607.h"
-#include "ICM42688.h"
-#include "MMC5983.h"
-#include "../../SparkFun-UBlox-STM32/src/SparkFun_u-blox_GNSS_v3.h"
-#include "SX1262.h"
-
-#include "fatfs.h"
-#include "user_diskio.h"
-#include <string.h>
-#include <stdio.h>
-
-/* 
- * __attribute__((section(".nocache")));
- */
+#include <Eigen/Dense>
+using namespace Eigen;
 
 uint8_t usbTxBuf[USBBUF_MAXLEN];
-uint8_t i2cBuf;
 uint16_t usbTxBufLen;
-int8_t highGOfst[3] = {0,0,0};
-float imuOfst[3] = {0,0,0};
 
-SFE_UBLOX_GNSS myGNSS;
-ICM42688 IMU(&hi2c3, imuOfst, imuOfst, ICM_g_FS::_2000dps, ICM_ODR::_500Hz, ICM_a_FS::_16g, ICM_ODR::_500Hz);
-ADXL375 HighG(&hi2c3, 12, highGOfst);
-MMC5983 Mag(&hi2c3, MMC_BW::_100hz, MMC_CMODR::_100h, MMC_PRDSET::_250);
+void print_matrix(MatrixXf &X);
 
-float lipoVoltage = 0.0f;
-float voltsPerBit = 3.3f / 65535.f;
+
 int cpp_main()
-{   
-    HAL_ADC_Start(&hadc1);
+{   	
+    HAL_Delay(2000);
+    SerialPrintln((uint8_t*)"Eigen Test:");
+	MatrixXf m(2, 2);
+    m(0, 0) = 3;
+    m(1, 0) = 2.5;
+    m(0, 1) = -1;
+    m(1, 1) = m(1, 0) + m(0, 1);
+    print_matrix(m);
 
 	while (1)
 	{   
-        
-        lipoVoltage = (float)analogReadSE(ADC_CHANNEL_10)*voltsPerBit*2.f; 
-        sprintf((char*)usbTxBuf, "Voltage: %.3f V", lipoVoltage);
-        SerialPrintln(usbTxBuf);
 		
 		HAL_Delay(1000);
 	}
+}
+
+void print_matrix(MatrixXf &X)  
+{
+    uint16_t bufLen = 0;
+
+    uint8_t nrow = X.rows();
+    uint8_t ncol = X.cols();
+    for (uint8_t i=0; i<nrow; i++) {   
+        bufLen+=sprintf((char*)usbTxBuf+bufLen, "[");
+
+        for (uint8_t j=0; j<ncol; j++) {
+            bufLen+=sprintf((char*)usbTxBuf+bufLen, "%.5f", X(i,j));
+
+            if(j<ncol-1) bufLen+=sprintf((char*)usbTxBuf+bufLen, ",");
+        }
+        bufLen+=sprintf((char*)usbTxBuf+bufLen, "]\n");
+    }
+    SerialPrintln(usbTxBuf);
 }
