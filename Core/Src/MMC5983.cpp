@@ -1,6 +1,7 @@
 #include "MMC5983.h"
 #include "abstract.h"
 
+
 MMC5983::MMC5983(I2C_HandleTypeDef *hi2c, uint8_t bw, uint8_t cmodr, uint8_t prdset) {
     this->hi2c = hi2c;
     this->bw = bw;
@@ -37,9 +38,11 @@ HAL_StatusTypeDef MMC5983::ReadMag() {
     HAL_StatusTypeDef status;
     status = ReadRegs(MMC5983_REG_XOUT_0, rawDat, 7);
     // Convert raw data to float
-    mag_gauss[0] = (((int32_t)(rawDat[0] << 10 | rawDat[1] << 2 | rawDat[7] >> 6))-131071.5f)*magConv;
-    mag_gauss[1] = (((int32_t)(rawDat[2] << 10 | rawDat[3] << 2 | rawDat[7] >> 4))-131071.5f)*magConv;
-    mag_gauss[2] = -(((int32_t)(rawDat[4] << 10 | rawDat[5] << 2 | rawDat[7] >> 2))-131071.5f)*magConv;
+    mag_gauss(0) =  (((int32_t)(rawDat[0] << 10 | rawDat[1] << 2 | rawDat[7] >> 6))-131071.5f)*magConv;
+    mag_gauss(1) =  (((int32_t)(rawDat[2] << 10 | rawDat[3] << 2 | rawDat[7] >> 4))-131071.5f)*magConv;
+    mag_gauss(2) = -(((int32_t)(rawDat[4] << 10 | rawDat[5] << 2 | rawDat[7] >> 2))-131071.5f)*magConv;
+
+    mag_gauss = magSoftIronOffset * (mag_gauss - magHardIronOffset);  // Apply hard and soft iron calibrations
 
     return status;
 }

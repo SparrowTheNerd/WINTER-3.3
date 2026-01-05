@@ -10,7 +10,7 @@
 
 class ADXL375 {
     public:
-        ADXL375(I2C_HandleTypeDef *hi2c, uint8_t ODR, int8_t ofset[3]);
+        ADXL375(I2C_HandleTypeDef *hi2c, uint8_t ODR, int8_t offset[3]);
         
         HAL_StatusTypeDef Init();
         HAL_StatusTypeDef ReadAccel();

@@ -35,7 +35,6 @@
     ],
     "cortex-debug.variableUseNaturalFormat": false,
     "files.associations": {
-        "abstract.h": "c",
         "stm32h7xx_hal.h": "c",
         "i2c.h": "c",
         "spi.h": "c",

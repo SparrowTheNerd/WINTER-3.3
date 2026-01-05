@@ -31,6 +31,42 @@ class ICM42688 {
 
         uint8_t testVar;
 
+        enum ICM_g_FS {
+            _2000dps = (0 << 5),
+            _1000dps = (1 << 5),
+            _500dps = (2 << 5),
+            _250dps = (3 << 5),
+            _125dps = (4 << 5),
+            _62_5dps = (5 << 5),
+            _31_25dps = (6 << 5),
+            _15_625dps = (7 << 5)
+        };
+
+        enum ICM_a_FS {
+            _16g = (0 << 5),
+            _8g = (1 << 5),
+            _4g = (2 << 5),
+            _2g = (3 << 5)
+        };
+
+        enum ICM_ODR {
+            _32kHz = 1,   // 32kHz (LN mode)
+            _16kHz = 2,   // 16kHz (LN mode)
+            _8kHz = 3,    // 8kHz (LN mode)
+            _4kHz = 4,    // 4kHz (LN mode)
+            _2kHz = 5,    // 2kHz (LN mode)
+            _1kHz = 6,    // 1kHz (LN mode) (default)
+            _200Hz = 7,   // 200Hz (LP or LN mode)
+            _100Hz = 8,   // 100Hz (LP or LN mode)
+            _50Hz = 9,    // 50Hz (LP or LN mode)
+            _25Hz = 10,   // 25Hz (LP or LN mode)
+            _12_5Hz = 11, // 12.5Hz (LP or LN mode)
+            _6_25Hz = 12, // 6.25Hz (LP mode)
+            _3_125Hz = 13, // 3.125Hz (LP mode)
+            _1_5625Hz = 14, // 1.5625Hz (LP mode)
+            _500Hz = 15  // 500Hz (LP or LN mode)
+        };
+
 
     private:
         HAL_StatusTypeDef ReadRegs(uint8_t reg, uint8_t *data, uint8_t len);
@@ -55,40 +91,4 @@ class ICM42688 {
         float accelConv;
         float gyroConv;
 
-};
-
-enum ICM_g_FS {
-    _2000dps = (0 << 5),
-    _1000dps = (1 << 5),
-    _500dps = (2 << 5),
-    _250dps = (3 << 5),
-    _125dps = (4 << 5),
-    _62_5dps = (5 << 5),
-    _31_25dps = (6 << 5),
-    _15_625dps = (7 << 5)
-};
-
-enum ICM_a_FS {
-    _16g = (0 << 5),
-    _8g = (1 << 5),
-    _4g = (2 << 5),
-    _2g = (3 << 5)
-};
-
-enum ICM_ODR {
-    _32kHz = 1,   // 32kHz (LN mode)
-    _16kHz = 2,   // 16kHz (LN mode)
-    _8kHz = 3,    // 8kHz (LN mode)
-    _4kHz = 4,    // 4kHz (LN mode)
-    _2kHz = 5,    // 2kHz (LN mode)
-    _1kHz = 6,    // 1kHz (LN mode) (default)
-    _200Hz = 7,   // 200Hz (LP or LN mode)
-    _100Hz = 8,   // 100Hz (LP or LN mode)
-    _50Hz = 9,    // 50Hz (LP or LN mode)
-    _25Hz = 10,   // 25Hz (LP or LN mode)
-    _12_5Hz = 11, // 12.5Hz (LP or LN mode)
-    _6_25Hz = 12, // 6.25Hz (LP mode)
-    _3_125Hz = 13, // 3.125Hz (LP mode)
-    _1_5625Hz = 14, // 1.5625Hz (LP mode)
-    _500Hz = 15  // 500Hz (LP or LN mode)
 };
