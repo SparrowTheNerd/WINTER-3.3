@@ -252,7 +252,7 @@ void SX1262_Init(void){
 	//==================================================================
 	 // SetDIO3asTCXOCtrl SPI Transaction
 		cmnd[0] = 0x97;        // 0x97 is  SetDIO3asTCXOCtrl
-		cmnd[1] = SX1262_DIO3_OUTPUT_2_4;        //  DIO3 outputs 1.6 V to supply the TCXO
+		cmnd[1] = SX1262_DIO3_OUTPUT_3_3;        //  DIO3 outputs 3.3 V to supply the TCXO
 		cmnd[2] = 0x00;
 		cmnd[3] = 0x00;
 		SX1262_Set_Command(cmnd,answ,4,100,10);
@@ -489,8 +489,8 @@ void SX1262_Radio_essental_Config(void)
 		// Set PA Config
   // See datasheet 13.1.4 for descriptions and optimal settings recommendations
 		cmnd[0] = 0x95;          //Opcode for "SetPaConfig"
-		cmnd[1] = 0x04;          //paDutyCycle. See datasheet, set in conjuntion with hpMax
-		cmnd[2] = 0x07;          //hpMax.  Basically Tx power.  0x00-0x07 where 0x07 is max power
+		cmnd[1] = 0x01;          //paDutyCycle. See datasheet, set in conjuntion with hpMax
+		cmnd[2] = 0x00;          //hpMax.  Basically Tx power.  0x00-0x07 where 0x07 is max power
 		cmnd[3] = 0x00;          //device select: 0x00 = SX1262, 0x01 = SX1261
 		cmnd[4] = 0x01;          //paLut (reserved, always set to 1)
 		
@@ -499,7 +499,7 @@ void SX1262_Radio_essental_Config(void)
 		 // Set TX Params
   // See datasheet 13.4.4 for details
 		cmnd[0] = 0x8E;          //Opcode for SetTxParams
-		cmnd[1] = 10;            //Power.  Can be -17(0xEF) to +14x0E in Low Pow mode.  -9(0xF7) to 22(0x16) in high power mode
+		cmnd[1] = 0;            //Power.  Can be -17(0xEF) to +14x0E in Low Pow mode.  -9(0xF7) to 22(0x16) in high power mode
 		cmnd[2] = 0x02;          //Ramp time. Lookup table.  See table 13-41. 0x02="40uS"
 		
 		SX1262_Set_Command(cmnd,answ,3,100,10);
