@@ -22,12 +22,12 @@ class ICM42688 {
         HAL_StatusTypeDef ReadIMU();
 
         I2C_HandleTypeDef *hi2c; // I2C handle
-        float accel_ms2[3]; // Acceleration [X,Y,Z] in m/s^2
-        float gyro_dps[3]; // Gyroscope [X,Y,Z] in degrees per second
-        float temp; // Temperature in Celsius
+        double accel_ms2[3]; // Acceleration [X,Y,Z] in m/s^2
+        double gyro_dps[3]; // Gyroscope [X,Y,Z] in degrees per second
+        double temp; // Temperature in Celsius
 
-        float accel_ofst[3]; // Offset values for each axis (pm 1g @ 0.5mg / LSB)
-        float gyro_ofst[3]; // Offset values for each axis (pm 64dps @ 1/32dps / LSB)
+        double accel_ofst[3]; // Offset values for each axis (pm 1g @ 0.5mg / LSB)
+        double gyro_ofst[3]; // Offset values for each axis (pm 64dps @ 1/32dps / LSB)
 
         uint8_t testVar;
 

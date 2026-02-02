@@ -95,14 +95,14 @@ HAL_StatusTypeDef ICM42688::ReadIMU() {
     status |= ReadRegs(ICM42688_REG_B0_TEMP_DATA1, rawDat, 14);
 
     // Convert raw data to float
-    temp = ((int16_t)(rawDat[0] << 8 | rawDat[1])) / 132.48f + 25.0f;
+    temp = (double)(((int16_t)(rawDat[0] << 8 | rawDat[1])) / 132.48 + 25.0);
 
 
     for(int i=0; i<3; i++) {
         uint8_t aI = i * 2 + 2; // 2 bytes per axis
         uint8_t gI = i * 2 + 8; // 2 bytes per axis
-        accel_ms2[i] = ((int16_t)(rawDat[aI] << 8 | rawDat[aI + 1])) * accelConv;
-        gyro_dps[i] = ((int16_t)(rawDat[gI] << 8 | rawDat[gI + 1])) * gyroConv;
+        accel_ms2[i] = (double)(((int16_t)(rawDat[aI] << 8 | rawDat[aI + 1])) * accelConv);
+        gyro_dps[i] = (double)(((int16_t)(rawDat[gI] << 8 | rawDat[gI + 1])) * gyroConv);
     }
 
     // accel_ms2[0] = ((int16_t)(rawDat[2] << 8 | rawDat[3])) * accelConv;
