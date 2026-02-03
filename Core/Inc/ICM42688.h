@@ -21,6 +21,8 @@ class ICM42688 {
 
         HAL_StatusTypeDef ReadIMU();
 
+        HAL_StatusTypeDef setOfst();
+
         I2C_HandleTypeDef *hi2c; // I2C handle
         double accel_ms2[3]; // Acceleration [X,Y,Z] in m/s^2
         double gyro_dps[3]; // Gyroscope [X,Y,Z] in degrees per second
@@ -72,7 +74,6 @@ class ICM42688 {
         HAL_StatusTypeDef ReadRegs(uint8_t reg, uint8_t *data, uint8_t len);
         HAL_StatusTypeDef WriteReg(uint8_t reg, uint8_t *data);
         HAL_StatusTypeDef WriteRegs(uint8_t reg, uint8_t *data, uint8_t len);
-        HAL_StatusTypeDef setOfst();
         HAL_StatusTypeDef setFS_ODR();
         HAL_StatusTypeDef setAAF();
         HAL_StatusTypeDef selectBank(uint8_t bank);

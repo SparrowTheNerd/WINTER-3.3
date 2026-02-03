@@ -83,7 +83,7 @@ includeDirectories:
   - Core/Lib/**
   - SparkFun-UBlox-STM32/src/**
   - eigen-5.0.0/
-  - KalmmanFilter/
+  - KalmanFilter/**
 
 # Files that should be included in the compilation.
 # If a CubeMX makefile is present it will automatically include the  c and cpp/cxx files from that makefile.
@@ -95,7 +95,7 @@ sourceFiles:
   - Core/Src/**
   - Core/Lib/**
   - SparkFun-UBlox-STM32/src/**
-  - KalmmanFilter/
+  - KalmanFilter/**
 
 # When no makefile is present it will show a warning pop-up.
 # However when compilation without the CubeMX Makefile is desired, this can be turned of.

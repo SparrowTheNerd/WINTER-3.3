@@ -22,7 +22,7 @@ Matrix<double,18,18> StateTransition(Vector3d w, Vector3d a, Vector3d wP, Vector
     return F;
 }
 
-Vector<double,10> InterialIntegration(Vector<double,10> x, Vector3d wRaw, Vector3d wBias, Vector3d aRaw, Vector3d aBias, double dt) {
+Vector<double,10> InertialIntegration(Vector<double,10> x, Vector3d wRaw, Vector3d wBias, Vector3d aRaw, Vector3d aBias, double dt) {
     double dt2 = dt/2.0;
     Vector3d w = wRaw - wBias;
     Vector3d a = aRaw - aBias;
@@ -30,14 +30,14 @@ Vector<double,10> InterialIntegration(Vector<double,10> x, Vector3d wRaw, Vector
 
     Quaterniond q1 {
         q.w() - dt2*w.x()*q.x() - dt2*w.y()*q.y() - dt2*w.z()*q.z(),
-        q.x() + dt2*w.x()*q.w() + dt2*w.y()*q.z() - dt2*w.z()*q.y(),
-        q.y() - dt2*w.x()*q.z() + dt2*w.y()*q.w() + dt2*w.z()*q.x(),
-        q.z() + dt2*w.x()*q.y() - dt2*w.y()*q.x() + dt2*w.z()*q.w()
+        q.x() + dt2*w.x()*q.w() - dt2*w.y()*q.z() + dt2*w.z()*q.y(),
+        q.y() + dt2*w.x()*q.z() + dt2*w.y()*q.w() - dt2*w.z()*q.x(),
+        q.z() - dt2*w.x()*q.y() + dt2*w.y()*q.x() + dt2*w.z()*q.w()
     };
     q1.normalize();
     Vector3d aG = Quat2DCM(q1)*a;
-    Vector3d V = aG*dt;
     aG.z() -= 9.80665; // subtract gravity
+    Vector3d V = aG*dt;
     return Vector<double,10> {
         q1.w(),
         q1.x(),

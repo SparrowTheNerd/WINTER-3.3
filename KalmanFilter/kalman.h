@@ -16,9 +16,11 @@ class KalmanFilter {
         void predict(double dt);
         void update();
 
-    private:
         Vector<double,10> intState; // inertial state vector (quaternion, velocity, position)
         Vector<double,18> errState;  // error state vector (angle error, velocity error, position error, gyro bias, accel bias, mag bias)
+
+    private:
+        Vector<double,10> intStatePriori; // prior inertial state vector
         Vector<double,18> errStatePriori; // prior error state vector
         Matrix<double,18,18> P;      // error covariance matrix
         Matrix<double,18,18> Pn1n; // prior error covariance matrix

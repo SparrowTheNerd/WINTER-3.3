@@ -143,6 +143,7 @@ Core/Src/MS5607.cpp \
 Core/Src/SX1262-new.cpp \
 Core/Src/abstract.cpp \
 Core/Src/cpp_main.cpp \
+KalmanFilter/kalman.cpp \
 SparkFun-UBlox-STM32/src/sfe_bus.cpp \
 SparkFun-UBlox-STM32/src/u-blox_GNSS.cpp
 
@@ -243,6 +244,7 @@ C_INCLUDES =  \
 -IDrivers/STM32H7xx_HAL_Driver/Inc/Legacy \
 -IFATFS/App \
 -IFATFS/Target \
+-IKalmanFilter \
 -IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc \
 -IMiddlewares/ST/STM32_USB_Device_Library/Core/Inc \
 -IMiddlewares/Third_Party/FatFs/src \

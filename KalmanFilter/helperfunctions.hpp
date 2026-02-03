@@ -28,3 +28,7 @@ Matrix3d Quat2DCM(Quaterniond q) {
              2*(q.x()*q.z() - q.w()*q.y()),             2*(q.y()*q.z() + q.w()*q.x()),         q.w()*q.w() - q.x()*q.x() - q.y()*q.y() + q.z()*q.z();
     return R;
 }
+
+Vector3d MapIMU(double input[3]) {
+    return Vector3d(-input[2], input[1], input[0]); // map board axes (X up) to body axes (Z up)
+}
