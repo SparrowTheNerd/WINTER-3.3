@@ -18,10 +18,10 @@ class MS5607 {
 
         I2C_HandleTypeDef *hi2c; // I2C handle
         uint8_t OSR; // Oversampling rate (0-4 -> 256-4096)
-        float temp; // Temperature in Celsius
+        double temp; // Temperature in Celsius
         int32_t pres; // Pressure in Pa
-        float alt; // Altitude in meters
-        int available; // Data availability flag
+        double alt; // Altitude in meters
+        uint8_t available; // Data availability flag
     private:
         HAL_StatusTypeDef ReadRegs(uint8_t reg, uint8_t *data, uint16_t len);
         
@@ -38,4 +38,6 @@ class MS5607 {
         rawDat raw;  // Raw data structure
         uint8_t baroStep; // Step for reading data
         uint8_t cmd; // Command for I2C
+        uint8_t delTime; // Delay time for conversions
+        uint32_t counter; // Counter for timing
 };

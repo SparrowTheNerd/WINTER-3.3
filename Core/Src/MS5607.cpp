@@ -14,6 +14,25 @@ MS5607::MS5607(I2C_HandleTypeDef *hi2c, uint8_t OSR) {
     this->temp = 0.0f;
     this->pres = 0;
     this->alt = 0.0f;
+    switch(OSR) {
+        case 0:
+            delTime = 1; // ms
+            break;
+        case 1:
+            delTime = 2; // ms
+            break;
+        case 2:
+            delTime = 4; // ms
+            break;
+        case 3:
+            delTime = 5; // ms
+            break;
+        case 4:
+            delTime = 9; // ms
+            break;
+        default:
+            delTime = 9; // default to max delay if invalid OSR
+    }
 }
 
 /**
@@ -60,7 +79,6 @@ HAL_StatusTypeDef MS5607::ReadRegs(uint8_t reg, uint8_t *data, uint16_t len) {
 uint8_t baroStep = 0;
 /**
  * @brief  Reads data from the MS5607
- * @param  *dev: Pointer to the MS5607 structure
  * @retval HAL Status
  */
 HAL_StatusTypeDef MS5607::GetData() {
@@ -74,8 +92,12 @@ HAL_StatusTypeDef MS5607::GetData() {
                 return status;
             }
             baroStep = 1;
+            counter = HAL_GetTick();
             break;
         case 1:
+            if(HAL_GetTick() - counter < delTime) {
+                return HAL_BUSY; // Conversion not ready yet
+            }
             cmd = MS5607_REG_ADC_READ;
             uint8_t buf[3];
             status = HAL_I2C_Mem_Read(hi2c, MS5607_ADDR, cmd, I2C_MEMADD_SIZE_8BIT, buf, 3, HAL_MAX_DELAY);
@@ -93,8 +115,12 @@ HAL_StatusTypeDef MS5607::GetData() {
             }
 
             baroStep = 2;
+            counter = HAL_GetTick();
             break;
         case 2:
+            if(HAL_GetTick() - counter < delTime) {
+                return HAL_BUSY; // Conversion not ready yet
+            }
             cmd = MS5607_REG_ADC_READ;
             status = HAL_I2C_Mem_Read(hi2c, MS5607_ADDR, cmd, I2C_MEMADD_SIZE_8BIT, buf, 3, HAL_MAX_DELAY);
             if(status != HAL_OK) {
@@ -105,7 +131,7 @@ HAL_StatusTypeDef MS5607::GetData() {
             raw.D2 = raw.D2 & (uint32_t)0x00FFFFFF; // Clear the last 4 bits
 
             baroStep = 0; // Reset step for next read
-            Convert();
+            available = 1;
             break;
     }
     return status;
@@ -113,19 +139,19 @@ HAL_StatusTypeDef MS5607::GetData() {
 
 /**
  * @brief  Converts raw data to pressure and temperature
- * @param  *dev: Pointer to the MS5607 structure
  * @retval None
  */
 void MS5607::Convert() {
     raw.dT = raw.D2 - ((uint32_t)raw.C[4] << 8);
-    raw.TEMP = 2000 + ((int32_t)raw.dT * (int32_t)raw.C[5] >> 23);
+    raw.TEMP = (int32_t)2000 + ((int32_t)raw.dT * (int32_t)raw.C[5] >> 23);
 
     raw.OFF = ((int64_t)raw.C[1] << 17) + ((int64_t)raw.dT * (int64_t)raw.C[3] >> 6);
     raw.SENS = ((int64_t)raw.C[0] << 16) + ((int64_t)raw.dT * (int64_t)raw.C[2] >> 7);
     raw.P = (int32_t)(((raw.D1 * raw.SENS >> 21) - raw.OFF) >> 15);
 
 
-    temp = (float)raw.TEMP / 100.0f; // Convert temperature to Celsius
+    temp = (double)raw.TEMP / 100.0; // Convert temperature to Celsius
     pres = raw.P; // Pressure in Pa
-    alt = (float)((1.f - pow((pres) / (double)101325, (double)0.190284)) * (double)145366.45); // Altitude in meters
+    alt = (double)((1.0 - pow((double)(pres) / 101325.0, 0.190284)) * 145366.45); // Altitude in meters
+    available = 0;
 }
