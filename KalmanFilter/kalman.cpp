@@ -1,5 +1,7 @@
 #include "kalman.h"
 #include "kalmanfunctions.hpp"
+#include "sensorfunctions.hpp"
+#include "abstract.h"
 
 void KalmanFilter::init(MMC5983* mag, ICM42688* imu, MS5607* baro, ADXL375* highG, SFE_UBLOX_GNSS* gnss) {
     this->mag = mag;
@@ -8,19 +10,27 @@ void KalmanFilter::init(MMC5983* mag, ICM42688* imu, MS5607* baro, ADXL375* high
     this->highG = highG;
     this->gnss = gnss;
     double gOfst[3] = {0,0,0};
+    double accelInit[3] = {0,0,0};
 
-    for(int i=0; i<250; i++) {
+    for(int i=0; i<200; i++) {
         imu->ReadIMU();
         for(int j=0; j<3; j++) {
             gOfst[j] += imu->gyro_dps[j];
+            accelInit[j] += imu->accel_ms2[j];
         }
+        baro->GetData();
         HAL_Delay(10);
     }
     for(int j=0; j<3; j++) {
         imu->gyro_ofst[j] = gOfst[j]/250.0;
+        accelInit[j] /= 250.0;
     }
-    // qP = Quaterniond {0.7071, 0.0, 0.7071, 0.0};
-    intState << 0.7071, 0.0, 0.7071, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0;
+
+    baro->Convert();
+        
+    qP = Quaterniond::FromTwoVectors(MapIMU(accelInit), Vector3d {0,0,9.80665});
+    intState << qP.w(), qP.x(), qP.y(), qP.z(), 0.0, 0.0, baro->alt, 0.0, 0.0, 0.0;
+
     errState.setZero();
 }
 void KalmanFilter::predict(double dt) {
@@ -30,26 +40,47 @@ void KalmanFilter::predict(double dt) {
     Vector3d aRaw = MapIMU(imu->accel_ms2);
     Vector3d wRaw = MapIMU(imu->gyro_dps)*M_PI/180.0;
 
-    // Vector3d wBias = errState.segment<3>(9);
-    // Vector3d aBias = errState.segment<3>(12);
-    Vector3d wBias = Vector3d::Zero();
-    Vector3d aBias = Vector3d::Zero();
-
     intStatePriori = InertialIntegration(intState, wRaw, wBias, aRaw, aBias, dt);
 
-    // Quaterniond q {intStatePriori(0), intStatePriori(1), intStatePriori(2), intStatePriori(3)}; // can't use segment bc Eigen treats Vector4 as XYZW order, stupid
-    // F = StateTransition(wRaw, aRaw, wP, aP, q, qP);
-    // Phi = I18 + F*dt + 0.5*F*F*dt*dt;
-    // Pn1n = Phi*P*Phi.transpose() + Q;
+    Quaterniond q {intStatePriori(0), intStatePriori(1), intStatePriori(2), intStatePriori(3)}; // can't use segment bc Eigen treats Vector4 as XYZW order, stupid
+    F = StateTransition(wRaw, aRaw, wP, aP, q, qP);
+    Phi = I18 + F*dt + 0.5*F*F*dt*dt;
+    Q = noiseCovariance(dt, sigGyro, sigAccel, sigBa, sigBw, sigBm);
+    Pn1n = Phi*P*Phi.transpose() + Q;
+    // print_matrix2(F);
 
-    // wP = wRaw; aP = aRaw; 
+    wP = wRaw; aP = aRaw; 
 
-    // code for doing raw integration tests
+    // // code for doing raw integration tests
     // qP = q;
-    intState = intStatePriori;
+    // intState = intStatePriori;
     // P = Pn1n;
 
 }
 void KalmanFilter::update() {
-    // Implement the update step of the Kalman Filter here
+    errState = Vector<double,18>::Zero();
+    P=Pn1n;
+    baro->GetData();
+    if(baro->available) {
+        baro->Convert();
+        BaroMeas(intStatePriori(6), baro->alt, &hB, &dB);
+        kB = P*hB.transpose() / ((hB * P * hB.transpose()) + RBaro); 
+        // print_matrix2(P);
+        errState = errState + kB*dB;
+        P = (I18 - kB * hB) * P * (I18 - kB * hB).transpose() + kB * RBaro * kB.transpose();
+    }
+    // ... other sensor updates
+    intState.segment<4>(0) = (Quaterniond(intStatePriori(0), intStatePriori.segment<3>(1)).normalized() * Quaterniond {1, errState.segment<3>(0)/2.0}.normalized()).normalized().coeffsScalarFirst(); // apply angle error as a quaternion rotation
+    intState.segment<3>(4) = intStatePriori.segment<3>(4) + errState.segment<3>(6); // apply velocity error
+    intState.segment<3>(7) = intStatePriori.segment<3>(7) + errState.segment<3>(3); // apply position error
+    wBias += errState.segment<3>(9);
+    aBias += errState.segment<3>(12);
+    // sprintf((char*)usbTxBuf2, "gX: %.5f\r\ngY: %.5f\r\ngZ: %.5f", wBias.x(), wBias.y(), wBias.z());
+    // SerialPrintln(usbTxBuf2);
+    qP = Quaterniond(intState(0), intState.segment<3>(1)); // eigen takes either (w,xyz) or (x,y,z,w), stupid
+    
+    // {
+    //     intState = intStatePriori;
+    //     P = Pn1n;
+    // }
 }

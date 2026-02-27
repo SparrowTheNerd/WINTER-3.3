@@ -9,6 +9,8 @@
 
 using namespace Eigen;
 
+#define DEG2RAD(x) (x*(M_PI/180.0))
+
 class KalmanFilter {
     public:
 
@@ -16,17 +18,23 @@ class KalmanFilter {
         void predict(double dt);
         void update();
 
-        Vector<double,10> intState; // inertial state vector (quaternion, velocity, position)
+        Vector<double,10> intState; // inertial state vector (quaternion, position, velocity)
         Vector<double,18> errState;  // error state vector (angle error, velocity error, position error, gyro bias, accel bias, mag bias)
 
     private:
         Vector<double,10> intStatePriori; // prior inertial state vector
-        Vector<double,18> errStatePriori; // prior error state vector
         Matrix<double,18,18> P;      // error covariance matrix
         Matrix<double,18,18> Pn1n; // prior error covariance matrix
         Matrix<double,18,18> F;      // state transition matrix
         Matrix<double,18,18> Phi;    // state transition matrix second-order integration
         Matrix<double,18,18> Q;      // process noise covariance
+
+        Matrix<double,1,18> hB; // barometer measurement matrix
+        Vector<double,18> kB; // barometer Kalman gain
+        double dB; // barometer innovation
+
+        Vector3d wBias = Vector3d::Zero();
+        Vector3d aBias = Vector3d::Zero();
 
         Matrix<double,18,18> I18 = Matrix<double,18,18>::Identity(); // 18x18 identity matrix
 
@@ -39,5 +47,21 @@ class KalmanFilter {
         MS5607* baro;
         ADXL375* highG;
         SFE_UBLOX_GNSS* gnss;
+
+        // noise parameters
+
+        double sigAccel = 0.000515; // m/s^2 / sqrt(hz)
+        double sigGyro = DEG2RAD(0.002086); // rad/s / sqrt(hz)
+        double sigMag = 0.000053; // Gauss / sqrt(hz)
+        double sigBaro = 0.354508; // meters / sqrt(hz)
+        double sigGPS = 5.0; // meters rms
+        double sigBa = 0.000078;
+        double sigBw = 0.00022;
+        double sigBm = 0.00009;
+
+
+        double RBaro = sigBaro*sigBaro;
+        Matrix3d RMag = Matrix3d::Identity() * sigMag*sigMag;
+        Matrix2d RGPS = Matrix2d::Identity() * sigGPS*sigGPS;
 
 };

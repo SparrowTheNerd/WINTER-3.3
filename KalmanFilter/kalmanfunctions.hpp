@@ -19,6 +19,7 @@ Matrix<double,18,18> StateTransition(Vector3d w, Vector3d a, Vector3d wP, Vector
     F.block<3,3>(6,3) = I3;
     F.block<3,3>(0,9) = I3*-1.0;
     F.block<3,3>(3,12) = Cbi;
+    // print_matrix2(qAvg.coeffsScalarFirst());
     return F;
 }
 
@@ -35,19 +36,45 @@ Vector<double,10> InertialIntegration(Vector<double,10> x, Vector3d wRaw, Vector
         q.z() - dt2*w.x()*q.y() + dt2*w.y()*q.x() + dt2*w.z()*q.w()
     };
     q1.normalize();
-    Vector3d aG = Quat2DCM(q1)*a;
-    aG.z() -= 9.80665; // subtract gravity
-    Vector3d V = aG*dt;
+    Vector3d aG = q1*a;
+    aG.z() -= 9.80665; // remove gravity
+    Vector3d V = x.segment<3>(7) + aG*dt;
     return Vector<double,10> {
         q1.w(),
         q1.x(),
         q1.y(),
         q1.z(),
-        x(4) + V.x(),
-        x(5) + V.y(),
-        x(6) + V.z(),
-        x(7) + V.x()*dt,
-        x(8) + V.y()*dt,
-        x(9) + V.z()*dt
+        x(4) + V.x()*dt,
+        x(5) + V.y()*dt,
+        x(6) + V.z()*dt,
+        V.x(),
+        V.y(),
+        V.z()
     };
+}
+
+Matrix<double,18,18> noiseCovariance(double dT, double pnw, double pna, double Ba, double Bw, double Bm) {
+    Matrix<double,18,18> Q = Matrix<double,18,18>::Zero();
+    Matrix3d Iw = Matrix3d::Identity() * (pnw * pnw);
+    Matrix3d Ia = Matrix3d::Identity() * (pna * pna);
+    Matrix3d IBw = Matrix3d::Identity() * (Bw * Bw);
+    Matrix3d IBa = Matrix3d::Identity() * (Ba * Ba);
+    Matrix3d IBm = Matrix3d::Identity() * (Bm * Bm);
+
+    Q.block<3,3>(0,0) = Iw*dT + IBw*(dT*dT*dT/3.0);
+    Q.block<3,3>(9,0) = -IBw*(dT*dT/2.0);
+    Q.block<3,3>(3,3) = Ia*dT + IBa*(dT*dT*dT/3.0);
+    Q.block<3,3>(6,3) = Ia*(dT*dT/2.0) + IBa*(dT*dT*dT*dT/8.0);
+    Q.block<3,3>(12,3) = -IBa*(dT*dT/2.0);
+    Q.block<3,3>(3,6) = Ia*(dT*dT/2.0) + IBa*(dT*dT*dT*dT/8.0);
+    Q.block<3,3>(6,6) = Ia*(dT*dT*dT/3.0) + IBa*(dT*dT*dT*dT*dT/20.0);
+    Q.block<3,3>(12,6) = -IBa*(dT*dT*dT/6.0);
+    Q.block<3,3>(0,9) = -IBw*(dT*dT/2.0);
+    Q.block<3,3>(9,9) = IBw*(dT*dT/2.0);
+    Q.block<3,3>(3,12) = -IBa*(dT*dT/2.0);
+    Q.block<3,3>(6,12) = -IBa*(dT*dT*dT/6.0);
+    Q.block<3,3>(12,12) = IBa*dT;
+    Q.block<3,3>(15,15) = IBm*dT;
+
+    return Q;
 }
