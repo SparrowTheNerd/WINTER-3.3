@@ -1,6 +1,6 @@
 #include "ICM42688.h"
 
-ICM42688::ICM42688(I2C_HandleTypeDef *hi2c, float a_ofst[3], float g_ofst[3], uint8_t g_fs, uint8_t g_odr, uint8_t a_fs, uint8_t a_odr) {
+ICM42688::ICM42688(I2C_HandleTypeDef *hi2c, double a_ofst[3], double g_ofst[3], uint8_t g_fs, uint8_t g_odr, uint8_t a_fs, uint8_t a_odr) {
     this->hi2c = hi2c;
     this->accel_ofst[0] = a_ofst[0];
     this->accel_ofst[1] = a_ofst[1];
@@ -15,44 +15,44 @@ ICM42688::ICM42688(I2C_HandleTypeDef *hi2c, float a_ofst[3], float g_ofst[3], ui
 
     switch(a_fs) {  //g/LSB
         case _2g:
-            accelConv = 1.f/16384.f;
+            accelConv = 1.0/16384.0;
             break;
         case _4g:
-            accelConv = 1.f/8192.f; 
+            accelConv = 1.0/8192.0; 
             break;
         case _8g:
-            accelConv = 1.f/4096.f;
+            accelConv = 1.0/4096.0;
             break;
         case _16g:
-            accelConv = 1.f/2048.f;
+            accelConv = 1.0/2048.0;
             break;
     }
-    accelConv *= 9.80665f; // Convert to m/s^2
+    accelConv *= 9.80665; // Convert to m/s^2
 
     switch(g_fs) {  //dps/LSB
         case _15_625dps:
-            gyroConv = 1.f/2097.2f;
+            gyroConv = 1.0/2097.152;
             break;
         case _31_25dps:
-            gyroConv = 1.f/1048.6f;
+            gyroConv = 1.0/1048.576;
             break;
         case _62_5dps:
-            gyroConv = 1.f/524.3f;
+            gyroConv = 1.0/524.288;
             break;
         case _125dps:
-            gyroConv = 1.f/262.15f;
+            gyroConv = 1.0/262.144;
             break;
         case _250dps:
-            gyroConv = 1.f/131.075f;
+            gyroConv = 1.0/131.072;
             break;
         case _500dps:
-            gyroConv = 1.f/65.5375f;
+            gyroConv = 1.0/65.536;
             break;
         case _1000dps:
-            gyroConv = 1.f/32.76875f;
+            gyroConv = 1.0/32.768;
             break;
         case _2000dps:
-            gyroConv = 1.f/16.384375f;
+            gyroConv = 1.0/16.384;
             break;
     }
 
@@ -100,8 +100,8 @@ HAL_StatusTypeDef ICM42688::ReadIMU() {
     for(int i=0; i<3; i++) {
         uint8_t aI = i * 2 + 2; // 2 bytes per axis
         uint8_t gI = i * 2 + 8; // 2 bytes per axis
-        accel_ms2[i] = (double)(((int16_t)(rawDat[aI] << 8 | rawDat[aI + 1])) * accelConv) - accel_ofst[i];
-        gyro_dps[i] = (double)(((int16_t)(rawDat[gI] << 8 | rawDat[gI + 1])) * gyroConv) - gyro_ofst[i];
+        accel_ms2[i] = (double)((((int16_t)(rawDat[aI] << 8 | rawDat[aI + 1])) * accelConv) - accel_ofst[i]) * accelScale[i];
+        gyro_dps[i] = (double)((((int16_t)(rawDat[gI] << 8 | rawDat[gI + 1])) * gyroConv)) - gyro_ofst[i];
     }
     
     return (HAL_StatusTypeDef)status;

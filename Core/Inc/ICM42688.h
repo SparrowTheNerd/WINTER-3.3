@@ -15,7 +15,7 @@
 
 class ICM42688 {
     public:
-        ICM42688(I2C_HandleTypeDef *hi2c, float a_ofst[3], float g_ofst[3], uint8_t g_fs, uint8_t g_odr, uint8_t a_fs, uint8_t a_odr);
+        ICM42688(I2C_HandleTypeDef *hi2c, double a_ofst[3], double g_ofst[3], uint8_t g_fs, uint8_t g_odr, uint8_t a_fs, uint8_t a_odr);
 
         HAL_StatusTypeDef Init();
 
@@ -89,7 +89,8 @@ class ICM42688 {
         uint8_t a_odr;
 
 
-        float accelConv;
-        float gyroConv;
+        double accelConv;
+        double gyroConv;
+        double accelScale[3] = {1.0012347, 1.006263, 1.017067};
 
 };
